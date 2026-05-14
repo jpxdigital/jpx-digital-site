@@ -1,5 +1,5 @@
 const WA_LINK =
-  'https://wa.me/5511999999999?text=Ol%C3%A1!%20Tenho%20interesse%20nas%20solu%C3%A7%C3%B5es%20da%20JPX%20Digital.'
+  'https://wa.me/5518930852246?text=Ol%C3%A1!%20Tenho%20interesse%20nas%20solu%C3%A7%C3%B5es%20da%20JPX%20Digital.'
 
 const products = [
   {
@@ -347,7 +347,7 @@ export default function Home() {
             <p className="footer__copy">
               © 2025 JPX Digital · Zerofill Tecnologia
               <br />
-              CNPJ: 00.000.000/0001-00
+              CNPJ: 57.454.973/0001-18
             </p>
           </div>
         </div>
