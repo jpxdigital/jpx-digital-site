@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const WA_LINK =
   'https://wa.me/5518930852246?text=Ol%C3%A1!%20Tenho%20interesse%20nas%20solu%C3%A7%C3%B5es%20da%20JPX%20Digital.'
 
@@ -132,6 +134,184 @@ function ProductCard({ product }) {
         {product.cta}
       </a>
     </article>
+  )
+}
+
+function ContactForm() {
+  const [form, setForm] = useState({
+    name: '', email: '', phone: '', company: '', interest: '', message: '',
+  })
+  const [status, setStatus] = useState('idle')
+  const [errorMsg, setErrorMsg] = useState('')
+
+  const handleChange = (e) =>
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setStatus('submitting')
+    setErrorMsg('')
+    try {
+      const res = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      const data = await res.json()
+      if (data.success) {
+        setStatus('success')
+      } else {
+        setStatus('error')
+        setErrorMsg(data.error || 'Erro desconhecido. Tente novamente.')
+      }
+    } catch {
+      setStatus('error')
+      setErrorMsg('Falha na conexão. Verifique sua internet e tente novamente.')
+    }
+  }
+
+  if (status === 'success') {
+    return (
+      <div className="contact-success animate-fade-up">
+        <div className="contact-success__icon">✓</div>
+        <h3 className="contact-success__title">Mensagem enviada!</h3>
+        <p className="contact-success__sub">
+          Recebemos seu contato. Um especialista retornará em breve.
+        </p>
+        <a
+          href={WA_LINK}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn--ghost btn--sm"
+        >
+          💬 Falar agora no WhatsApp
+        </a>
+      </div>
+    )
+  }
+
+  const disabled = status === 'submitting'
+
+  return (
+    <form className="contact-form animate-fade-up" onSubmit={handleSubmit} noValidate>
+      <div className="contact-form__row">
+        <div className="contact-form__field">
+          <label className="contact-form__label" htmlFor="cf-name">
+            Nome completo *
+          </label>
+          <input
+            className="contact-form__input"
+            type="text"
+            id="cf-name"
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+            placeholder="João Silva"
+            required
+            disabled={disabled}
+          />
+        </div>
+        <div className="contact-form__field">
+          <label className="contact-form__label" htmlFor="cf-email">
+            E-mail *
+          </label>
+          <input
+            className="contact-form__input"
+            type="email"
+            id="cf-email"
+            name="email"
+            value={form.email}
+            onChange={handleChange}
+            placeholder="joao@empresa.com"
+            required
+            disabled={disabled}
+          />
+        </div>
+      </div>
+      <div className="contact-form__row">
+        <div className="contact-form__field">
+          <label className="contact-form__label" htmlFor="cf-phone">
+            Telefone
+          </label>
+          <input
+            className="contact-form__input"
+            type="tel"
+            id="cf-phone"
+            name="phone"
+            value={form.phone}
+            onChange={handleChange}
+            placeholder="(18) 99999-9999"
+            disabled={disabled}
+          />
+        </div>
+        <div className="contact-form__field">
+          <label className="contact-form__label" htmlFor="cf-company">
+            Empresa
+          </label>
+          <input
+            className="contact-form__input"
+            type="text"
+            id="cf-company"
+            name="company"
+            value={form.company}
+            onChange={handleChange}
+            placeholder="Nome da empresa"
+            disabled={disabled}
+          />
+        </div>
+      </div>
+      <div className="contact-form__field">
+        <label className="contact-form__label" htmlFor="cf-interest">
+          Interesse
+        </label>
+        <select
+          className="contact-form__input contact-form__select"
+          id="cf-interest"
+          name="interest"
+          value={form.interest}
+          onChange={handleChange}
+          disabled={disabled}
+        >
+          <option value="">Selecione um produto...</option>
+          <option value="Segurança Gerenciada">Segurança Gerenciada</option>
+          <option value="Backup em Nuvem">Backup em Nuvem</option>
+          <option value="Assistente de TI com IA">Assistente de TI com IA</option>
+          <option value="Automação de Processos">Automação de Processos</option>
+          <option value="Todos / Não sei ainda">Todos / Não sei ainda</option>
+        </select>
+      </div>
+      <div className="contact-form__field">
+        <label className="contact-form__label" htmlFor="cf-message">
+          Mensagem
+        </label>
+        <textarea
+          className="contact-form__input contact-form__textarea"
+          id="cf-message"
+          name="message"
+          value={form.message}
+          onChange={handleChange}
+          placeholder="Conte um pouco sobre o que precisa..."
+          rows={3}
+          disabled={disabled}
+        />
+      </div>
+      {status === 'error' && (
+        <p className="contact-form__error">{errorMsg}</p>
+      )}
+      <div className="contact-form__footer">
+        <button className="btn btn--primary" type="submit" disabled={disabled}>
+          {disabled ? 'Enviando...' : 'Enviar mensagem'}
+        </button>
+        <a
+          href={WA_LINK}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn--ghost"
+        >
+          💬 WhatsApp
+        </a>
+      </div>
+    </form>
   )
 }
 
@@ -286,30 +466,17 @@ export default function Home() {
           aria-labelledby="cta-title"
         >
           <div className="container">
-            <div className="cta-section__card animate-fade-up">
-              <h2 id="cta-title" className="cta-section__title">
-                Pronto para transformar sua<br />infraestrutura de TI?
-              </h2>
-              <p className="cta-section__sub">
-                Converse com um especialista e descubra qual solução se encaixa
-                melhor no seu negócio. Sem compromisso.
-              </p>
-              <div className="cta-section__actions">
-                <a
-                  href={WA_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn--primary"
-                >
-                  💬 Falar no WhatsApp
-                </a>
-                <a
-                  href="mailto:suporte@jpxdigital.com.br"
-                  className="btn btn--ghost"
-                >
-                  Enviar e-mail
-                </a>
-              </div>
+            <div className="cta-section__card">
+              <header className="cta-section__header animate-fade-up">
+                <h2 id="cta-title" className="cta-section__title">
+                  Pronto para transformar sua<br />infraestrutura de TI?
+                </h2>
+                <p className="cta-section__sub">
+                  Preencha o formulário e um especialista entra em contato.
+                  Sem compromisso.
+                </p>
+              </header>
+              <ContactForm />
             </div>
           </div>
         </section>
