@@ -32,7 +32,6 @@ export async function onRequestPost(context) {
       email: email.trim().toLowerCase(),
       phone: phone?.trim() ?? '',
       company: company?.trim() ?? '',
-      hs_lead_source: 'WEBSITE',
       message: message?.trim() ?? '',
     }
   }

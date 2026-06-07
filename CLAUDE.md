@@ -5,7 +5,7 @@ Site institucional e de captação de leads da JPX Digital.
 ## Stack
 
 - React SPA (Vite)
-- Deploy: Cloudflare Pages (auto-deploy no git push)
+- Deploy: Cloudflare Pages via Wrangler (sem conexão Git)
 - Domínio: jpxdigital.com.br
 - Backend: Cloudflare Functions (`/functions`)
 
@@ -22,7 +22,7 @@ jpxdigital.com.br (React SPA — Cloudflare Pages)
   │     ▼
   │   /api/leads  (Cloudflare Function)
   │     ├──► HubSpot CRM  (cria contato + deal)
-  │     └──► n8n Webhook  (dispara email de boas-vindas via Zoho SMTP)
+  │     └──► n8n Webhook  (dispara email de boas-vindas via Resend)
   │
   └── /admin  (painel interno)
         └──► Cloudflare Analytics + env vars
@@ -30,17 +30,28 @@ jpxdigital.com.br (React SPA — Cloudflare Pages)
 
 ## Deploy
 
+O projeto **não tem conexão Git** com o Cloudflare Pages — deploy sempre via Wrangler:
+
 ```bash
-git push  # Cloudflare Pages detecta e faz deploy automático
+cd /home/petruzz/jpx-digital-site
+npm run build
+npx wrangler pages deploy dist --project-name jpx-digital-site
 ```
 
-## Variáveis de produção (Cloudflare Pages)
+> Wrangler usa o token `CLOUDFLARE_API_TOKEN` do `.env.local`.
+
+## Variáveis de produção (Cloudflare Pages → Settings → Environment variables)
 
 | Variável | Uso |
 |---|---|
-| `CLOUDFLARE_API_TOKEN` | Acesso à API da Cloudflare |
 | `HUBSPOT_TOKEN` | Integração com HubSpot CRM |
-| `N8N_WEBHOOK_URL` | Webhook do n8n para email de boas-vindas |
+| `N8N_WEBHOOK_URL` | `https://n8n.jpxdigital.com.br/webhook/jpx-lead` |
+| `CF_ACCOUNT_ID` | `eff25522365c546986657167afde001a` |
+| `CF_API_TOKEN` | Token Cloudflare (Analytics + Pages API) |
+| `CF_PROJECT_NAME` | `jpx-digital-site` |
+| `ADMIN_SECRET` | Senha do painel `/admin` |
+
+> Após alterar variáveis no painel, fazer novo deploy via Wrangler para aplicar.
 
 ## Relação com JPX Suporte
 
