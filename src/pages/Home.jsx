@@ -505,10 +505,10 @@ export default function Home() {
                 WhatsApp
               </a>
               <a
-                href="mailto:suporte@jpxdigital.com.br"
+                href="mailto:jp@jpxdigital.com.br"
                 className="footer__link"
               >
-                suporte@jpxdigital.com.br
+                jp@jpxdigital.com.br
               </a>
             </nav>
             <p className="footer__copy">
