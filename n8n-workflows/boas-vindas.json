@@ -1,0 +1,85 @@
+{
+  "name": "Boas-vindas — Lead JPX Digital",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "jpx-lead",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "webhookId": "jpx-lead-boas-vindas"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.first().json.body;\nconst name = (body.name || '').trim();\nconst firstName = name.split(' ')[0] || 'Cliente';\nconst interest = (body.interest || '').trim();\n\nconst interestBox = interest\n  ? `<table width='100%' cellpadding='0' cellspacing='0' style='background:#eff6ff;border-left:4px solid #0078D4;border-radius:0 8px 8px 0;margin:0 0 24px;'><tr><td style='padding:14px 18px;'><p style='margin:0;color:#1e40af;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;'>Assunto do seu contato</p><p style='margin:4px 0 0;color:#111827;font-size:15px;font-weight:600;'>${interest}</p></td></tr></table>`\n  : '';\n\nconst html = `<!DOCTYPE html><html lang='pt-BR'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1.0'></head><body style='margin:0;padding:0;background:#f0f4f8;font-family:Arial,Helvetica,sans-serif;'><table width='100%' cellpadding='0' cellspacing='0' style='background:#f0f4f8;padding:40px 16px;'><tr><td align='center'><table width='100%' cellpadding='0' cellspacing='0' style='max-width:560px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08);'>\n\n<tr><td style='background:#0078D4;padding:36px 40px;text-align:center;'>\n  <table cellpadding='0' cellspacing='0' style='margin:0 auto 16px;'><tr><td style='border:2px solid rgba(255,255,255,0.3);border-radius:10px;padding:10px 24px;'>\n    <span style='color:#fff;font-size:24px;font-weight:700;letter-spacing:0.5px;'>JPX <span style='color:#93d5ff;'>Digital</span></span>\n  </td></tr></table>\n  <p style='margin:0;color:rgba(255,255,255,0.85);font-size:12px;letter-spacing:2.5px;text-transform:uppercase;'>Tecnologia que trabalha por você</p>\n</td></tr>\n\n<tr><td style='padding:40px 40px 32px;'>\n  <h2 style='margin:0 0 14px;color:#111827;font-size:22px;font-weight:700;'>Olá, ${firstName}! 👋</h2>\n  <p style='margin:0 0 20px;color:#4b5563;font-size:15px;line-height:1.75;'>Ficamos felizes com o seu interesse na <strong style='color:#111827;'>JPX Digital</strong>. Recebemos seu contato e nossa equipe vai retornar em breve — normalmente em até <strong style='color:#0078D4;'>1 dia útil</strong>.</p>\n  ${interestBox}\n  <p style='margin:0 0 28px;color:#4b5563;font-size:15px;line-height:1.75;'>Precisa de uma resposta mais rápida? Nos chame pelo WhatsApp e atendemos imediatamente.</p>\n\n  <table cellpadding='0' cellspacing='0' style='margin:0 0 36px;'><tr>\n    <td style='background:#25D366;border-radius:8px;box-shadow:0 2px 8px rgba(37,211,102,0.3);'>\n      <a href='https://wa.me/5518930852246?text=Ol%C3%A1!%20Tenho%20interesse%20nas%20solu%C3%A7%C3%B5es%20da%20JPX%20Digital.' target='_blank' style='display:inline-block;padding:14px 28px;color:#fff;font-size:15px;font-weight:700;text-decoration:none;'>💬 Falar no WhatsApp</a>\n    </td>\n  </tr></table>\n\n  <hr style='border:none;border-top:1px solid #e5e7eb;margin:0 0 28px;'>\n  <p style='margin:0 0 14px;color:#9ca3af;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;'>Nossas Soluções</p>\n\n  <table width='100%' cellpadding='0' cellspacing='0'>\n    <tr>\n      <td width='48%' style='background:#f8fafc;border:1px solid #e5e7eb;border-radius:8px;padding:14px 16px;vertical-align:top;'>\n        <p style='margin:0;font-size:22px;line-height:1;'>🔒</p>\n        <p style='margin:8px 0 0;color:#111827;font-size:13px;font-weight:600;line-height:1.4;'>Segurança Gerenciada</p>\n      </td>\n      <td width='4%'></td>\n      <td width='48%' style='background:#f8fafc;border:1px solid #e5e7eb;border-radius:8px;padding:14px 16px;vertical-align:top;'>\n        <p style='margin:0;font-size:22px;line-height:1;'>☁️</p>\n        <p style='margin:8px 0 0;color:#111827;font-size:13px;font-weight:600;line-height:1.4;'>Backup em Nuvem</p>\n      </td>\n    </tr>\n    <tr><td colspan='3' style='height:10px;'></td></tr>\n    <tr>\n      <td width='48%' style='background:#f8fafc;border:1px solid #e5e7eb;border-radius:8px;padding:14px 16px;vertical-align:top;'>\n        <p style='margin:0;font-size:22px;line-height:1;'>🤖</p>\n        <p style='margin:8px 0 0;color:#111827;font-size:13px;font-weight:600;line-height:1.4;'>Assistente de TI com IA</p>\n      </td>\n      <td width='4%'></td>\n      <td width='48%' style='background:#f8fafc;border:1px solid #e5e7eb;border-radius:8px;padding:14px 16px;vertical-align:top;'>\n        <p style='margin:0;font-size:22px;line-height:1;'>⚙️</p>\n        <p style='margin:8px 0 0;color:#111827;font-size:13px;font-weight:600;line-height:1.4;'>Automação de Processos</p>\n      </td>\n    </tr>\n  </table>\n</td></tr>\n\n<tr><td style='background:#f8fafc;border-top:1px solid #e5e7eb;padding:24px 40px;text-align:center;'>\n  <p style='margin:0 0 6px;color:#374151;font-size:13px;font-weight:600;'>JPX Digital · Zerofill Tecnologia</p>\n  <p style='margin:0;color:#9ca3af;font-size:12px;line-height:1.9;'>\n    <a href='mailto:jp@jpxdigital.com.br' style='color:#0078D4;text-decoration:none;'>jp@jpxdigital.com.br</a>\n    &nbsp;·&nbsp;\n    <a href='https://jpxdigital.com.br' style='color:#0078D4;text-decoration:none;'>jpxdigital.com.br</a>\n  </p>\n  <p style='margin:12px 0 0;color:#d1d5db;font-size:11px;'>Você está recebendo este e-mail porque preencheu o formulário em jpxdigital.com.br</p>\n</td></tr>\n\n</table></td></tr></table></body></html>`;\n\nreturn [{ json: {\n  toEmail: body.email,\n  subject: 'Recebemos seu contato, ' + firstName + '! — JPX Digital',\n  emailHtml: html,\n} }];"
+      },
+      "id": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+      "name": "Montar E-mail",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "fromEmail": "jp@jpxdigital.com.br",
+        "toEmail": "={{ $json.toEmail }}",
+        "subject": "={{ $json.subject }}",
+        "emailType": "html",
+        "message": "={{ $json.emailHtml }}",
+        "options": {
+          "replyTo": "jp@jpxdigital.com.br"
+        }
+      },
+      "id": "c3d4e5f6-a7b8-9012-cdef-123456789012",
+      "name": "Enviar E-mail",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [680, 300],
+      "credentials": {
+        "smtp": {
+          "id": "1",
+          "name": "Zoho SMTP"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Montar E-mail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Montar E-mail": {
+      "main": [
+        [
+          {
+            "node": "Enviar E-mail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "pinData": {}
+}

@@ -1,5 +1,5 @@
 export async function onRequestPost(context) {
-  const { HUBSPOT_TOKEN } = context.env
+  const { HUBSPOT_TOKEN, N8N_WEBHOOK_URL } = context.env
 
   if (!HUBSPOT_TOKEN) {
     return respond({ error: 'Server misconfigured' }, 500)
@@ -107,6 +107,17 @@ export async function onRequestPost(context) {
         }
       )
     }
+  }
+
+  // Fire-and-forget: dispara e-mail de boas-vindas via n8n
+  if (N8N_WEBHOOK_URL) {
+    context.waitUntil(
+      fetch(N8N_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, phone, company, interest, message }),
+      }).catch(() => {})
+    )
   }
 
   return respond({ success: true, contactId, dealId })
