@@ -33,12 +33,12 @@ jpxdigital.com.br (React SPA — Cloudflare Pages)
 O projeto **não tem conexão Git** com o Cloudflare Pages — deploy sempre via Wrangler:
 
 ```bash
-cd /home/petruzz/jpx-digital-site
+cd /home/petruzz/JPX/jpx-digital-site
 npm run build
 npx wrangler pages deploy dist --project-name jpx-digital-site
 ```
 
-> Wrangler usa o token `CLOUDFLARE_API_TOKEN` do `.env.local`.
+> Wrangler usa o token em `KEYS.md` (variável `CF_API_TOKEN`).
 
 ## Variáveis de produção (Cloudflare Pages → Settings → Environment variables)
 
@@ -51,7 +51,7 @@ npx wrangler pages deploy dist --project-name jpx-digital-site
 | `CF_PROJECT_NAME` | `jpx-digital-site` |
 | `ADMIN_SECRET` | Senha do painel `/admin` |
 
-> Após alterar variáveis no painel, fazer novo deploy via Wrangler para aplicar.
+> Variáveis `plain_text` ficam disponíveis imediatamente após salvar. Variáveis `secret_text` também — redeploy só é necessário quando o **código** muda.
 
 ## Relação com JPX Suporte
 
