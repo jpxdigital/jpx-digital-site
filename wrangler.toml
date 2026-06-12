@@ -1,0 +1,3 @@
+name = "jpx-digital-site"
+account_id = "eff25522365c546986657167afde001a"
+pages_build_output_dir = "dist"

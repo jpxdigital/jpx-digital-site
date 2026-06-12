@@ -35,10 +35,10 @@ O projeto **não tem conexão Git** com o Cloudflare Pages — deploy sempre via
 ```bash
 cd /home/petruzz/JPX/jpx-digital-site
 npm run build
-npx wrangler pages deploy dist --project-name jpx-digital-site
+CLOUDFLARE_API_TOKEN=<CF_API_TOKEN do KEYS.md> wrangler pages deploy
 ```
 
-> Wrangler usa o token em `KEYS.md` (variável `CF_API_TOKEN`).
+> `wrangler.toml` já define `account_id` e `pages_build_output_dir` — não precisa passar flags extras.
 
 ## Variáveis de produção (Cloudflare Pages → Settings → Environment variables)
 
