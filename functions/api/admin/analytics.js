@@ -1,9 +1,9 @@
 export async function onRequestGet(context) {
   if (!auth(context)) return respond({ error: 'Não autorizado' }, 401)
 
-  const { CF_ACCOUNT_ID, CF_API_TOKEN, CF_PROJECT_NAME } = context.env
+  const { CF_ACCOUNT_ID, CF_API_TOKEN } = context.env
 
-  if (!CF_ACCOUNT_ID || !CF_API_TOKEN || !CF_PROJECT_NAME) {
+  if (!CF_ACCOUNT_ID || !CF_API_TOKEN) {
     return respond({ error: 'Variáveis CF_ não configuradas no ambiente' }, 500)
   }
 
@@ -11,46 +11,88 @@ export async function onRequestGet(context) {
   const start = new Date(Date.now() - 29 * 24 * 60 * 60 * 1000)
   const fmt   = (d) => d.toISOString().split('T')[0]
 
-  const query = `{
+  const dateFilter = `date_geq: "${fmt(start)}" date_leq: "${fmt(end)}"`
+
+  const rumQuery = `{
     viewer {
       accounts(filter: { accountTag: "${CF_ACCOUNT_ID}" }) {
-        pagesProjectsAdaptiveGroups(
-          filter: {
-            projectName: "${CF_PROJECT_NAME}"
-            date_geq: "${fmt(start)}"
-            date_leq: "${fmt(end)}"
-          }
+        rumPageloadEventsAdaptiveGroups(
+          filter: { ${dateFilter} }
           limit: 30
           orderBy: [date_ASC]
         ) {
-          sum { requests pageViews }
+          sum { visits }
           dimensions { date }
         }
       }
     }
   }`
 
-  const res = await fetch('https://api.cloudflare.com/client/v4/graphql', {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${CF_API_TOKEN}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ query }),
-  })
+  const fnQuery = `{
+    viewer {
+      accounts(filter: { accountTag: "${CF_ACCOUNT_ID}" }) {
+        pagesFunctionsInvocationsAdaptiveGroups(
+          filter: {
+            ${dateFilter}
+            scriptName_like: "pages-worker%"
+          }
+          limit: 30
+          orderBy: [date_ASC]
+        ) {
+          sum { requests errors }
+          dimensions { date }
+        }
+      }
+    }
+  }`
 
-  const json = await res.json()
+  const [rumRes, fnRes] = await Promise.all([
+    fetch('https://api.cloudflare.com/client/v4/graphql', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${CF_API_TOKEN}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ query: rumQuery }),
+    }),
+    fetch('https://api.cloudflare.com/client/v4/graphql', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${CF_API_TOKEN}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ query: fnQuery }),
+    }),
+  ])
 
-  if (json.errors?.length) {
-    return respond({ error: 'Erro GraphQL', detail: json.errors }, 502)
+  const [rumJson, fnJson] = await Promise.all([rumRes.json(), fnRes.json()])
+
+  if (rumJson.errors?.length || fnJson.errors?.length) {
+    const errs = [...(rumJson.errors ?? []), ...(fnJson.errors ?? [])]
+    return respond({ error: 'Erro GraphQL', detail: errs }, 502)
   }
 
-  const groups = json?.data?.viewer?.accounts?.[0]?.pagesProjectsAdaptiveGroups ?? []
+  const rumGroups = rumJson?.data?.viewer?.accounts?.[0]?.rumPageloadEventsAdaptiveGroups ?? []
+  const fnGroups  = fnJson?.data?.viewer?.accounts?.[0]?.pagesFunctionsInvocationsAdaptiveGroups ?? []
 
-  const totals = groups.reduce(
+  // index by date
+  const byDate = {}
+  for (const g of rumGroups) {
+    const d = g.dimensions.date
+    byDate[d] = { date: d, requests: 0, pageViews: g.sum.visits ?? 0 }
+  }
+  for (const g of fnGroups) {
+    const d = g.dimensions.date
+    if (!byDate[d]) byDate[d] = { date: d, requests: 0, pageViews: 0 }
+    byDate[d].requests += g.sum.requests ?? 0
+  }
+
+  const daily = Object.values(byDate).sort((a, b) => a.date.localeCompare(b.date))
+
+  const totals = daily.reduce(
     (acc, g) => ({
-      requests:  acc.requests  + (g.sum.requests  ?? 0),
-      pageViews: acc.pageViews + (g.sum.pageViews ?? 0),
+      requests:  acc.requests  + g.requests,
+      pageViews: acc.pageViews + g.pageViews,
     }),
     { requests: 0, pageViews: 0 }
   )
@@ -59,11 +101,7 @@ export async function onRequestGet(context) {
     success: true,
     period: { start: fmt(start), end: fmt(end) },
     totals,
-    daily: groups.map((g) => ({
-      date:      g.dimensions.date,
-      requests:  g.sum.requests  ?? 0,
-      pageViews: g.sum.pageViews ?? 0,
-    })),
+    daily,
   })
 }
 

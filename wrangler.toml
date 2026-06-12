@@ -1,2 +1,7 @@
 name = "jpx-digital-site"
 pages_build_output_dir = "dist"
+
+[vars]
+CF_ACCOUNT_ID = "eff25522365c546986657167afde001a"
+CF_PROJECT_NAME = "jpx-digital-site"
+N8N_WEBHOOK_URL = "https://n8n.jpxdigital.com.br/webhook/jpx-lead"
