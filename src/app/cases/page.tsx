@@ -49,7 +49,7 @@ const cases = [
     challenge: 'O escritório usava Microsoft 365, mas sem backup externo. Os notebooks dos advogados não tinham backup. Um incidente com um notebook corrompido revelou que 3 anos de peças processuais de um sócio estavam perdidos — só havia a versão online do OneDrive, sobrescrita.',
     solution: 'Backup externo de todo o tenant M365 (Exchange, SharePoint, OneDrive, Teams) com retenção de 5 anos. Backup de endpoints Windows com Acronis (todos os notebooks e desktops). Controle de acesso por pasta: cada advogado acessa apenas seus clientes. Relatório mensal de status de backup.',
     results: [
-      'Dados recuperados parcialmente do OneDrive versioning',
+      'Documentos sobrescritos recuperados via histórico de versões do OneDrive',
       'Backup de 47 caixas M365 implementado em 2 dias',
       'Controle de acesso por cliente implementado',
       'Retenção 5 anos conforme exigências OAB',
