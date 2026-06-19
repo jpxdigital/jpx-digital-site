@@ -387,6 +387,894 @@ export const posts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: 'ransomware-brasil-como-proteger-empresa',
+    title: 'Ransomware no Brasil em 2026: como sua empresa pode se proteger',
+    description:
+      'O Brasil é o segundo país mais atacado por ransomware na América Latina. Entenda como os ataques funcionam, quais setores são mais visados e quais medidas realmente reduzem o risco — sem depender apenas de antivírus.',
+    publishedAt: '2026-05-20',
+    category: 'Segurança Cibernética',
+    readingTime: 8,
+    keywords: ['ransomware brasil', 'proteção ransomware empresa', 'segurança cibernética PME', 'como proteger empresa ransomware'],
+    sections: [
+      {
+        type: 'paragraph',
+        content: 'Em 2024, o Brasil registrou mais de 60 ataques de ransomware por semana — o segundo maior volume da América Latina, atrás apenas do México. Hospitais, escritórios de advocacia, indústrias e pequenas empresas estão entre os alvos mais frequentes.',
+      },
+      {
+        type: 'paragraph',
+        content: 'O que mudou nos últimos anos: o ransomware deixou de ser um problema exclusivo de grandes corporações. Hoje, PMEs com 10 a 200 funcionários são alvos frequentes porque têm dados valiosos e investimento limitado em segurança.',
+      },
+      {
+        type: 'h2',
+        content: 'Como funciona um ataque de ransomware na prática',
+      },
+      {
+        type: 'paragraph',
+        content: 'O modelo mais comum em 2025-2026 é o Ransomware-as-a-Service (RaaS): grupos criminosos desenvolvem o malware e o alugam para afiliados que executam os ataques. Isso explica o volume alto e a diversidade de alvos.',
+      },
+      {
+        type: 'list',
+        items: [
+          'Entrada: phishing por e-mail (link ou anexo), credenciais RDP expostas, vulnerabilidades em VPNs e firewalls desatualizados',
+          'Reconhecimento: o atacante fica quieto por dias ou semanas, mapeando a rede e identificando backups e sistemas críticos',
+          'Exfiltração: cópia dos dados para servidor externo (para usar como extorsão adicional)',
+          'Criptografia: execução do ransomware — arquivos são criptografados em horas',
+          'Resgate: cobrança em criptomoeda, com ameaça de publicar os dados exfiltrados caso não haja pagamento',
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        content: 'Pagar o resgate não garante a recuperação dos dados. Cerca de 40% das empresas que pagam não conseguem recuperar todos os arquivos. E pagando, a empresa vira alvo confirmado para ataques futuros.',
+      },
+      {
+        type: 'h2',
+        content: 'Por que antivírus não é suficiente',
+      },
+      {
+        type: 'paragraph',
+        content: 'Antivírus detecta malware conhecido. O problema é que as variantes de ransomware modernas são frequentemente modificadas para escapar de assinaturas conhecidas — e o intervalo entre uma variante nova e a atualização das assinaturas é justamente a janela de ataque.',
+      },
+      {
+        type: 'paragraph',
+        content: 'Proteção efetiva contra ransomware é multicamada: identidade (MFA), endpoint (EDR, não apenas antivírus), rede (firewall de próxima geração, segmentação), backup (imutável, off-site) e detecção comportamental.',
+      },
+      {
+        type: 'h2',
+        content: 'As medidas que mais reduzem o risco',
+      },
+      {
+        type: 'h3',
+        content: 'Autenticação multifator (MFA) em todos os acessos remotos',
+      },
+      {
+        type: 'paragraph',
+        content: 'O vetor mais comum de entrada é credencial comprometida em acesso remoto (VPN, RDP, Microsoft 365). MFA elimina o problema mesmo quando a senha é roubada. É a medida com melhor custo-benefício — e das mais negligenciadas.',
+      },
+      {
+        type: 'h3',
+        content: 'Backup imutável off-site com teste de restauração',
+      },
+      {
+        type: 'paragraph',
+        content: 'Backup é o plano B quando tudo mais falha. Para ser efetivo contra ransomware, precisa ser imutável (não pode ser alterado pelo ransomware), off-site (fora da rede comprometida) e testado regularmente (backup sem teste de restauração é esperança, não garantia).',
+      },
+      {
+        type: 'h3',
+        content: 'EDR (Endpoint Detection & Response) em substituição ao antivírus tradicional',
+      },
+      {
+        type: 'paragraph',
+        content: 'EDR monitora comportamento dos processos em tempo real — detecta padrões de ataque mesmo sem assinatura conhecida. Soluções como Bitdefender GravityZone, CrowdStrike ou SentinelOne substituem o antivírus convencional com proteção efetivamente superior.',
+      },
+      {
+        type: 'h3',
+        content: 'Segmentação de rede',
+      },
+      {
+        type: 'paragraph',
+        content: 'Se o ransomware entra por um notebook, a segmentação de rede impede que ele se espalhe para servidores e outros dispositivos. Uma rede plana (sem segmentação) permite movimento lateral irrestrito.',
+      },
+      {
+        type: 'h2',
+        content: 'O custo de não se preparar',
+      },
+      {
+        type: 'paragraph',
+        content: 'Para uma PME com 50 funcionários, um ataque de ransomware pode custar entre R$ 200 mil e R$ 2 milhões considerando: paralisação das operações, horas de TI para recuperação, perda de dados irrecuperáveis, danos de reputação e, eventualmente, o resgate.',
+      },
+      {
+        type: 'paragraph',
+        content: 'Uma estratégia de segurança adequada para uma empresa desse porte custa uma fração desse valor por ano. O assessment é o primeiro passo — entender onde estão as lacunas antes que um ataque as encontre.',
+      },
+    ],
+  },
+  {
+    slug: 'suporte-ti-terceirizado-vs-departamento-interno',
+    title: 'Suporte de TI terceirizado vs equipe interna: o que faz sentido para sua empresa',
+    description:
+      'Contratar um MSP (provedor de serviços gerenciados) ou montar uma equipe de TI interna? A resposta depende do tamanho da empresa, da criticidade dos sistemas e do que realmente está em jogo. Uma análise objetiva.',
+    publishedAt: '2026-05-12',
+    category: 'Suporte Gerenciado',
+    readingTime: 7,
+    keywords: ['suporte TI terceirizado', 'MSP brasil', 'terceirização TI', 'provedor serviços gerenciados', 'helpdesk terceirizado'],
+    sections: [
+      {
+        type: 'paragraph',
+        content: 'A decisão entre terceirizar o suporte de TI ou montar uma equipe interna é uma das mais frequentes — e mal calculadas — nas empresas de pequeno e médio porte. O erro mais comum é fazer a comparação errada: salário de um analista vs. mensalidade do MSP.',
+      },
+      {
+        type: 'paragraph',
+        content: 'A comparação correta é custo total de uma equipe interna capaz vs. custo de um MSP com escopo equivalente. Quando feita corretamente, os números raramente favorecem a equipe interna para empresas com até 150 funcionários.',
+      },
+      {
+        type: 'h2',
+        content: 'O custo real de uma equipe de TI interna',
+      },
+      {
+        type: 'paragraph',
+        content: 'Um analista de suporte pleno em São Paulo ou interior de SP custa entre R$ 4.500 e R$ 7.000 de salário. Mas o custo total de um funcionário CLT é aproximadamente 70-80% acima do salário bruto quando somados encargos (FGTS, INSS, férias, 13º, vale-transporte, plano de saúde).',
+      },
+      {
+        type: 'list',
+        items: [
+          'Salário: R$ 5.000 → Custo total CLT: R$ 8.500 a R$ 9.000/mês',
+          'Ferramentas de gestão e monitoramento: R$ 500 a R$ 2.000/mês',
+          'Licenças de segurança (antivírus/EDR corporativo): R$ 300 a R$ 1.500/mês',
+          'Treinamento e certificações: R$ 500 a R$ 1.000/mês (amortizado)',
+          'Cobertura de férias e doenças: custo adicional ou lacuna de cobertura',
+          'Total estimado para 1 analista: R$ 10.000 a R$ 14.000/mês',
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        content: 'Um único analista de TI não cobre múltiplas especialidades. Problemas complexos de rede, segurança, cloud e servidores geralmente requerem perfis diferentes — que um MSP oferece como parte do pacote.',
+      },
+      {
+        type: 'h2',
+        content: 'O que um MSP oferece que uma equipe interna dificilmente oferece',
+      },
+      {
+        type: 'list',
+        items: [
+          'Equipe multi-especializada: suporte de rede, cloud, segurança, backup e servidores em um único contrato',
+          'Monitoramento 24/7 com alertas proativos — problemas identificados antes de virar incidente',
+          'Cobertura sem lacunas: férias, doenças e desligamentos de funcionários não afetam o serviço',
+          'Ferramentas enterprise incluídas: RMM, PSA, EDR, backup — custo diluído entre clientes',
+          'Atualizações e patches gerenciados: conformidade de segurança sem demanda de tempo interno',
+          'SLA definido em contrato: tempo de resposta e resolução com penalidades claras',
+        ],
+      },
+      {
+        type: 'h2',
+        content: 'Quando a equipe interna faz mais sentido',
+      },
+      {
+        type: 'paragraph',
+        content: 'Para empresas acima de 200-300 funcionários, com infraestrutura complexa e demanda de TI alta e constante, uma equipe interna começa a fazer sentido — especialmente se complementada por um MSP para funções especializadas (segurança, cloud, backup).',
+      },
+      {
+        type: 'list',
+        items: [
+          'Alta demanda de suporte presencial e constante (linha de produção industrial com muitos dispositivos)',
+          'Sistemas proprietários que exigem expertise interna muito específica',
+          'Regulatório que exige TI interna (raros setores no Brasil)',
+          'Empresas com mais de 300 funcionários onde a diluição do custo CLT começa a compensar',
+        ],
+      },
+      {
+        type: 'h2',
+        content: 'O modelo híbrido: equipe interna + MSP',
+      },
+      {
+        type: 'paragraph',
+        content: 'Para empresas entre 100 e 300 funcionários, o modelo mais eficiente costuma ser um analista de TI interno para suporte presencial e demandas do dia-a-dia, complementado por um MSP responsável por monitoramento, segurança, backup e projetos complexos.',
+      },
+      {
+        type: 'paragraph',
+        content: 'Esse modelo combina o conhecimento do negócio que um funcionário interno adquire com a profundidade técnica e cobertura que um MSP oferece. O custo total é significativamente menor do que montar uma equipe interna completa.',
+      },
+      {
+        type: 'h2',
+        content: 'Como avaliar',
+      },
+      {
+        type: 'paragraph',
+        content: 'A avaliação começa pelo inventário: quantos usuários, quantos dispositivos, quais sistemas críticos, qual o nível de demanda de suporte, quais são os maiores problemas de TI hoje. A JPX Digital realiza esse diagnóstico sem custo para empresas que estão avaliando a terceirização.',
+      },
+    ],
+  },
+  {
+    slug: 'microsoft-azure-pequenas-medias-empresas-brasil',
+    title: 'Microsoft Azure para PMEs no Brasil: o que realmente vale a pena usar',
+    description:
+      'O Azure tem centenas de serviços. Para uma empresa de 20 a 200 funcionários no Brasil, a maioria não é relevante. Este guia foca no que agrega valor real para PMEs — e no que evitar para não explodir o custo.',
+    publishedAt: '2026-05-05',
+    category: 'Cloud Computing',
+    readingTime: 7,
+    keywords: ['microsoft azure PME brasil', 'azure pequenas empresas', 'azure vs aws PME', 'cloud computing brasil PME'],
+    sections: [
+      {
+        type: 'paragraph',
+        content: 'O Microsoft Azure é a segunda maior cloud pública do mundo e tem crescimento acelerado no Brasil — em parte pela integração natural com Microsoft 365, que já é a suite de produtividade padrão para a maioria das PMEs brasileiras.',
+      },
+      {
+        type: 'paragraph',
+        content: 'O problema: o catálogo do Azure tem mais de 200 serviços. Para uma PME, navegar nesse catálogo sem orientação resulta em projetos superfaturados ou mal dimensionados.',
+      },
+      {
+        type: 'h2',
+        content: 'Por que o Azure faz sentido para quem já usa Microsoft 365',
+      },
+      {
+        type: 'paragraph',
+        content: 'Integração é o principal argumento. Azure Active Directory (agora Entra ID) é a mesma identidade do Microsoft 365 — usuários, grupos e políticas de acesso são gerenciados em um único lugar. Se a empresa já paga por Microsoft 365 Business Premium, parte da licença do Azure AD P1 já está incluída.',
+      },
+      {
+        type: 'list',
+        items: [
+          'Single Sign-On (SSO): um login para Microsoft 365, Azure e aplicações SaaS integradas',
+          'Conditional Access: políticas de acesso que exigem MFA, dispositivo gerenciado ou localização específica',
+          'Intune (MDM): gerenciamento de notebooks e celulares corporativos incluído no M365 Business Premium',
+          'Microsoft Defender for Business: segurança de endpoint integrada ao Microsoft 365',
+        ],
+      },
+      {
+        type: 'h2',
+        content: 'Serviços Azure que agregam valor real para PMEs',
+      },
+      {
+        type: 'h3',
+        content: 'Azure Virtual Machines — servidores na nuvem',
+      },
+      {
+        type: 'paragraph',
+        content: 'Substituir servidores físicos no escritório por VMs no Azure elimina custos de hardware, licença de datacenter e manutenção. O dimensionamento é flexível: uma VM B2s (2 vCPUs, 4 GB RAM) custa aproximadamente R$ 250/mês na região Brazil South. Para servidores de aplicação leve, é competitivo.',
+      },
+      {
+        type: 'h3',
+        content: 'Azure Backup — backup gerenciado',
+      },
+      {
+        type: 'paragraph',
+        content: 'Para empresas que já têm VMs no Azure, o Azure Backup é a opção mais simples para backup gerenciado com retenção configurável. O custo é baseado no volume de dados protegidos — para 100 GB de dados com 30 dias de retenção, a custo é de aproximadamente R$ 50 a R$ 100/mês.',
+      },
+      {
+        type: 'h3',
+        content: 'Azure Files — armazenamento de arquivos compartilhados',
+      },
+      {
+        type: 'paragraph',
+        content: 'Substituir um file server físico por Azure Files oferece acesso de qualquer lugar, sincronização com o Windows Explorer (como se fosse uma pasta local) e integração com o Active Directory. Para escritórios com trabalho híbrido, elimina a necessidade de VPN para acessar arquivos.',
+      },
+      {
+        type: 'h2',
+        content: 'O que evitar para não explodir o custo',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        content: 'O maior risco no Azure para PMEs é o "custo surpresa" — recursos criados e esquecidos, VMs oversized, ou serviços premium desnecessários. Sem monitoramento de custos configurado, a fatura pode triplicar em um mês.',
+      },
+      {
+        type: 'list',
+        items: [
+          'VMs superdimensionadas: começar com o menor tamanho adequado e escalar se necessário',
+          'Discos Premium SSD onde Standard é suficiente: diferença de custo de 3x sem ganho de performance perceptível para arquivos de escritório',
+          'Transferência de dados (egress): o Azure cobra por saída de dados da nuvem — planejar a arquitetura para minimizar egress',
+          'Recursos não utilizados: VMs desligadas ainda cobram pelo disco. Deletar, não apenas desligar.',
+          'Alertas de orçamento: configurar Azure Cost Management com alertas por e-mail quando o gasto passa de um limite',
+        ],
+      },
+      {
+        type: 'h2',
+        content: 'Azure vs AWS para PMEs brasileiras',
+      },
+      {
+        type: 'paragraph',
+        content: 'Para PMEs que já usam Microsoft 365, o Azure é naturalmente a primeira opção — a integração de identidade (Entra ID) e as licenças incluídas fazem diferença real. Para empresas que não têm ecossistema Microsoft consolidado, a AWS pode ser mais competitiva em preço de compute e tem um ecossistema de parceiros maior no Brasil.',
+      },
+      {
+        type: 'paragraph',
+        content: 'A decisão raramente é binária. Um assessment de 2 semanas para entender o workload e o ecossistema existente produz uma recomendação mais sólida do que escolher pela familiaridade da equipe.',
+      },
+    ],
+  },
+  {
+    slug: 'firewall-corporativo-o-que-e-por-que-sua-empresa-precisa',
+    title: 'Firewall corporativo: o que é, como funciona e por que seu roteador doméstico não resolve',
+    description:
+      'Muitas PMEs confundem roteador com firewall — e pagam caro por isso. Entenda o que um firewall corporativo faz, quais as opções disponíveis no Brasil e quando investir em um NGFW (Next-Generation Firewall).',
+    publishedAt: '2026-04-28',
+    category: 'Segurança Cibernética',
+    readingTime: 6,
+    keywords: ['firewall corporativo', 'NGFW brasil', 'firewall para empresas', 'segurança de rede PME', 'firewall fortinet sophos'],
+    sections: [
+      {
+        type: 'paragraph',
+        content: 'O firewall é a primeira linha de defesa da rede corporativa. Mas há uma diferença fundamental entre o firewall básico de um roteador doméstico (ou UTM de entrada) e um NGFW (Next-Generation Firewall) corporativo.',
+      },
+      {
+        type: 'paragraph',
+        content: 'A confusão é comum: muitas PMEs compram um roteador com "firewall incluído" e acreditam que estão protegidas. O problema está no que esse firewall não faz.',
+      },
+      {
+        type: 'h2',
+        content: 'O que um firewall básico faz — e não faz',
+      },
+      {
+        type: 'paragraph',
+        content: 'Um firewall básico (packet filter) verifica endereços IP e portas: bloqueia a porta 23 (Telnet), abre a 443 (HTTPS), permite tráfego de IPs específicos. Isso resolve ameaças simples de 2005.',
+      },
+      {
+        type: 'paragraph',
+        content: 'O problema: 90% do tráfego malicioso moderno usa a porta 443 (HTTPS) — a mesma porta do tráfego legítimo. Um firewall de pacotes não consegue inspecionar o conteúdo do tráfego criptografado. Para ele, tráfego de ransomware e tráfego do Google parecem iguais.',
+      },
+      {
+        type: 'h2',
+        content: 'O que um NGFW (Next-Generation Firewall) faz diferente',
+      },
+      {
+        type: 'list',
+        items: [
+          'Deep Packet Inspection (DPI): inspeciona o conteúdo do pacote, não apenas cabeçalhos — detecta malware mesmo em tráfego HTTPS',
+          'IPS/IDS integrado: bloqueia ataques conhecidos em tempo real com base em assinaturas atualizadas',
+          'Controle de aplicação: identifica e controla o uso de aplicações (WhatsApp Web, YouTube, torrents) independente da porta',
+          'Filtro de URL por categorias: bloqueia acesso a categorias de sites (redes sociais, gambling, malware known) por política',
+          'Inspeção SSL/TLS: descriptografa e inspeciona tráfego HTTPS — onde 90% dos ataques modernos se escondem',
+          'Visibilidade: relatórios de quem acessa o quê, quando, quanto tráfego — base para tomada de decisão',
+        ],
+      },
+      {
+        type: 'h2',
+        content: 'Principais fabricantes disponíveis no Brasil',
+      },
+      {
+        type: 'h3',
+        content: 'Fortinet FortiGate',
+      },
+      {
+        type: 'paragraph',
+        content: 'Líder de mercado global e com forte presença no Brasil. Excelente custo-benefício, especialmente para PMEs. O FortiGate 40F ou 60F atendem ambientes de 20 a 150 usuários. Possui o FortiGuard — serviço de inteligência de ameaças atualizado em tempo real.',
+      },
+      {
+        type: 'h3',
+        content: 'Sophos XG/XGS',
+      },
+      {
+        type: 'paragraph',
+        content: 'Interface intuitiva e fácil de gerenciar. Ideal para empresas com equipe de TI pequena que precisa de visibilidade sem complexidade excessiva. O Sophos Central permite gerenciar firewall, endpoints e e-mail security em um único painel.',
+      },
+      {
+        type: 'h3',
+        content: 'Cisco Meraki MX',
+      },
+      {
+        type: 'paragraph',
+        content: 'Gerenciamento 100% em cloud — nenhuma configuração on-premise. Ideal para empresas com múltiplas filiais que precisam de gerenciamento centralizado. Custo de licenciamento mais alto, mas facilidade operacional superior.',
+      },
+      {
+        type: 'h2',
+        content: 'Quanto custa um firewall corporativo',
+      },
+      {
+        type: 'list',
+        items: [
+          'Hardware (FortiGate 40F ou equivalente, 20-50 usuários): R$ 4.000 a R$ 8.000',
+          'Licença anual de serviços (IPS, antivírus, filtro de URL): R$ 2.000 a R$ 4.000/ano',
+          'Implementação e configuração: R$ 2.000 a R$ 5.000 (único)',
+          'Total primeiro ano para 20-50 usuários: R$ 8.000 a R$ 17.000',
+          'Anos seguintes: R$ 2.000 a R$ 4.000/ano (renovação de licença)',
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        content: 'Um bom firewall corporativo amortizado por 3 anos custa cerca de R$ 300 a R$ 500/mês para 50 usuários. Comparado ao custo de uma única hora de resposta a incidente de segurança (mínimo R$ 10.000), o ROI é claro.',
+      },
+      {
+        type: 'h2',
+        content: 'VPN integrada ao firewall',
+      },
+      {
+        type: 'paragraph',
+        content: 'Todos os NGFWs corporativos incluem VPN. Para empresas com trabalho remoto ou múltiplas filiais, a VPN site-to-site (entre filiais) e o client VPN (para home office) são funcionalidades essenciais que o firewall corporativo oferece nativamente — sem custo adicional de solução separada.',
+      },
+    ],
+  },
+  {
+    slug: 'migracao-para-nuvem-planejamento-armadilhas',
+    title: 'Migração para a nuvem: planejamento, fases e armadilhas que ninguém conta antes',
+    description:
+      'Migrar para cloud não é só "subir tudo para AWS ou Azure". As migrações mal planejadas resultam em custo 3x maior do que o on-premise. Entenda como planejar corretamente — da análise ao go-live.',
+    publishedAt: '2026-04-15',
+    category: 'Cloud Computing',
+    readingTime: 9,
+    keywords: ['migração para nuvem', 'cloud migration brasil', 'migração aws azure', 'lift and shift', 'cloud adoption PME'],
+    sections: [
+      {
+        type: 'paragraph',
+        content: '"Vamos migrar para a nuvem" é uma decisão estratégica legítima. O problema é quando ela se transforma em um projeto de TI sem metodologia clara — e o resultado é custo de cloud superior ao que se pagava com servidores físicos.',
+      },
+      {
+        type: 'paragraph',
+        content: 'Isso acontece mais do que parece. A causa mais comum: "lift and shift" sem racionalização de workloads. Pegar um servidor físico e replicá-lo como VM na nuvem mantém todos os problemas do on-premise e adiciona o custo da nuvem.',
+      },
+      {
+        type: 'h2',
+        content: 'Os 5 Rs da migração para cloud',
+      },
+      {
+        type: 'paragraph',
+        content: 'Cada sistema tem uma estratégia de migração diferente. O framework "5 Rs" é o padrão de mercado para classificar workloads:',
+      },
+      {
+        type: 'list',
+        items: [
+          'Retire (Aposentar): sistemas obsoletos que ninguém usa há anos — migração de dados, descomissionamento',
+          'Retain (Manter on-premise): sistemas com dependência de hardware específico, latência crítica, ou custo de migração maior que o benefício',
+          'Rehost (Lift and Shift): migrar como está para VM na cloud — rápido, sem otimização. Faz sentido para sistemas que serão modernizados depois',
+          'Replatform (Mover e otimizar): mudar para um serviço gerenciado equivalente. Ex: SQL Server físico → Azure SQL Managed Instance',
+          'Refactor/Re-architect: reescrever parcialmente para aproveitar recursos nativos de cloud. Alto esforço, maior benefício a longo prazo',
+        ],
+      },
+      {
+        type: 'h2',
+        content: 'As armadilhas mais comuns',
+      },
+      {
+        type: 'h3',
+        content: '1. Subdimensionar a análise inicial',
+      },
+      {
+        type: 'paragraph',
+        content: 'Migrar sem inventário completo resulta em surpresas. Quantos sistemas existem? Quais têm dependências entre si? Quais bancos de dados? Qual o volume de dados? Qual a latência atual aceitável? Sem essas respostas, o projeto não tem base sólida.',
+      },
+      {
+        type: 'h3',
+        content: '2. Ignorar o custo de egress',
+      },
+      {
+        type: 'paragraph',
+        content: 'AWS, Azure e Google cobram por saída de dados da nuvem (egress). Se o workload tem alto volume de saída — relatórios grandes, vídeos, backups para on-premise — esse custo pode surpreender. A OCI oferece egress gratuito até 10 TB/mês, o que pode mudar a equação para workloads específicos.',
+      },
+      {
+        type: 'h3',
+        content: '3. Licensing em nuvem é diferente',
+      },
+      {
+        type: 'paragraph',
+        content: 'Windows Server e SQL Server na nuvem têm modelos de licenciamento específicos. Usar uma VM Windows sem a licença correta ou sem ativar o benefício do Azure Hybrid (se tiver licenças on-premise) resulta em custo desnecessário. Para Oracle Database, a situação é ainda mais crítica.',
+      },
+      {
+        type: 'h3',
+        content: '4. Não planejar a conectividade',
+      },
+      {
+        type: 'paragraph',
+        content: 'Sistemas migrados para cloud que precisam se comunicar com sistemas que ficaram on-premise precisam de conectividade confiável. VPN site-to-site ou ExpressRoute/Direct Connect devem ser planejados antes da migração, não depois.',
+      },
+      {
+        type: 'h2',
+        content: 'As fases de uma migração bem executada',
+      },
+      {
+        type: 'list',
+        items: [
+          'Fase 1 — Discovery e Assessment (2 a 4 semanas): inventário completo, classificação dos 5 Rs, estimativa de TCO comparativo',
+          'Fase 2 — Fundação (2 a 4 semanas): rede (VPC/VNet), identidade (IAM/Entra ID), segurança base, monitoramento de custos',
+          'Fase 3 — Migração em ondas (4 a 16 semanas): sistemas de menor criticidade primeiro, validação, ajuste de desempenho',
+          'Fase 4 — Otimização (ongoing): rightsizing de instâncias, reserved instances, políticas de desligamento automático',
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        content: 'Migrações apressadas custam mais no longo prazo. Uma fase de discovery bem feita — que parece "perda de tempo" — é o que separa projetos que reduzem custo dos que triplicam.',
+      },
+      {
+        type: 'h2',
+        content: 'Por onde começar',
+      },
+      {
+        type: 'paragraph',
+        content: 'O ponto de partida é sempre o assessment. Antes de contratar qualquer cloud ou definir qual provedor, é necessário entender o que existe, o que pode ser aposentado, e o que o TCO real de cada opção parece ser para o seu caso específico.',
+      },
+      {
+        type: 'paragraph',
+        content: 'A JPX Digital realiza esse assessment de forma independente — sem vínculo comercial com nenhum provedor de cloud específico. A recomendação é sempre baseada no que faz sentido para o workload e o orçamento do cliente.',
+      },
+    ],
+  },
+  {
+    slug: 'lgpd-escritorios-advocacia-obrigacoes-ti',
+    title: 'LGPD para escritórios de advocacia: obrigações práticas de TI que poucos implementam',
+    description:
+      'Escritórios de advocacia tratam dados pessoais sensíveis de clientes todos os dias. A LGPD impõe obrigações concretas — e a maioria dos escritórios ainda não implementou. Saiba o que é exigido e como se adequar.',
+    publishedAt: '2026-04-08',
+    category: 'Advocacia & Tecnologia',
+    readingTime: 8,
+    keywords: ['LGPD advocacia', 'LGPD escritório advocacia', 'proteção dados escritório', 'TI para advocacia', 'segurança dados juridico'],
+    sections: [
+      {
+        type: 'paragraph',
+        content: 'Escritórios de advocacia estão entre os maiores processadores de dados pessoais sensíveis do Brasil. Processos trabalhistas, inventários, disputas médicas, contratos — tudo envolve dados de pessoas físicas que a LGPD protege.',
+      },
+      {
+        type: 'paragraph',
+        content: 'A ironia: muitos escritórios que assessoram clientes sobre LGPD ainda não implementaram as medidas básicas exigidas pela lei em sua própria infraestrutura.',
+      },
+      {
+        type: 'h2',
+        content: 'O que a LGPD exige de escritórios de advocacia',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        content: 'O sigilo profissional garantido pela OAB não substitui as obrigações da LGPD. São regimes jurídicos diferentes. Um incidente de segurança que exponha dados de clientes pode gerar responsabilização tanto perante a OAB quanto perante a ANPD.',
+      },
+      {
+        type: 'list',
+        items: [
+          'Mapeamento de dados (RIPD): documentar quais dados pessoais são tratados, para qual finalidade, por quanto tempo e com qual base legal',
+          'Controles de acesso: apenas advogados e auxiliares que precisam do dado devem ter acesso — não compartilhar senhas, não acesso irrestrito ao servidor',
+          'Criptografia em repouso e em trânsito: documentos de clientes em nuvem ou servidor devem ser criptografados',
+          'Registro de acessos: log de quem acessou quais documentos e quando',
+          'Notificação de incidente: em caso de vazamento ou acesso não autorizado, a ANPD deve ser notificada em até 72 horas',
+          'DPO (Encarregado): escritórios que tratam dados sensíveis em grande escala devem nomear um DPO',
+          'Contratos com fornecedores: cláusulas de proteção de dados com qualquer terceiro que processe dados do escritório (cloud, sistema de gestão, contabilidade)',
+        ],
+      },
+      {
+        type: 'h2',
+        content: 'As 5 vulnerabilidades mais comuns em escritórios de advocacia',
+      },
+      {
+        type: 'h3',
+        content: '1. E-mail como repositório principal de documentos',
+      },
+      {
+        type: 'paragraph',
+        content: 'Escritórios que enviam e recebem documentos por e-mail e os mantêm apenas ali têm um problema sério: sem criptografia de ponta-a-ponta, os documentos transitam em texto claro. Além disso, o e-mail não tem controle de acesso granular — quem tem acesso à caixa do advogado tem acesso a tudo.',
+      },
+      {
+        type: 'h3',
+        content: '2. Compartilhamento de senhas entre colaboradores',
+      },
+      {
+        type: 'paragraph',
+        content: 'Prática comum em escritórios menores. Impossibilita rastrear quem acessou o quê — requisito básico da LGPD. A solução é uma senha por usuário + controle de acesso por perfil no sistema de gestão.',
+      },
+      {
+        type: 'h3',
+        content: '3. Backup inadequado de documentos',
+      },
+      {
+        type: 'paragraph',
+        content: 'Perder documentos de processo por falha de HD ou ataque ransomware pode significar perda de prazos processuais e responsabilização por negligência. A LGPD exige medidas de segurança adequadas — backup regular e testado é parte disso.',
+      },
+      {
+        type: 'h3',
+        content: '4. Acesso remoto sem VPN ou MFA',
+      },
+      {
+        type: 'paragraph',
+        content: 'Advogados que acessam o servidor do escritório pelo computador de casa usando apenas senha estão criando um vetor de ataque. Credenciais roubadas por malware no computador pessoal dão acesso total à infraestrutura do escritório.',
+      },
+      {
+        type: 'h3',
+        content: '5. Ausência de política de saída de colaboradores',
+      },
+      {
+        type: 'paragraph',
+        content: 'Quando um advogado ou auxiliar sai do escritório, suas credenciais são revogadas imediatamente? Acesso aos sistemas, e-mail e compartilhamentos de arquivo é bloqueado no mesmo dia? Muitos escritórios não têm esse processo formalizado.',
+      },
+      {
+        type: 'h2',
+        content: 'Como adequar o escritório em etapas práticas',
+      },
+      {
+        type: 'list',
+        items: [
+          'Semana 1: inventário de dados — mapear onde ficam os dados de clientes (e-mails, servidor, nuvem, pen drives)',
+          'Semana 2 a 4: implementar controle de acesso individual — senha por usuário, sem compartilhamento',
+          'Mês 2: backup estruturado com retenção de 5 anos para documentos de processo',
+          'Mês 2 a 3: MFA no Microsoft 365 e VPN para acesso remoto ao servidor',
+          'Mês 3 a 4: política de saída de colaboradores formalizada e treinamento de equipe',
+          'Mês 4 a 6: mapeamento RIPD e revisão de contratos com fornecedores',
+        ],
+      },
+      {
+        type: 'paragraph',
+        content: 'A JPX Digital tem experiência específica em adequação LGPD para escritórios de advocacia no interior de São Paulo, incluindo a implementação das medidas técnicas exigidas. O diagnóstico inicial é gratuito.',
+      },
+    ],
+  },
+  {
+    slug: 'business-continuity-vs-disaster-recovery-diferenca',
+    title: 'Business Continuity vs Disaster Recovery: a diferença que poucos gestores entendem',
+    description:
+      'BCP e DR são frequentemente usados como sinônimos. Não são. Entender a diferença muda a forma como sua empresa se prepara para incidentes — e determina se você consegue operar durante uma crise ou só depois que ela passa.',
+    publishedAt: '2026-03-30',
+    category: 'Backup & Continuidade',
+    readingTime: 6,
+    keywords: ['business continuity plan', 'disaster recovery diferença', 'BCP vs DR', 'plano de continuidade negócios', 'continuidade operacional'],
+    sections: [
+      {
+        type: 'paragraph',
+        content: 'Disaster Recovery (DR) e Business Continuity Plan (BCP) são frequentemente tratados como sinônimos. São, na verdade, disciplinas complementares com objetivos diferentes — e confundi-las resulta em empresas que "têm DR" mas param completamente quando um incidente real acontece.',
+      },
+      {
+        type: 'h2',
+        content: 'Disaster Recovery: restaurar a TI',
+      },
+      {
+        type: 'paragraph',
+        content: 'DR é focado em TI. Responde a uma pergunta específica: se nossos sistemas de TI pararem agora, como e em quanto tempo conseguimos restaurá-los?',
+      },
+      {
+        type: 'paragraph',
+        content: 'Os dois parâmetros fundamentais do DR são o RTO (Recovery Time Objective) — tempo máximo para restaurar o sistema — e o RPO (Recovery Point Objective) — perda máxima de dados aceitável. Um bom plano de DR define RTO e RPO para cada sistema crítico e garante, com backup e processos documentados, que esses objetivos são alcançáveis.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        content: 'Um plano de DR não testado não é um plano — é uma hipótese. O teste de DR revela dependências ocultas, documentação desatualizada e processos que funcionam no papel mas não na prática.',
+      },
+      {
+        type: 'h2',
+        content: 'Business Continuity: manter o negócio operando',
+      },
+      {
+        type: 'paragraph',
+        content: 'BCP é mais amplo. Responde a uma pergunta diferente: se qualquer coisa crítica parar — TI, fornecedores, prédio, pessoal-chave — como a empresa mantém suas operações essenciais durante o período de recuperação?',
+      },
+      {
+        type: 'paragraph',
+        content: 'O BCP inclui o DR como componente, mas vai além: cobre comunicação de crise, cadeia de suprimentos alternativa, operação em local alternativo, processos manuais para quando os sistemas estão fora, e planos de comunicação com clientes e fornecedores.',
+      },
+      {
+        type: 'h2',
+        content: 'Por que ter DR sem BCP deixa lacunas perigosas',
+      },
+      {
+        type: 'list',
+        items: [
+          'DR restaura o sistema ERP em 4 horas — mas os funcionários não sabem como operar durante essas 4 horas sem o sistema',
+          'DR recupera os dados — mas não define quem comunica os clientes sobre o atraso e o que dizer',
+          'DR tem processo para falha técnica — mas não para incêndio no escritório, enchente ou pandemia',
+          'DR protege os dados — mas não garante que os processos críticos continuam, mesmo degradados, enquanto a TI é restaurada',
+        ],
+      },
+      {
+        type: 'h2',
+        content: 'Os componentes de um BCP completo',
+      },
+      {
+        type: 'h3',
+        content: 'Análise de Impacto nos Negócios (BIA)',
+      },
+      {
+        type: 'paragraph',
+        content: 'O BIA identifica quais processos de negócio são críticos e qual o impacto financeiro e operacional de cada hora de interrupção. É a base do BCP — sem ela, o plano protege o que parece importante, não o que é importante.',
+      },
+      {
+        type: 'h3',
+        content: 'Planos de operação degradada',
+      },
+      {
+        type: 'paragraph',
+        content: 'Documentação de como cada processo crítico funciona sem os sistemas de TI. Parece óbvio — mas poucos escritórios e empresas têm isso documentado e treinado. Quando o sistema cai e a equipe não sabe o que fazer, a produção para completamente.',
+      },
+      {
+        type: 'h3',
+        content: 'Comunicação de crise',
+      },
+      {
+        type: 'paragraph',
+        content: 'Quem fala com os clientes? O que dizer? Quando dizer? Quem aciona o plano de DR? Quem tem autoridade para decidir pagar o resgate de ransomware? Essas decisões não devem ser tomadas durante uma crise — devem estar documentadas antes.',
+      },
+      {
+        type: 'h2',
+        content: 'Por onde começar',
+      },
+      {
+        type: 'paragraph',
+        content: 'Para empresas que não têm nada, a prioridade é o DR: backup correto com RTO e RPO definidos. Isso resolve o risco mais imediato. O BCP é construído sobre a base do DR — não em paralelo.',
+      },
+      {
+        type: 'paragraph',
+        content: 'A JPX Digital desenvolve planos de DR e BCP adaptados ao porte e ao setor de cada empresa — sem templates genéricos que ficam na gaveta.',
+      },
+    ],
+  },
+  {
+    slug: 'virtualizacao-servidores-quando-faz-sentido',
+    title: 'Virtualização de servidores: quando faz sentido, o que ganhar e como migrar',
+    description:
+      'Empresas com servidores físicos dedicados a uma aplicação cada desperdiçam 80% da capacidade do hardware. Virtualização resolve isso — mas não é para todo mundo. Entenda os cenários onde compensa.',
+    publishedAt: '2026-03-18',
+    category: 'Infraestrutura',
+    readingTime: 6,
+    keywords: ['virtualização de servidores', 'vmware vsphere', 'hyper-v', 'servidor virtual PME', 'virtualização proxmox'],
+    sections: [
+      {
+        type: 'paragraph',
+        content: 'Uma empresa com 5 servidores físicos — ERP, e-mail, file server, AD e backup — onde cada servidor usa em média 15% da CPU e 20% da RAM, está pagando para refrigerar e manter hardware que fica 80% ocioso.',
+      },
+      {
+        type: 'paragraph',
+        content: 'Virtualização consolida esses workloads em 1 ou 2 servidores físicos mais potentes, rodando múltiplas VMs. O resultado: redução de hardware, energia, espaço físico e complexidade operacional.',
+      },
+      {
+        type: 'h2',
+        content: 'O que a virtualização oferece além da consolidação',
+      },
+      {
+        type: 'list',
+        items: [
+          'Snapshots: "fotografar" o estado da VM antes de uma atualização — se algo der errado, reverter em minutos',
+          'Alta disponibilidade (HA): se um servidor físico falhar, as VMs migram automaticamente para outro servidor do cluster',
+          'Live Migration: migrar VMs entre hosts físicos sem desligar, para manutenção de hardware sem downtime',
+          'Backup simplificado: backup em nível de VM captura o sistema inteiro, incluindo OS e dados, em um único processo',
+          'Testes isolados: criar VMs de teste idênticas à produção sem impacto no ambiente real',
+        ],
+      },
+      {
+        type: 'h2',
+        content: 'As principais plataformas de virtualização',
+      },
+      {
+        type: 'h3',
+        content: 'VMware vSphere/ESXi',
+      },
+      {
+        type: 'paragraph',
+        content: 'O padrão de mercado corporativo por décadas. Funcionalidade mais madura, maior ecossistema de suporte e integrações. Atenção: desde a aquisição pela Broadcom em 2023, o modelo de licenciamento mudou significativamente — o custo para PMEs aumentou substancialmente.',
+      },
+      {
+        type: 'h3',
+        content: 'Microsoft Hyper-V',
+      },
+      {
+        type: 'paragraph',
+        content: 'Incluído no Windows Server. Para empresas já no ecossistema Microsoft, é a opção de menor custo adicional. Funcionalidade adequada para a maioria das PMEs. Gerenciamento via Windows Admin Center é acessível para equipes sem expertise VMware.',
+      },
+      {
+        type: 'h3',
+        content: 'Proxmox VE',
+      },
+      {
+        type: 'paragraph',
+        content: 'Open source, gratuito. Cresceu muito no pós-Broadcom como alternativa ao VMware. Interface web completa, suporte a KVM e containers LXC, cluster nativo. Para equipes técnicas confortáveis com Linux, é uma opção sólida sem custo de licença.',
+      },
+      {
+        type: 'h2',
+        content: 'Quando virtualização não faz sentido',
+      },
+      {
+        type: 'list',
+        items: [
+          'Empresa com 1 a 2 servidores — a consolidação não justifica o investimento em nova infraestrutura',
+          'Workloads com alta demanda de I/O de disco (banco de dados OLTP intenso) — virtualização adiciona latência que pode ser problemática',
+          'Sistemas legados que exigem hardware específico — alguns sistemas antigos não funcionam em VM',
+          'Quando o próximo passo é cloud — investir em virtualização on-premise meses antes de migrar para cloud é desperdício',
+        ],
+      },
+      {
+        type: 'h2',
+        content: 'Virtualização on-premise vs cloud',
+      },
+      {
+        type: 'paragraph',
+        content: 'Virtualização on-premise faz sentido quando: há hardware relativamente novo que pode ser consolidado, a empresa tem demandas de latência que cloud não atende, ou há restrições regulatórias para dados em cloud. Para a maioria das novas implementações, avaliar cloud (mesmo que apenas para alguns workloads) é parte do processo de decisão.',
+      },
+      {
+        type: 'paragraph',
+        content: 'A JPX Digital faz o assessment e auxilia na decisão — virtualização on-premise, cloud, ou modelo híbrido — baseado na realidade da infraestrutura e do negócio.',
+      },
+    ],
+  },
+  {
+    slug: 'automacao-processos-n8n-o-que-pmes-podem-fazer-hoje',
+    title: 'Automação de processos com n8n: o que as PMEs podem fazer hoje sem código',
+    description:
+      'n8n é uma plataforma de automação open source que conecta sistemas e automatiza processos repetitivos. Para PMEs sem equipe de desenvolvimento, pode substituir integrações caras e horas de trabalho manual. Veja casos reais.',
+    publishedAt: '2026-03-05',
+    category: 'Automação',
+    readingTime: 7,
+    keywords: ['automação processos n8n', 'n8n brasil', 'automação PME', 'workflow automation', 'zapier alternativa gratuita'],
+    sections: [
+      {
+        type: 'paragraph',
+        content: 'Zapier custa R$ 500 a R$ 2.000 por mês para volumes de automação relevantes. Make (ex-Integromat) tem modelos similares. Para PMEs que precisam de automação mas não de uma licença SaaS cara, o n8n é a alternativa mais poderosa disponível.',
+      },
+      {
+        type: 'paragraph',
+        content: 'n8n é open source e pode ser hospedado em qualquer servidor — o custo é o do servidor, não da licença. Com auto-hospedagem, as automações são ilimitadas.',
+      },
+      {
+        type: 'h2',
+        content: 'O que o n8n faz',
+      },
+      {
+        type: 'paragraph',
+        content: 'n8n é um orquestrador de workflows. Ele conecta APIs, bancos de dados, planilhas, e-mails, WhatsApp e centenas de serviços SaaS — e define o que acontece quando um evento ocorre. É visual: o workflow é construído como um fluxograma de nós conectados.',
+      },
+      {
+        type: 'list',
+        items: [
+          'Gatilhos: novo lead no CRM, formulário enviado, e-mail recebido, webhook de qualquer sistema, agendamento por horário',
+          'Ações: enviar e-mail, enviar mensagem WhatsApp, criar registro no CRM, atualizar planilha, gerar PDF, notificar Slack',
+          'Lógica: condicionais (if/else), loops, transformação de dados com código JavaScript opcional',
+          'Mais de 400 integrações nativas: HubSpot, Salesforce, Google Sheets, Notion, Airtable, PostgreSQL, MySQL',
+        ],
+      },
+      {
+        type: 'h2',
+        content: 'Casos de automação reais para PMEs',
+      },
+      {
+        type: 'h3',
+        content: 'Lead nurturing automático',
+      },
+      {
+        type: 'paragraph',
+        content: 'Formulário no site → n8n cria contato no HubSpot → envia e-mail de boas-vindas personalizado via Resend → adiciona lead no pipeline comercial → notifica o vendedor responsável via WhatsApp. Todo o processo ocorre em menos de 30 segundos, sem intervenção humana.',
+      },
+      {
+        type: 'h3',
+        content: 'Relatórios automáticos',
+      },
+      {
+        type: 'paragraph',
+        content: 'Todo segunda-feira às 8h: n8n consulta o banco de dados, consolida os KPIs da semana anterior, gera uma tabela formatada e envia por e-mail para os gestores. Nenhum analista precisa preparar o relatório manualmente.',
+      },
+      {
+        type: 'h3',
+        content: 'Alertas de monitoramento de TI',
+      },
+      {
+        type: 'paragraph',
+        content: 'Servidor com uso de CPU acima de 90% por mais de 5 minutos → n8n recebe o alerta do sistema de monitoramento → classifica a criticidade → notifica o técnico de plantão via WhatsApp com os detalhes do servidor. Resposta em segundos.',
+      },
+      {
+        type: 'h3',
+        content: 'Onboarding de clientes',
+      },
+      {
+        type: 'paragraph',
+        content: 'Contrato assinado no sistema → n8n cria o projeto no sistema de gestão → cria as contas de acesso necessárias → envia o e-mail de boas-vindas com credenciais → agenda a reunião de kickoff e notifica o responsável pelo projeto.',
+      },
+      {
+        type: 'h2',
+        content: 'n8n vs Zapier: quando usar cada um',
+      },
+      {
+        type: 'list',
+        items: [
+          'Zapier: ideal para empresas sem equipe técnica que preferem uma solução gerenciada, com suporte e sem preocupação de servidor',
+          'n8n self-hosted: ideal para empresas com equipe técnica (ou parceiro MSP), que precisam de automações complexas ou com dados sensíveis que não devem ir para SaaS externo',
+          'n8n Cloud: versão gerenciada do n8n, intermediária — sem preocupação de servidor mas com mais flexibilidade que Zapier',
+          'Volume: Zapier fica caro acima de 2.000 tarefas/mês. n8n self-hosted tem custo fixo (servidor), independente do volume',
+        ],
+      },
+      {
+        type: 'h2',
+        content: 'O que é necessário para implementar n8n',
+      },
+      {
+        type: 'paragraph',
+        content: 'n8n roda em qualquer servidor Linux com Docker. Um VPS de R$ 60 a R$ 150/mês é suficiente para a maioria das PMEs. A configuração inicial (instalação, SSL, domínio) leva 2 a 4 horas para um técnico experiente.',
+      },
+      {
+        type: 'paragraph',
+        content: 'A JPX Digital instala, configura e gerencia o n8n para clientes que precisam de automação — incluindo a criação dos primeiros workflows. O modelo: infraestrutura gerenciada, com os workflows sendo construídos iterativamente com o cliente.',
+      },
+    ],
+  },
 ]
 
 export function getPost(slug: string): BlogPost | undefined {
