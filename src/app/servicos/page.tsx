@@ -66,7 +66,7 @@ export default function ServicosPage() {
       <main>
         {/* Hero */}
         <section className="hero-grid-bg py-24 lg:py-32">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="container-page">
             <FadeIn>
               <p className="text-xs font-semibold text-secondary uppercase tracking-widest mb-4">
                 Serviços
@@ -83,7 +83,7 @@ export default function ServicosPage() {
 
         {/* Services grid by category */}
         <section className="py-24 bg-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-20">
+          <div className="container-page space-y-20">
             {allServices.map((cat, ci) => (
               <div key={cat.category}>
                 <FadeIn>
@@ -120,7 +120,7 @@ export default function ServicosPage() {
 
         {/* CTA */}
         <section className="py-20 bg-muted border-t border-border">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+          <div className="container-page text-center">
             <FadeIn>
               <h2 className="type-h2 text-gray-900 mb-4">
                 Não encontrou o que precisa?

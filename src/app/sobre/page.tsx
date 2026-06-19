@@ -64,7 +64,7 @@ export default function SobrePage() {
       <main>
         {/* Hero */}
         <section className="hero-grid-bg py-24 lg:py-36">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="container-page">
             <FadeIn>
               <p className="text-xs font-semibold text-secondary uppercase tracking-widest mb-4">
                 Sobre a JPX Digital
@@ -81,7 +81,7 @@ export default function SobrePage() {
 
         {/* Números */}
         <section className="bg-surface-1 border-y border-white/[0.06] py-16">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="container-page">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
               {numeros.map((n) => (
                 <FadeIn key={n.label}>
@@ -97,7 +97,7 @@ export default function SobrePage() {
 
         {/* Quem somos */}
         <section className="py-24">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="container-page">
             <div className="grid lg:grid-cols-2 gap-16 items-start">
               <FadeIn>
                 <div>
@@ -142,7 +142,7 @@ export default function SobrePage() {
 
         {/* Valores */}
         <section className="py-24 bg-surface-1">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="container-page">
             <FadeIn>
               <div className="text-center mb-16">
                 <p className="text-xs font-semibold text-secondary uppercase tracking-widest mb-4">
@@ -172,7 +172,7 @@ export default function SobrePage() {
 
         {/* Manifesto / Diferencial */}
         <section className="py-24">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="container-page">
             <div className="max-w-3xl mx-auto">
               <FadeIn>
                 <div className="border-l-2 border-secondary pl-8 space-y-6 text-white/70 text-lg leading-relaxed">
@@ -196,7 +196,7 @@ export default function SobrePage() {
 
         {/* CTA */}
         <section className="py-24 bg-surface-1">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+          <div className="container-page text-center">
             <FadeIn>
               <h2 className="font-heading text-3xl font-bold text-white mb-4">
                 Pronto para um diagnóstico honesto?

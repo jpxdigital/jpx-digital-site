@@ -51,7 +51,7 @@ export default function SegmentosPage() {
       <main>
         {/* Hero */}
         <section className="hero-grid-bg py-24 lg:py-32">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="container-page">
             <FadeIn>
               <p className="text-xs font-semibold text-secondary uppercase tracking-widest mb-4">
                 Segmentos
@@ -68,7 +68,7 @@ export default function SegmentosPage() {
 
         {/* Segments */}
         <section className="py-24 bg-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="container-page">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {segments.map((seg, i) => {
                 const Icon = seg.icon
@@ -113,7 +113,7 @@ export default function SegmentosPage() {
 
         {/* CTA */}
         <section className="py-20 bg-muted border-t border-border">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+          <div className="container-page text-center">
             <FadeIn>
               <h2 className="type-h2 text-gray-900 mb-4">
                 Seu setor não está na lista?

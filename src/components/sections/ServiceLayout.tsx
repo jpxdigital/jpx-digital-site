@@ -77,7 +77,7 @@ export function ServiceLayout({ content }: { content: ServicePageContent }) {
       <main>
         {/* ── Hero ─────────────────────────────────────────── */}
         <section className="hero-grid-bg py-20 lg:py-28">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="container-page">
             <Breadcrumb slug={content.slug} label={breadcrumbLabel} baseSection={baseSection} />
 
             <FadeIn>
@@ -122,7 +122,7 @@ export function ServiceLayout({ content }: { content: ServicePageContent }) {
 
         {/* ── Intro ────────────────────────────────────────── */}
         <section className="py-20 bg-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="container-page">
             <div className="max-w-3xl space-y-5">
               {content.intro.map((para, i) => (
                 <FadeIn key={i} delay={i * 0.04}>
@@ -135,7 +135,7 @@ export function ServiceLayout({ content }: { content: ServicePageContent }) {
 
         {/* ── How we work ──────────────────────────────────── */}
         <section className="py-20 bg-muted">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="container-page">
             <FadeIn>
               <h2 className="type-h2 text-gray-900 mb-12">
                 {content.howTitle ?? 'Como atuamos'}
@@ -161,7 +161,7 @@ export function ServiceLayout({ content }: { content: ServicePageContent }) {
 
         {/* ── Differentials ────────────────────────────────── */}
         <section className="py-20 bg-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="container-page">
             <FadeIn>
               <h2 className="type-h2 text-gray-900 mb-10">
                 Por que a JPX Digital para este serviço
@@ -185,7 +185,7 @@ export function ServiceLayout({ content }: { content: ServicePageContent }) {
 
         {/* ── FAQ ──────────────────────────────────────────── */}
         <section className="py-20 bg-muted">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="container-page">
             <FadeIn>
               <h2 className="type-h2 text-gray-900 mb-10">
                 Perguntas frequentes
@@ -211,7 +211,7 @@ export function ServiceLayout({ content }: { content: ServicePageContent }) {
 
         {/* ── Final CTA ─────────────────────────────────────── */}
         <section className="dark-grid-bg py-20">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="container-page">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
               <FadeIn direction="left">
                 <h2 className="type-h2 text-white mb-4">

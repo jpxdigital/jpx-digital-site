@@ -29,7 +29,7 @@ export default function BlogPage() {
       <main>
         {/* Hero */}
         <section className="hero-grid-bg py-24 lg:py-32">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="container-page">
             <FadeIn>
               <p className="text-xs font-semibold text-secondary uppercase tracking-widest mb-4">Blog</p>
               <h1 className="type-display text-white mb-6 max-w-2xl">
@@ -44,7 +44,7 @@ export default function BlogPage() {
 
         {/* Posts */}
         <section className="py-24 bg-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="container-page">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {sorted.map((post, i) => (
                 <FadeIn key={post.slug} delay={i * 0.07}>
@@ -90,7 +90,7 @@ export default function BlogPage() {
 
         {/* CTA */}
         <section className="py-20 bg-muted border-t border-border">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+          <div className="container-page text-center">
             <FadeIn>
               <h2 className="font-heading text-2xl font-bold text-gray-900 mb-4">
                 Tem uma dúvida que não encontrou resposta aqui?

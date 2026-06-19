@@ -91,7 +91,7 @@ export default function Home() {
             style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,120,212,0.15) 0%, transparent 70%)' }}
           />
 
-          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36">
+          <div className="relative container-page py-20 sm:py-28 lg:py-36">
             <FadeIn direction="none">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/8 border border-white/15 text-white/80 text-xs font-medium tracking-wide mb-8">
                 <span className="w-1.5 h-1.5 rounded-full bg-secondary" />
@@ -174,7 +174,7 @@ export default function Home() {
 
         {/* ── Pain → Solution ───────────────────────────────── */}
         <section className="py-24 lg:py-32 bg-white" aria-labelledby="solutions-title">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="container-page">
             <FadeIn>
               <div className="max-w-2xl mb-16">
                 <p className="text-xs font-semibold text-secondary uppercase tracking-widest mb-4">
@@ -243,7 +243,7 @@ export default function Home() {
 
         {/* ── Differentials ─────────────────────────────────── */}
         <section className="py-24 bg-muted" aria-labelledby="why-title">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="container-page">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <FadeIn direction="left">
                 <p className="text-xs font-semibold text-secondary uppercase tracking-widest mb-4">
@@ -289,7 +289,7 @@ export default function Home() {
 
         {/* ── Segments ──────────────────────────────────────── */}
         <section className="dark-grid-bg py-24 lg:py-32" aria-labelledby="segments-title">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="container-page">
             <FadeIn>
               <div className="text-center max-w-2xl mx-auto mb-16">
                 <p className="text-xs font-semibold text-secondary uppercase tracking-widest mb-4">
@@ -331,7 +331,7 @@ export default function Home() {
 
         {/* ── CTA + Contact ─────────────────────────────────── */}
         <section id="contato" className="py-24 lg:py-32 bg-muted" aria-labelledby="cta-title">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="container-page">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
               <FadeIn direction="left">
                 <p className="text-xs font-semibold text-secondary uppercase tracking-widest mb-4">

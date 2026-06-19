@@ -79,7 +79,7 @@ export default function CasesPage() {
       <main>
         {/* Hero */}
         <section className="hero-grid-bg py-24 lg:py-32">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="container-page">
             <FadeIn>
               <p className="text-xs font-semibold text-secondary uppercase tracking-widest mb-4">Cases</p>
               <h1 className="type-display text-white mb-6 max-w-2xl">
@@ -94,7 +94,7 @@ export default function CasesPage() {
 
         {/* Cases */}
         <section className="py-24 bg-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-10">
+          <div className="container-page space-y-10">
             {cases.map((c, i) => {
               const Icon = c.icon
               return (
@@ -155,7 +155,7 @@ export default function CasesPage() {
 
         {/* CTA */}
         <section className="py-20 bg-muted border-t border-border">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+          <div className="container-page text-center">
             <FadeIn>
               <h2 className="type-h2 text-gray-900 mb-4">
                 Seu caso pode ser o próximo.
