@@ -44,9 +44,9 @@ const content = {
   heroHeadline: 'TI para Escritórios de Advocacia — Sigilo Profissional Protegido por Infraestrutura que Leva Segurança a Sério.',
   heroSub: 'Dados dos seus clientes são sigilosos por obrigação ética e legal. Um vazamento não é só um incidente de TI — é uma violação de confiança com consequências profissionais graves.',
   intro: [
-    'Escritórios de advocacia guardam alguns dos dados mais sensíveis do mundo corporativo: estratégias de litígio, contratos confidenciais, comunicações sigilosas advogado-cliente e informações financeiras de empresas e pessoas físicas. São ativos de altíssimo valor para concorrentes, para a parte adversária em processos e para criminosos.',
-    'A LGPD se aplica integralmente a escritórios de advocacia. Dados de clientes pessoa física são dados pessoais. Dados de processos envolvendo saúde, origem racial ou outras categorias sensíveis têm proteção reforçada. O sigilo profissional previsto no Código de Ética da OAB tem implicações que vão além da regulação de TI.',
-    'A JPX Digital estrutura a TI de escritórios de advocacia com foco no que o setor exige: controle de acesso granular por caso e cliente, criptografia em todos os pontos de dado, backup imutável à prova de ransomware, gestão de certificados digitais e rastreabilidade de acesso para auditorias.',
+    'Escritórios de advocacia guardam dados de altíssimo valor: estratégias de litígio, contratos confidenciais e comunicações sigilosas. São alvos para concorrentes, para a parte adversária e para criminosos.',
+    'A LGPD se aplica integralmente. Dados de clientes são dados pessoais. Processos com categorias sensíveis têm proteção reforçada. O sigilo do Código de Ética da OAB vai além da regulação de TI.',
+    'A JPX Digital estrutura a TI jurídica com controle de acesso por caso, criptografia de ponta a ponta, backup imutável e rastreabilidade completa de acesso para auditorias.',
   ],
   howTitle: 'Como estruturamos a TI do escritório',
   howSteps: [

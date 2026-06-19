@@ -8,6 +8,7 @@ const navLinks = [
   { href: '/segmentos', label: 'Segmentos' },
   { href: '/cases', label: 'Cases' },
   { href: '/blog', label: 'Blog' },
+  { href: '/contato', label: 'Contato' },
 ]
 
 export function Nav() {
@@ -52,14 +53,8 @@ export function Nav() {
             ))}
           </nav>
 
-          {/* Desktop CTA + mobile toggle */}
+          {/* Mobile toggle */}
           <div className="flex items-center gap-3">
-            <Link
-              href="/contato"
-              className="hidden lg:inline-flex items-center px-5 py-2.5 text-[0.9375rem] font-semibold text-white bg-primary rounded-lg hover:bg-primary-hover transition-colors duration-150"
-            >
-              Solicitar Assessment
-            </Link>
             <button
               className="lg:hidden p-2 rounded-lg text-gray-500 hover:bg-gray-100 transition-colors"
               onClick={() => setOpen(!open)}
@@ -84,15 +79,6 @@ export function Nav() {
                 {link.label}
               </Link>
             ))}
-            <div className="pt-3 pb-1">
-              <Link
-                href="/contato"
-                className="block px-5 py-3 text-sm font-semibold text-white bg-primary rounded-lg text-center hover:bg-primary-hover transition-colors"
-                onClick={() => setOpen(false)}
-              >
-                Solicitar Assessment
-              </Link>
-            </div>
           </div>
         )}
       </div>

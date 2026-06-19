@@ -44,9 +44,9 @@ const content = {
   heroHeadline: 'TI para Hospitais e Clínicas — Infraestrutura que não Para, Dados que não Vazam.',
   heroSub: 'Ambientes de saúde exigem o mais alto nível de disponibilidade, segurança de dados e conformidade regulatória. Um sistema fora do ar pode custar vidas. Um dado vazado, multas e processos.',
   intro: [
-    'O setor de saúde está entre os mais visados por ataques ransomware no Brasil e no mundo. Prontuários eletrônicos, imagens de exame e dados de faturamento são alvos de alto valor — e a paralisação de um sistema hospitalar tem consequências que vão muito além do prejuízo financeiro.',
-    'A LGPD trata dados de saúde como sensíveis, com obrigações reforçadas: consentimento específico, controles de acesso granulares, criptografia obrigatória e notificação de incidentes à ANPD. O CFM exige retenção de prontuários por 20 anos. Hospitais e clínicas que não endereçam essas obrigações tecnicamente estão expostos a riscos regulatórios graves.',
-    'A JPX Digital tem experiência em infraestrutura de TI para o setor de saúde: backup de prontuários com retenção de longo prazo, alta disponibilidade para sistemas críticos, segmentação de rede para proteger equipamentos médicos e planos de DR que cobrem o cenário de ransomware — o mais provável para o setor.',
+    'O setor de saúde é o mais visado por ransomware no Brasil. Prontuários, imagens e dados de faturamento são alvos de alto valor. Uma paralisação vai muito além do prejuízo financeiro.',
+    'A LGPD trata dados de saúde como sensíveis: acesso granular, criptografia obrigatória e notificação à ANPD. O CFM exige retenção de prontuários por 20 anos. Não endereçar essas obrigações cria risco regulatório grave.',
+    'A JPX Digital atua com backup imutável off-site, alta disponibilidade e planos de DR testados — desenhados para o cenário de ransomware hospitalar, o mais provável no setor.',
   ],
   howTitle: 'Como atuamos no setor de saúde',
   howSteps: [

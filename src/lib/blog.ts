@@ -136,7 +136,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: 'oracle-cloud-oci-brasil-quando-escolher',
-    title: 'Oracle Cloud OCI no Brasil: o que é, como funciona e quando faz sentido',
+    title: 'OCI no Brasil: Quando Oracle Cloud é a Escolha Certa para Sua Empresa',
     description:
       'Oracle Cloud Infrastructure (OCI) é frequentemente ignorada em favor de AWS e Azure. Para muitas empresas brasileiras, especialmente as que já usam produtos Oracle, pode ser a melhor escolha técnica e financeira.',
     publishedAt: '2026-06-08',
@@ -250,7 +250,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: 'disaster-recovery-hospitais-lgpd-como-se-preparar',
-    title: 'Disaster Recovery para Hospitais: exigências reais e como estruturar',
+    title: 'Disaster Recovery em Hospitais: Como Estruturar Antes que o Ransomware Chegue',
     description:
       'Hospitais são o setor mais visado por ransomware no Brasil. Entenda o que a LGPD exige, quais sistemas precisam de proteção prioritária e como estruturar um plano de DR que realmente funciona.',
     publishedAt: '2026-06-15',
@@ -588,7 +588,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: 'microsoft-azure-pequenas-medias-empresas-brasil',
-    title: 'Microsoft Azure para PMEs no Brasil: o que realmente vale a pena usar',
+    title: 'Azure para PMEs: o Que Vale a Pena Contratar (e o Que Está Inflando Sua Fatura)',
     description:
       'O Azure tem centenas de serviços. Para uma empresa de 20 a 200 funcionários no Brasil, a maioria não é relevante. Este guia foca no que agrega valor real para PMEs — e no que evitar para não explodir o custo.',
     publishedAt: '2026-05-05',
@@ -684,7 +684,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: 'firewall-corporativo-o-que-e-por-que-sua-empresa-precisa',
-    title: 'Firewall corporativo: o que é, como funciona e por que seu roteador doméstico não resolve',
+    title: 'Roteador no Escritório Não é Firewall: a Diferença que Pode Custar Caro',
     description:
       'Muitas PMEs confundem roteador com firewall — e pagam caro por isso. Entenda o que um firewall corporativo faz, quais as opções disponíveis no Brasil e quando investir em um NGFW (Next-Generation Firewall).',
     publishedAt: '2026-04-28',
@@ -1092,7 +1092,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: 'virtualizacao-servidores-quando-faz-sentido',
-    title: 'Virtualização de servidores: quando faz sentido, o que ganhar e como migrar',
+    title: 'Servidor Físico ou VM: o Cálculo que Poucos Fazem Antes de Virtualizar',
     description:
       'Empresas com servidores físicos dedicados a uma aplicação cada desperdiçam 80% da capacidade do hardware. Virtualização resolve isso — mas não é para todo mundo. Entenda os cenários onde compensa.',
     publishedAt: '2026-03-18',
@@ -1179,7 +1179,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: 'automacao-processos-n8n-o-que-pmes-podem-fazer-hoje',
-    title: 'Automação de processos com n8n: o que as PMEs podem fazer hoje sem código',
+    title: 'Como PMEs Estão Automatizando sem Contratar Desenvolvedor',
     description:
       'n8n é uma plataforma de automação open source que conecta sistemas e automatiza processos repetitivos. Para PMEs sem equipe de desenvolvimento, pode substituir integrações caras e horas de trabalho manual. Veja casos reais.',
     publishedAt: '2026-03-05',

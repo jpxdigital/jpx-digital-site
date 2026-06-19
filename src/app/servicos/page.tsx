@@ -25,7 +25,7 @@ const allServices = [
       { href: '/servicos/microsoft-azure', icon: Cloud, title: 'Microsoft Azure', desc: 'Arquitetura, migração e gestão de ambientes Azure.' },
       { href: '/servicos/aws', icon: Cloud, title: 'Amazon Web Services', desc: 'Infraestrutura, custos e segurança na AWS.' },
       { href: '/servicos/finops', icon: TrendingDown, title: 'FinOps', desc: 'Reduza gastos em cloud sem sacrificar performance.' },
-      { href: '/servicos/migracao-de-ambientes', icon: RefreshCw, title: 'Migração de Ambientes', desc: 'Migração segura de on-premise para cloud e entre clouds.' },
+      { href: '/servicos/migracao-de-ambientes', icon: RefreshCw, title: 'Migração de Ambientes', desc: 'Cutover sem downtime — on-premise para cloud ou cloud-to-cloud.' },
     ],
   },
   {
@@ -43,7 +43,7 @@ const allServices = [
     category: 'Infraestrutura',
     items: [
       { href: '/servicos/infraestrutura', icon: Server, title: 'Infraestrutura Corporativa', desc: 'Projeto e sustentação de ambientes críticos.' },
-      { href: '/servicos/virtualizacao', icon: Box, title: 'Virtualização', desc: 'VMware, Hyper-V e KVM para ambientes corporativos.' },
+      { href: '/servicos/virtualizacao', icon: Box, title: 'Virtualização', desc: 'Consolide servidores físicos e reduza custo com virtualização corporativa.' },
       { href: '/servicos/containers-kubernetes', icon: Cpu, title: 'Docker & Kubernetes', desc: 'Containerização e orquestração de aplicações.' },
       { href: '/servicos/firewall-vpn', icon: Flame, title: 'Firewall & VPN', desc: 'Perímetro seguro e acesso remoto corporativo.' },
       { href: '/servicos/monitoramento', icon: Monitor, title: 'Monitoramento', desc: 'Visibilidade 24/7 de toda a sua infraestrutura.' },

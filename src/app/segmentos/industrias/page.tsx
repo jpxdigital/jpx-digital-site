@@ -44,9 +44,9 @@ const content = {
   heroHeadline: 'TI para Indústrias — Produção Contínua com Infraestrutura que Acompanha o Ritmo da Fábrica.',
   heroSub: 'Parada não planejada na produção custa caro. Infraestrutura de TI que suporta ERP, automação e integração de dados com a confiabilidade que a operação industrial exige.',
   intro: [
-    'A indústria passou por uma transformação digital que trouxe conectividade para o chão de fábrica — e com ela, novos riscos. CLPs, supervisórios, sistemas SCADA e MES estão cada vez mais conectados às redes corporativas e à internet. Essa integração aumenta a eficiência e expõe a infraestrutura industrial a ameaças que antes não existiam.',
-    'Ao mesmo tempo, ERP, BI e sistemas de qualidade precisam de dados em tempo real da produção para suportar decisões. Integração mal feita gera dados inconsistentes, relatórios incorretos e decisões erradas — às vezes sem que ninguém perceba.',
-    'A JPX Digital atua em projetos de TI para indústrias com consciência das particularidades do ambiente: equipamentos que não podem ser reiniciados sem parar a produção, sistemas legados de controle que não suportam patches modernos e a necessidade de segmentação rigorosa entre redes IT e OT.',
+    'A transformação digital trouxe conectividade ao chão de fábrica — e com ela, novos riscos. CLPs, SCADA e MES estão cada vez mais ligados às redes corporativas e à internet.',
+    'ERP, BI e sistemas de qualidade dependem de dados em tempo real da produção. Integração mal feita gera relatórios incorretos e decisões erradas — sem que ninguém perceba.',
+    'A JPX Digital conhece as particularidades industriais: equipamentos que não reiniciam durante a produção, sistemas legados sem suporte a patches modernos e a necessidade de segmentação rigorosa entre redes IT e OT.',
   ],
   howTitle: 'Como atuamos em ambientes industriais',
   howSteps: [

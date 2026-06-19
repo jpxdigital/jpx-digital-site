@@ -44,9 +44,9 @@ const content = {
   heroHeadline: 'TI para Escritórios — Produtividade, Colaboração e Segurança para Equipes de Qualquer Tamanho.',
   heroSub: 'TI que não trava reunião, não perde arquivo e não deixa colaborador remoto sem acesso. Suporte que resolve antes de você precisar ligar.',
   intro: [
-    'Escritórios modernos dependem de TI para quase tudo: e-mail, documentos compartilhados, videoconferência, acesso ao ERP e ao CRM, impressão, Wi-Fi. Quando a TI falha, a operação para. Quando é mal configurada, dados ficam em risco. Quando não é gerenciada, os problemas acumulam em silêncio até virar crise.',
-    'A JPX Digital oferece infraestrutura e suporte de TI para escritórios de 10 a 500 colaboradores: Microsoft 365 (licenciamento, configuração, segurança e backup), gestão de dispositivos (Windows, macOS), home office seguro, backup de endpoints e suporte proativo com SLA.',
-    'Nossa abordagem começa pelo assessment: entendemos o que existe, o que funciona bem, o que está em risco e o que pode ser simplificado. Muitos escritórios pagam por soluções redundantes ou têm lacunas críticas de segurança sem saber.',
+    'Escritórios modernos dependem de TI para quase tudo: e-mail, documentos, videoconferência, ERP, Wi-Fi. Quando a TI falha, a operação para. Quando é mal configurada, dados ficam em risco.',
+    'A JPX Digital atua com escritórios de 10 a 500 colaboradores: Microsoft 365 com segurança e backup, gestão de dispositivos Windows e macOS, home office seguro e suporte proativo com SLA.',
+    'Começamos pelo assessment. Muitos escritórios pagam por soluções redundantes ou têm lacunas críticas de segurança sem saber.',
   ],
   howTitle: 'Como estruturamos a TI do seu escritório',
   howSteps: [
