@@ -84,14 +84,17 @@ jobs:
             docker compose --env-file .env --env-file .env.deploy \
               up -d --no-deps --pull always nextjs
 
-            # Health check — aguarda até 60s
-            for i in $(seq 1 12); do
+            # Aguardar container inicializar antes do health check
+            sleep 10
+
+            # Health check — aguarda até 90s (18x5s)
+            for i in $(seq 1 18); do
               STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/api/health)
               if [ "$STATUS" = "200" ]; then
                 echo "✓ Health check OK (HTTP $STATUS) — deploy concluído"
                 break
               fi
-              echo "Aguardando... ($i/12) — HTTP $STATUS"
+              echo "Aguardando... ($i/18) — HTTP $STATUS"
               sleep 5
             done
 
