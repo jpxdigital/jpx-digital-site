@@ -1,0 +1,114 @@
+services:
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: jpx_n8n_nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    depends_on:
+      - n8n
+    networks:
+      - frontend
+    deploy:
+      resources:
+        limits:
+          memory: 64m
+
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: jpx_n8n
+    restart: unless-stopped
+    environment:
+      DB_TYPE: postgresdb
+      DB_POSTGRESDB_HOST: postgres
+      DB_POSTGRESDB_PORT: 5432
+      DB_POSTGRESDB_DATABASE: ${POSTGRES_DB:-n8n}
+      DB_POSTGRESDB_USER: ${POSTGRES_USER:-n8n}
+      DB_POSTGRESDB_PASSWORD: ${POSTGRES_PASSWORD}
+      N8N_BASIC_AUTH_ACTIVE: "true"
+      N8N_BASIC_AUTH_USER: ${N8N_BASIC_AUTH_USER}
+      N8N_BASIC_AUTH_PASSWORD: ${N8N_BASIC_AUTH_PASSWORD}
+      N8N_HOST: ${N8N_HOST:-n8n.jpxdigital.com.br}
+      N8N_PORT: 5678
+      N8N_PROTOCOL: https
+      WEBHOOK_URL: https://${N8N_HOST:-n8n.jpxdigital.com.br}/
+      EXECUTIONS_DATA_PRUNE: "true"
+      EXECUTIONS_DATA_MAX_AGE: 168
+      N8N_INTERNAL_SECRET: ${N8N_INTERNAL_SECRET}
+      # Limitar memória interna do n8n
+      NODE_OPTIONS: "--max-old-space-size=300"
+    expose:
+      - "5678"
+    volumes:
+      - n8n_data:/home/node/.n8n
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - frontend
+      - automation
+    deploy:
+      resources:
+        limits:
+          memory: 350m
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: jpx_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-n8n}
+      POSTGRES_USER: ${POSTGRES_USER:-n8n}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      # Tuning para 1 GB RAM total na VM
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+    command: >
+      postgres
+      -c shared_buffers=128MB
+      -c effective_cache_size=256MB
+      -c work_mem=4MB
+      -c maintenance_work_mem=32MB
+      -c max_connections=20
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    expose:
+      - "5432"
+    networks:
+      - automation
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-n8n} -d ${POSTGRES_DB:-n8n}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          memory: 200m
+
+  # Watchtower — auto-update n8n às 4h
+  watchtower:
+    image: containrrr/watchtower:latest
+    container_name: jpx_watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --schedule "0 4 * * *" --cleanup jpx_n8n
+    networks:
+      - automation
+    deploy:
+      resources:
+        limits:
+          memory: 32m
+
+volumes:
+  n8n_data:
+  postgres_data:
+
+networks:
+  frontend:
+  automation:
+    internal: true

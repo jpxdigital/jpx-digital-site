@@ -2,6 +2,16 @@ node_modules/
 dist/
 .env
 .env.local
+.env.deploy
 .DS_Store
 *.log
 KEYS.md
+
+# Next.js
+.next/
+out/
+
+# Deploy — arquivos de ambiente (nunca commitar valores reais)
+deploy/vm1/.env
+deploy/vm2/.env
+deploy/monitoring/.env

@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Brand ─────────────────────────────────── */
+  --color-primary: #0A2463;
+  --color-primary-hover: #163a80;
+  --color-secondary: #0078D4;
+  --color-secondary-hover: #106EBE;
+
+  /* ── Surfaces ───────────────────────────────── */
+  --color-muted: #F8F9FA;
+  --color-dark: #0A0E1A;
+  --color-dark-card: #111827;
+
+  /* ── Borders ────────────────────────────────── */
+  --color-border: #E5E7EB;
+  --color-border-dark: rgba(255, 255, 255, 0.1);
+
+  /* ── Status ─────────────────────────────────── */
+  --color-success: #059669;
+  --color-danger: #DC2626;
+
+  /* ── Typography ─────────────────────────────── */
+  --font-heading: var(--font-manrope), 'Manrope', system-ui, sans-serif;
+  --font-body: var(--font-inter), 'Inter', system-ui, sans-serif;
+}
+
+/* ── Reset ──────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  color: #111827;
+  background: #ffffff;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Hero background grid ───────────────────────── */
+.hero-grid-bg {
+  background-color: #0A2463;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* ── Dark section grid ──────────────────────────── */
+.dark-grid-bg {
+  background-color: #0A0E1A;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
