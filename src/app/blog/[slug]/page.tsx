@@ -112,7 +112,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               {post.category}
             </div>
 
-            <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
+            <h1 className="type-display text-white mb-6">
               {post.title}
             </h1>
 

@@ -45,7 +45,7 @@ export function Nav() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-gray-600 hover:text-primary transition-colors duration-150"
+                className="text-[0.9375rem] font-medium text-gray-600 hover:text-primary transition-colors duration-150"
               >
                 {link.label}
               </Link>
@@ -56,7 +56,7 @@ export function Nav() {
           <div className="flex items-center gap-3">
             <Link
               href="/contato"
-              className="hidden lg:inline-flex items-center px-5 py-2.5 text-sm font-semibold text-white bg-primary rounded-lg hover:bg-primary-hover transition-colors duration-150"
+              className="hidden lg:inline-flex items-center px-5 py-2.5 text-[0.9375rem] font-semibold text-white bg-primary rounded-lg hover:bg-primary-hover transition-colors duration-150"
             >
               Solicitar Assessment
             </Link>

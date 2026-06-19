@@ -30,7 +30,7 @@ export function CookieBanner() {
       <div className="mx-auto max-w-4xl bg-gray-950 border border-white/10 rounded-2xl shadow-2xl p-5 sm:p-6 flex flex-col sm:flex-row gap-5 items-start sm:items-center">
         <div className="flex-1 min-w-0">
           <p className="text-white text-sm font-semibold mb-1">Privacidade e Cookies</p>
-          <p className="text-white/60 text-xs leading-relaxed">
+          <p className="text-white/60 text-[0.8125rem] leading-relaxed">
             Usamos cookies necessários para o funcionamento do site e, com seu consentimento, cookies de análise para melhorar a experiência.
             Saiba mais em nossa{' '}
             <Link href="/privacidade" className="text-blue-400 hover:text-blue-300 underline">
@@ -42,13 +42,13 @@ export function CookieBanner() {
         <div className="flex items-center gap-3 shrink-0">
           <button
             onClick={() => accept(false)}
-            className="text-xs font-medium text-white/60 hover:text-white transition-colors px-4 py-2 border border-white/15 rounded-lg"
+            className="text-[0.8125rem] font-medium text-white/60 hover:text-white transition-colors px-4 py-2.5 border border-white/15 rounded-lg"
           >
             Apenas necessários
           </button>
           <button
             onClick={() => accept(true)}
-            className="text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 transition-colors px-5 py-2 rounded-lg"
+            className="text-[0.8125rem] font-semibold text-white bg-blue-600 hover:bg-blue-700 transition-colors px-5 py-2.5 rounded-lg"
           >
             Aceitar todos
           </button>

@@ -82,7 +82,7 @@ export default function CasesPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <FadeIn>
               <p className="text-xs font-semibold text-secondary uppercase tracking-widest mb-4">Cases</p>
-              <h1 className="font-heading text-4xl lg:text-5xl font-bold text-white leading-tight mb-6 max-w-3xl">
+              <h1 className="type-display text-white mb-6 max-w-2xl">
                 Projetos reais. Resultados concretos.
               </h1>
               <p className="text-white/65 text-xl leading-relaxed max-w-2xl">
@@ -157,7 +157,7 @@ export default function CasesPage() {
         <section className="py-20 bg-muted border-t border-border">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
             <FadeIn>
-              <h2 className="font-heading text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="type-h2 text-gray-900 mb-4">
                 Seu caso pode ser o próximo.
               </h2>
               <p className="text-gray-600 mb-8 max-w-xl mx-auto">

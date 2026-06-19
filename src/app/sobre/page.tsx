@@ -69,7 +69,7 @@ export default function SobrePage() {
               <p className="text-xs font-semibold text-secondary uppercase tracking-widest mb-4">
                 Sobre a JPX Digital
               </p>
-              <h1 className="font-heading text-4xl lg:text-5xl font-bold text-white leading-tight mb-6 max-w-3xl">
+              <h1 className="type-display text-white mb-6 max-w-2xl">
                 Tecnologia que sustenta o que importa — com responsabilidade técnica de ponta a ponta.
               </h1>
               <p className="text-white/65 text-xl leading-relaxed max-w-2xl">

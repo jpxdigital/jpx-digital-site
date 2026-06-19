@@ -32,7 +32,7 @@ export default function BlogPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <FadeIn>
               <p className="text-xs font-semibold text-secondary uppercase tracking-widest mb-4">Blog</p>
-              <h1 className="font-heading text-4xl lg:text-5xl font-bold text-white leading-tight mb-6 max-w-2xl">
+              <h1 className="type-display text-white mb-6 max-w-2xl">
                 Conteúdo técnico para quem decide sobre infraestrutura.
               </h1>
               <p className="text-white/65 text-xl leading-relaxed max-w-xl">

@@ -88,7 +88,7 @@ export function ServiceLayout({ content }: { content: ServicePageContent }) {
             </FadeIn>
 
             <FadeIn delay={0.05}>
-              <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight max-w-3xl mb-5">
+              <h1 className="type-display text-white max-w-2xl mb-5">
                 {content.heroHeadline}
               </h1>
             </FadeIn>
@@ -103,7 +103,7 @@ export function ServiceLayout({ content }: { content: ServicePageContent }) {
               <div className="flex flex-wrap gap-4">
                 <Link
                   href="/contato"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-secondary text-white font-semibold rounded-xl hover:bg-secondary-hover transition-colors text-sm"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-secondary text-white font-semibold rounded-xl hover:bg-secondary-hover transition-colors text-[0.9375rem]"
                 >
                   Solicitar Assessment <ArrowRight className="w-4 h-4" />
                 </Link>
@@ -111,7 +111,7 @@ export function ServiceLayout({ content }: { content: ServicePageContent }) {
                   href="https://wa.me/5518930852246?text=Ol%C3%A1!%20Tenho%20interesse%20em%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20JPX%20Digital."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/8 border border-white/20 text-white font-medium rounded-xl hover:bg-white/14 transition-colors text-sm"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/8 border border-white/20 text-white font-medium rounded-xl hover:bg-white/14 transition-colors text-[0.9375rem]"
                 >
                   Falar no WhatsApp
                 </a>
@@ -137,7 +137,7 @@ export function ServiceLayout({ content }: { content: ServicePageContent }) {
         <section className="py-20 bg-muted">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <FadeIn>
-              <h2 className="font-heading text-2xl lg:text-3xl font-bold text-gray-900 mb-12">
+              <h2 className="type-h2 text-gray-900 mb-12">
                 {content.howTitle ?? 'Como atuamos'}
               </h2>
             </FadeIn>
@@ -163,7 +163,7 @@ export function ServiceLayout({ content }: { content: ServicePageContent }) {
         <section className="py-20 bg-white">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <FadeIn>
-              <h2 className="font-heading text-2xl lg:text-3xl font-bold text-gray-900 mb-10">
+              <h2 className="type-h2 text-gray-900 mb-10">
                 Por que a JPX Digital para este serviço
               </h2>
             </FadeIn>
@@ -187,7 +187,7 @@ export function ServiceLayout({ content }: { content: ServicePageContent }) {
         <section className="py-20 bg-muted">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <FadeIn>
-              <h2 className="font-heading text-2xl lg:text-3xl font-bold text-gray-900 mb-10">
+              <h2 className="type-h2 text-gray-900 mb-10">
                 Perguntas frequentes
               </h2>
             </FadeIn>
@@ -214,7 +214,7 @@ export function ServiceLayout({ content }: { content: ServicePageContent }) {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
               <FadeIn direction="left">
-                <h2 className="font-heading text-2xl lg:text-3xl font-bold text-white mb-4">
+                <h2 className="type-h2 text-white mb-4">
                   Pronto para começar?
                 </h2>
                 <p className="text-gray-400 text-lg leading-relaxed mb-8">

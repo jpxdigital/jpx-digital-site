@@ -91,7 +91,7 @@ export default function Home() {
             style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,120,212,0.15) 0%, transparent 70%)' }}
           />
 
-          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-28 lg:py-40">
+          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-24">
             <FadeIn direction="none">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/8 border border-white/15 text-white/80 text-xs font-medium tracking-wide mb-8">
                 <span className="w-1.5 h-1.5 rounded-full bg-secondary" />
@@ -102,7 +102,7 @@ export default function Home() {
             <FadeIn delay={0.05}>
               <h1
                 id="hero-title"
-                className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight max-w-4xl mb-8"
+                className="type-display text-white max-w-3xl mb-8"
               >
                 Seu ambiente está preparado para{' '}
                 <span className="text-secondary">o que pode acontecer amanhã?</span>
@@ -125,11 +125,11 @@ export default function Home() {
                   ].map((q) => (
                     <li key={q} className="flex items-start gap-3">
                       <span className="shrink-0 w-4 h-4 rounded border border-white/20 mt-0.5" />
-                      <span className="text-white/70 text-sm">{q}</span>
+                      <span className="text-white/75 text-[0.9375rem] leading-snug">{q}</span>
                     </li>
                   ))}
                 </ul>
-                <p className="mt-5 text-white/45 text-xs italic">
+                <p className="mt-5 text-white/50 text-[0.8125rem] italic">
                   Se alguma trouxe dúvida, você precisa de um diagnóstico antes de precisar de um milagre.
                 </p>
               </div>
@@ -139,7 +139,7 @@ export default function Home() {
               <div className="flex flex-wrap gap-4">
                 <Link
                   href="/contato"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-secondary text-white font-semibold rounded-xl hover:bg-secondary-hover transition-colors text-sm"
+                  className="inline-flex items-center gap-2 px-8 py-[0.875rem] bg-secondary text-white font-semibold rounded-xl hover:bg-secondary-hover transition-colors text-[0.9375rem]"
                 >
                   Quero um diagnóstico gratuito
                   <ArrowRight className="w-4 h-4" />
@@ -148,7 +148,7 @@ export default function Home() {
                   href="https://wa.me/5518930852246?text=Ol%C3%A1!%20Gostaria%20de%20um%20assessment%20gratuito%20de%20infraestrutura."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-white/8 border border-white/20 text-white font-medium rounded-xl hover:bg-white/14 transition-colors text-sm"
+                  className="inline-flex items-center gap-2 px-8 py-[0.875rem] bg-white/8 border border-white/20 text-white font-medium rounded-xl hover:bg-white/14 transition-colors text-[0.9375rem]"
                 >
                   Falar no WhatsApp
                 </a>
@@ -156,7 +156,7 @@ export default function Home() {
             </FadeIn>
 
             <FadeIn delay={0.2}>
-              <div className="mt-20 pt-10 border-t border-white/10">
+              <div className="mt-12 pt-8 border-t border-white/10">
                 <p className="text-xs text-white/40 uppercase tracking-widest mb-6 font-medium">
                   Parceiros Tecnológicos
                 </p>
@@ -180,7 +180,7 @@ export default function Home() {
                 <p className="text-xs font-semibold text-secondary uppercase tracking-widest mb-4">
                   Como resolvemos
                 </p>
-                <h2 id="solutions-title" className="font-heading text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+                <h2 id="solutions-title" className="type-h2 text-gray-900 mb-4">
                   Problemas reais.{' '}
                   <span className="text-primary">Soluções com SLA documentado.</span>
                 </h2>
@@ -212,7 +212,7 @@ export default function Home() {
                             {card.label}
                           </span>
                         </div>
-                        <p className="text-gray-700 text-sm leading-relaxed flex-1 mb-5">
+                        <p className="text-gray-700 text-[0.9375rem] leading-relaxed flex-1 mb-5">
                           {card.solution}
                         </p>
                         <Link
@@ -249,7 +249,7 @@ export default function Home() {
                 <p className="text-xs font-semibold text-secondary uppercase tracking-widest mb-4">
                   Por que a JPX Digital
                 </p>
-                <h2 id="why-title" className="font-heading text-3xl lg:text-4xl font-bold text-gray-900 mb-8">
+                <h2 id="why-title" className="type-h2 text-gray-900 mb-8">
                   Especialização que faz{' '}
                   <span className="text-primary">diferença no seu resultado.</span>
                 </h2>
@@ -295,7 +295,7 @@ export default function Home() {
                 <p className="text-xs font-semibold text-secondary uppercase tracking-widest mb-4">
                   Segmentos
                 </p>
-                <h2 id="segments-title" className="font-heading text-3xl lg:text-4xl font-bold text-white mb-4">
+                <h2 id="segments-title" className="type-h2 text-white mb-4">
                   Cada setor tem exigências específicas.
                 </h2>
                 <p className="text-gray-400 text-lg leading-relaxed">
@@ -337,7 +337,7 @@ export default function Home() {
                 <p className="text-xs font-semibold text-secondary uppercase tracking-widest mb-4">
                   Diagnóstico Gratuito
                 </p>
-                <h2 id="cta-title" className="font-heading text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+                <h2 id="cta-title" className="type-h2 text-gray-900 mb-6">
                   Descubra o estado real do seu ambiente antes que um incidente descubra por você.
                 </h2>
                 <p className="text-gray-600 text-lg leading-relaxed mb-8">

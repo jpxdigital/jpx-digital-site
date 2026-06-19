@@ -33,7 +33,7 @@ export default function ContatoPage() {
                 <p className="text-xs font-semibold text-secondary uppercase tracking-widest mb-4">
                   Contato
                 </p>
-                <h1 className="font-heading text-3xl lg:text-5xl font-bold text-gray-900 leading-tight mb-6">
+                <h1 className="type-display text-gray-900 mb-6">
                   Solicite um{' '}
                   <span className="text-primary">Assessment gratuito</span>{' '}
                   da sua infraestrutura.
