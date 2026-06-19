@@ -91,7 +91,7 @@ export default function Home() {
             style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,120,212,0.15) 0%, transparent 70%)' }}
           />
 
-          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-24">
+          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36">
             <FadeIn direction="none">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/8 border border-white/15 text-white/80 text-xs font-medium tracking-wide mb-8">
                 <span className="w-1.5 h-1.5 rounded-full bg-secondary" />
