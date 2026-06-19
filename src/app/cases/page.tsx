@@ -116,19 +116,19 @@ export default function CasesPage() {
                     {/* Body */}
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
                       {/* Desafio */}
-                      <div className="p-8 border-b lg:border-b-0 lg:border-r border-border">
+                      <div className="p-8 border-b lg:border-b-0 lg:border-r border-border min-w-0">
                         <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-3">Desafio</p>
                         <p className="text-gray-700 text-sm leading-relaxed">{c.challenge}</p>
                       </div>
 
                       {/* Solução */}
-                      <div className="p-8 border-b lg:border-b-0 lg:border-r border-border">
+                      <div className="p-8 border-b lg:border-b-0 lg:border-r border-border min-w-0">
                         <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-3">Solução</p>
                         <p className="text-gray-700 text-sm leading-relaxed">{c.solution}</p>
                       </div>
 
                       {/* Resultados */}
-                      <div className="p-8">
+                      <div className="p-8 min-w-0">
                         <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-3">Resultados</p>
                         <ul className="space-y-3">
                           {c.results.map((r) => (
