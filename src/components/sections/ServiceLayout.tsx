@@ -30,6 +30,7 @@ export interface ServicePageContent {
   howTitle?: string
   howSteps: HowStep[]
   differentials: Differential[]
+  differentialsTitle?: string
   faqs: FAQ[]
   schemas: object[]
   baseSection?: { name: string; href: string }
@@ -156,7 +157,7 @@ export function ServiceLayout({ content }: { content: ServicePageContent }) {
           <div className="container-page">
             <FadeIn>
               <h2 className="type-h2 text-gray-900 mb-10">
-                Por que a JPX Digital para este serviço
+                {content.differentialsTitle ?? 'Por que a JPX Digital para este serviço'}
               </h2>
             </FadeIn>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -165,8 +166,8 @@ export function ServiceLayout({ content }: { content: ServicePageContent }) {
                   <div className="flex gap-4 p-6 bg-muted border border-border rounded-xl">
                     <CheckCircle2 className="w-5 h-5 text-success shrink-0 mt-0.5" />
                     <div>
-                      <h3 className="font-semibold text-gray-900 mb-1.5">{d.title}</h3>
-                      <p className="text-gray-600 text-sm leading-relaxed">{d.desc}</p>
+                      <h3 className="font-semibold text-gray-900">{d.title}</h3>
+                      {d.desc && <p className="text-gray-600 text-sm leading-relaxed mt-1.5">{d.desc}</p>}
                     </div>
                   </div>
                 </FadeIn>

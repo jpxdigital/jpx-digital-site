@@ -71,23 +71,17 @@ const content = {
       desc: 'Monitoramos cada execução de backup, alertamos imediatamente em caso de falha e entregamos relatório mensal com status, testes de restore realizados e métricas de RPO/RTO atingidas.',
     },
   ],
+  differentialsTitle: 'O que entregamos',
   differentials: [
-    {
-      title: 'RPO e RTO documentados em contrato',
-      desc: 'Não em promessa verbal. Você tem um contrato com os tempos de recuperação que a JPX Digital se compromete a entregar e testar periodicamente.',
-    },
-    {
-      title: 'Restore mensal comprovado',
-      desc: 'Testamos a restauração real todos os meses e entregamos relatório. Você sabe que o backup funciona antes de precisar dele.',
-    },
-    {
-      title: 'Estratégia 3-2-1 com criptografia',
-      desc: '3 cópias, 2 mídias diferentes, 1 offsite. Todos os dados criptografados com AES-256 antes da transmissão. Seus dados não são acessíveis nem pelo provedor de storage.',
-    },
-    {
-      title: 'Cobertura completa: on-premise + cloud',
-      desc: 'Protegemos servidores físicos, VMs em qualquer cloud (OCI, Azure, AWS), bancos de dados Oracle, SQL Server e PostgreSQL, e compartilhamentos de rede.',
-    },
+    { title: 'Definição da estratégia de backup', desc: '' },
+    { title: 'Definição de RPO e RTO conforme necessidade do negócio', desc: '' },
+    { title: 'Implantação da solução de backup', desc: '' },
+    { title: 'Criptografia dos dados em trânsito e em repouso', desc: '' },
+    { title: 'Configuração de retenção e versionamento', desc: '' },
+    { title: 'Testes de recuperação programados', desc: '' },
+    { title: 'Monitoramento das execuções', desc: '' },
+    { title: 'Relatórios executivos periódicos', desc: '' },
+    { title: 'Documentação completa da solução', desc: '' },
   ],
   faqs,
   schemas: [
