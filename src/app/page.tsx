@@ -4,7 +4,6 @@ import {
   ArrowRight, CheckCircle2, AlertTriangle, Server,
   Database, RefreshCw, Shield, TrendingDown, Cloud,
   Headphones, Building2, Heart, Factory, Scale, ShieldCheck,
-  Terminal, GitBranch, Settings2, ScrollText, Workflow,
 } from 'lucide-react'
 import { Nav } from '@/components/layout/Nav'
 import { Footer } from '@/components/layout/Footer'
@@ -193,115 +192,6 @@ export default function Home() {
               </FadeIn>
 
             </div>
-          </div>
-        </section>
-
-        {/* ── Badges / Parcerias ───────────────────────────── */}
-        <section className="bg-white border-b border-border py-14">
-          <div className="container-page">
-            <FadeIn direction="none">
-              <p className="text-center text-[0.6875rem] font-semibold text-gray-400 uppercase tracking-widest mb-10">
-                Certificações e Parcerias Tecnológicas
-              </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                {[
-                  {
-                    abbrev: 'AWS',
-                    name: 'Amazon Web Services',
-                    cert: 'Partner Network',
-                    bg: 'bg-[#232F3E]',
-                    accent: 'bg-[#FF9900]',
-                    text: 'text-[#FF9900]',
-                  },
-                  {
-                    abbrev: 'OCI',
-                    name: 'Oracle Cloud',
-                    cert: 'Infrastructure Partner',
-                    bg: 'bg-[#C74634]',
-                    accent: 'bg-white/20',
-                    text: 'text-white',
-                  },
-                  {
-                    abbrev: 'Azure',
-                    name: 'Microsoft Azure',
-                    cert: 'Partner',
-                    bg: 'bg-[#0078D4]',
-                    accent: 'bg-white/20',
-                    text: 'text-white',
-                  },
-                  {
-                    abbrev: 'Acronis',
-                    name: 'Acronis',
-                    cert: 'Cyber Protect Partner',
-                    bg: 'bg-[#2A4590]',
-                    accent: 'bg-[#00AEEF]/30',
-                    text: 'text-[#00AEEF]',
-                  },
-                  {
-                    abbrev: 'OKD',
-                    name: 'Red Hat',
-                    cert: 'OpenShift / OKD',
-                    bg: 'bg-[#CC0000]',
-                    accent: 'bg-white/20',
-                    text: 'text-white',
-                  },
-                  {
-                    abbrev: '∞',
-                    name: 'DevOps & CI/CD',
-                    cert: 'GitHub Actions · n8n',
-                    bg: 'bg-[#1a1a2e]',
-                    accent: 'bg-violet-500/30',
-                    text: 'text-violet-300',
-                  },
-                  {
-                    abbrev: 'ICP',
-                    name: 'ICP-Brasil',
-                    cert: 'Revendedor Autorizado',
-                    bg: 'bg-[#004A80]',
-                    accent: 'bg-[#00C851]/30',
-                    text: 'text-[#4ADE80]',
-                  },
-                ].map((b) => (
-                  <div
-                    key={b.name}
-                    className={`${b.bg} rounded-xl flex flex-col items-center py-6 px-3 gap-3 w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-0.667rem)] lg:w-36`}
-                  >
-                    <div className={`${b.accent} rounded-lg w-12 h-12 flex items-center justify-center`}>
-                      <span className={`${b.text} font-heading font-bold text-sm tracking-tight`}>
-                        {b.abbrev}
-                      </span>
-                    </div>
-                    <div className="text-center">
-                      <p className="text-white font-semibold text-xs leading-tight mb-0.5">{b.name}</p>
-                      <p className="text-white/50 text-[0.6875rem] leading-tight">{b.cert}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-10 pt-10 border-t border-gray-100">
-                <p className="text-center text-[0.6875rem] font-semibold text-gray-400 uppercase tracking-widest mb-6">
-                  Cursos Certificados — DevOps
-                </p>
-                <div className="flex flex-wrap justify-center gap-3">
-                  {[
-                    { Icon: Workflow,   label: 'Introdução a DevOps' },
-                    { Icon: Terminal,   label: 'Linux' },
-                    { Icon: GitBranch,  label: 'Git e GitHub' },
-                    { Icon: Settings2,  label: 'Jenkins' },
-                    { Icon: ScrollText, label: 'Logs com Grafana Loki' },
-                  ].map(({ Icon, label }) => (
-                    <div key={label} className="flex items-center gap-2 px-3.5 py-2 bg-gray-50 border border-gray-200 rounded-lg">
-                      <Icon className="w-3.5 h-3.5 text-gray-500 shrink-0" />
-                      <span className="text-gray-700 text-[0.75rem] font-medium">{label}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <p className="text-center text-[0.75rem] text-gray-400 mt-8">
-                Certificações verificáveis sob solicitação durante o processo de avaliação.
-              </p>
-            </FadeIn>
           </div>
         </section>
 
