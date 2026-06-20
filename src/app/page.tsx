@@ -279,29 +279,6 @@ export default function Home() {
                 ))}
               </div>
               <div className="mt-10 pt-10 border-t border-gray-100">
-                <p className="text-center text-[0.6875rem] font-semibold text-gray-400 uppercase tracking-widest mb-8">
-                  Certificações Individuais
-                </p>
-                <div className="flex flex-wrap justify-center items-center gap-4">
-                  {[
-                    { abbrev: 'AWS', label: 'Sales Accredited', role: 'Trained Partner', bg: 'bg-[#232F3E]', accent: 'bg-[#FF9900]', abbrevColor: 'text-[#FF9900]', labelColor: 'text-[#FF9900]' },
-                    { abbrev: 'AWS', label: 'Technical Accredited', role: 'Trained Partner', bg: 'bg-[#232F3E]', accent: 'bg-[#FF9900]', abbrevColor: 'text-[#FF9900]', labelColor: 'text-[#FF9900]' },
-                    { abbrev: 'AWS', label: 'SAP on AWS', role: 'Technical Skill · Partner', bg: 'bg-[#232F3E]', accent: 'bg-[#FF9900]', abbrevColor: 'text-[#FF9900]', labelColor: 'text-[#FF9900]' },
-                    { abbrev: 'Acronis', label: 'Advanced Backup', role: 'Cloud Sales Associate', bg: 'bg-[#2A4590]', accent: 'bg-[#00AEEF]/20', abbrevColor: 'text-[#00AEEF]', labelColor: 'text-[#00AEEF]' },
-                    { abbrev: 'Acronis', label: 'Advanced Email Security', role: 'Cloud Tech Associate', bg: 'bg-[#2A4590]', accent: 'bg-[#00AEEF]/20', abbrevColor: 'text-[#00AEEF]', labelColor: 'text-[#00AEEF]' },
-                  ].map((b) => (
-                    <div key={b.label} className={`${b.bg} rounded-xl flex flex-col items-center py-5 px-3 gap-2 w-32 text-center`}>
-                      <div className={`${b.accent} rounded-lg w-9 h-9 flex items-center justify-center`}>
-                        <span className={`${b.abbrevColor} font-heading font-bold text-[0.65rem] tracking-tight`}>{b.abbrev}</span>
-                      </div>
-                      <span className={`${b.labelColor} text-[0.6875rem] font-bold leading-tight`}>{b.label}</span>
-                      <span className="text-white/50 text-[0.625rem] leading-tight">{b.role}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mt-10 pt-10 border-t border-gray-100">
                 <p className="text-center text-[0.6875rem] font-semibold text-gray-400 uppercase tracking-widest mb-6">
                   Cursos Certificados — DevOps
                 </p>
