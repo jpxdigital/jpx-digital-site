@@ -283,14 +283,11 @@ export default function Home() {
                   Certificações Individuais
                 </p>
                 <div className="flex flex-wrap justify-center items-center gap-6">
+                  {/* AWS badges — imagens oficiais */}
                   {[
-                    { src: '/badges/aws-sales-accredited.png', alt: 'AWS Sales Accredited – Trained Partner' },
-                    { src: '/badges/aws-technical-accredited.png', alt: 'AWS Technical Accredited – Trained Partner' },
-                    { src: '/badges/aws-sap-technical-skill.png', alt: 'AWS SAP on AWS Technical Skill – Partner' },
-                    { src: '/badges/aws-cloud-practitioner.png', alt: 'AWS Certified Cloud Practitioner – Foundational' },
-                    { src: '/badges/acronis-adv-security-edr-tech.png', alt: 'Acronis Academy – Adv. Security + EDR Cloud Tech' },
-                    { src: '/badges/acronis-adv-security-edr-sales.png', alt: 'Acronis Academy – Adv. Security with EDR Cloud Sales' },
-                    { src: '/badges/acronis-advanced-backup.png', alt: 'Acronis Academy – Advanced Backup Cloud Tech' },
+                    { src: '/badges/aws-sales-accredited.png', alt: 'AWS Partner: Sales Accreditation' },
+                    { src: '/badges/aws-technical-accredited.png', alt: 'AWS Partner: Technical Accredited' },
+                    { src: '/badges/aws-sap-technical-skill.png', alt: 'AWS Partner: SAP on AWS Technical Skill' },
                   ].map((badge) => (
                     <Image
                       key={badge.src}
@@ -300,6 +297,17 @@ export default function Home() {
                       height={96}
                       className="w-20 h-20 object-contain"
                     />
+                  ))}
+                  {/* Acronis badges — text cards */}
+                  {[
+                    { label: 'Advanced Backup', role: 'Cloud Sales Associate', color: 'bg-[#2A4590]', accent: 'text-[#00AEEF]' },
+                    { label: 'Advanced Email Security', role: 'Cloud Tech Associate', color: 'bg-[#2A4590]', accent: 'text-[#00AEEF]' },
+                  ].map((b) => (
+                    <div key={b.label} className={`${b.color} rounded-xl flex flex-col items-center py-4 px-3 gap-1.5 w-28 text-center`}>
+                      <span className="text-white/40 text-[0.6rem] font-semibold uppercase tracking-wide leading-tight">Acronis Academy</span>
+                      <span className={`${b.accent} text-[0.6875rem] font-bold leading-tight`}>{b.label}</span>
+                      <span className="text-white/55 text-[0.625rem] leading-tight">{b.role}</span>
+                    </div>
                   ))}
                 </div>
               </div>
