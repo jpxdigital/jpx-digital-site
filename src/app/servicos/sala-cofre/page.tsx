@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   description:
     'Sala cofre EN 1047-2 Nível 4 para ambientes regulados: manutenção preventiva e corretiva, auditorias e laudos técnicos para ITI, PCI-DSS e ISO 27001.',
   keywords: ['sala cofre nível 4', 'sala cofre EN 1047-2', 'sala cofre ICP-Brasil', 'manutenção sala cofre', 'auditoria sala cofre', 'sala cofre data center'],
-  openGraph: { title: 'Sala Cofre Nível 4 | JPX Digital', description: 'Projeto, implantação, manutenção e auditoria de sala cofre EN 1047-2.', url: `${BASE}/servicos/${slug}` },
+  openGraph: { title: 'Sala Cofre Nível 4 | JPX Digital', description: 'Implantação, manutenção e auditoria de sala cofre EN 1047-2.', url: `${BASE}/servicos/${slug}` },
   alternates: { canonical: `${BASE}/servicos/${slug}` },
 }
 
@@ -90,7 +90,7 @@ const content = {
   ],
   faqs,
   schemas: [
-    serviceSchema('Sala Cofre Nível 4', 'Projeto, implantação, manutenção e auditoria de sala cofre EN 1047-2 para ambientes regulados.', 'IT Infrastructure Service'),
+    serviceSchema('Sala Cofre Nível 4', 'Implantação, manutenção e auditoria de sala cofre EN 1047-2 para ambientes regulados.', 'IT Infrastructure Service'),
     breadcrumbSchema([{ name: 'Home', item: BASE }, { name: 'Serviços', item: `${BASE}/servicos` }, { name: 'Sala Cofre Nível 4', item: `${BASE}/servicos/${slug}` }]),
     faqPageSchema(faqs),
   ],
