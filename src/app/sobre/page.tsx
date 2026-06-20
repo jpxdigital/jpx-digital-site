@@ -61,7 +61,7 @@ export default function SobrePage() {
   return (
     <MotionProvider>
       <Nav />
-      <main className="bg-dark">
+      <main>
         {/* Hero */}
         <section className="hero-grid-bg py-24 lg:py-36">
           <div className="container-page">
@@ -104,10 +104,10 @@ export default function SobrePage() {
                   <p className="text-xs font-semibold text-secondary uppercase tracking-widest mb-4">
                     Nossa história
                   </p>
-                  <h2 className="font-heading text-3xl font-bold text-white mb-6">
+                  <h2 className="font-heading text-3xl font-bold text-gray-900 mb-6">
                     Nascemos do interior de São Paulo para o mercado nacional.
                   </h2>
-                  <div className="space-y-5 text-white/65 text-lg leading-relaxed">
+                  <div className="space-y-5 text-gray-600 text-lg leading-relaxed">
                     <p>
                       A JPX Digital nasceu da constatação de que empresas no interior do Brasil — hospitais, indústrias, escritórios — não tinham acesso à mesma qualidade de consultoria de TI disponível nos grandes centros.
                     </p>
@@ -175,8 +175,8 @@ export default function SobrePage() {
           <div className="container-page">
             <div className="max-w-3xl mx-auto">
               <FadeIn>
-                <div className="border-l-2 border-secondary pl-8 space-y-6 text-white/70 text-lg leading-relaxed">
-                  <p className="text-white text-xl font-medium">
+                <div className="border-l-2 border-secondary pl-8 space-y-6 text-gray-600 text-lg leading-relaxed">
+                  <p className="text-gray-900 text-xl font-medium">
                     "Consultoria de TI boa não é a que tem o maior catálogo de serviços. É a que entende qual problema o cliente tem de verdade."
                   </p>
                   <p>
