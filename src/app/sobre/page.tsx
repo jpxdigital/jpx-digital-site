@@ -40,16 +40,16 @@ const valores = [
 ]
 
 const numeros = [
-  { valor: '10+', label: 'Anos de experiência em infraestrutura' },
-  { valor: '50+', label: 'Empresas atendidas no interior paulista' },
-  { valor: '99,9%', label: 'SLA de disponibilidade nos ambientes gerenciados' },
-  { valor: '3', label: 'Provedores de cloud certificados (OCI, Azure, AWS)' },
+  { valor: '23+', label: 'Anos de experiência em infraestrutura' },
+  { valor: '50+', label: 'Empresas atendidas' },
+  { valor: '5', label: 'Provedores de cloud certificados (OCI, Azure, AWS, Magalú Cloud e SaveInCloud)' },
 ]
 
 const especialidades = [
   'Oracle Cloud Infrastructure (OCI) — incluindo migração de workloads Oracle',
   'Microsoft Azure — integração com Microsoft 365 e Entra ID',
   'Amazon Web Services (AWS) — desde infra básica até arquiteturas serverless',
+  'Magalú Cloud e SaveInCloud — cloud nacional com suporte em português',
   'Backup corporativo e Disaster Recovery — com testes de restauração documentados',
   'Segurança cibernética gerenciada — EDR, firewall NGFW, hardening e resposta a incidentes',
   'Suporte de TI gerenciado (MSP) — monitoramento 24/7 e helpdesk com SLA',
@@ -82,7 +82,7 @@ export default function SobrePage() {
         {/* Números */}
         <section className="py-16 bg-white border-b border-border">
           <div className="container-page">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
               {numeros.map((n) => (
                 <FadeIn key={n.label}>
                   <div className="text-center">
