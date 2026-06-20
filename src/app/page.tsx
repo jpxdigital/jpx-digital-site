@@ -142,17 +142,20 @@ export default function Home() {
                 </FadeIn>
 
                 <FadeIn delay={0.16}>
-                  <div className="border-t border-white/10 pt-7">
-                    <p className="text-[0.6875rem] text-white/30 uppercase tracking-widest font-semibold mb-4">
-                      Parceiros certificados
-                    </p>
-                    <div className="flex flex-wrap gap-6">
-                      {['Oracle Cloud', 'Microsoft Azure', 'AWS', 'Acronis'].map((p) => (
-                        <span key={p} className="text-sm text-white/40 font-medium hover:text-white/65 transition-colors">
-                          {p}
-                        </span>
-                      ))}
-                    </div>
+                  <div className="border-t border-white/10 pt-7 flex flex-wrap items-center gap-x-8 gap-y-2">
+                    {[
+                      { label: 'AWS Partner', dot: 'bg-[#FF9900]' },
+                      { label: 'Oracle OCI Partner', dot: 'bg-red-400' },
+                      { label: 'Microsoft Azure Partner', dot: 'bg-blue-400' },
+                      { label: 'Acronis Partner', dot: 'bg-cyan-400' },
+                      { label: 'Red Hat OpenShift', dot: 'bg-red-500' },
+                      { label: 'ICP-Brasil', dot: 'bg-green-400' },
+                    ].map((p) => (
+                      <span key={p.label} className="flex items-center gap-1.5 text-[0.75rem] text-white/40 font-medium">
+                        <span className={`w-1.5 h-1.5 rounded-full ${p.dot} shrink-0`} />
+                        {p.label}
+                      </span>
+                    ))}
                   </div>
                 </FadeIn>
               </div>
@@ -189,6 +192,87 @@ export default function Home() {
               </FadeIn>
 
             </div>
+          </div>
+        </section>
+
+        {/* ── Badges / Parcerias ───────────────────────────── */}
+        <section className="bg-white border-b border-border py-14">
+          <div className="container-page">
+            <FadeIn direction="none">
+              <p className="text-center text-[0.6875rem] font-semibold text-gray-400 uppercase tracking-widest mb-10">
+                Certificações e Parcerias Tecnológicas
+              </p>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+                {[
+                  {
+                    abbrev: 'AWS',
+                    name: 'Amazon Web Services',
+                    cert: 'Partner Network',
+                    bg: 'bg-[#232F3E]',
+                    accent: 'bg-[#FF9900]',
+                    text: 'text-[#FF9900]',
+                  },
+                  {
+                    abbrev: 'OCI',
+                    name: 'Oracle Cloud',
+                    cert: 'Infrastructure Partner',
+                    bg: 'bg-[#C74634]',
+                    accent: 'bg-white/20',
+                    text: 'text-white',
+                  },
+                  {
+                    abbrev: 'Azure',
+                    name: 'Microsoft Azure',
+                    cert: 'Partner',
+                    bg: 'bg-[#0078D4]',
+                    accent: 'bg-white/20',
+                    text: 'text-white',
+                  },
+                  {
+                    abbrev: 'Acronis',
+                    name: 'Acronis',
+                    cert: 'Cyber Protect Partner',
+                    bg: 'bg-[#2A4590]',
+                    accent: 'bg-[#00AEEF]/30',
+                    text: 'text-[#00AEEF]',
+                  },
+                  {
+                    abbrev: 'OKD',
+                    name: 'Red Hat',
+                    cert: 'OpenShift / OKD',
+                    bg: 'bg-[#CC0000]',
+                    accent: 'bg-white/20',
+                    text: 'text-white',
+                  },
+                  {
+                    abbrev: 'ICP',
+                    name: 'ICP-Brasil',
+                    cert: 'Revendedor Autorizado',
+                    bg: 'bg-[#004A80]',
+                    accent: 'bg-[#00C851]/30',
+                    text: 'text-[#4ADE80]',
+                  },
+                ].map((b) => (
+                  <div
+                    key={b.name}
+                    className={`${b.bg} rounded-xl overflow-hidden flex flex-col items-center py-6 px-3 gap-3`}
+                  >
+                    <div className={`${b.accent} rounded-lg w-12 h-12 flex items-center justify-center`}>
+                      <span className={`${b.text} font-heading font-bold text-sm tracking-tight`}>
+                        {b.abbrev}
+                      </span>
+                    </div>
+                    <div className="text-center">
+                      <p className="text-white font-semibold text-xs leading-tight mb-0.5">{b.name}</p>
+                      <p className="text-white/50 text-[0.6875rem] leading-tight">{b.cert}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p className="text-center text-[0.75rem] text-gray-400 mt-8">
+                Certificações verificáveis sob solicitação durante o processo de avaliação.
+              </p>
+            </FadeIn>
           </div>
         </section>
 
