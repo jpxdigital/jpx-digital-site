@@ -84,91 +84,109 @@ export default function Home() {
       <Nav />
 
       <main>
-        {/* ── Hero — Pain First ─────────────────────────────── */}
+        {/* ── Hero ─────────────────────────────────────────── */}
         <section className="hero-grid-bg relative overflow-hidden" aria-labelledby="hero-title">
           <div
             className="absolute inset-0 pointer-events-none"
-            style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,120,212,0.15) 0%, transparent 70%)' }}
+            style={{ background: 'radial-gradient(ellipse 70% 55% at 65% -5%, rgba(0,120,212,0.22) 0%, transparent 60%)' }}
           />
 
-          <div className="relative container-page py-20 sm:py-28 lg:py-36">
-            <FadeIn direction="none">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/8 border border-white/15 text-white/80 text-xs font-medium tracking-wide mb-8">
-                <span className="w-1.5 h-1.5 rounded-full bg-secondary" />
-                Assessment Gratuito de Infraestrutura
+          <div className="relative w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-24 lg:py-32">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] xl:grid-cols-[1fr_440px] gap-10 xl:gap-16 items-center">
+
+              {/* ── Left: headline + CTAs ── */}
+              <div>
+                <FadeIn direction="none">
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-white/75 text-xs font-medium tracking-wide mb-8">
+                    <span className="w-1.5 h-1.5 rounded-full bg-secondary shrink-0" />
+                    Assessment gratuito de infraestrutura
+                  </div>
+                </FadeIn>
+
+                <FadeIn delay={0.05}>
+                  <h1
+                    id="hero-title"
+                    className="font-heading font-bold text-white leading-[1.1] tracking-tight mb-6 text-[1.875rem] sm:text-[2.25rem] lg:text-[2rem] xl:text-[2.625rem]"
+                  >
+                    Seu ambiente está preparado para{' '}
+                    <span className="text-secondary">o que pode acontecer amanhã?</span>
+                  </h1>
+                </FadeIn>
+
+                <FadeIn delay={0.08}>
+                  <p className="text-white/60 text-[1.0625rem] leading-relaxed max-w-md mb-10">
+                    Uma crise de TI não avisa. Diagnóstico gratuito, SLA em contrato e equipe que executa — sem intermediários.
+                  </p>
+                </FadeIn>
+
+                <FadeIn delay={0.12}>
+                  <div className="flex flex-col sm:flex-row gap-3 mb-14">
+                    <Link
+                      href="/contato"
+                      className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-secondary text-white font-semibold rounded-xl hover:bg-secondary-hover transition-colors text-[0.9375rem]"
+                    >
+                      Quero um diagnóstico gratuito
+                      <ArrowRight className="w-4 h-4 shrink-0" />
+                    </Link>
+                    <a
+                      href="https://wa.me/5518930852246?text=Ol%C3%A1!%20Gostaria%20de%20um%20assessment%20gratuito%20de%20infraestrutura."
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white/8 border border-white/20 text-white font-medium rounded-xl hover:bg-white/14 transition-colors text-[0.9375rem]"
+                    >
+                      Falar no WhatsApp
+                    </a>
+                  </div>
+                </FadeIn>
+
+                <FadeIn delay={0.16}>
+                  <div className="border-t border-white/10 pt-7">
+                    <p className="text-[0.6875rem] text-white/30 uppercase tracking-widest font-semibold mb-4">
+                      Parceiros certificados
+                    </p>
+                    <div className="flex flex-wrap gap-6">
+                      {['Oracle Cloud', 'Microsoft Azure', 'AWS', 'Acronis'].map((p) => (
+                        <span key={p} className="text-sm text-white/40 font-medium hover:text-white/65 transition-colors">
+                          {p}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </FadeIn>
               </div>
-            </FadeIn>
 
-            <FadeIn delay={0.05}>
-              <h1
-                id="hero-title"
-                className="type-display text-white max-w-3xl mb-8"
-              >
-                Seu ambiente está preparado para{' '}
-                <span className="text-secondary">o que pode acontecer amanhã?</span>
-              </h1>
-            </FadeIn>
-
-            <FadeIn delay={0.1}>
-              <div className="bg-white/5 border border-white/12 rounded-2xl p-6 mb-10 max-w-2xl">
-                <p className="text-white/50 text-xs font-semibold uppercase tracking-widest mb-4 flex items-center gap-2">
-                  <AlertTriangle className="w-3.5 h-3.5 text-amber-400" />
-                  Perguntas que todo gestor deveria ter resposta
-                </p>
-                <ul className="space-y-3">
-                  {[
-                    'Se sofrer ransomware hoje, em quanto tempo recupera os dados?',
-                    'Se o servidor principal falhar, quanto tempo ficará fora do ar?',
-                    'Seu backup do Microsoft 365 está realmente protegido?',
-                    'Você sabe exatamente quanto desperdício tem na cloud?',
-                    'A operação continua funcionando durante uma falha de TI?',
-                  ].map((q) => (
-                    <li key={q} className="flex items-start gap-3">
-                      <span className="shrink-0 w-4 h-4 rounded border border-white/20 mt-0.5" />
-                      <span className="text-white/75 text-[0.9375rem] leading-snug">{q}</span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="mt-5 text-white/50 text-[0.8125rem] italic">
-                  Se alguma trouxe dúvida, você precisa de um diagnóstico antes de precisar de um milagre.
-                </p>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.15}>
-              <div className="flex flex-wrap gap-4">
-                <Link
-                  href="/contato"
-                  className="inline-flex items-center gap-2 px-8 py-[0.875rem] bg-secondary text-white font-semibold rounded-xl hover:bg-secondary-hover transition-colors text-[0.9375rem]"
-                >
-                  Quero um diagnóstico gratuito
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-                <a
-                  href="https://wa.me/5518930852246?text=Ol%C3%A1!%20Gostaria%20de%20um%20assessment%20gratuito%20de%20infraestrutura."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-8 py-[0.875rem] bg-white/8 border border-white/20 text-white font-medium rounded-xl hover:bg-white/14 transition-colors text-[0.9375rem]"
-                >
-                  Falar no WhatsApp
-                </a>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.2}>
-              <div className="mt-12 pt-8 border-t border-white/10">
-                <p className="text-xs text-white/40 uppercase tracking-widest mb-6 font-medium">
-                  Parceiros Tecnológicos
-                </p>
-                <div className="flex flex-wrap gap-6">
-                  {['Oracle Cloud', 'Microsoft Azure', 'AWS', 'Acronis'].map((p) => (
-                    <span key={p} className="text-sm text-white/50 font-medium tracking-wide hover:text-white/80 transition-colors">
-                      {p}
-                    </span>
-                  ))}
+              {/* ── Right: question card ── */}
+              <FadeIn delay={0.1} direction="none">
+                <div className="bg-white/7 border border-white/15 rounded-2xl p-7 backdrop-blur-sm">
+                  <div className="flex items-center gap-2.5 mb-5">
+                    <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0" />
+                    <p className="text-white/55 text-[0.75rem] font-semibold uppercase tracking-widest">
+                      Seu gestor saberia responder?
+                    </p>
+                  </div>
+                  <ul className="space-y-4">
+                    {[
+                      'Se sofrer ransomware hoje, em quanto tempo recupera os dados?',
+                      'Se o servidor principal falhar, quanto tempo ficará fora do ar?',
+                      'Seu backup do Microsoft 365 está realmente protegido?',
+                      'Você sabe exatamente quanto desperdício tem na cloud?',
+                      'A operação continua funcionando durante uma falha de TI?',
+                    ].map((q) => (
+                      <li key={q} className="flex items-start gap-3">
+                        <span className="shrink-0 w-4 h-4 rounded border border-white/25 mt-0.5" />
+                        <span className="text-white/70 text-[0.875rem] leading-snug">{q}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-6 pt-5 border-t border-white/10">
+                    <p className="text-white/35 text-xs leading-relaxed">
+                      Se alguma trouxe dúvida, você precisa de um diagnóstico — antes de precisar de um milagre.
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </FadeIn>
+              </FadeIn>
+
+            </div>
           </div>
         </section>
 

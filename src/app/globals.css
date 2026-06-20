@@ -121,25 +121,14 @@ body {
 }
 
 /* ── Container central ──────────────────────────── */
+/* clamp evita @media que o Lightning CSS strip no build */
 .container-page {
   width: 100%;
   max-width: 80rem;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-}
-@media (min-width: 640px) {
-  .container-page {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-}
-@media (min-width: 1024px) {
-  .container-page {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
+  padding-left: clamp(1.25rem, 5vw, 2.5rem);
+  padding-right: clamp(1.25rem, 5vw, 2.5rem);
 }
 
 /* ── Hero background grid ───────────────────────── */
