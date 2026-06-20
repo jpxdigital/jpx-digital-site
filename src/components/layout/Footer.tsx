@@ -5,8 +5,8 @@ const services = [
   { href: '/servicos/oracle-cloud-oci', label: 'Oracle Cloud (OCI)' },
   { href: '/servicos/backup-corporativo', label: 'Backup Corporativo' },
   { href: '/servicos/disaster-recovery', label: 'Disaster Recovery' },
+  { href: '/servicos/certificados-digitais', label: 'Certificados Digitais' },
   { href: '/servicos/resiliencia-cibernetica', label: 'Resiliência Cibernética' },
-  { href: '/servicos/finops', label: 'FinOps' },
   { href: '/servicos/suporte-gerenciado', label: 'Suporte Gerenciado' },
 ]
 
@@ -15,6 +15,7 @@ const segments = [
   { href: '/segmentos/industrias', label: 'Indústrias' },
   { href: '/segmentos/escritorios', label: 'Escritórios Corporativos' },
   { href: '/segmentos/advocacia', label: 'Advocacia' },
+  { href: '/segmentos/autoridades-certificadoras', label: 'Autoridades Certificadoras' },
 ]
 
 const company = [

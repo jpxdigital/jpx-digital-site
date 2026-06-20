@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Heart, Factory, Building2, Scale, ArrowRight } from 'lucide-react'
+import { Heart, Factory, Building2, Scale, ShieldCheck, ArrowRight } from 'lucide-react'
 import { Nav } from '@/components/layout/Nav'
 import { Footer } from '@/components/layout/Footer'
 import { MotionProvider } from '@/components/providers/MotionProvider'
@@ -41,6 +41,13 @@ const segments = [
     title: 'Escritórios de Advocacia',
     desc: 'Sigilo profissional como prioridade: controle de acesso por caso, rastreabilidade completa, backup jurídico imutável, gestão de certificados digitais e proteção de dados conforme LGPD e Código de Ética da OAB.',
     pills: ['Sigilo Profissional', 'Backup Jurídico', 'LGPD', 'Certificados Digitais'],
+  },
+  {
+    href: '/segmentos/autoridades-certificadoras',
+    icon: ShieldCheck,
+    title: 'Autoridades Certificadoras',
+    desc: 'Infraestrutura para ACs ICP-Brasil: sala cofre Nível 4, clusters HSM com failover automático, VMware vSphere, OpenShift/OKD para portais de emissão e suporte ao credenciamento ITI. Atendemos ACs em fase inicial e ACs já credenciadas.',
+    pills: ['Sala Cofre N4', 'Cluster HSM', 'OpenShift/OKD', 'VMware vSphere', 'Credenciamento ITI'],
   },
 ]
 

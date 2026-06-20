@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import {
   Cloud, Database, RefreshCw, Shield, TrendingDown, Headphones,
-  Server, Cpu, Network, Lock, Monitor, Box, Flame, Wifi,
-  ArrowRight,
+  Server, Cpu, Network, Lock, Monitor, Box, Flame, Award,
+  ArrowRight, ShieldCheck,
 } from 'lucide-react'
 import { Nav } from '@/components/layout/Nav'
 import { Footer } from '@/components/layout/Footer'
@@ -43,11 +43,18 @@ const allServices = [
     category: 'Infraestrutura',
     items: [
       { href: '/servicos/infraestrutura', icon: Server, title: 'Infraestrutura Corporativa', desc: 'Projeto e sustentação de ambientes críticos.' },
-      { href: '/servicos/virtualizacao', icon: Box, title: 'Virtualização', desc: 'Consolide servidores físicos e reduza custo com virtualização corporativa.' },
-      { href: '/servicos/containers-kubernetes', icon: Cpu, title: 'Docker & Kubernetes', desc: 'Containerização e orquestração de aplicações.' },
+      { href: '/servicos/virtualizacao', icon: Box, title: 'VMware & Virtualização', desc: 'VMware vSphere, Hyper-V e KVM — HA, DRS e hiperconvergência.' },
+      { href: '/servicos/containers-kubernetes', icon: Cpu, title: 'OpenShift / OKD & Kubernetes', desc: 'Kubernetes enterprise para ambientes regulados e produção crítica.' },
       { href: '/servicos/firewall-vpn', icon: Flame, title: 'Firewall & VPN', desc: 'Perímetro seguro e acesso remoto corporativo.' },
       { href: '/servicos/monitoramento', icon: Monitor, title: 'Monitoramento', desc: 'Visibilidade 24/7 de toda a sua infraestrutura.' },
       { href: '/servicos/hardening', icon: Lock, title: 'Hardening', desc: 'Endurecimento de servidores, redes e endpoints.' },
+    ],
+  },
+  {
+    category: 'Certificados & PKI',
+    items: [
+      { href: '/servicos/certificados-digitais', icon: Award, title: 'Certificados Digitais ICP-Brasil', desc: 'Revendedor autorizado de e-CPF, e-CNPJ, NF-e, SSL/TLS — com gestão de renovação.' },
+      { href: '/segmentos/autoridades-certificadoras', icon: ShieldCheck, title: 'Sala Cofre Nível 4', desc: 'Projeto e implantação de sala cofre EN 1047-2 para ambientes regulados e ACs.' },
     ],
   },
   {

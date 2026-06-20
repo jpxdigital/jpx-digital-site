@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowRight, CheckCircle2, Building2, Heart, Scale, Factory } from 'lucide-react'
+import { ArrowRight, CheckCircle2, Building2, Heart, Scale, Factory, ShieldCheck } from 'lucide-react'
 import { Nav } from '@/components/layout/Nav'
 import { Footer } from '@/components/layout/Footer'
 import { MotionProvider } from '@/components/providers/MotionProvider'
@@ -55,6 +55,20 @@ const cases = [
       'Retenção 5 anos conforme exigências OAB',
     ],
     href: '/segmentos/advocacia',
+  },
+  {
+    icon: ShieldCheck,
+    segment: 'Autoridade Certificadora',
+    label: 'AC Subordinada ICP-Brasil — credenciamento ITI',
+    challenge: 'Uma Autoridade Certificadora Subordinada precisava estruturar a infraestrutura técnica para obter credenciamento junto ao ITI. O ambiente existente não atendia aos requisitos de segurança física (sem sala cofre), o HSM operava em modo standalone sem redundância e não havia separação entre ambientes de produção e homologação para o portal de emissão.',
+    solution: 'Projetamos a infraestrutura completa: sala cofre com proteção EN 1047-2, controle de acesso biométrico com dupla custódia para o HSM, cluster Thales Luna ativo-passivo com failover automático < 30 segundos, VMware vSphere dual-site para a infraestrutura core e OpenShift/OKD para o portal de Autoridade de Registro com ambientes de produção e homologação isolados. Elaboramos toda a documentação técnica exigida pela DOC-ICP-05.',
+    results: [
+      'Credenciamento ITI aprovado na primeira avaliação técnica',
+      'Failover automático do HSM em cluster < 30s',
+      'Sala cofre EN 1047-2 com dupla custódia e CFTV auditável',
+      'RTO de 4h para ambiente completo de CA documentado em contrato',
+    ],
+    href: '/segmentos/autoridades-certificadoras',
   },
   {
     icon: Building2,

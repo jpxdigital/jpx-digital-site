@@ -3,7 +3,7 @@ import Link from 'next/link'
 import {
   ArrowRight, CheckCircle2, AlertTriangle, Server,
   Database, RefreshCw, Shield, TrendingDown, Cloud,
-  Headphones, Building2, Heart, Factory, Scale,
+  Headphones, Building2, Heart, Factory, Scale, ShieldCheck,
 } from 'lucide-react'
 import { Nav } from '@/components/layout/Nav'
 import { Footer } from '@/components/layout/Footer'
@@ -66,7 +66,8 @@ const differentials = [
   'Assessment gratuito antes de qualquer proposta',
   'SLA documentado em contrato — não apenas prometido',
   'Você fala com quem executa, sem intermediários',
-  'Certificados Oracle OCI, Microsoft Azure e Acronis',
+  'Certificados Oracle OCI, Microsoft Azure, AWS e Acronis',
+  'Revendedor autorizado de certificados digitais ICP-Brasil',
   'Infraestrutura própria em Oracle Cloud',
   'Atendimento 100% em português, com contexto de negócio',
 ]
@@ -76,6 +77,7 @@ const segments = [
   { href: '/segmentos/industrias', icon: Factory, title: 'Indústrias', desc: 'Linha de produção contínua. Integração ERP-OT. Custo de parada calculado.' },
   { href: '/segmentos/escritorios', icon: Building2, title: 'Escritórios Corporativos', desc: 'Microsoft 365 correto, backup de endpoints e suporte MSP com SLA.' },
   { href: '/segmentos/advocacia', icon: Scale, title: 'Advocacia', desc: 'Sigilo profissional protegido. Backup jurídico imutável. Certificados gerenciados.' },
+  { href: '/segmentos/autoridades-certificadoras', icon: ShieldCheck, title: 'Autoridades Certificadoras', desc: 'Sala cofre N4, cluster HSM, VMware e OpenShift para ACs ICP-Brasil.' },
 ]
 
 export default function Home() {
@@ -322,7 +324,7 @@ export default function Home() {
               </div>
             </FadeIn>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
               {segments.map((seg, i) => {
                 const Icon = seg.icon
                 return (
