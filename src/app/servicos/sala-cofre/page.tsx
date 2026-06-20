@@ -33,9 +33,9 @@ const faqs = [
 ]
 
 export const metadata: Metadata = {
-  title: 'Sala Cofre Nível 4 — Projeto, Implantação, Manutenção e Auditoria',
+  title: 'Sala Cofre Nível 4 — Manutenção e Auditoria',
   description:
-    'Sala cofre EN 1047-2 Nível 4 para ambientes regulados: projeto, implantação, manutenção preventiva e corretiva, auditorias e laudos técnicos para ITI, PCI-DSS e ISO 27001.',
+    'Sala cofre EN 1047-2 Nível 4 para ambientes regulados: manutenção preventiva e corretiva, auditorias e laudos técnicos para ITI, PCI-DSS e ISO 27001.',
   keywords: ['sala cofre nível 4', 'sala cofre EN 1047-2', 'sala cofre ICP-Brasil', 'manutenção sala cofre', 'auditoria sala cofre', 'sala cofre data center'],
   openGraph: { title: 'Sala Cofre Nível 4 | JPX Digital', description: 'Projeto, implantação, manutenção e auditoria de sala cofre EN 1047-2.', url: `${BASE}/servicos/${slug}` },
   alternates: { canonical: `${BASE}/servicos/${slug}` },
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
 const content = {
   slug,
   category: 'Infraestrutura Física',
-  heroHeadline: 'Sala Cofre Nível 4 — Projeto, Implantação, Manutenção e Auditoria.',
+  heroHeadline: 'Sala Cofre Nível 4 — Manutenção e Auditoria.',
   heroSub: 'Da especificação técnica à manutenção periódica: ambientes físicos de missão crítica para Autoridades Certificadoras, instituições financeiras e qualquer operação que não pode ser comprometida.',
   intro: [
     'Sala cofre não é um armário reforçado. É um ambiente projetado para resistir a fogo prolongado, explosão e acesso físico forçado — mantendo os equipamentos internos intactos e operacionais.',

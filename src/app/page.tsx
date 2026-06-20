@@ -202,7 +202,7 @@ export default function Home() {
               <p className="text-center text-[0.6875rem] font-semibold text-gray-400 uppercase tracking-widest mb-10">
                 Certificações e Parcerias Tecnológicas
               </p>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+              <div className="flex flex-wrap justify-center gap-4">
                 {[
                   {
                     abbrev: 'AWS',
@@ -245,6 +245,14 @@ export default function Home() {
                     text: 'text-white',
                   },
                   {
+                    abbrev: '∞',
+                    name: 'DevOps & CI/CD',
+                    cert: 'GitHub Actions · n8n',
+                    bg: 'bg-[#1a1a2e]',
+                    accent: 'bg-violet-500/30',
+                    text: 'text-violet-300',
+                  },
+                  {
                     abbrev: 'ICP',
                     name: 'ICP-Brasil',
                     cert: 'Revendedor Autorizado',
@@ -255,7 +263,7 @@ export default function Home() {
                 ].map((b) => (
                   <div
                     key={b.name}
-                    className={`${b.bg} rounded-xl overflow-hidden flex flex-col items-center py-6 px-3 gap-3`}
+                    className={`${b.bg} rounded-xl flex flex-col items-center py-6 px-3 gap-3 w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-0.667rem)] lg:w-36`}
                   >
                     <div className={`${b.accent} rounded-lg w-12 h-12 flex items-center justify-center`}>
                       <span className={`${b.text} font-heading font-bold text-sm tracking-tight`}>
