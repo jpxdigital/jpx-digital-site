@@ -25,40 +25,44 @@
   --font-body: var(--font-inter), 'Inter', system-ui, sans-serif;
 }
 
-/* ── Reset ──────────────────────────────────────── */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/*
+  CRITICAL: @layer base tem prioridade MENOR que @layer utilities (Tailwind).
+  Colocar o reset aqui garante que px-6, py-24, mx-auto, etc. funcionem.
+  Reset fora de @layer teria prioridade MAIOR e anularia todos os utilitários.
+*/
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-html {
-  scroll-behavior: smooth;
-  font-size: 16px;
-}
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+  }
 
-body {
-  font-family: var(--font-inter), system-ui, sans-serif;
-  font-size: 1rem;
-  color: #111827;
-  background: #ffffff;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  body {
+    font-family: var(--font-inter), system-ui, sans-serif;
+    font-size: 1rem;
+    color: #111827;
+    background: #ffffff;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
 }
 
 /* ── Grid overflow fix ──────────────────────────── */
+/* Unlayered = prioridade maior que utilitários (intencional aqui) */
 .grid > * {
   min-width: 0;
 }
 
-/* ── Typographic scale ──────────────────────────────────────────────────────
-   Referência: Stripe, Vercel, IBM Consulting
-   Base: 16px | Razão H1:body ~2.75:1 | Fluid com clamp()
-   ─────────────────────────────────────────────────────────────────────────── */
+/* ── Typographic scale ──────────────────────────── */
+/* Unlayered = aplicam-se de forma confiável, independente de @layer order */
 
-/* Display / Hero H1 — 32px mobile → 46px desktop 1440px */
 .type-display {
   font-size: clamp(2rem, 1.1rem + 3.75vw, 2.875rem);
   line-height: 1.12;
@@ -67,7 +71,6 @@ body {
   font-weight: 700;
 }
 
-/* H1 página interna — 26px mobile → 38px desktop */
 .type-h1 {
   font-size: clamp(1.625rem, 0.9rem + 2.75vw, 2.375rem);
   line-height: 1.2;
@@ -76,7 +79,6 @@ body {
   font-weight: 700;
 }
 
-/* H2 seção — 22px mobile → 32px desktop */
 .type-h2 {
   font-size: clamp(1.375rem, 0.7rem + 2.25vw, 2rem);
   line-height: 1.25;
@@ -85,7 +87,6 @@ body {
   font-weight: 700;
 }
 
-/* H3 card — 18px mobile → 22px desktop */
 .type-h3 {
   font-size: clamp(1.125rem, 0.75rem + 1.25vw, 1.375rem);
   line-height: 1.35;
@@ -93,25 +94,21 @@ body {
   font-weight: 600;
 }
 
-/* Body large — 17px fixo */
 .type-body-lg {
   font-size: 1.0625rem;
   line-height: 1.7;
 }
 
-/* Body — 15px fixo */
 .type-body {
   font-size: 0.9375rem;
   line-height: 1.65;
 }
 
-/* Small — 13px fixo */
 .type-small {
   font-size: 0.8125rem;
   line-height: 1.55;
 }
 
-/* Label/caption — 11px fixo */
 .type-label {
   font-size: 0.6875rem;
   line-height: 1.4;
@@ -121,7 +118,6 @@ body {
 }
 
 /* ── Container central ──────────────────────────── */
-/* clamp evita @media que o Lightning CSS strip no build */
 .container-page {
   width: 100%;
   max-width: 80rem;
@@ -131,7 +127,7 @@ body {
   padding-right: clamp(1.25rem, 5vw, 2.5rem);
 }
 
-/* ── Hero background grid ───────────────────────── */
+/* ── Backgrounds ────────────────────────────────── */
 .hero-grid-bg {
   background-color: #0A2463;
   background-image:
@@ -140,7 +136,6 @@ body {
   background-size: 64px 64px;
 }
 
-/* ── Dark section grid ──────────────────────────── */
 .dark-grid-bg {
   background-color: #0A0E1A;
   background-image:
