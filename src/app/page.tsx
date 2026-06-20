@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import {
   ArrowRight, CheckCircle2, AlertTriangle, Server,
   Database, RefreshCw, Shield, TrendingDown, Cloud,
@@ -277,6 +278,32 @@ export default function Home() {
                   </div>
                 ))}
               </div>
+              <div className="mt-10 pt-10 border-t border-gray-100">
+                <p className="text-center text-[0.6875rem] font-semibold text-gray-400 uppercase tracking-widest mb-8">
+                  Certificações Individuais
+                </p>
+                <div className="flex flex-wrap justify-center items-center gap-6">
+                  {[
+                    { src: '/badges/aws-sales-accredited.png', alt: 'AWS Sales Accredited – Trained Partner' },
+                    { src: '/badges/aws-technical-accredited.png', alt: 'AWS Technical Accredited – Trained Partner' },
+                    { src: '/badges/aws-sap-technical-skill.png', alt: 'AWS SAP on AWS Technical Skill – Partner' },
+                    { src: '/badges/aws-cloud-practitioner.png', alt: 'AWS Certified Cloud Practitioner – Foundational' },
+                    { src: '/badges/acronis-adv-security-edr-tech.png', alt: 'Acronis Academy – Adv. Security + EDR Cloud Tech' },
+                    { src: '/badges/acronis-adv-security-edr-sales.png', alt: 'Acronis Academy – Adv. Security with EDR Cloud Sales' },
+                    { src: '/badges/acronis-advanced-backup.png', alt: 'Acronis Academy – Advanced Backup Cloud Tech' },
+                  ].map((badge) => (
+                    <Image
+                      key={badge.src}
+                      src={badge.src}
+                      alt={badge.alt}
+                      width={96}
+                      height={96}
+                      className="w-20 h-20 object-contain"
+                    />
+                  ))}
+                </div>
+              </div>
+
               <p className="text-center text-[0.75rem] text-gray-400 mt-8">
                 Certificações verificáveis sob solicitação durante o processo de avaliação.
               </p>
