@@ -172,7 +172,7 @@ export default function Home() {
         <section className="py-24 lg:py-32 bg-white" aria-labelledby="solutions-title">
           <div className="container-page">
             <FadeIn>
-              <div className="max-w-2xl mb-16">
+              <div className="mb-16">
                 <p className="text-xs font-semibold text-secondary uppercase tracking-widest mb-4">
                   Como resolvemos
                 </p>
@@ -180,7 +180,7 @@ export default function Home() {
                   Problemas reais.{' '}
                   <span className="text-primary">Soluções com SLA documentado.</span>
                 </h2>
-                <p className="text-gray-600 text-lg leading-relaxed">
+                <p className="text-gray-600 text-lg leading-relaxed max-w-2xl">
                   Cada engajamento começa pelo diagnóstico do problema — não pela venda de uma solução.
                 </p>
               </div>
@@ -287,14 +287,14 @@ export default function Home() {
         <section className="dark-grid-bg py-24 lg:py-32" aria-labelledby="segments-title">
           <div className="container-page">
             <FadeIn>
-              <div className="text-center max-w-2xl mx-auto mb-16">
+              <div className="text-center mb-16">
                 <p className="text-xs font-semibold text-secondary uppercase tracking-widest mb-4">
                   Segmentos
                 </p>
                 <h2 id="segments-title" className="type-h2 text-white mb-4">
                   Cada setor tem exigências específicas.
                 </h2>
-                <p className="text-gray-400 text-lg leading-relaxed">
+                <p className="text-gray-400 text-lg leading-relaxed max-w-2xl mx-auto">
                   TI genérica resolve problemas genéricos. A JPX Digital entende as regulações, os riscos e os requisitos técnicos do seu setor.
                 </p>
               </div>
