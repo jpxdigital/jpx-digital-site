@@ -61,7 +61,7 @@ export default function SobrePage() {
   return (
     <MotionProvider>
       <Nav />
-      <main>
+      <main className="bg-dark">
         {/* Hero */}
         <section className="hero-grid-bg py-24 lg:py-36">
           <div className="container-page">
