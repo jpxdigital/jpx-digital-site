@@ -5,6 +5,7 @@ import {
   ArrowRight, CheckCircle2, AlertTriangle, Server,
   Database, RefreshCw, Shield, TrendingDown, Cloud,
   Headphones, Building2, Heart, Factory, Scale, ShieldCheck,
+  Terminal, GitBranch, Settings2, ScrollText, Workflow,
 } from 'lucide-react'
 import { Nav } from '@/components/layout/Nav'
 import { Footer } from '@/components/layout/Footer'
@@ -307,6 +308,26 @@ export default function Home() {
                       <span className="text-white/40 text-[0.6rem] font-semibold uppercase tracking-wide leading-tight">Acronis Academy</span>
                       <span className={`${b.accent} text-[0.6875rem] font-bold leading-tight`}>{b.label}</span>
                       <span className="text-white/55 text-[0.625rem] leading-tight">{b.role}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-10 pt-10 border-t border-gray-100">
+                <p className="text-center text-[0.6875rem] font-semibold text-gray-400 uppercase tracking-widest mb-6">
+                  Cursos Certificados — DevOps
+                </p>
+                <div className="flex flex-wrap justify-center gap-3">
+                  {[
+                    { Icon: Workflow,   label: 'Introdução a DevOps' },
+                    { Icon: Terminal,   label: 'Linux' },
+                    { Icon: GitBranch,  label: 'Git e GitHub' },
+                    { Icon: Settings2,  label: 'Jenkins' },
+                    { Icon: ScrollText, label: 'Logs com Grafana Loki' },
+                  ].map(({ Icon, label }) => (
+                    <div key={label} className="flex items-center gap-2 px-3.5 py-2 bg-gray-50 border border-gray-200 rounded-lg">
+                      <Icon className="w-3.5 h-3.5 text-gray-500 shrink-0" />
+                      <span className="text-gray-700 text-[0.75rem] font-medium">{label}</span>
                     </div>
                   ))}
                 </div>
