@@ -327,6 +327,90 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ── IA Free ───────────────────────────────────────── */}
+        <section className="py-24 lg:py-32 bg-white" aria-labelledby="ia-free-title">
+          <div className="container-page">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <FadeIn direction="left">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-success/10 border border-success/20 text-success text-xs font-semibold tracking-wide mb-6">
+                  <span className="w-1.5 h-1.5 rounded-full bg-success shrink-0" />
+                  Gratuito · Sem cadastro obrigatório
+                </div>
+                <h2 id="ia-free-title" className="type-h2 text-gray-900 mb-4">
+                  JPX IA Free —{' '}
+                  <span className="text-primary">assistente de TI disponível para todos.</span>
+                </h2>
+                <p className="text-gray-600 text-lg leading-relaxed mb-6">
+                  Uma ferramenta gratuita desenvolvida pela JPX Digital para ajudar equipes de TI e gestores a tirar dúvidas, analisar cenários e tomar decisões mais rápidas — sem custo, sem limite de uso.
+                </p>
+                <ul className="space-y-3 mb-8">
+                  {[
+                    'Tire dúvidas sobre cloud, backup, segurança e infraestrutura',
+                    'Analise riscos e cenários de disaster recovery',
+                    'Obtenha orientações sobre normas e conformidade',
+                    'Disponível 24 horas, 7 dias por semana',
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-gray-600 text-sm">
+                      <CheckCircle2 className="w-4 h-4 text-success shrink-0 mt-0.5" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href="https://ia-free.jpxdigital.com.br"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary text-white font-semibold rounded-xl hover:bg-primary-hover transition-colors text-[0.9375rem]"
+                >
+                  Acessar JPX IA Free <ArrowRight className="w-4 h-4" />
+                </a>
+              </FadeIn>
+
+              <FadeIn>
+                <div className="bg-gray-950 rounded-2xl p-8 border border-white/5">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
+                      <span className="text-secondary text-xs font-bold">IA</span>
+                    </div>
+                    <div>
+                      <p className="text-white text-sm font-semibold">JPX IA Free</p>
+                      <p className="text-white/40 text-xs">Assistente de TI</p>
+                    </div>
+                    <span className="ml-auto inline-flex items-center gap-1.5 text-xs text-success">
+                      <span className="w-1.5 h-1.5 rounded-full bg-success animate-pulse" />
+                      Online
+                    </span>
+                  </div>
+                  <div className="space-y-4">
+                    {[
+                      { role: 'user', msg: 'Qual a diferença entre RTO e RPO no disaster recovery?' },
+                      { role: 'bot', msg: 'RTO (Recovery Time Objective) é o tempo máximo aceitável para restaurar os sistemas após uma falha. RPO (Recovery Point Objective) é a quantidade máxima de dados que você pode perder — medida em tempo. Exemplo: RPO de 1 hora significa que você pode perder no máximo 1 hora de dados.' },
+                      { role: 'user', msg: 'Como definir esses valores para uma empresa de saúde?' },
+                    ].map((m, i) => (
+                      <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                        <div className={`max-w-[85%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${
+                          m.role === 'user'
+                            ? 'bg-primary text-white rounded-tr-sm'
+                            : 'bg-white/8 text-white/80 rounded-tl-sm'
+                        }`}>
+                          {m.msg}
+                        </div>
+                      </div>
+                    ))}
+                    <div className="flex justify-start">
+                      <div className="bg-white/8 rounded-2xl rounded-tl-sm px-4 py-2.5 flex gap-1.5 items-center">
+                        <span className="w-1.5 h-1.5 rounded-full bg-white/40 animate-bounce" style={{ animationDelay: '0ms' }} />
+                        <span className="w-1.5 h-1.5 rounded-full bg-white/40 animate-bounce" style={{ animationDelay: '150ms' }} />
+                        <span className="w-1.5 h-1.5 rounded-full bg-white/40 animate-bounce" style={{ animationDelay: '300ms' }} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </FadeIn>
+            </div>
+          </div>
+        </section>
+
         {/* ── CTA + Contact ─────────────────────────────────── */}
         <section id="contato" className="py-24 lg:py-32 bg-muted" aria-labelledby="cta-title">
           <div className="container-page">
