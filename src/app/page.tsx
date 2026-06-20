@@ -133,23 +133,6 @@ export default function Home() {
                   </div>
                 </FadeIn>
 
-                <FadeIn delay={0.16}>
-                  <div className="border-t border-white/10 pt-7 flex flex-wrap items-center gap-x-8 gap-y-2">
-                    {[
-                      { label: 'AWS Partner', dot: 'bg-[#FF9900]' },
-                      { label: 'Oracle OCI Partner', dot: 'bg-red-400' },
-                      { label: 'Microsoft Azure Partner', dot: 'bg-blue-400' },
-                      { label: 'Acronis Partner', dot: 'bg-cyan-400' },
-                      { label: 'Red Hat OpenShift', dot: 'bg-red-500' },
-                      { label: 'ICP-Brasil', dot: 'bg-green-400' },
-                    ].map((p) => (
-                      <span key={p.label} className="flex items-center gap-1.5 text-[0.75rem] text-white/40 font-medium">
-                        <span className={`w-1.5 h-1.5 rounded-full ${p.dot} shrink-0`} />
-                        {p.label}
-                      </span>
-                    ))}
-                  </div>
-                </FadeIn>
               </div>
 
               {/* ── Right: question card ── */}
