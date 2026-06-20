@@ -25,22 +25,35 @@ export default function ContatoPage() {
     <MotionProvider>
       <Nav />
       <main>
-        <section className="py-20 lg:py-32 bg-muted">
+        {/* Hero */}
+        <section className="hero-grid-bg py-24 lg:py-32">
+          <div className="container-page">
+            <FadeIn>
+              <p className="text-xs font-semibold text-secondary uppercase tracking-widest mb-4">
+                Contato
+              </p>
+              <h1 className="type-display text-white mb-6 max-w-2xl">
+                Solicite um Assessment gratuito da sua infraestrutura.
+              </h1>
+              <p className="text-white/65 text-xl leading-relaxed max-w-2xl">
+                Identifique vulnerabilidades, pontos de risco e oportunidades de melhoria antes que eles gerem impacto no seu negócio.
+              </p>
+            </FadeIn>
+          </div>
+        </section>
+
+        {/* Formulário + Benefícios */}
+        <section className="py-20 bg-muted">
           <div className="container-page">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
               <FadeIn direction="left">
                 <p className="text-xs font-semibold text-secondary uppercase tracking-widest mb-4">
-                  Contato
+                  Por que falar com a JPX Digital
                 </p>
-                <h1 className="type-display text-gray-900 mb-6">
-                  Solicite um{' '}
-                  <span className="text-primary">Assessment gratuito</span>{' '}
-                  da sua infraestrutura.
-                </h1>
-                <p className="text-gray-600 text-lg leading-relaxed mb-10">
-                  Identifique vulnerabilidades, pontos de risco e oportunidades de melhoria antes que eles gerem impacto no seu negócio.
-                </p>
+                <h2 className="font-heading text-2xl font-bold text-gray-900 mb-6">
+                  Um especialista analisa seu ambiente e apresenta o que faz sentido — sem pressão comercial.
+                </h2>
                 <ul className="space-y-4">
                   {benefits.map((b) => (
                     <li key={b} className="flex items-center gap-3 text-gray-700">
