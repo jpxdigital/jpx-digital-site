@@ -337,11 +337,11 @@ export default function Home() {
                   Gratuito · Sem cadastro obrigatório
                 </div>
                 <h2 id="ia-free-title" className="type-h2 text-gray-900 mb-4">
-                  JPX IA Free —{' '}
-                  <span className="text-primary">assistente de TI disponível para todos.</span>
+                  Conheça a Helena —{' '}
+                  <span className="text-primary">assistente de TI gratuita para todos.</span>
                 </h2>
                 <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                  Uma ferramenta gratuita desenvolvida pela JPX Digital para ajudar equipes de TI e gestores a tirar dúvidas, analisar cenários e tomar decisões mais rápidas — sem custo, sem limite de uso.
+                  A Helena é a mascote da JPX IA Free: uma assistente criada pela JPX Digital para ajudar equipes de TI e gestores a tirar dúvidas, analisar cenários e tomar decisões — sem custo, sem cadastro obrigatório.
                 </p>
                 <ul className="space-y-3 mb-8">
                   {[
@@ -373,8 +373,8 @@ export default function Home() {
                       <span className="text-secondary text-xs font-bold">IA</span>
                     </div>
                     <div>
-                      <p className="text-white text-sm font-semibold">JPX IA Free</p>
-                      <p className="text-white/40 text-xs">Assistente de TI</p>
+                      <p className="text-white text-sm font-semibold">Helena</p>
+                      <p className="text-white/40 text-xs">JPX IA Free · Assistente de TI</p>
                     </div>
                     <span className="ml-auto inline-flex items-center gap-1.5 text-xs text-success">
                       <span className="w-1.5 h-1.5 rounded-full bg-success animate-pulse" />

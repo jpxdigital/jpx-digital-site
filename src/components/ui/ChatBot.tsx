@@ -18,7 +18,7 @@ interface Option { label: string; next: Step; userText?: string }
 
 const FLOW: Record<Step, { msg: string; options?: Option[]; cta?: { label: string; href: string } }> = {
   start: {
-    msg: 'Olá! Sou o assistente da JPX Digital. Como posso ajudar?',
+    msg: 'Olá! Sou a Helena, assistente de TI da JPX Digital. Como posso ajudar?',
     options: [
       { label: 'Quero um diagnóstico gratuito', next: 'diagnostico_area', userText: 'Quero um diagnóstico gratuito' },
       { label: 'Tenho dúvidas sobre serviços', next: 'servico_qual', userText: 'Tenho dúvidas sobre serviços' },
@@ -145,8 +145,8 @@ export function ChatBot() {
                 <MessageSquare className="w-4 h-4 text-white" />
               </div>
               <div>
-                <p className="text-white text-sm font-semibold leading-none">Assistente JPX Digital</p>
-                <p className="text-white/60 text-[0.6875rem] mt-0.5">Resposta em até 1 dia útil</p>
+                <p className="text-white text-sm font-semibold leading-none">Helena · JPX Digital</p>
+                <p className="text-white/60 text-[0.6875rem] mt-0.5">Assistente de TI</p>
               </div>
             </div>
             <button onClick={() => setOpen(false)} className="text-white/60 hover:text-white transition-colors">
