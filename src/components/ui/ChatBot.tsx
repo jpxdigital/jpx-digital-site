@@ -125,7 +125,7 @@ export function ChatBot() {
   }, [msgs])
 
   useEffect(() => {
-    const t = setTimeout(() => setShown(true), 8000)
+    const t = setTimeout(() => setShown(true), 3000)
     return () => clearTimeout(t)
   }, [])
 
@@ -152,13 +152,28 @@ export function ChatBot() {
     <>
       {/* Floating avatar */}
       <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-2">
-        {/* Balão de notificação */}
+        {/* Speech bubble */}
         {shown && !open && (
-          <div className="bg-white border border-border shadow-lg rounded-xl px-4 py-2.5 text-sm text-gray-700 max-w-[220px] text-right">
-            Como posso te ajudar? 👋
-            <button onClick={() => setShown(false)} className="ml-2 text-gray-400 hover:text-gray-600">
-              <X className="w-3 h-3 inline" />
-            </button>
+          <div className="relative max-w-[220px]">
+            <div className="bg-white border border-border shadow-xl rounded-2xl px-4 py-3.5">
+              <button
+                onClick={() => setShown(false)}
+                className="absolute top-2 right-2.5 text-gray-300 hover:text-gray-500 transition-colors"
+                aria-label="Fechar"
+              >
+                <X className="w-3 h-3" />
+              </button>
+              <p className="text-[0.8rem] font-semibold text-gray-800 leading-snug mb-1">
+                Olá! Sou a Helena 👋
+              </p>
+              <p className="text-[0.75rem] text-gray-500 leading-snug">
+                Assistente de TI da JPX Digital. Clique se precisar de ajuda!
+              </p>
+            </div>
+            {/* Seta apontando para a Helena */}
+            <div className="absolute -bottom-2 right-7 w-4 h-2 overflow-hidden">
+              <div className="w-3 h-3 bg-white border-r border-b border-border rotate-45 mx-auto -mt-1.5 shadow-sm" />
+            </div>
           </div>
         )}
 
