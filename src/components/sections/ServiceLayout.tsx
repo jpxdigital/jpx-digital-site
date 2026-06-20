@@ -107,14 +107,6 @@ export function ServiceLayout({ content }: { content: ServicePageContent }) {
                 >
                   Solicitar Assessment <ArrowRight className="w-4 h-4" />
                 </Link>
-                <a
-                  href="https://wa.me/5518930852246?text=Ol%C3%A1!%20Tenho%20interesse%20em%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20JPX%20Digital."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/8 border border-white/20 text-white font-medium rounded-xl hover:bg-white/14 transition-colors text-[0.9375rem]"
-                >
-                  Falar no WhatsApp
-                </a>
               </div>
             </FadeIn>
           </div>

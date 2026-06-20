@@ -155,9 +155,6 @@ export default function Page() {
                 <Link href="/contato" className="inline-flex items-center gap-2 px-7 py-3.5 bg-secondary text-white font-semibold rounded-xl hover:bg-secondary-hover transition-colors text-[0.9375rem]">
                   Solicitar Assessment <ArrowRight className="w-4 h-4" />
                 </Link>
-                <a href="https://wa.me/5518930852246?text=Ol%C3%A1!%20Tenho%20interesse%20em%20saber%20mais%20sobre%20infraestrutura%20para%20AC." target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/8 border border-white/20 text-white font-medium rounded-xl hover:bg-white/14 transition-colors text-[0.9375rem]">
-                  Falar no WhatsApp
-                </a>
               </div>
             </FadeIn>
           </div>

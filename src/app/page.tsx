@@ -130,14 +130,6 @@ export default function Home() {
                       Quero um diagnóstico gratuito
                       <ArrowRight className="w-4 h-4 shrink-0" />
                     </Link>
-                    <a
-                      href="https://wa.me/5518930852246?text=Ol%C3%A1!%20Gostaria%20de%20um%20assessment%20gratuito%20de%20infraestrutura."
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white/8 border border-white/20 text-white font-medium rounded-xl hover:bg-white/14 transition-colors text-[0.9375rem]"
-                    >
-                      Falar no WhatsApp
-                    </a>
                   </div>
                 </FadeIn>
 

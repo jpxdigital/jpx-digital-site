@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter, Manrope } from 'next/font/google'
 import { CookieBanner } from '@/components/ui/CookieBanner'
+import { ChatBot } from '@/components/ui/ChatBot'
 import './globals.css'
 
 const inter = Inter({
@@ -94,6 +95,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         {children}
         <CookieBanner />
+        <ChatBot />
       </body>
     </html>
   )

@@ -56,9 +56,7 @@ export function Footer() {
                 jp@jpxdigital.com.br
               </a>
               <a
-                href="https://wa.me/5518930852246"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="tel:+5518930852246"
                 className="block hover:text-white transition-colors"
               >
                 (18) 9 3085-2246

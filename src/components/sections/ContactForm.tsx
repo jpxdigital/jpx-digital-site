@@ -2,8 +2,6 @@
 import { useState } from 'react'
 import type { LeadFormData, LeadApiResponse } from '@/types'
 
-const WA_LINK = 'https://wa.me/5518930852246?text=Ol%C3%A1!%20Tenho%20interesse%20nas%20solu%C3%A7%C3%B5es%20da%20JPX%20Digital.'
-
 const interestOptions = [
   'Cloud Computing (OCI / Azure / AWS)',
   'Backup Corporativo',
@@ -64,14 +62,6 @@ export function ContactForm() {
         <p className="text-gray-600 max-w-sm mx-auto">
           Um especialista entrará em contato em até 1 dia útil.
         </p>
-        <a
-          href={WA_LINK}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-[#25D366] text-white font-semibold rounded-lg hover:bg-[#1ebe5d] transition-colors mt-2"
-        >
-          💬 Falar agora no WhatsApp
-        </a>
       </div>
     )
   }
@@ -189,22 +179,14 @@ export function ContactForm() {
         </p>
       )}
 
-      <div className="flex flex-col sm:flex-row gap-3 pt-1">
+      <div className="pt-1">
         <button
           type="submit"
           disabled={disabled}
-          className="flex-1 px-6 py-3.5 bg-primary text-white font-semibold rounded-lg hover:bg-primary-hover transition-colors disabled:opacity-60 disabled:cursor-not-allowed text-sm"
+          className="w-full px-6 py-3.5 bg-primary text-white font-semibold rounded-lg hover:bg-primary-hover transition-colors disabled:opacity-60 disabled:cursor-not-allowed text-sm"
         >
           {disabled ? 'Enviando...' : 'Solicitar Assessment'}
         </button>
-        <a
-          href={WA_LINK}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 px-6 py-3.5 border border-border text-gray-700 font-medium rounded-lg hover:bg-muted transition-colors text-sm"
-        >
-          💬 WhatsApp
-        </a>
       </div>
     </form>
   )
