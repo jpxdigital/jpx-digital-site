@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { ServiceLayout } from '@/components/sections/ServiceLayout'
+import { ServiceLayout, type ServicePageContent } from '@/components/sections/ServiceLayout'
 import { serviceSchema, breadcrumbSchema, faqPageSchema } from '@/lib/schema'
 
 const BASE = 'https://jpxdigital.com.br'
@@ -34,60 +34,74 @@ const faqs = [
 
 export const metadata: Metadata = {
   title: 'Sala Cofre Nível 4 — Manutenção e Auditoria',
-  description:
-    'Sala cofre EN 1047-2 Nível 4 para ambientes regulados: manutenção preventiva e corretiva, auditorias e laudos técnicos para ITI, PCI-DSS e ISO 27001.',
+  description: 'Sala cofre EN 1047-2 Nível 4 para ambientes regulados: manutenção preventiva e corretiva, auditorias e laudos técnicos para ITI, PCI-DSS e ISO 27001.',
   keywords: ['sala cofre nível 4', 'sala cofre EN 1047-2', 'sala cofre ICP-Brasil', 'manutenção sala cofre', 'auditoria sala cofre', 'sala cofre data center'],
   openGraph: { title: 'Sala Cofre Nível 4 | JPX Digital', description: 'Implantação, manutenção e auditoria de sala cofre EN 1047-2.', url: `${BASE}/servicos/${slug}` },
   alternates: { canonical: `${BASE}/servicos/${slug}` },
 }
 
-const content = {
+const content: ServicePageContent = {
   slug,
   category: 'Infraestrutura Física',
-  heroHeadline: 'Sala Cofre Nível 4 — Manutenção e Auditoria.',
+  heroHeadline: 'Sala Cofre Nível 4 — Manutenção e Auditoria para Ambientes de Missão Crítica.',
   heroSub: 'Da especificação técnica à manutenção periódica: ambientes físicos de missão crítica para Autoridades Certificadoras, instituições financeiras e qualquer operação que não pode ser comprometida.',
-  intro: [
-    'Sala cofre não é um armário reforçado. É um ambiente projetado para resistir a fogo prolongado, explosão e acesso físico forçado — mantendo os equipamentos internos intactos e operacionais.',
-    'Regulações como ICP-Brasil (ITI), PCI-DSS e ISO 27001 exigem controles físicos comprovados. Uma sala cofre EN 1047-2 Nível 4 é a resposta para HSMs, servidores de PKI e qualquer equipamento cuja falha física seria irreversível.',
-    'A JPX Digital atua em todo o ciclo: projeto com especificação técnica precisa, coordenação da implantação, comissionamento completo dos sistemas e manutenção preventiva e corretiva contínua — com laudos técnicos para suportar auditorias regulatórias.',
+  ctaLabel: 'Solicitar Physical Security Assessment',
+
+  problem: {
+    headline: 'Segurança lógica protege sistemas. Sala cofre protege os equipamentos que hospedam esses sistemas — e quando eles falham fisicamente, não existe rollback.',
+    body: [
+      'Sala cofre não é um armário reforçado. É um ambiente projetado para resistir a fogo prolongado, explosão e acesso físico forçado — mantendo os equipamentos internos intactos e operacionais. Para HSMs, servidores de PKI e equipamentos de missão crítica, a proteção física é tão importante quanto a lógica.',
+      'Regulações como ICP-Brasil (ITI), PCI-DSS e ISO 27001 exigem controles físicos comprovados e documentados. Uma não conformidade física pode invalidar toda a certificação — independentemente de como estão os controles lógicos.',
+      'A JPX Digital atua em todo o ciclo: projeto com especificação técnica precisa, coordenação da implantação, comissionamento completo dos sistemas e manutenção preventiva e corretiva contínua — com laudos técnicos para suportar auditorias regulatórias.',
+    ],
+  },
+
+  assessment: {
+    name: 'Physical Security Assessment',
+    body: 'Para salas cofre existentes, executamos auditoria completa de conformidade: integridade estrutural, sistemas de controle de acesso, CFTV, supressão de incêndio, sensores ambientais e registro de acessos. Para novos projetos, mapeamos os requisitos regulatórios e operacionais antes de qualquer especificação técnica.',
+    checklist: [
+      'Avaliação de conformidade contra EN 1047-2 e requisitos regulatórios',
+      'Inspeção dos sistemas de controle de acesso e CFTV',
+      'Verificação do sistema de supressão e sensores ambientais',
+      'Revisão do registro de acessos e logs de auditoria',
+      'Laudo técnico com conformidades, não conformidades e plano de adequação',
+    ],
+  },
+
+  process: {
+    title: 'Como atuamos em sala cofre',
+    steps: [
+      { title: 'Projeto e especificação técnica', desc: 'Levantamos os requisitos regulatórios e operacionais, dimensionamos o espaço e especificamos: painéis blindados (nível de resistência adequado), controle de acesso com dupla custódia, CFTV com retenção conforme exigência de auditoria, supressão a agente limpo e sensores ambientais. Entregamos planta técnica e memorial descritivo.' },
+      { title: 'Coordenação da implantação', desc: 'Coordenamos os fornecedores especializados (painéis EN 1047-2, biometria, supressão, CFTV) e a integração dos sistemas. Realizamos comissionamento completo antes da entrega: teste de cada sistema de controle de acesso, verificação das vedações, validação dos logs de auditoria e registro fotográfico para documentação.' },
+      { title: 'Manutenção preventiva periódica', desc: 'Realizamos inspeções periódicas (semestrais ou conforme exigência regulatória) cobrindo: estado dos sistemas de acesso, integridade das vedações, teste do agente supressor, CFTV e retenção de gravações, sensores ambientais e registro de acessos. Emitimos relatório técnico após cada visita para compor o histórico de manutenção exigido em auditorias.' },
+      { title: 'Manutenção corretiva e auditoria', desc: 'Atendemos falhas em qualquer componente da sala cofre com SLA definido conforme criticidade. Para salas existentes implantadas por terceiros, executamos auditoria de conformidade com laudo técnico, identificação de não conformidades e plano de adequação.' },
+    ],
+  },
+
+  benefits: [
+    { title: 'Conformidade regulatória comprovada', desc: 'Laudos técnicos que suportam auditorias do ITI, BACEN e certificadoras ISO — não apenas ambientes que "parecem seguros".' },
+    { title: 'Ciclo completo documentado', desc: 'Projeto, implantação, comissionamento, manutenção — tudo documentado com histórico rastreável para auditorias.' },
+    { title: 'Proteção física de nível 4', desc: 'Resistência a fogo prolongado, explosão e acesso forçado. O nível mais alto da norma EN 1047-2.' },
+    { title: 'Integração com infraestrutura de TI', desc: 'Atuamos também na TI dentro da sala cofre — HSMs, servidores, redes. Um fornecedor responsável pelo ambiente completo.' },
   ],
-  howTitle: 'Como atuamos em sala cofre',
-  howSteps: [
-    {
-      title: 'Projeto e especificação técnica',
-      desc: 'Levantamos os requisitos regulatórios e operacionais, dimensionamos o espaço e especificamos: painéis blindados (nível de resistência adequado), sistema de controle de acesso com dupla custódia, CFTV com retenção conforme exigência de auditoria, sistema de supressão a agente limpo (sem danos a equipamentos eletrônicos) e sensores ambientais. Entregamos planta técnica e memorial descritivo.',
-    },
-    {
-      title: 'Coordenação da implantação',
-      desc: 'Coordenamos os fornecedores especializados (painéis EN 1047-2, biometria, supressão, CFTV) e a integração dos sistemas. Realizamos o comissionamento completo antes da entrega: teste de cada sistema de controle de acesso, verificação das vedações, acionamento do sistema de supressão (simulação), validação dos logs de auditoria e registro fotográfico para documentação.',
-    },
-    {
-      title: 'Manutenção preventiva periódica',
-      desc: 'Realizamos inspeções periódicas (semestrais ou conforme exigência regulatória) cobrindo: estado dos sistemas de acesso, integridade das vedações contra fogo e fumaça, teste do agente supressor, funcionamento do CFTV e retenção de gravações, sensores ambientais e registro de acessos. Emitimos relatório técnico após cada visita para compor o histórico de manutenção exigido em auditorias.',
-    },
-    {
-      title: 'Manutenção corretiva e auditoria',
-      desc: 'Atendemos falhas em qualquer componente da sala cofre — desde leitores biométricos e fechaduras eletromagnéticas até sensores e câmeras — com SLA definido conforme a criticidade. Para salas existentes implantadas por terceiros, executamos auditoria de conformidade com laudo técnico, identificação de não conformidades e plano de adequação.',
-    },
+
+  deliverables: [
+    'Relatório de Physical Security Assessment',
+    'Especificação técnica da sala cofre com memorial descritivo',
+    'Planta técnica do ambiente',
+    'Relatório de comissionamento de todos os sistemas',
+    'Laudo técnico de conformidade (por auditoria)',
+    'Relatório de manutenção preventiva periódica',
+    'Documentação de histórico de acessos para auditorias',
   ],
+
   differentials: [
-    {
-      title: 'Conhecimento dos requisitos regulatórios',
-      desc: 'Entendemos o que o ITI (ICP-Brasil), BACEN e auditores PCI-DSS realmente verificam numa inspeção física. Projetamos e mantemos ambientes que passam em auditorias regulatórias — não apenas ambientes que parecem seguros.',
-    },
-    {
-      title: 'Ciclo completo: projeto a manutenção',
-      desc: 'Não apenas projetamos e sumimos. Acompanhamos o ambiente desde a especificação até a manutenção contínua, com histórico documentado de todas as intervenções — fundamental para auditorias que exigem rastreabilidade.',
-    },
-    {
-      title: 'Laudos técnicos para auditoria',
-      desc: 'Cada visita de manutenção gera relatório técnico assinado. Cada auditoria gera laudo com mapa de conformidades, não conformidades e prazos de adequação. Documentação que suporta auditorias do ITI, do BACEN e de certificadoras ISO.',
-    },
-    {
-      title: 'Integração com infraestrutura de TI',
-      desc: 'Atuamos também na infraestrutura de TI dentro da sala cofre — HSMs, servidores, redes. Não fragmentamos a responsabilidade entre fornecedor físico e fornecedor de TI: entregamos o ambiente completo.',
-    },
+    { title: 'Conhecimento dos requisitos regulatórios', desc: 'Entendemos o que o ITI (ICP-Brasil), BACEN e auditores PCI-DSS realmente verificam numa inspeção física. Projetamos e mantemos ambientes que passam em auditorias regulatórias — não apenas ambientes que parecem seguros.' },
+    { title: 'Ciclo completo: projeto a manutenção', desc: 'Não apenas projetamos e sumimos. Acompanhamos o ambiente desde a especificação até a manutenção contínua, com histórico documentado de todas as intervenções — fundamental para auditorias que exigem rastreabilidade.' },
+    { title: 'Laudos técnicos para auditoria', desc: 'Cada visita de manutenção gera relatório técnico assinado. Cada auditoria gera laudo com mapa de conformidades, não conformidades e prazos de adequação. Documentação que suporta auditorias do ITI, do BACEN e de certificadoras ISO.' },
+    { title: 'Integração com infraestrutura de TI', desc: 'Atuamos também na infraestrutura de TI dentro da sala cofre — HSMs, servidores, redes. Não fragmentamos a responsabilidade entre fornecedor físico e fornecedor de TI: entregamos o ambiente completo.' },
   ],
+
   faqs,
   schemas: [
     serviceSchema('Sala Cofre Nível 4', 'Implantação, manutenção e auditoria de sala cofre EN 1047-2 para ambientes regulados.', 'IT Infrastructure Service'),
@@ -96,4 +110,6 @@ const content = {
   ],
 }
 
-export default function Page() { return <ServiceLayout content={content} /> }
+export default function Page() {
+  return <ServiceLayout content={content} />
+}

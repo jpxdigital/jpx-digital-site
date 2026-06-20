@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { ServiceLayout } from '@/components/sections/ServiceLayout'
+import { ServiceLayout, type ServicePageContent } from '@/components/sections/ServiceLayout'
 import { serviceSchema, breadcrumbSchema, faqPageSchema } from '@/lib/schema'
 
 const BASE = 'https://jpxdigital.com.br'
@@ -30,37 +30,74 @@ const faqs = [
 
 export const metadata: Metadata = {
   title: 'TI para Escritórios de Advocacia — Sigilo, LGPD e Backup Jurídico',
-  description:
-    'Infraestrutura de TI especializada para escritórios de advocacia: proteção do sigilo profissional, LGPD, backup de documentos jurídicos e certificados digitais. Consultoria especializada.',
+  description: 'Infraestrutura de TI especializada para escritórios de advocacia: proteção do sigilo profissional, LGPD, backup de documentos jurídicos e certificados digitais.',
   keywords: ['TI para advocacia', 'segurança dados escritório advocacia', 'LGPD escritório de advocacia', 'backup jurídico', 'proteção sigilo profissional TI'],
   openGraph: { title: 'TI para Escritórios de Advocacia | JPX Digital', description: 'Sigilo, LGPD e backup jurídico para escritórios de advocacia.', url: `${BASE}/segmentos/${slug}` },
   alternates: { canonical: `${BASE}/segmentos/${slug}` },
 }
 
-const content = {
+const content: ServicePageContent = {
   slug,
   category: 'Segmento Jurídico',
   baseSection: { name: 'Segmentos', href: '/segmentos' },
   heroHeadline: 'TI para Escritórios de Advocacia — Sigilo Profissional Protegido por Infraestrutura que Leva Segurança a Sério.',
   heroSub: 'Dados dos seus clientes são sigilosos por obrigação ética e legal. Um vazamento não é só um incidente de TI — é uma violação de confiança com consequências profissionais graves.',
-  intro: [
-    'Escritórios de advocacia guardam dados de altíssimo valor: estratégias de litígio, contratos confidenciais e comunicações sigilosas. São alvos para concorrentes, para a parte adversária e para criminosos.',
-    'A LGPD se aplica integralmente. Dados de clientes são dados pessoais. Processos com categorias sensíveis têm proteção reforçada. O sigilo do Código de Ética da OAB vai além da regulação de TI.',
-    'A JPX Digital estrutura a TI jurídica com controle de acesso por caso, criptografia de ponta a ponta, backup imutável e rastreabilidade completa de acesso para auditorias.',
+  ctaLabel: 'Solicitar Assessment Jurídico',
+
+  problem: {
+    headline: 'Escritórios de advocacia guardam dados de altíssimo valor: estratégias de litígio, contratos confidenciais e comunicações sigilosas. São alvos de ransomware — e a OAB cobra sigilo.',
+    body: [
+      'A LGPD se aplica integralmente. Dados de clientes são dados pessoais. Processos com categorias sensíveis têm proteção reforçada. O sigilo do Código de Ética da OAB vai além da regulação de TI — é obrigação profissional com consequências disciplinares.',
+      'O risco mais comum não é o sofisticado — é o básico mal feito: e-mail sem MFA, arquivos compartilhados sem controle de acesso, backup inexistente ou não testado. Um ataque de ransomware em um escritório de advocacia pode paralisar casos em andamento e comprometer prazos processuais.',
+      'A JPX Digital estrutura a TI jurídica com controle de acesso por caso, criptografia de ponta a ponta, backup imutável e rastreabilidade completa de acesso para auditorias.',
+    ],
+  },
+
+  assessment: {
+    name: 'Legal IT Assessment',
+    body: 'Avaliamos o ambiente contra as obrigações da LGPD para dados de clientes, os requisitos de sigilo profissional e os riscos de segurança mais comuns em escritórios de advocacia. Entregamos diagnóstico com riscos priorizados e plano de adequação.',
+    checklist: [
+      'Avaliação de conformidade LGPD para dados de clientes',
+      'Auditoria de controle de acesso a documentos e pastas',
+      'Verificação de backup: cobertura, retenção e teste de restauração',
+      'Análise de segurança de endpoint e acesso remoto',
+      'Diagnóstico de gestão de certificados digitais',
+    ],
+  },
+
+  process: {
+    title: 'Como estruturamos a TI do escritório',
+    steps: [
+      { title: 'Assessment de risco e conformidade', desc: 'Avaliamos o ambiente contra as obrigações da LGPD para dados de clientes, os requisitos de sigilo profissional e os riscos de segurança mais comuns em escritórios de advocacia (phishing, ransomware, acesso não autorizado). Entregamos diagnóstico com riscos priorizados.' },
+      { title: 'Controle de acesso e rastreabilidade', desc: 'Implementamos acesso por pasta e processo (cada advogado acessa apenas os casos em que atua), MFA em todos os sistemas, registro de auditoria de acesso a documentos e criptografia de dispositivos. Rastreabilidade completa de quem acessou o quê e quando.' },
+      { title: 'Backup jurídico e certificados', desc: 'Backup de documentos, e-mails, banco de dados do sistema jurídico e certificados digitais A1. Backups imutáveis off-site (à prova de ransomware), retenção compatível com as obrigações legais e testes de restauração periódicos. Gestão de vencimento de certificados.' },
+      { title: 'E-mail seguro e comunicação protegida', desc: 'Microsoft 365 com proteção avançada de e-mail, DLP (prevenção de exfiltração de documentos por e-mail), e-mail criptografado para comunicação com clientes que exigem e gestão centralizada de certificados S/MIME quando aplicável.' },
+    ],
+  },
+
+  benefits: [
+    { title: 'Sigilo profissional protegido', desc: 'Controle de acesso por caso, rastreabilidade de acesso e criptografia. Conformidade com o Código de Ética da OAB.' },
+    { title: 'Backup à prova de ransomware', desc: 'Backups imutáveis off-site. Prazos processuais não são comprometidos por um ataque de ransomware.' },
+    { title: 'Conformidade LGPD', desc: 'Controles documentados para dados sensíveis de clientes. Evidências prontas para auditoria.' },
+    { title: 'Certificados sempre válidos', desc: 'Gestão proativa de vencimento. Nunca um certificado vence no dia de uma petição de prazo fatal.' },
   ],
-  howTitle: 'Como estruturamos a TI do escritório',
-  howSteps: [
-    { title: 'Assessment de risco e conformidade', desc: 'Avaliamos o ambiente contra as obrigações da LGPD para dados de clientes, os requisitos de sigilo profissional e os riscos de segurança mais comuns em escritórios de advocacia (phishing, ransomware, acesso não autorizado). Entregamos diagnóstico com riscos priorizados.' },
-    { title: 'Controle de acesso e rastreabilidade', desc: 'Implementamos acesso por pasta e processo (cada advogado acessa apenas os casos em que atua), MFA em todos os sistemas, registro de auditoria de acesso a documentos e criptografia de dispositivos. Rastreabilidade completa de quem acessou o quê e quando.' },
-    { title: 'Backup jurídico e certificados', desc: 'Backup de documentos, e-mails, banco de dados do sistema jurídico e certificados digitais A1. Backups imutáveis off-site (à prova de ransomware), retenção compatível com as obrigações legais e testes de restauração periódicos. Gestão de vencimento de certificados para evitar surpresas.' },
-    { title: 'E-mail seguro e comunicação protegida', desc: 'Microsoft 365 com proteção avançada de e-mail, DLP (prevenção de exfiltração de documentos por e-mail), e-mail criptografado para comunicação com clientes que exigem e gestão centralizada de certificados S/MIME quando aplicável.' },
+
+  deliverables: [
+    'Relatório de Legal IT Assessment',
+    'Política de controle de acesso por caso/cliente',
+    'Configuração de backup com retenção jurídica',
+    'Relatório de testes de restauração',
+    'Inventário de certificados digitais com alertas de vencimento',
+    'Documentação de conformidade LGPD para auditoria',
   ],
+
   differentials: [
     { title: 'Consciência do sigilo profissional', desc: 'Não tratamos a TI do escritório de advocacia como um escritório genérico. Entendemos que sigilo não é opcional — é obrigação ética com consequências disciplinares — e projetamos a infraestrutura com isso em mente.' },
     { title: 'Controle de acesso por caso e cliente', desc: 'Cada advogado acessa apenas os documentos dos casos em que atua. Colaborador administrativo tem acesso restrito aos documentos necessários para sua função. Controle granular, não apenas login único para toda a rede.' },
     { title: 'Backup à prova de ransomware', desc: 'O setor jurídico é alvo frequente de ransomware justamente pelo valor dos dados. Backups imutáveis off-site garantem recuperação mesmo que o atacante tente destruir os backups locais.' },
     { title: 'Gestão de certificados digitais', desc: 'Certificado vencido no dia de uma petição de prazo fatal é uma crise real. Gerenciamos o ciclo de vida dos certificados do escritório e enviamos alertas antecipados de vencimento.' },
   ],
+
   faqs,
   schemas: [
     serviceSchema('TI para Escritórios de Advocacia', 'Infraestrutura de TI especializada para advocacia: sigilo profissional, LGPD e backup jurídico.', 'Legal IT Service'),
@@ -69,4 +106,6 @@ const content = {
   ],
 }
 
-export default function Page() { return <ServiceLayout content={content} /> }
+export default function Page() {
+  return <ServiceLayout content={content} />
+}

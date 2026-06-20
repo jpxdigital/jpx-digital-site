@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { ServiceLayout } from '@/components/sections/ServiceLayout'
+import { ServiceLayout, type ServicePageContent } from '@/components/sections/ServiceLayout'
 import { serviceSchema, breadcrumbSchema, faqPageSchema } from '@/lib/schema'
 
 const BASE = 'https://jpxdigital.com.br'
@@ -30,37 +30,74 @@ const faqs = [
 
 export const metadata: Metadata = {
   title: 'TI para Escritórios — Microsoft 365, Backup e Suporte Gerenciado',
-  description:
-    'Infraestrutura de TI para escritórios: Microsoft 365, backup de endpoints, home office seguro e suporte gerenciado. TI estável e previsível para escritórios de todos os portes.',
+  description: 'Infraestrutura de TI para escritórios: Microsoft 365, backup de endpoints, home office seguro e suporte gerenciado. TI estável e previsível para escritórios de todos os portes.',
   keywords: ['TI para escritórios', 'microsoft 365 para empresas', 'suporte TI escritório', 'backup notebook empresa', 'home office seguro corporativo'],
   openGraph: { title: 'TI para Escritórios | JPX Digital', description: 'Microsoft 365, backup e suporte gerenciado para escritórios produtivos.', url: `${BASE}/segmentos/${slug}` },
   alternates: { canonical: `${BASE}/segmentos/${slug}` },
 }
 
-const content = {
+const content: ServicePageContent = {
   slug,
   category: 'Segmento Corporativo',
   baseSection: { name: 'Segmentos', href: '/segmentos' },
   heroHeadline: 'TI para Escritórios — Produtividade, Colaboração e Segurança para Equipes de Qualquer Tamanho.',
   heroSub: 'TI que não trava reunião, não perde arquivo e não deixa colaborador remoto sem acesso. Suporte que resolve antes de você precisar ligar.',
-  intro: [
-    'Escritórios modernos dependem de TI para quase tudo: e-mail, documentos, videoconferência, ERP, Wi-Fi. Quando a TI falha, a operação para. Quando é mal configurada, dados ficam em risco.',
-    'A JPX Digital atua com escritórios de 10 a 500 colaboradores: Microsoft 365 com segurança e backup, gestão de dispositivos Windows e macOS, home office seguro e suporte proativo com SLA.',
-    'Começamos pelo assessment. Muitos escritórios pagam por soluções redundantes ou têm lacunas críticas de segurança sem saber.',
+  ctaLabel: 'Solicitar Assessment de TI',
+
+  problem: {
+    headline: 'Escritórios modernos dependem de TI para quase tudo. Quando a TI falha, a operação para. Quando é mal configurada, dados ficam em risco.',
+    body: [
+      'E-mail, documentos, videoconferência, ERP, Wi-Fi — tudo depende de infraestrutura de TI funcionando. E muitos escritórios só percebem que a TI estava mal estruturada quando algo para ou é comprometido.',
+      'O problema mais comum não é falta de investimento — é falta de estratégia: licenças compradas sem configuração adequada, backup configurado mas nunca testado, MFA não habilitado porque "complica demais". São falhas básicas com consequências graves.',
+      'A JPX Digital atua com escritórios de 10 a 500 colaboradores: Microsoft 365 com segurança e backup, gestão de dispositivos Windows e macOS, home office seguro e suporte proativo com SLA.',
+    ],
+  },
+
+  assessment: {
+    name: 'Office IT Assessment',
+    body: 'Inventariamos todos os dispositivos, serviços e licenças. Identificamos gaps de segurança (sem MFA, backup incompleto, endpoints desprotegidos), desperdício (licenças não utilizadas, serviços duplicados) e riscos de disponibilidade. Você recebe um diagnóstico completo antes de qualquer proposta.',
+    checklist: [
+      'Inventário de dispositivos, licenças e serviços ativos',
+      'Auditoria de segurança: MFA, backup, endpoint protection',
+      'Identificação de licenças não utilizadas e serviços duplicados',
+      'Avaliação de acesso remoto e home office',
+      'Diagnóstico de gaps com plano de adequação priorizado',
+    ],
+  },
+
+  process: {
+    title: 'Como estruturamos a TI do seu escritório',
+    steps: [
+      { title: 'Assessment do ambiente atual', desc: 'Inventariamos todos os dispositivos, serviços e licenças. Identificamos gaps de segurança (sem MFA, backup incompleto, endpoints desprotegidos), desperdício (licenças não utilizadas, serviços duplicados) e riscos de disponibilidade.' },
+      { title: 'Microsoft 365 como plataforma', desc: 'Configuramos M365 corretamente: Exchange Online com proteção anti-spam e anti-phishing, SharePoint e OneDrive para colaboração, Intune para gerenciamento de dispositivos, MFA obrigatório e políticas de acesso condicional. E backup externo do M365 — porque a Microsoft não garante recuperação de dados deletados.' },
+      { title: 'Segurança de endpoint e home office', desc: 'EDR nos endpoints Windows e macOS, VPN ou ZTNA para acesso remoto, políticas de senha e MFA em todos os serviços, e gestão centralizada de dispositivos (incluindo dispositivos remotos). O colaborador em home office tem o mesmo nível de proteção do escritório.' },
+      { title: 'Suporte proativo e previsível', desc: 'Monitoramento dos sistemas críticos, gestão de patches, backup verificado diariamente e helpdesk com SLA definido. Relatório mensal com status do ambiente. Você sabe o que está acontecendo na sua TI sem precisar perguntar.' },
+    ],
+  },
+
+  benefits: [
+    { title: 'M365 que funciona de verdade', desc: 'Configurado com MFA, acesso condicional, backup externo e proteção de e-mail — não apenas instalado.' },
+    { title: 'Home office sem compromisso', desc: 'Colaborador remoto com o mesmo nível de segurança do escritório: dispositivo gerenciado, MFA e EDR.' },
+    { title: 'Backup verificado todo dia', desc: 'Jobs monitorados, alertas para falhas, testes periódicos. Você sabe que o backup está funcionando.' },
+    { title: 'Suporte com SLA claro', desc: 'Tempo de resposta por criticidade em contrato e relatório mensal. Clareza do valor que está recebendo.' },
   ],
-  howTitle: 'Como estruturamos a TI do seu escritório',
-  howSteps: [
-    { title: 'Assessment do ambiente atual', desc: 'Inventariamos todos os dispositivos, serviços e licenças. Identificamos gaps de segurança (sem MFA, backup incompleto, endpoints desprotegidos), desperdício (licenças não utilizadas, serviços duplicados) e riscos de disponibilidade.' },
-    { title: 'Microsoft 365 como plataforma', desc: 'Configuramos M365 corretamente: Exchange Online com proteção anti-spam e anti-phishing, SharePoint e OneDrive para colaboração, Intune para gerenciamento de dispositivos, MFA obrigatório e políticas de acesso condicional. E backup externo do M365 — porque a Microsoft não garante recuperação de dados deletados.' },
-    { title: 'Segurança de endpoint e home office', desc: 'EDR nos endpoints Windows e macOS, VPN ou ZTNA para acesso remoto, políticas de senha e MFA em todos os serviços, e gestão centralizada de dispositivos (incluindo dispositivos remotos). O colaborador em home office tem o mesmo nível de proteção do escritório.' },
-    { title: 'Suporte proativo e previsível', desc: 'Monitoramento dos sistemas críticos, gestão de patches, backup verificado diariamente e helpdesk com SLA definido. Relatório mensal com status do ambiente. Você sabe o que está acontecendo na sua TI sem precisar perguntar.' },
+
+  deliverables: [
+    'Relatório de Office IT Assessment',
+    'Configuração completa do Microsoft 365 (segurança + backup)',
+    'Política de dispositivos e acesso remoto',
+    'Configuração de EDR e endpoint management',
+    'Runbook de procedimentos de suporte',
+    'Relatório mensal de status do ambiente',
   ],
+
   differentials: [
     { title: 'M365 configurado, não apenas instalado', desc: 'Microsoft 365 com configurações de segurança padrão tem lacunas conhecidas. Configuramos MFA, acesso condicional, proteção avançada de e-mail e políticas de dispositivo — o pacote completo, não apenas as licenças.' },
     { title: 'Backup do M365 incluso', desc: 'A Microsoft não garante recuperação de e-mails e arquivos deletados além de períodos curtos. Incluímos backup externo de Exchange, SharePoint e OneDrive em todos os projetos de M365.' },
     { title: 'Home office sem comprometer segurança', desc: 'Colaborador remoto com acesso ao mesmo nível de segurança do escritório: dispositivo gerenciado, MFA, VPN ou ZTNA e EDR. Produtividade e segurança não são opostos.' },
     { title: 'Suporte com SLA e relatório mensal', desc: 'Tempo de resposta por criticidade em contrato, monitoramento proativo e relatório mensal com disponibilidade e incidentes. Você tem clareza do valor que está recebendo.' },
   ],
+
   faqs,
   schemas: [
     serviceSchema('TI para Escritórios', 'Infraestrutura e suporte gerenciado de TI para escritórios: Microsoft 365, backup e home office seguro.', 'IT Support Service'),
@@ -69,4 +106,6 @@ const content = {
   ],
 }
 
-export default function Page() { return <ServiceLayout content={content} /> }
+export default function Page() {
+  return <ServiceLayout content={content} />
+}

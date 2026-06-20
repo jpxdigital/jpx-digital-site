@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { ServiceLayout } from '@/components/sections/ServiceLayout'
+import { ServiceLayout, type ServicePageContent } from '@/components/sections/ServiceLayout'
 import { serviceSchema, breadcrumbSchema, faqPageSchema } from '@/lib/schema'
 
 const BASE = 'https://jpxdigital.com.br'
@@ -20,7 +20,7 @@ const faqs = [
   },
   {
     question: 'O que é necessário para atender às exigências de auditoria de acesso a dados de saúde?',
-    answer: 'Auditoria de acesso exige: log completo de quem acessou quais dados, quando e de onde; autenticação individual por usuário (sem logins compartilhados); controle de acesso baseado em papel (médico vê apenas seus pacientes, recepção vê dados administrativos); e retenção dos logs de auditoria por período compatível com as obrigações legais. A JPX Digital implementa esses controles integrados ao sistema de TI existente.',
+    answer: 'Auditoria de acesso exige: log completo de quem acessou quais dados, quando e de onde; autenticação individual por usuário (sem logins compartilhados); controle de acesso baseado em papel (médico vê apenas seus pacientes, recepção vê dados administrativos); e retenção dos logs de auditoria por período compatível com as obrigações legais.',
   },
   {
     question: 'Como funciona o Disaster Recovery para hospitais com dados críticos?',
@@ -30,37 +30,74 @@ const faqs = [
 
 export const metadata: Metadata = {
   title: 'TI para Hospitais e Clínicas — LGPD, Backup e Alta Disponibilidade',
-  description:
-    'Infraestrutura de TI especializada para hospitais e clínicas: LGPD na saúde, backup de prontuários, alta disponibilidade e Disaster Recovery. Consultoria especializada.',
+  description: 'Infraestrutura de TI especializada para hospitais e clínicas: LGPD na saúde, backup de prontuários, alta disponibilidade e Disaster Recovery.',
   keywords: ['TI para hospitais', 'LGPD saúde', 'backup prontuário eletrônico', 'disaster recovery hospital', 'segurança de dados médicos'],
   openGraph: { title: 'TI para Hospitais e Clínicas | JPX Digital', description: 'LGPD, backup de prontuários e alta disponibilidade para saúde.', url: `${BASE}/segmentos/${slug}` },
   alternates: { canonical: `${BASE}/segmentos/${slug}` },
 }
 
-const content = {
+const content: ServicePageContent = {
   slug,
   category: 'Segmento de Saúde',
   baseSection: { name: 'Segmentos', href: '/segmentos' },
   heroHeadline: 'TI para Hospitais e Clínicas — Infraestrutura que não Para, Dados que não Vazam.',
   heroSub: 'Ambientes de saúde exigem o mais alto nível de disponibilidade, segurança de dados e conformidade regulatória. Um sistema fora do ar pode custar vidas. Um dado vazado, multas e processos.',
-  intro: [
-    'O setor de saúde é o mais visado por ransomware no Brasil. Prontuários, imagens e dados de faturamento são alvos de alto valor. Uma paralisação vai muito além do prejuízo financeiro.',
-    'A LGPD trata dados de saúde como sensíveis: acesso granular, criptografia obrigatória e notificação à ANPD. O CFM exige retenção de prontuários por 20 anos. Não endereçar essas obrigações cria risco regulatório grave.',
-    'A JPX Digital atua com backup imutável off-site, alta disponibilidade e planos de DR testados — desenhados para o cenário de ransomware hospitalar, o mais provável no setor.',
+  ctaLabel: 'Solicitar Healthcare IT Assessment',
+
+  problem: {
+    headline: 'O setor de saúde é o mais visado por ransomware no Brasil. Prontuários, imagens e dados de faturamento são alvos de alto valor — e uma paralisação vai muito além do prejuízo financeiro.',
+    body: [
+      'A LGPD trata dados de saúde como sensíveis: acesso granular, criptografia obrigatória e notificação à ANPD. O CFM exige retenção de prontuários por 20 anos. Não endereçar essas obrigações cria risco regulatório grave.',
+      'O cenário mais crítico não é falha de hardware — é ransomware. Backups comprometidos antes da criptografia dos dados de produção. Sistema de prontuário fora do ar durante plantão. Plano de contingência manual que ninguém conhece.',
+      'A JPX Digital atua com backup imutável off-site, alta disponibilidade e planos de DR testados — desenhados para o cenário de ransomware hospitalar, o mais provável no setor.',
+    ],
+  },
+
+  assessment: {
+    name: 'Healthcare IT Assessment',
+    body: 'Avaliamos o ambiente contra as exigências da LGPD para dados sensíveis de saúde, requisitos do CFM para prontuários, riscos de segurança críticos e nível de disponibilidade da infraestrutura atual. Entregamos diagnóstico com riscos priorizados e plano de adequação.',
+    checklist: [
+      'Avaliação de conformidade LGPD para dados sensíveis de saúde',
+      'Análise de backup de prontuários e imagens PACS (retenção 20 anos)',
+      'Auditoria de controle de acesso e logs de auditoria',
+      'Avaliação de alta disponibilidade por sistema crítico',
+      'Análise de segmentação de rede (clínica vs administrativa vs equipamentos médicos)',
+    ],
+  },
+
+  process: {
+    title: 'Como atuamos no setor de saúde',
+    steps: [
+      { title: 'Assessment de conformidade e risco', desc: 'Avaliamos o ambiente contra as exigências da LGPD para dados sensíveis, requisitos do CFM para prontuários, riscos de segurança críticos (controle de acesso, criptografia, vulnerabilidades) e nível de disponibilidade da infraestrutura atual.' },
+      { title: 'Proteção de dados e controle de acesso', desc: 'Implementamos criptografia de dados em trânsito e repouso, controle de acesso baseado em papel (RBAC) com autenticação individual, logs de auditoria de acesso e segmentação de rede para isolar equipamentos médicos da rede corporativa.' },
+      { title: 'Backup e retenção de longo prazo', desc: 'Configuramos backup de prontuários e imagens PACS com retenção de 20+ anos, backups imutáveis off-site (à prova de ransomware), testes de restauração documentados periodicamente e procedimento de recuperação para o sistema de prontuário eletrônico.' },
+      { title: 'Alta disponibilidade e DR', desc: 'Implementamos redundância de links, cluster de servidores, failover de storage e plano de Disaster Recovery testado. Definimos RTO e RPO para cada sistema crítico e treinamos a equipe para operar em modo degradado enquanto a TI é restaurada.' },
+    ],
+  },
+
+  benefits: [
+    { title: 'Disponibilidade para sistemas de vida', desc: 'Cluster de servidores, links redundantes e failover testado. Sistemas críticos não param.' },
+    { title: 'Backup imutável à prova de ransomware', desc: 'Backups off-site que ransomware não alcança. Recuperação mesmo no pior cenário.' },
+    { title: 'Conformidade LGPD + CFM', desc: 'Controles para dados sensíveis de saúde e retenção de prontuários por 20 anos com recuperabilidade garantida.' },
+    { title: 'Plano de contingência treinado', desc: 'Equipe sabe como operar em modo degradado. O DR não fica só no papel.' },
   ],
-  howTitle: 'Como atuamos no setor de saúde',
-  howSteps: [
-    { title: 'Assessment de conformidade e risco', desc: 'Avaliamos o ambiente contra as exigências da LGPD para dados sensíveis, requisitos do CFM para prontuários, riscos de segurança críticos (controle de acesso, criptografia, vulnerabilidades) e nível de disponibilidade da infraestrutura atual.' },
-    { title: 'Proteção de dados e controle de acesso', desc: 'Implementamos criptografia de dados em trânsito e repouso, controle de acesso baseado em papel (RBAC) com autenticação individual, logs de auditoria de acesso e segmentação de rede para isolar equipamentos médicos da rede corporativa.' },
-    { title: 'Backup e retenção de longo prazo', desc: 'Configuramos backup de prontuários e imagens PACS com retenção de 20+ anos, backups imutáveis off-site (à prova de ransomware), testes de restauração documentados periodicamente e procedimento de recuperação para o sistema de prontuário eletrônico.' },
-    { title: 'Alta disponibilidade e DR', desc: 'Implementamos redundância de links, cluster de servidores, failover de storage e plano de Disaster Recovery testado. Definimos RTO e RPO para cada sistema crítico e treinamos a equipe para operar em modo degradado enquanto a TI é restaurada.' },
+
+  deliverables: [
+    'Relatório de Healthcare IT Assessment',
+    'Política de controle de acesso baseado em papel (RBAC)',
+    'Configuração de backup com retenção de 20+ anos',
+    'Plano de Disaster Recovery testado por sistema crítico',
+    'Documentação de conformidade LGPD para dados de saúde',
+    'Relatório de testes de restauração documentados',
   ],
+
   differentials: [
     { title: 'Conhecimento da regulação do setor', desc: 'LGPD para dados sensíveis de saúde, CFM para prontuários eletrônicos, requisitos de auditoria de acesso. Nossa equipe conhece o que é exigido do setor — não apenas o que é bom em TI genérica.' },
     { title: 'Foco em ransomware como ameaça principal', desc: 'O setor de saúde é o mais atacado por ransomware no Brasil. Nossa abordagem de backup e segurança é desenhada especificamente para esse cenário — backups imutáveis, segmentação e resposta a incidentes.' },
     { title: 'Alta disponibilidade para sistemas de vida', desc: 'Sistemas de prescrição, sala cirúrgica e UTI não podem parar. Projetamos disponibilidade compatível com o nível de criticidade de cada sistema — com testes reais de failover.' },
     { title: 'Retenção de 20 anos com recuperabilidade garantida', desc: 'Backup de prontuário que não pode ser restaurado em 15 anos não serve. Implementamos verificação periódica de integridade e procedimento de restauração documentado para retenção de longo prazo.' },
   ],
+
   faqs,
   schemas: [
     serviceSchema('TI para Hospitais e Clínicas', 'Infraestrutura de TI especializada para saúde: LGPD, backup de prontuários, alta disponibilidade e Disaster Recovery.', 'Healthcare IT Service'),
@@ -69,4 +106,6 @@ const content = {
   ],
 }
 
-export default function Page() { return <ServiceLayout content={content} /> }
+export default function Page() {
+  return <ServiceLayout content={content} />
+}

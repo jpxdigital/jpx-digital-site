@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { ServiceLayout } from '@/components/sections/ServiceLayout'
+import { ServiceLayout, type ServicePageContent } from '@/components/sections/ServiceLayout'
 import { serviceSchema, breadcrumbSchema, faqPageSchema } from '@/lib/schema'
 
 const BASE = 'https://jpxdigital.com.br'
@@ -12,54 +12,93 @@ const faqs = [
   },
   {
     question: 'O que é Azure Hybrid e quando faz sentido?',
-    answer: 'Azure Hybrid combina infraestrutura on-premise com Azure, usando Azure Arc, ExpressRoute e Azure Stack. Faz sentido para empresas com data residency obrigatória, latência crítica para aplicações locais ou durante transição gradual para cloud. Permite gerenciar recursos on-prem e cloud pelo mesmo painel.',
+    answer: 'Azure Hybrid combina infraestrutura on-premise com Azure, usando Azure Arc, ExpressRoute e Azure Stack. Faz sentido para empresas com data residency obrigatória, latência crítica ou durante transição gradual para cloud.',
   },
   {
     question: 'Como funciona o licenciamento Azure Hybrid Benefit?',
-    answer: 'O Azure Hybrid Benefit permite usar licenças Windows Server e SQL Server existentes (com Software Assurance) em Azure, reduzindo significativamente o custo das VMs. Empresas com licenciamento Microsoft robusto podem economizar 40-60% nas VMs Azure. A JPX Digital avalia e aplica esses benefícios em todos os projetos.',
+    answer: 'O Azure Hybrid Benefit permite usar licenças Windows Server e SQL Server existentes (com Software Assurance) em Azure, reduzindo significativamente o custo das VMs. Empresas com licenciamento Microsoft robusto podem economizar 40-60% nas VMs Azure.',
   },
   {
     question: 'A JPX Digital implementa Azure DevOps e CI/CD?',
-    answer: 'Sim. Implementamos pipelines de CI/CD com Azure DevOps, GitHub Actions e Azure Pipelines. Cobrimos desde repositório de código até deploy automatizado em AKS, App Service ou VMs. Especialmente relevante para equipes que querem acelerar entregas sem perder estabilidade.',
+    answer: 'Sim. Implementamos pipelines de CI/CD com Azure DevOps, GitHub Actions e Azure Pipelines. Cobrimos desde repositório de código até deploy automatizado em AKS, App Service ou VMs.',
   },
   {
     question: 'Quanto custa migrar para Azure?',
-    answer: 'O custo de migração depende do volume e complexidade dos workloads. A JPX Digital realiza um assessment gratuito que inclui estimativa de custo cloud (usando Azure Pricing Calculator) e esforço de migração. Você recebe uma proposta com investimento total antes de aprovar qualquer trabalho.',
+    answer: 'O custo de migração depende do volume e complexidade dos workloads. A JPX Digital realiza um assessment gratuito que inclui estimativa de custo cloud e esforço de migração. Você recebe uma proposta com investimento total antes de aprovar qualquer trabalho.',
   },
 ]
 
 export const metadata: Metadata = {
   title: 'Consultoria Microsoft Azure — Migração e Gestão de Ambientes Azure',
-  description:
-    'Consultoria Microsoft Azure: migração, arquitetura híbrida, AKS, DevOps e gestão contínua. Parceiros Microsoft com experiência em ambientes corporativos. Assessment gratuito.',
+  description: 'Consultoria Microsoft Azure: migração, arquitetura híbrida, AKS, DevOps e gestão contínua. Parceiros Microsoft com experiência em ambientes corporativos.',
   keywords: ['consultoria azure', 'migração azure brasil', 'microsoft azure consultoria', 'azure hybrid', 'azure devops'],
   openGraph: { title: 'Consultoria Microsoft Azure | JPX Digital', description: 'Migração, arquitetura e gestão em Microsoft Azure.', url: `${BASE}/servicos/${slug}` },
   alternates: { canonical: `${BASE}/servicos/${slug}` },
 }
 
-const content = {
+const content: ServicePageContent = {
   slug,
   category: 'Cloud Computing',
   heroHeadline: 'Consultoria Microsoft Azure — Arquitetura, Migração e Gestão de Ambientes Azure Corporativos.',
   heroSub: 'Do Active Directory ao AKS. Do on-premise ao Azure híbrido. Entregamos ambientes Azure robustos, seguros e com custo controlado.',
-  intro: [
-    'O Microsoft Azure é a escolha natural para empresas com forte ecossistema Microsoft — Microsoft 365, Active Directory, SQL Server, .NET — pela integração nativa entre serviços e pelo modelo de licenciamento Hybrid Benefit que reduz custo das VMs.',
-    'A JPX Digital projeta e executa migrações Azure com foco em arquitetura híbrida, segurança de identidade (Entra ID, MFA, Conditional Access) e governança de custo. Cada projeto começa com um assessment que quantifica o custo atual e projeta o custo Azure — sem surpresas na fatura.',
-    'Nossa experiência cobre desde IaaS (VMs, redes, storage) até PaaS (App Service, AKS, Azure SQL Managed Instance) e modernização de aplicações para cloud-native.',
+  ctaLabel: 'Solicitar Azure Readiness Assessment',
+
+  problem: {
+    headline: 'Azure não é apenas onde o Windows fica. É a infraestrutura que conecta o M365, o Active Directory e o restante do seu negócio — quando bem arquitetada.',
+    body: [
+      'O Microsoft Azure é a escolha natural para empresas com forte ecossistema Microsoft — Microsoft 365, Active Directory, SQL Server, .NET — pela integração nativa entre serviços e pelo modelo de licenciamento Hybrid Benefit que reduz o custo das VMs.',
+      'O problema mais comum em ambientes Azure é a ausência de governança desde o início: Landing Zone improvisada, sem hierarquia de Management Groups, IAM permissivo e sem tags de custo. O resultado é complexidade crescente e fatura imprevisível.',
+      'A JPX Digital projeta e executa migrações Azure com foco em arquitetura híbrida, segurança de identidade e governança de custo. Cada projeto começa com um assessment que quantifica o custo atual e projeta o custo Azure.',
+    ],
+  },
+
+  assessment: {
+    name: 'Azure Readiness Assessment',
+    body: 'Avaliamos o ambiente atual contra os 5 pilares do Azure Well-Architected Framework e identificamos o potencial de migração, riscos e estimativa de custo mensal. Você recebe um diagnóstico completo antes de aprovar qualquer projeto.',
+    checklist: [
+      'Well-Architected Review (confiabilidade, segurança, custo, operações, performance)',
+      'Inventário de workloads e dependências Microsoft',
+      'Identificação de elegibilidade para Azure Hybrid Benefit',
+      'Estimativa de custo mensal com Azure Pricing Calculator',
+      'Proposta de Landing Zone e governança',
+    ],
+  },
+
+  process: {
+    title: 'Nossa metodologia de implementação Azure',
+    steps: [
+      { title: 'Azure Well-Architected Review', desc: 'Avaliamos o ambiente atual ou o projeto contra os 5 pilares do Azure Well-Architected Framework: confiabilidade, segurança, otimização de custo, excelência operacional e eficiência de performance.' },
+      { title: 'Landing Zone e governança', desc: 'Implementamos Azure Landing Zone com hierarquia de Management Groups, políticas de Azure Policy, RBAC granular e hub-spoke de rede. A fundação correta evita retrabalho futuro.' },
+      { title: 'Migração com Azure Migrate', desc: 'Usamos Azure Migrate para descoberta, avaliação e migração de VMs on-premise. Executamos em fases com testes de validação, mantendo ambiente paralelo até confirmação de estabilidade.' },
+      { title: 'Operação e FinOps contínuos', desc: 'Gestão do ambiente com Microsoft Defender for Cloud, Azure Monitor, Cost Management e revisões mensais de otimização. Relatório executivo mensal de custo e segurança.' },
+    ],
+  },
+
+  benefits: [
+    { title: 'Integração nativa com Microsoft 365', desc: 'Entra ID, Intune, Teams e SharePoint integrados na mesma plataforma de identidade e acesso.' },
+    { title: 'Azure Hybrid Benefit aplicado', desc: 'Economia de até 60% nas VMs usando licenças Windows Server e SQL Server existentes.' },
+    { title: 'Segurança com Defender for Cloud', desc: 'Postura de segurança unificada, recomendações ativas e conformidade monitorada continuamente.' },
+    { title: 'Escalabilidade com AKS e DevOps', desc: 'Containers, CI/CD e entregas automatizadas para equipes que precisam de agilidade.' },
   ],
-  howTitle: 'Nossa metodologia de implementação Azure',
-  howSteps: [
-    { title: 'Azure Well-Architected Review', desc: 'Avaliamos o ambiente atual ou o projeto contra os 5 pilares do Azure Well-Architected Framework: confiabilidade, segurança, otimização de custo, excelência operacional e eficiência de performance.' },
-    { title: 'Landing Zone e governança', desc: 'Implementamos Azure Landing Zone com hierarquia de Management Groups, políticas de Azure Policy, RBAC granular e hub-spoke de rede. A fundação correta evita retrabalho futuro.' },
-    { title: 'Migração com Azure Migrate', desc: 'Usamos Azure Migrate para descoberta, avaliação e migração de VMs on-premise. Executamos em fases com testes de validação, mantendo ambiente paralelo até confirmação de estabilidade.' },
-    { title: 'Operação e FinOps contínuos', desc: 'Gestão do ambiente com Microsoft Defender for Cloud, Azure Monitor, Cost Management e revisões mensais de otimização. Relatório executivo mensal de custo e segurança.' },
+
+  deliverables: [
+    'Relatório de Azure Readiness Assessment',
+    'Documento de arquitetura Azure (Landing Zone)',
+    'Plano de migração com cronograma',
+    'Política de tags e organização de recursos',
+    'Configuração de alertas e Azure Monitor',
+    'Dashboard de custos (Azure Cost Management)',
+    'Runbooks de operação',
+    'Relatório executivo mensal',
   ],
+
   differentials: [
-    { title: 'Especialização em Azure híbrido', desc: 'Ambientes que combinam on-premise com Azure são mais complexos — e mais comuns. Temos experiência com Azure Arc, ExpressRoute e Azure Stack para cenários que não são 100% cloud.' },
-    { title: 'Licenciamento Hybrid Benefit aplicado', desc: 'Identificamos e aplicamos Azure Hybrid Benefit em todas as VMs elegíveis. A economia pode chegar a 60% no custo das instâncias Windows Server e SQL Server.' },
-    { title: 'Segurança com Entra ID e Defender', desc: 'Implementamos Conditional Access, MFA, Privileged Identity Management e Microsoft Defender for Cloud em todos os ambientes que gerenciamos.' },
-    { title: 'Capacidade de DevOps e AKS', desc: 'Além de infraestrutura, implementamos pipelines de CI/CD e ambientes Kubernetes gerenciados (AKS) para equipes que precisam de agilidade em entregas.' },
+    { title: 'Especialização em Azure híbrido', desc: 'Ambientes que combinam on-premise com Azure são mais complexos e mais comuns. Temos experiência com Azure Arc, ExpressRoute e Azure Stack.' },
+    { title: 'Licenciamento Hybrid Benefit aplicado', desc: 'Identificamos e aplicamos Azure Hybrid Benefit em todas as VMs elegíveis. Economia de até 60% nas instâncias Windows Server e SQL Server.' },
+    { title: 'Segurança com Entra ID e Defender', desc: 'Implementamos Conditional Access, MFA, Privileged Identity Management e Microsoft Defender for Cloud em todos os ambientes.' },
+    { title: 'Capacidade de DevOps e AKS', desc: 'Além de infraestrutura, implementamos pipelines de CI/CD e Kubernetes gerenciado (AKS) para equipes que precisam de agilidade.' },
   ],
+
   faqs,
   schemas: [
     serviceSchema('Consultoria Microsoft Azure', 'Migração, arquitetura híbrida e gestão de ambientes Microsoft Azure para empresas corporativas.', 'Cloud Computing Consultancy'),
@@ -68,4 +107,6 @@ const content = {
   ],
 }
 
-export default function Page() { return <ServiceLayout content={content} /> }
+export default function Page() {
+  return <ServiceLayout content={content} />
+}

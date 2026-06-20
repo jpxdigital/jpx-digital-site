@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { ServiceLayout } from '@/components/sections/ServiceLayout'
+import { ServiceLayout, type ServicePageContent } from '@/components/sections/ServiceLayout'
 import { serviceSchema, breadcrumbSchema, faqPageSchema } from '@/lib/schema'
 
 const BASE = 'https://jpxdigital.com.br'
@@ -30,36 +30,74 @@ const faqs = [
 
 export const metadata: Metadata = {
   title: 'Business Continuity — Plano de Continuidade de Negócios',
-  description:
-    'Plano de Business Continuity (BCP) para empresas que não podem parar. Cobertura além da TI: pessoas, processos, fornecedores e comunicação. Assessment gratuito.',
+  description: 'Plano de Business Continuity (BCP) para empresas que não podem parar. Cobertura além da TI: pessoas, processos, fornecedores e comunicação.',
   keywords: ['business continuity', 'plano de continuidade de negócios', 'BCP empresarial', 'continuidade operacional', 'ISO 22301'],
   openGraph: { title: 'Business Continuity | JPX Digital', description: 'Plano de continuidade de negócios além da TI — pessoas, processos e fornecedores.', url: `${BASE}/servicos/${slug}` },
   alternates: { canonical: `${BASE}/servicos/${slug}` },
 }
 
-const content = {
+const content: ServicePageContent = {
   slug,
   category: 'Continuidade & Segurança',
   heroHeadline: 'Business Continuity — Continuidade Operacional que vai Além da TI.',
   heroSub: 'Quando um incidente acontece, a TI é só parte do problema. Pessoas, processos, fornecedores e clientes precisam de um plano.',
-  intro: [
-    'Business Continuity Planning (BCP) é a disciplina de garantir que uma organização continue operando — ou retome operações rapidamente — após qualquer tipo de interrupção: falha técnica, pandemia, desastre natural, saída de colaborador-chave ou falha de fornecedor crítico.',
-    'A maioria das empresas tem um plano de TI (ou pensa que tem). Poucas têm um plano que cobre o que acontece com as pessoas, com a comunicação para clientes, com os fornecedores alternativos e com os processos que dependem de conhecimento tácito.',
-    'A JPX Digital constrói BCPs estruturados com análise de impacto real, mapeamento de dependências, estratégias de continuidade para cada cenário crítico e testes periódicos que transformam o documento em capacidade operacional real.',
+  ctaLabel: 'Solicitar Business Continuity Assessment',
+
+  problem: {
+    headline: 'A maioria das empresas tem um plano de TI. Poucas têm um plano para o que acontece com as pessoas, os processos e os clientes quando tudo para.',
+    body: [
+      'Business Continuity Planning (BCP) é a disciplina de garantir que uma organização continue operando — ou retome operações rapidamente — após qualquer tipo de interrupção: falha técnica, pandemia, desastre natural, saída de colaborador-chave ou falha de fornecedor crítico.',
+      'A maioria das empresas confunde DR com BCP. Disaster Recovery cobre a TI. Business Continuity cobre a empresa: como os funcionários trabalham sem o sistema, quem responde ao cliente quando o suporte está offline, qual fornecedor alternativo aciona quando o principal não entrega.',
+      'A JPX Digital constrói BCPs estruturados com análise de impacto real, mapeamento de dependências, estratégias de continuidade para cada cenário crítico e testes periódicos que transformam o documento em capacidade operacional real.',
+    ],
+  },
+
+  assessment: {
+    name: 'Business Continuity Assessment',
+    body: 'Identificamos os processos críticos do negócio, mapeamos suas dependências (sistemas, pessoas, fornecedores), calculamos o impacto financeiro e operacional de cada hora de interrupção e definimos os MTD (Maximum Tolerable Downtime) por processo. Você recebe um diagnóstico completo antes de qualquer trabalho de planejamento.',
+    checklist: [
+      'Mapeamento dos processos críticos de negócio',
+      'Análise de dependências: sistemas, pessoas-chave, fornecedores',
+      'Cálculo de impacto por hora de interrupção por processo',
+      'Definição de MTD (Maximum Tolerable Downtime) e RTO por processo',
+      'Identificação de gaps de continuidade e riscos prioritários',
+    ],
+  },
+
+  process: {
+    title: 'Como construímos o Business Continuity Plan',
+    steps: [
+      { title: 'Business Impact Analysis (BIA)', desc: 'Identificamos os processos críticos do negócio, mapeamos suas dependências (sistemas, pessoas, fornecedores), calculamos o impacto financeiro e operacional de cada hora de interrupção e definimos os MTD por processo.' },
+      { title: 'Estratégias de continuidade', desc: 'Para cada processo crítico, definimos estratégias: redundância de sistemas, trabalho remoto, fornecedores alternativos, backfill de pessoas-chave, comunicação com clientes. O plano cobre os cenários mais prováveis e os de maior impacto.' },
+      { title: 'Documentação e treinamento', desc: 'Documentamos o BCP em linguagem operacional — não apenas conceitual. Cada colaborador relevante sabe o que fazer em cada cenário. Realizamos treinamento e tabletop exercises com as lideranças.' },
+      { title: 'Testes e revisão contínua', desc: 'Realizamos simulações periódicas (tabletop e, quando aplicável, simulações reais) com relatório de resultado e plano de melhoria. O BCP é revisado anualmente ou após mudanças significativas.' },
+    ],
+  },
+
+  benefits: [
+    { title: 'Cobertura além da TI', desc: 'Pessoas, processos, fornecedores, comunicação. Um BCP completo cobre todos os vetores de interrupção.' },
+    { title: 'Conformidade ISO 22301', desc: 'Documentação alinhada ao framework internacional. Pronta para auditorias ISO 22301, ISO 27001 e SOC 2.' },
+    { title: 'Integrado ao plano de DR', desc: 'BCP e DRP construídos de forma integrada — sem sobreposições ou gaps entre TI e operação.' },
+    { title: 'Testado, não apenas documentado', desc: 'Simulações periódicas revelam o que não funciona na prática antes que um incidente real exponha as falhas.' },
   ],
-  howTitle: 'Como construímos o Business Continuity Plan',
-  howSteps: [
-    { title: 'Business Impact Analysis (BIA)', desc: 'Identificamos os processos críticos do negócio, mapeamos suas dependências (sistemas, pessoas, fornecedores), calculamos o impacto financeiro e operacional de cada hora de interrupção e definimos os MTD (Maximum Tolerable Downtime) por processo.' },
-    { title: 'Estratégias de continuidade', desc: 'Para cada processo crítico, definimos estratégias: redundância de sistemas, trabalho remoto, fornecedores alternativos, backfill de pessoas-chave, comunicação com clientes. O plano cobre os cenários mais prováveis e os de maior impacto.' },
-    { title: 'Documentação e treinamento', desc: 'Documentamos o BCP em linguagem operacional — não apenas conceitual. Cada colaborador relevante sabe o que fazer em cada cenário. Realizamos treinamento e tabletop exercises com as lideranças.' },
-    { title: 'Testes e revisão contínua', desc: 'Realizamos simulações periódicas (tabletop e, quando aplicável, simulações reais) com relatório de resultado e plano de melhoria. O BCP é revisado anualmente ou após mudanças significativas.' },
+
+  deliverables: [
+    'Relatório de Business Continuity Assessment',
+    'Business Impact Analysis (BIA) completo',
+    'Business Continuity Plan documentado',
+    'Estratégias de continuidade por processo crítico',
+    'Material de treinamento e tabletop exercises',
+    'Relatório de simulação com plano de melhoria',
+    'Calendário de revisões e testes periódicos',
   ],
+
   differentials: [
     { title: 'Cobertura além da TI', desc: 'Pessoas, processos, fornecedores, comunicação. Um BCP completo cobre todos os vetores de interrupção, não apenas falhas técnicas.' },
     { title: 'Alinhado a ISO 22301 e ISO 27001', desc: 'A documentação segue os frameworks internacionais, facilitando auditorias e certificações. Para empresas que buscam ISO 27001 ou SOC 2, o BCP é requisito.' },
     { title: 'Integrado ao plano de DR', desc: 'O BCP e o Disaster Recovery Plan são documentos complementares — construímos os dois de forma integrada, sem sobreposições ou gaps entre TI e operação.' },
     { title: 'Testes reais, não apenas documentos', desc: 'O valor do BCP está nos testes. Realizamos simulações que revelam o que não funciona na prática — e corrigimos antes que um incidente real exponha as falhas.' },
   ],
+
   faqs,
   schemas: [
     serviceSchema('Business Continuity', 'Plano de Business Continuity (BCP) para empresas críticas, cobrindo TI, pessoas, processos e fornecedores.', 'Business Continuity Planning'),
@@ -68,4 +106,6 @@ const content = {
   ],
 }
 
-export default function Page() { return <ServiceLayout content={content} /> }
+export default function Page() {
+  return <ServiceLayout content={content} />
+}

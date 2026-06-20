@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { ServiceLayout } from '@/components/sections/ServiceLayout'
+import { ServiceLayout, type ServicePageContent } from '@/components/sections/ServiceLayout'
 import { serviceSchema, breadcrumbSchema, faqPageSchema } from '@/lib/schema'
 
 const BASE = 'https://jpxdigital.com.br'
@@ -12,27 +12,26 @@ const faqs = [
   },
   {
     question: 'O que é hardening de servidores e por que é importante?',
-    answer: 'Hardening é o processo de fortalecer a configuração de servidores, redes e sistemas para reduzir a superfície de ataque. Inclui desabilitar serviços desnecessários, aplicar configurações seguras (CIS Benchmarks), gerenciar acessos privilegiados e configurar auditoria de eventos. Um servidor não-hardened tem dezenas de vetores de ataque evitáveis.',
+    answer: 'Hardening é o processo de fortalecer a configuração de servidores, redes e sistemas para reduzir a superfície de ataque. Inclui desabilitar serviços desnecessários, aplicar configurações seguras (CIS Benchmarks), gerenciar acessos privilegiados e configurar auditoria de eventos.',
   },
   {
     question: 'Minha empresa é pequena demais para precisar de monitoramento contínuo?',
-    answer: 'Não existe empresa pequena demais para ser atacada — existe empresa pequena com poucos recursos para se recuperar. Empresas menores frequentemente têm menos controles de segurança e são alvos mais fáceis para ransomware e engenharia social. O custo de um incidente tende a ser proporcionalmente maior do que o custo da prevenção.',
+    answer: 'Não existe empresa pequena demais para ser atacada — existe empresa pequena com poucos recursos para se recuperar. Empresas menores frequentemente têm menos controles de segurança e são alvos mais fáceis para ransomware. O custo de um incidente tende a ser proporcionalmente maior do que o custo da prevenção.',
   },
   {
     question: 'O que é a abordagem Zero Trust?',
-    answer: 'Zero Trust é o princípio de que nenhum usuário, dispositivo ou rede é confiável por padrão — mesmo dentro da rede corporativa. Toda solicitação de acesso é verificada, autenticada e autorizada com base em identidade, dispositivo, localização e contexto. É o modelo oposto ao "confie em quem está dentro do firewall".',
+    answer: 'Zero Trust é o princípio de que nenhum usuário, dispositivo ou rede é confiável por padrão — mesmo dentro da rede corporativa. Toda solicitação de acesso é verificada, autenticada e autorizada com base em identidade, dispositivo, localização e contexto.',
   },
   {
     question: 'O que fazer se já sofremos um ataque cibernético?',
-    answer: 'O primeiro passo é isolar os sistemas comprometidos para conter o dano. Depois: identificar o escopo do incidente, ativar o plano de resposta a incidentes (se houver) e iniciar a recuperação a partir de um ponto limpo. A JPX Digital oferece suporte em resposta a incidentes — entre em contato imediatamente. Quanto mais rápido a contenção, menor o dano.',
+    answer: 'O primeiro passo é isolar os sistemas comprometidos para conter o dano. Depois: identificar o escopo do incidente, ativar o plano de resposta a incidentes e iniciar a recuperação a partir de um ponto limpo. A JPX Digital oferece suporte em resposta a incidentes — entre em contato imediatamente.',
   },
 ]
 
 export const metadata: Metadata = {
   title: 'Resiliência Cibernética para Empresas',
-  description:
-    'Hardening, monitoramento contínuo e resposta a incidentes para ambientes corporativos críticos. Arquitetura Zero Trust baseada em CIS Controls e NIST.',
-  keywords: ['resiliência cibernética', 'segurança da informação empresas', 'hardening de servidores', 'zero trust', 'SIEM empresarial', 'resposta a incidentes'],
+  description: 'Hardening, monitoramento contínuo e resposta a incidentes para ambientes corporativos críticos. Arquitetura Zero Trust baseada em CIS Controls e NIST.',
+  keywords: ['resiliência cibernética', 'segurança da informação empresas', 'hardening de servidores', 'zero trust', 'resposta a incidentes'],
   openGraph: {
     title: 'Resiliência Cibernética para Empresas | JPX Digital',
     description: 'Hardening, monitoramento e resposta a incidentes para ambientes críticos. Arquitetura Zero Trust.',
@@ -41,66 +40,73 @@ export const metadata: Metadata = {
   alternates: { canonical: `${BASE}/servicos/${slug}` },
 }
 
-const content = {
+const content: ServicePageContent = {
   slug,
   category: 'Segurança',
   heroHeadline: 'Resiliência Cibernética — Prevenir, Detectar e Recuperar Antes que o Ataque Comprometa o Negócio.',
-  heroSub:
-    'Segurança não é um produto. É uma arquitetura de defesa em profundidade que precisa ser construída, testada e continuamente evoluída.',
-  intro: [
-    'Cibersegurança não é uma caixa de antivírus. É uma arquitetura de defesa em profundidade que combina prevenção técnica, monitoramento contínuo, resposta estruturada e capacidade de recuperação rápida.',
-    'A JPX Digital constrói e sustenta essa arquitetura para empresas que não podem aprender com um incidente real. Trabalhamos com frameworks internacionais — CIS Controls, NIST CSF — adaptados para a realidade de ambientes corporativos brasileiros.',
-    'Nossa abordagem é Zero Trust por princípio: nenhum usuário, dispositivo ou conexão é confiável por padrão, mesmo dentro da rede corporativa. Cada acesso é verificado, cada evento é registrado, cada anomalia é investigada.',
+  heroSub: 'Segurança não é um produto. É uma arquitetura de defesa em profundidade que precisa ser construída, testada e continuamente evoluída.',
+  ctaLabel: 'Solicitar Security Assessment',
+
+  problem: {
+    headline: 'Segurança não é uma caixa de antivírus. É uma postura organizacional que precisa ser construída, testada e mantida.',
+    body: [
+      'Cibersegurança não é uma caixa de antivírus. É uma arquitetura de defesa em profundidade que combina prevenção técnica, monitoramento contínuo, resposta estruturada e capacidade de recuperação rápida.',
+      'A maioria das empresas descobre as lacunas de segurança durante um incidente real — não antes. Servidores sem hardening, acessos privilegiados sem controle, logs nunca revisados, planos de resposta nunca testados.',
+      'A JPX Digital constrói e sustenta essa arquitetura para empresas que não podem aprender com um incidente real. Trabalhamos com frameworks internacionais — CIS Controls, NIST CSF — adaptados para a realidade de ambientes corporativos brasileiros.',
+    ],
+  },
+
+  assessment: {
+    name: 'Security Readiness Assessment',
+    body: 'Avaliamos a superfície de ataque atual do seu ambiente: configurações de rede, exposição de serviços, gestão de identidades, controles de acesso privilegiado e higiene de patches. Entregamos um relatório de riscos priorizado por impacto com o roteiro de remediação.',
+    checklist: [
+      'Mapeamento da superfície de ataque atual',
+      'Avaliação de gestão de identidades e acessos privilegiados',
+      'Revisão de configurações de rede e exposição de serviços',
+      'Análise de higiene de patches e atualizações',
+      'Relatório de riscos priorizado com plano de remediação',
+    ],
+  },
+
+  process: {
+    title: 'Nossa arquitetura de resiliência cibernética',
+    steps: [
+      { title: 'Security Assessment e mapeamento de riscos', desc: 'Avaliamos a superfície de ataque atual: configurações de rede, exposição de serviços, gestão de identidades, controles de acesso privilegiado e higiene de patches. Entregamos relatório de riscos priorizado por impacto.' },
+      { title: 'Hardening e remediação', desc: 'Aplicamos configurações baseadas em CIS Benchmarks para Windows Server, Linux, redes e endpoints. Desabilitamos serviços desnecessários, endurecemos políticas de senha, implementamos MFA e gerenciamos acessos privilegiados (PAM).' },
+      { title: 'Implantação de monitoramento e alertas', desc: 'Configuramos coleta centralizada de logs, correlação de eventos (SIEM), alertas para comportamentos anômalos e dashboard de visibilidade. Você sabe o que acontece na sua infraestrutura 24/7.' },
+      { title: 'Plano de resposta a incidentes e simulações', desc: 'Documentamos o plano de resposta — quem faz o quê, em qual sequência, com quais ferramentas — e realizamos simulações de ataque para validar a capacidade de resposta.' },
+    ],
+  },
+
+  benefits: [
+    { title: 'Visibilidade 24/7', desc: 'Logs centralizados, alertas de comportamento anômalo e dashboard de segurança em tempo real.' },
+    { title: 'Superfície de ataque reduzida', desc: 'Hardening baseado em CIS Benchmarks elimina vetores desnecessários em todos os sistemas.' },
+    { title: 'Resposta documentada', desc: 'Plano de resposta a incidentes testado — não descoberto durante um ataque real.' },
+    { title: 'Conformidade com frameworks', desc: 'CIS Controls e NIST CSF como base — padrões reconhecidos por auditorias e seguradoras.' },
   ],
-  howTitle: 'Nossa arquitetura de resiliência cibernética',
-  howSteps: [
-    {
-      title: 'Security Assessment e mapeamento de riscos',
-      desc: 'Avaliamos a superfície de ataque atual: configurações de rede, exposição de serviços, gestão de identidades, controles de acesso privilegiado e higiene de patches. Entregamos relatório de riscos priorizado por impacto.',
-    },
-    {
-      title: 'Hardening e remediação',
-      desc: 'Aplicamos configurações baseadas em CIS Benchmarks para Windows Server, Linux, redes e endpoints. Desabilitamos serviços desnecessários, endurecemos políticas de senha, implementamos MFA e gerenciamos acessos privilegiados (PAM).',
-    },
-    {
-      title: 'Implantação de monitoramento e alertas',
-      desc: 'Configuramos coleta centralizada de logs, correlação de eventos (SIEM), alertas para comportamentos anômalos e dashboard de visibilidade. Você sabe o que acontece na sua infraestrutura 24/7.',
-    },
-    {
-      title: 'Plano de resposta a incidentes e simulações',
-      desc: 'Documentamos o plano de resposta — quem faz o quê, em qual sequência, com quais ferramentas — e realizamos simulações de ataque (tabletop exercises e, opcionalmente, pentest) para validar a capacidade de resposta.',
-    },
+
+  deliverables: [
+    'Relatório de Security Readiness Assessment',
+    'Relatório de riscos priorizado',
+    'Checklist de hardening aplicado por sistema',
+    'Política de gestão de identidades e acessos',
+    'Plano de resposta a incidentes (Runbook)',
+    'Dashboard de monitoramento configurado',
+    'Relatório de simulação de ataque (tabletop)',
+    'Roadmap de melhoria contínua',
   ],
+
   differentials: [
-    {
-      title: 'Baseado em CIS Controls e NIST CSF',
-      desc: 'Não inventamos frameworks. Aplicamos os padrões internacionais mais amplamente reconhecidos, adaptados para a realidade da sua empresa — sem cerimônia desnecessária.',
-    },
-    {
-      title: 'Abordagem Zero Trust de ponta a ponta',
-      desc: 'Identidade, dispositivo, rede, aplicação. Cada camada é verificada. Não existe "dentro do escritório = confiável" no nosso modelo.',
-    },
-    {
-      title: 'Monitoramento 24/7 com correlação de eventos',
-      desc: 'Logs centralizados, correlação automática e alertas de comportamento anômalo. Você é avisado de um ataque em andamento — não depois que o dano já está feito.',
-    },
-    {
-      title: 'Resposta a incidentes documentada e testada',
-      desc: 'Plano de resposta com runbooks detalhados, contatos de escalação e fluxos de decisão. Testado em simulações — não descoberto durante um incidente real.',
-    },
+    { title: 'Baseado em CIS Controls e NIST CSF', desc: 'Não inventamos frameworks. Aplicamos os padrões internacionais mais reconhecidos, adaptados para a realidade da sua empresa.' },
+    { title: 'Abordagem Zero Trust de ponta a ponta', desc: 'Identidade, dispositivo, rede, aplicação. Cada camada é verificada. Não existe "dentro do escritório = confiável" no nosso modelo.' },
+    { title: 'Monitoramento 24/7 com correlação de eventos', desc: 'Logs centralizados, correlação automática e alertas de comportamento anômalo. Você é avisado de um ataque em andamento — não depois que o dano está feito.' },
+    { title: 'Resposta a incidentes documentada e testada', desc: 'Plano de resposta com runbooks detalhados, contatos de escalação e fluxos de decisão. Testado em simulações antes de precisar em produção.' },
   ],
+
   faqs,
   schemas: [
-    serviceSchema(
-      'Resiliência Cibernética',
-      'Hardening, monitoramento contínuo, resposta a incidentes e arquitetura Zero Trust para ambientes corporativos críticos.',
-      'Cybersecurity Service'
-    ),
-    breadcrumbSchema([
-      { name: 'Home', item: BASE },
-      { name: 'Serviços', item: `${BASE}/servicos` },
-      { name: 'Resiliência Cibernética', item: `${BASE}/servicos/${slug}` },
-    ]),
+    serviceSchema('Resiliência Cibernética', 'Hardening, monitoramento contínuo, resposta a incidentes e arquitetura Zero Trust para ambientes corporativos críticos.', 'Cybersecurity Service'),
+    breadcrumbSchema([{ name: 'Home', item: BASE }, { name: 'Serviços', item: `${BASE}/servicos` }, { name: 'Resiliência Cibernética', item: `${BASE}/servicos/${slug}` }]),
     faqPageSchema(faqs),
   ],
 }

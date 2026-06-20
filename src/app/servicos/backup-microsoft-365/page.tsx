@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { ServiceLayout } from '@/components/sections/ServiceLayout'
+import { ServiceLayout, type ServicePageContent } from '@/components/sections/ServiceLayout'
 import { serviceSchema, breadcrumbSchema, faqPageSchema } from '@/lib/schema'
 
 const BASE = 'https://jpxdigital.com.br'
@@ -30,8 +30,7 @@ const faqs = [
 
 export const metadata: Metadata = {
   title: 'Backup Microsoft 365 — E-mail, Teams e SharePoint',
-  description:
-    'Backup independente do Microsoft 365: e-mails, Teams, SharePoint e OneDrive. Restore granular em minutos. Conformidade LGPD. A Microsoft não faz isso por você.',
+  description: 'Backup independente do Microsoft 365: e-mails, Teams, SharePoint e OneDrive. Restore granular em minutos. Conformidade LGPD. A Microsoft não faz isso por você.',
   keywords: ['backup microsoft 365', 'backup office 365', 'backup M365', 'backup teams sharepoint', 'backup exchange online'],
   openGraph: {
     title: 'Backup Microsoft 365 | JPX Digital',
@@ -41,54 +40,68 @@ export const metadata: Metadata = {
   alternates: { canonical: `${BASE}/servicos/${slug}` },
 }
 
-const content = {
+const content: ServicePageContent = {
   slug,
   category: 'Continuidade & Segurança',
   heroHeadline: 'Backup Microsoft 365 — A Microsoft Protege a Plataforma. Quem Protege os Seus Dados é Você.',
-  heroSub:
-    'E-mails deletados, ransomware no SharePoint, saída de colaboradores. O M365 nativo não te salva nesses cenários. Backup independente, sim.',
-  intro: [
-    'Existe um equívoco perigoso nas empresas: acreditar que a Microsoft faz backup dos dados do Microsoft 365. Na prática, a Microsoft garante a disponibilidade da plataforma — o que é diferente de garantir a recuperação dos seus dados em caso de exclusão acidental, ataque de ransomware, sobreescrita ou saída de um colaborador.',
-    'O modelo de responsabilidade compartilhada da Microsoft é explícito: a proteção dos dados do usuário é responsabilidade da empresa. Para Exchange Online, SharePoint, OneDrive, Teams e Grupos M365, o cliente precisa de uma solução de backup independente.',
-    'A JPX Digital implanta e gerencia backup completo do Microsoft 365 com granularidade de item — você restaura um único e-mail de 6 meses atrás em minutos, sem precisar abrir chamado na Microsoft.',
+  heroSub: 'E-mails deletados, ransomware no SharePoint, saída de colaboradores. O M365 nativo não te salva nesses cenários. Backup independente, sim.',
+  ctaLabel: 'Solicitar M365 Backup Assessment',
+
+  problem: {
+    headline: 'A Microsoft garante a disponibilidade da plataforma M365 — não a recuperação dos seus dados. São coisas diferentes.',
+    body: [
+      'Existe um equívoco perigoso nas empresas: acreditar que a Microsoft faz backup dos dados do Microsoft 365. Na prática, a Microsoft garante a disponibilidade da plataforma — o que é diferente de garantir a recuperação dos seus dados em caso de exclusão acidental, ataque de ransomware, sobreescrita ou saída de um colaborador.',
+      'O modelo de responsabilidade compartilhada da Microsoft é explícito: a proteção dos dados do usuário é responsabilidade da empresa. Para Exchange Online, SharePoint, OneDrive, Teams e Grupos M365, o cliente precisa de uma solução de backup independente.',
+      'A JPX Digital implanta e gerencia backup completo do Microsoft 365 com granularidade de item — você restaura um único e-mail de 6 meses atrás em minutos, sem precisar abrir chamado na Microsoft.',
+    ],
+  },
+
+  assessment: {
+    name: 'M365 Backup Readiness Assessment',
+    body: 'Mapeamos todas as caixas postais, sites SharePoint, canais Teams, grupos e usuários licenciados. Avaliamos o que está atualmente protegido (e o que não está), identificamos os riscos de perda de dados e definimos a política de retenção adequada para o seu negócio e setor.',
+    checklist: [
+      'Inventário completo de caixas postais, SharePoint, Teams e OneDrive',
+      'Avaliação do que está protegido no M365 nativo vs o que está exposto',
+      'Definição de política de retenção por tipo de dado e exigência regulatória',
+      'Análise de conformidade LGPD e requisitos setoriais',
+      'Proposta de solução de backup com estimativa de armazenamento',
+    ],
+  },
+
+  process: {
+    title: 'Como implantamos o backup M365',
+    steps: [
+      { title: 'Inventário completo do ambiente M365', desc: 'Mapeamos todas as caixas postais, sites SharePoint, canais Teams, grupos e usuários licenciados. Definimos o escopo de proteção e política de retenção adequada para o seu negócio e setor.' },
+      { title: 'Conexão via API Microsoft Graph', desc: 'Utilizamos API nativa Microsoft Graph — sem senhas armazenadas, sem agente instalado nos dispositivos dos usuários. A solução opera com App Registration e permissões mínimas necessárias.' },
+      { title: 'Backup incremental e retenção configurável', desc: 'Backups incrementais automáticos com frequência configurável (diário, por hora). Retenção de 30 a 365 dias (ou mais para compliance). Armazenamento no Brasil com criptografia AES-256.' },
+      { title: 'Restore granular e self-service', desc: 'Restauramos um e-mail individual, pasta, arquivo, site SharePoint ou canal Teams — sem precisar restaurar tudo. O portal de self-service permite que o administrador faça restores simples sem acionar a JPX Digital.' },
+    ],
+  },
+
+  benefits: [
+    { title: 'Independente da Microsoft', desc: 'Se a Microsoft tiver um incidente, seus dados de backup não são afetados. Proteção real, não redundância no mesmo provedor.' },
+    { title: 'Restore granular em minutos', desc: 'Um e-mail, arquivo ou mensagem de Teams específico — no ponto exato, sem restaurar a caixa postal inteira.' },
+    { title: 'Retenção estendida para compliance', desc: 'LGPD, CFM, regulações financeiras. Configuramos retenção de até 7 anos com documentação completa para DPO e auditorias.' },
+    { title: 'Cobertura total M365', desc: 'Exchange, Teams, SharePoint, OneDrive e Grupos M365 em uma única solução com console unificado.' },
   ],
-  howTitle: 'Como implantamos o backup M365',
-  howSteps: [
-    {
-      title: 'Inventário completo do ambiente M365',
-      desc: 'Mapeamos todas as caixas postais, sites SharePoint, canais Teams, grupos e usuários licenciados. Definimos o escopo de proteção e política de retenção adequada para o seu negócio e setor.',
-    },
-    {
-      title: 'Conexão via API Microsoft Graph',
-      desc: 'Utilizamos API nativa Microsoft Graph — sem senhas armazenadas, sem agente instalado nos dispositivos dos usuários. A solução opera com App Registration e permissões mínimas necessárias.',
-    },
-    {
-      title: 'Backup incremental e retenção configurável',
-      desc: 'Backups incrementais automáticos com frequência configurável (diário, por hora). Retenção de 30 a 365 dias (ou mais para compliance). Armazenamento no Brasil com criptografia AES-256.',
-    },
-    {
-      title: 'Restore granular e self-service',
-      desc: 'Restauramos um e-mail individual, pasta, arquivo, site SharePoint ou canal Teams — sem precisar restaurar tudo. O portal de self-service permite que o administrador faça restores simples sem acionar a JPX Digital.',
-    },
+
+  deliverables: [
+    'Relatório de M365 Backup Readiness Assessment',
+    'Solução de backup implantada e configurada',
+    'Política de retenção documentada por tipo de dado',
+    'Documentação de fluxo de dados para LGPD/DPO',
+    'Portal de restore self-service configurado',
+    'Relatório de teste de restauração',
+    'Relatório mensal de status de backup e cobertura',
   ],
+
   differentials: [
-    {
-      title: 'Backup independente da Microsoft',
-      desc: 'Se houver um incidente na plataforma M365, seus dados de backup não são afetados. Proteção real, não redundância dependente do mesmo provedor.',
-    },
-    {
-      title: 'Restore granular em minutos',
-      desc: 'Recupera um e-mail, arquivo ou mensagem de Teams específico no ponto exato — sem precisar restaurar a caixa postal inteira ou aguardar horas.',
-    },
-    {
-      title: 'Conformidade LGPD e regulatória',
-      desc: 'Dados armazenados no Brasil, com documentação completa de fluxo de dados, relatório de auditoria e retenção configurável para exigências setoriais (saúde, financeiro, jurídico).',
-    },
-    {
-      title: 'Cobertura completa: Exchange, Teams, SharePoint, OneDrive',
-      desc: 'Não apenas e-mails. Protegemos mensagens de Teams, arquivos do SharePoint, OneDrive de todos os usuários e conteúdo de Grupos M365.',
-    },
+    { title: 'Backup independente da Microsoft', desc: 'Se houver um incidente na plataforma M365, seus dados de backup não são afetados. Proteção real, não redundância dependente do mesmo provedor.' },
+    { title: 'Restore granular em minutos', desc: 'Recupera um e-mail, arquivo ou mensagem de Teams específico no ponto exato — sem precisar restaurar a caixa postal inteira ou aguardar horas.' },
+    { title: 'Conformidade LGPD e regulatória', desc: 'Dados armazenados no Brasil, com documentação completa de fluxo de dados, relatório de auditoria e retenção configurável para exigências setoriais (saúde, financeiro, jurídico).' },
+    { title: 'Cobertura completa: Exchange, Teams, SharePoint, OneDrive', desc: 'Não apenas e-mails. Protegemos mensagens de Teams, arquivos do SharePoint, OneDrive de todos os usuários e conteúdo de Grupos M365.' },
   ],
+
   faqs,
   schemas: [
     serviceSchema(

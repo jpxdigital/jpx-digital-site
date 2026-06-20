@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { ServiceLayout } from '@/components/sections/ServiceLayout'
+import { ServiceLayout, type ServicePageContent } from '@/components/sections/ServiceLayout'
 import { serviceSchema, breadcrumbSchema, faqPageSchema } from '@/lib/schema'
 
 const BASE = 'https://jpxdigital.com.br'
@@ -12,7 +12,7 @@ const faqs = [
   },
   {
     question: 'Vale a pena virtualizar ou migrar direto para cloud?',
-    answer: 'Depende. Para servidores com ciclo de vida restante (2-5 anos), virtualização on-premise pode ser mais econômica. Para infraestrutura nova, cloud pode fazer mais sentido. Frequentemente a resposta é um ambiente híbrido: virtualização on-prem para workloads estáveis + cloud para workloads variáveis. O assessement de TCO define a melhor estratégia.',
+    answer: 'Depende. Para servidores com ciclo de vida restante (2-5 anos), virtualização on-premise pode ser mais econômica. Para infraestrutura nova, cloud pode fazer mais sentido. Frequentemente a resposta é um ambiente híbrido: virtualização on-prem para workloads estáveis + cloud para workloads variáveis. O assessment de TCO define a melhor estratégia.',
   },
   {
     question: 'O que é alta disponibilidade em ambientes virtualizados?',
@@ -30,36 +30,74 @@ const faqs = [
 
 export const metadata: Metadata = {
   title: 'Virtualização de Servidores — VMware, Hyper-V e KVM',
-  description:
-    'Virtualização corporativa com VMware vSphere, Microsoft Hyper-V e KVM. Alta disponibilidade, hiperconvergência e suporte a Oracle Database. Assessment gratuito.',
+  description: 'Virtualização corporativa com VMware vSphere, Microsoft Hyper-V e KVM. Alta disponibilidade, hiperconvergência e suporte a Oracle Database.',
   keywords: ['virtualização de servidores', 'vmware consultoria', 'hyper-v implementação', 'virtualização corporativa', 'hiperconvergência'],
   openGraph: { title: 'Virtualização de Servidores | JPX Digital', description: 'VMware, Hyper-V e KVM para ambientes corporativos críticos.', url: `${BASE}/servicos/${slug}` },
   alternates: { canonical: `${BASE}/servicos/${slug}` },
 }
 
-const content = {
+const content: ServicePageContent = {
   slug,
   category: 'Infraestrutura',
   heroHeadline: 'Virtualização de Servidores — Alta Disponibilidade com VMware, Hyper-V e KVM.',
   heroSub: 'Consolide sua infraestrutura, elimine servidores ociosos e tenha failover automático com a plataforma de virtualização certa para o seu ambiente.',
-  intro: [
-    'Virtualização é a base de qualquer infraestrutura moderna. Consolidar servidores físicos em máquinas virtuais reduz custo de hardware, facilita backup, simplifica DR e permite crescer a capacidade sem novas aquisições.',
-    'A JPX Digital projeta e implementa ambientes de virtualização com VMware vSphere, Microsoft Hyper-V e KVM, incluindo clusters de alta disponibilidade, hiperconvergência com vSAN e planejamento de capacidade para os próximos anos.',
-    'Nossa abordagem considera o ciclo de vida dos servidores existentes, as cargas que precisam de HA real (não apenas restart automático) e a estratégia de evolução futura — seja para cloud, seja para expansão on-prem.',
+  ctaLabel: 'Solicitar Virtualization Readiness Assessment',
+
+  problem: {
+    headline: 'Servidores físicos subutilizados são dinheiro parado. E um servidor físico sem redundância é um ponto único de falha esperando o momento certo.',
+    body: [
+      'Infraestrutura com servidores físicos dedicados por aplicação desperdiça capacidade e multiplica pontos de falha. Quando um servidor físico falha, a aplicação cai — e o tempo de recuperação depende de peças, RMA ou compra emergencial.',
+      'Virtualização resolve dois problemas ao mesmo tempo: consolida servidores (menos hardware, menos custo), e habilita HA — quando um host físico falha, as VMs reiniciam automaticamente em outro host do cluster em minutos.',
+      'A JPX Digital projeta e implementa ambientes de virtualização com VMware vSphere, Hyper-V e KVM, incluindo clusters de alta disponibilidade, hiperconvergência com vSAN e planejamento de capacidade para os próximos anos.',
+    ],
+  },
+
+  assessment: {
+    name: 'Virtualization Readiness Assessment',
+    body: 'Inventariamos todos os servidores físicos, medimos uso real de CPU, memória e I/O, calculamos o dimensionamento correto para os hosts virtualizados e identificamos quais workloads não devem ser virtualizados. Você recebe um relatório de consolidação com estimativa de TCO comparado ao cenário atual.',
+    checklist: [
+      'Inventário e medição de uso real por servidor físico',
+      'Dimensionamento de hosts virtualizados (CPU, RAM, storage)',
+      'Identificação de workloads candidatos e não candidatos a virtualização',
+      'Análise de TCO: virtualização on-prem vs cloud vs manutenção atual',
+      'Proposta de arquitetura de cluster com HA e planejamento de capacidade',
+    ],
+  },
+
+  process: {
+    title: 'Como implementamos a virtualização',
+    steps: [
+      { title: 'Assessment e dimensionamento', desc: 'Inventariamos todos os servidores físicos, medimos uso real de CPU, memória e I/O, e calculamos o dimensionamento dos hosts virtualizados. Identificamos candidatos a consolidação e workloads que não devem ser virtualizados.' },
+      { title: 'Arquitetura do cluster', desc: 'Definimos arquitetura: número de hosts, storage (SAN, NAS ou vSAN), rede (separação de tráfego de management, VM e storage), políticas de HA e DRS (VMware) ou Failover Clustering (Hyper-V).' },
+      { title: 'Implantação e migração', desc: 'Implantamos o ambiente virtual e migramos as cargas existentes — servidor a servidor, com janelas de manutenção planejadas e rollback disponível até a confirmação de estabilidade.' },
+      { title: 'Documentação e gestão de capacidade', desc: 'Documentamos toda a infraestrutura, configuramos monitoramento e entregamos planejamento de capacidade para os próximos 2-3 anos. Você sabe quando precisará expandir antes de ficar sem recursos.' },
+    ],
+  },
+
+  benefits: [
+    { title: 'Failover automático', desc: 'Host físico falha — VMs reiniciam em outro host em minutos. Sem intervenção manual, sem esperar peças.' },
+    { title: 'Consolidação de hardware', desc: 'Menos servidores físicos, menos energia, menos espaço em rack. Consolidar 10 servidores em 2 hosts é o cenário típico.' },
+    { title: 'Backup e DR simplificados', desc: 'Backup de VMs completas com snapshot consistente. DR é replicar VMs para outro site.' },
+    { title: 'Caminho para cloud', desc: 'VMs VMware migram para OCI, Azure e AWS com ferramentas nativas. Virtualizar hoje é preparar a migração futura.' },
   ],
-  howTitle: 'Como implementamos a virtualização',
-  howSteps: [
-    { title: 'Assessment e dimensionamento', desc: 'Inventariamos todos os servidores físicos, medimos uso real de CPU, memória e I/O, e calculamos o dimensionamento dos hosts virtualizados. Identificamos candidatos a consolidação e workloads que não devem ser virtualizados.' },
-    { title: 'Arquitetura do cluster', desc: 'Definimos arquitetura: número de hosts, storage (SAN, NAS ou vSAN), rede (separação de tráfego de management, VM e storage), políticas de HA e DRS (VMware) ou Failover Clustering (Hyper-V).' },
-    { title: 'Implantação e migração', desc: 'Implantamos o ambiente virtual e migramos as cargas existentes — servidor a servidor, com janelas de manutenção planejadas e rollback disponível até a confirmação de estabilidade.' },
-    { title: 'Documentação e gestão de capacidade', desc: 'Documentamos toda a infraestrutura, configuramos monitoramento e entregamos planejamento de capacidade para os próximos 2-3 anos. Você sabe quando precisará expandir antes de ficar sem recursos.' },
+
+  deliverables: [
+    'Relatório de Virtualization Readiness Assessment',
+    'Documento de arquitetura de cluster (VMware/Hyper-V)',
+    'Plano de migração de servidores físicos para VMs',
+    'Configuração completa do ambiente virtualizado',
+    'Planejamento de capacidade (2-3 anos)',
+    'Runbook de operação e procedimentos de HA',
+    'Documentação técnica completa do ambiente',
   ],
+
   differentials: [
     { title: 'Suporte a Oracle em VMware', desc: 'Oracle Database em VMware requer configuração específica para suporte Oracle. Nossa equipe conhece esses requisitos e implementa conforme as diretrizes Oracle.' },
     { title: 'Expertise em hiperconvergência', desc: 'VMware vSAN e Nutanix para ambientes que querem eliminar SAN dedicada e simplificar a operação. Avaliamos quando HCI é a decisão financeiramente correta.' },
     { title: 'Migração sem impacto em produção', desc: 'P2V (Physical to Virtual) e V2V (Virtual to Virtual) com ferramentas profissionais e janelas de manutenção controladas. Rollback planejado para cada etapa.' },
     { title: 'Visão de ciclo de vida', desc: 'Projetamos a infraestrutura considerando cloud como destino futuro. VMs bem organizadas hoje migram mais facilmente para cloud amanhã.' },
   ],
+
   faqs,
   schemas: [
     serviceSchema('Virtualização de Servidores', 'Virtualização corporativa com VMware, Hyper-V e KVM. Alta disponibilidade, hiperconvergência e suporte a Oracle.', 'IT Infrastructure Service'),
@@ -68,4 +106,6 @@ const content = {
   ],
 }
 
-export default function Page() { return <ServiceLayout content={content} /> }
+export default function Page() {
+  return <ServiceLayout content={content} />
+}

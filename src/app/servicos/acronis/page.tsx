@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { ServiceLayout } from '@/components/sections/ServiceLayout'
+import { ServiceLayout, type ServicePageContent } from '@/components/sections/ServiceLayout'
 import { serviceSchema, breadcrumbSchema, faqPageSchema } from '@/lib/schema'
 
 const BASE = 'https://jpxdigital.com.br'
@@ -30,36 +30,74 @@ const faqs = [
 
 export const metadata: Metadata = {
   title: 'Backup com Acronis Cyber Protect — Implementação e Suporte',
-  description:
-    'Implementação e gestão de backup corporativo com Acronis Cyber Protect. Proteção anti-ransomware, Instant Restore e backup para cloud. Assessment gratuito.',
+  description: 'Implementação e gestão de backup corporativo com Acronis Cyber Protect. Proteção anti-ransomware, Instant Restore e backup para cloud.',
   keywords: ['acronis cyber protect', 'acronis backup corporativo', 'acronis implementação', 'backup acronis brasil', 'acronis instant restore'],
   openGraph: { title: 'Backup com Acronis | JPX Digital', description: 'Acronis Cyber Protect: backup, proteção anti-ransomware e recuperação instantânea.', url: `${BASE}/servicos/${slug}` },
   alternates: { canonical: `${BASE}/servicos/${slug}` },
 }
 
-const content = {
+const content: ServicePageContent = {
   slug,
   category: 'Continuidade & Segurança',
   heroHeadline: 'Acronis Cyber Protect — Backup que Também Protege contra Ransomware em Tempo Real.',
   heroSub: 'Enquanto outras soluções protegem seus dados após o ataque, o Acronis detecta e bloqueia o ransomware durante a execução.',
-  intro: [
-    'Backup corporativo evoluiu. A ameaça de ransomware — que criptografa arquivos em minutos e torna o backup anterior ineficaz se não estiver protegido — exige uma solução que integre backup e proteção ativa em uma única plataforma.',
-    'O Acronis Cyber Protect combina backup de imagem completa (bare-metal restore), proteção anti-ransomware com IA (Acronis Active Protection), avaliação de vulnerabilidades, patch management e Instant Restore em um único agente gerenciado centralmente.',
-    'A JPX Digital é parceira Acronis e implementa, configura e gerencia ambientes Acronis para empresas de todos os portes — de PMEs com dezenas de máquinas a ambientes corporativos com centenas de endpoints e servidores.',
+  ctaLabel: 'Solicitar Backup Readiness Assessment',
+
+  problem: {
+    headline: 'Backup corporativo tradicional não é mais suficiente. Ransomware criptografa seus dados em minutos — e pode comprometer o backup junto.',
+    body: [
+      'A ameaça de ransomware mudou o jogo do backup corporativo. Atacantes modernos conhecem onde os backups ficam — e os comprometem antes de criptografar os dados de produção. Um backup que estava ok ontem pode estar inacessível hoje.',
+      'O Acronis Cyber Protect combina backup de imagem completa (bare-metal restore), proteção anti-ransomware com IA (Acronis Active Protection), avaliação de vulnerabilidades, patch management e Instant Restore em um único agente gerenciado centralmente.',
+      'A JPX Digital é parceira Acronis e implementa, configura e gerencia ambientes Acronis para empresas de todos os portes — de PMEs com dezenas de máquinas a ambientes corporativos com centenas de endpoints e servidores.',
+    ],
+  },
+
+  assessment: {
+    name: 'Backup Readiness Assessment (Acronis)',
+    body: 'Mapeamos o que precisa ser protegido: servidores, VMs, endpoints, dados críticos. Definimos RPO e RTO para cada workload e calculamos o armazenamento necessário (local + cloud). Identificamos gaps de proteção no ambiente atual antes de qualquer implantação.',
+    checklist: [
+      'Inventário completo de sistemas a proteger (servidores, VMs, endpoints)',
+      'Definição de RPO e RTO por workload crítico',
+      'Dimensionamento de storage de backup (local e cloud)',
+      'Análise do ambiente de backup atual e gaps de cobertura',
+      'Proposta de política de backup e retenção por workload',
+    ],
+  },
+
+  process: {
+    title: 'Nossa implementação Acronis',
+    steps: [
+      { title: 'Assessment do ambiente de backup', desc: 'Mapeamos o que precisa ser protegido: servidores, VMs, endpoints, dados críticos. Definimos RPO e RTO para cada workload e calculamos o armazenamento necessário (local + cloud).' },
+      { title: 'Instalação e configuração central', desc: 'Instalamos o Acronis Cyber Infrastructure (self-hosted) ou configuramos acesso ao Acronis Cloud. Implantamos agentes em todos os sistemas e configuramos políticas de backup por grupo (frequência, retenção, destino, criptografia).' },
+      { title: 'Testes de restauração documentados', desc: 'Realizamos testes de restauração completa (bare-metal, Instant Restore e granular) antes de qualquer go-live. Um backup que nunca foi testado é um backup que pode não funcionar quando for necessário.' },
+      { title: 'Gestão e alertas contínuos', desc: 'Monitoramos jobs de backup diariamente, investigamos falhas antes que se tornem problemas, gerenciamos capacidade de armazenamento e realizamos testes de restauração periódicos com relatório documentado.' },
+    ],
+  },
+
+  benefits: [
+    { title: 'Proteção durante o ataque', desc: 'Acronis Active Protection detecta ransomware em execução e bloqueia antes que comprometa os dados — não só depois.' },
+    { title: 'RTO de minutos com Instant Restore', desc: 'Servidor falhado → sistema rodando como VM em 1-5 minutos. A restauração completa acontece em segundo plano.' },
+    { title: 'Gestão unificada', desc: 'Servidores, VMs e endpoints de toda a empresa em um único console com políticas centralizadas.' },
+    { title: 'Backup criptografado', desc: 'AES-256 em trânsito e em repouso. Seus dados de backup não são legíveis mesmo se o storage for comprometido.' },
   ],
-  howTitle: 'Nossa implementação Acronis',
-  howSteps: [
-    { title: 'Assessment do ambiente de backup', desc: 'Mapeamos o que precisa ser protegido: servidores, VMs, endpoints, dados críticos. Definimos RPO e RTO para cada workload e calculamos o armazenamento necessário (local + cloud).' },
-    { title: 'Instalação e configuração central', desc: 'Instalamos o Acronis Cyber Infrastructure (self-hosted) ou configuramos acesso ao Acronis Cloud. Implantamos agentes em todos os sistemas e configuramos políticas de backup por grupo (frequência, retenção, destino, criptografia).' },
-    { title: 'Testes de restauração documentados', desc: 'Realizamos testes de restauração completa (bare-metal, Instant Restore e granular) antes de qualquer go-live. Um backup que nunca foi testado é um backup que pode não funcionar quando for necessário.' },
-    { title: 'Gestão e alertas contínuos', desc: 'Monitoramos jobs de backup diariamente, investigamos falhas antes que se tornem problemas, gerenciamos capacidade de armazenamento e realizamos testes de restauração periódicos com relatório documentado.' },
+
+  deliverables: [
+    'Relatório de Backup Readiness Assessment (Acronis)',
+    'Ambiente Acronis implantado e configurado',
+    'Políticas de backup por grupo de workload',
+    'Relatório de testes de restauração documentados',
+    'Runbook de procedimentos de restore',
+    'Configuração de alertas e monitoramento de jobs',
+    'Relatório mensal de status de backup',
   ],
+
   differentials: [
     { title: 'Proteção anti-ransomware ativa', desc: 'O Acronis Active Protection detecta comportamentos de ransomware (criptografia em massa de arquivos) e os bloqueia em tempo real, restaurando automaticamente os arquivos afetados do cache local.' },
     { title: 'Instant Restore — RTO de minutos', desc: 'Em caso de falha de servidor, inicializamos o sistema diretamente do backup como VM em 1-5 minutos, enquanto a restauração completa acontece em segundo plano. Downtime de minutos, não horas.' },
     { title: 'Gestão unificada servidor e endpoint', desc: 'Um único console para gerenciar backup de servidores, VMs e notebooks da empresa. Políticas centralizadas, relatórios unificados e inventário completo do que está protegido.' },
     { title: 'Parceiro Acronis com suporte técnico', desc: 'Como parceiros Acronis, abrimos casos diretamente com o suporte técnico do fabricante quando necessário — sem depender apenas de documentação ou fórum.' },
   ],
+
   faqs,
   schemas: [
     serviceSchema('Backup com Acronis Cyber Protect', 'Implementação e gestão de backup corporativo com Acronis Cyber Protect. Proteção anti-ransomware e Instant Restore.', 'IT Security Service'),
@@ -68,4 +106,6 @@ const content = {
   ],
 }
 
-export default function Page() { return <ServiceLayout content={content} /> }
+export default function Page() {
+  return <ServiceLayout content={content} />
+}
