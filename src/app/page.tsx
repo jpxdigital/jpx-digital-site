@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Image from 'next/image'
 import {
   ArrowRight, CheckCircle2, AlertTriangle, Server,
   Database, RefreshCw, Shield, TrendingDown, Cloud,
@@ -283,31 +282,20 @@ export default function Home() {
                 <p className="text-center text-[0.6875rem] font-semibold text-gray-400 uppercase tracking-widest mb-8">
                   Certificações Individuais
                 </p>
-                <div className="flex flex-wrap justify-center items-center gap-6">
-                  {/* AWS badges — imagens oficiais */}
+                <div className="flex flex-wrap justify-center items-center gap-4">
                   {[
-                    { src: '/badges/aws-sales-accredited.png', alt: 'AWS Partner: Sales Accreditation' },
-                    { src: '/badges/aws-technical-accredited.png', alt: 'AWS Partner: Technical Accredited' },
-                    { src: '/badges/aws-sap-technical-skill.png', alt: 'AWS Partner: SAP on AWS Technical Skill' },
-                  ].map((badge) => (
-                    <Image
-                      key={badge.src}
-                      src={badge.src}
-                      alt={badge.alt}
-                      width={96}
-                      height={96}
-                      className="w-20 h-20 object-contain"
-                    />
-                  ))}
-                  {/* Acronis badges — text cards */}
-                  {[
-                    { label: 'Advanced Backup', role: 'Cloud Sales Associate', color: 'bg-[#2A4590]', accent: 'text-[#00AEEF]' },
-                    { label: 'Advanced Email Security', role: 'Cloud Tech Associate', color: 'bg-[#2A4590]', accent: 'text-[#00AEEF]' },
+                    { abbrev: 'AWS', label: 'Sales Accredited', role: 'Trained Partner', bg: 'bg-[#232F3E]', accent: 'bg-[#FF9900]', abbrevColor: 'text-[#FF9900]', labelColor: 'text-[#FF9900]' },
+                    { abbrev: 'AWS', label: 'Technical Accredited', role: 'Trained Partner', bg: 'bg-[#232F3E]', accent: 'bg-[#FF9900]', abbrevColor: 'text-[#FF9900]', labelColor: 'text-[#FF9900]' },
+                    { abbrev: 'AWS', label: 'SAP on AWS', role: 'Technical Skill · Partner', bg: 'bg-[#232F3E]', accent: 'bg-[#FF9900]', abbrevColor: 'text-[#FF9900]', labelColor: 'text-[#FF9900]' },
+                    { abbrev: 'Acronis', label: 'Advanced Backup', role: 'Cloud Sales Associate', bg: 'bg-[#2A4590]', accent: 'bg-[#00AEEF]/20', abbrevColor: 'text-[#00AEEF]', labelColor: 'text-[#00AEEF]' },
+                    { abbrev: 'Acronis', label: 'Advanced Email Security', role: 'Cloud Tech Associate', bg: 'bg-[#2A4590]', accent: 'bg-[#00AEEF]/20', abbrevColor: 'text-[#00AEEF]', labelColor: 'text-[#00AEEF]' },
                   ].map((b) => (
-                    <div key={b.label} className={`${b.color} rounded-xl flex flex-col items-center py-4 px-3 gap-1.5 w-28 text-center`}>
-                      <span className="text-white/40 text-[0.6rem] font-semibold uppercase tracking-wide leading-tight">Acronis Academy</span>
-                      <span className={`${b.accent} text-[0.6875rem] font-bold leading-tight`}>{b.label}</span>
-                      <span className="text-white/55 text-[0.625rem] leading-tight">{b.role}</span>
+                    <div key={b.label} className={`${b.bg} rounded-xl flex flex-col items-center py-5 px-3 gap-2 w-32 text-center`}>
+                      <div className={`${b.accent} rounded-lg w-9 h-9 flex items-center justify-center`}>
+                        <span className={`${b.abbrevColor} font-heading font-bold text-[0.65rem] tracking-tight`}>{b.abbrev}</span>
+                      </div>
+                      <span className={`${b.labelColor} text-[0.6875rem] font-bold leading-tight`}>{b.label}</span>
+                      <span className="text-white/50 text-[0.625rem] leading-tight">{b.role}</span>
                     </div>
                   ))}
                 </div>
