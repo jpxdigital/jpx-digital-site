@@ -105,15 +105,13 @@ export default function Home() {
                   </div>
                 </FadeIn>
 
-                <FadeIn delay={0.05}>
-                  <h1
-                    id="hero-title"
-                    className="font-heading font-bold text-white leading-[1.1] tracking-tight mb-6 text-[1.875rem] sm:text-[2.25rem] lg:text-[2rem] xl:text-[2.625rem]"
-                  >
-                    Seu ambiente está preparado para{' '}
-                    <span className="text-secondary">o que pode acontecer amanhã?</span>
-                  </h1>
-                </FadeIn>
+                <h1
+                  id="hero-title"
+                  className="font-heading font-bold text-white leading-[1.1] tracking-tight mb-6 text-[1.875rem] sm:text-[2.25rem] lg:text-[2rem] xl:text-[2.625rem]"
+                >
+                  Seu ambiente está preparado para{' '}
+                  <span className="text-secondary">o que pode acontecer amanhã?</span>
+                </h1>
 
                 <FadeIn delay={0.08}>
                   <p className="text-white/60 text-[1.0625rem] leading-relaxed max-w-md mb-10">

@@ -50,10 +50,10 @@ export function Footer() {
             </p>
             <div className="space-y-2 text-sm">
               <a
-                href="mailto:jp@jpxdigital.com.br"
+                href="/contato"
                 className="block hover:text-white transition-colors"
               >
-                jp@jpxdigital.com.br
+                Formulário de contato
               </a>
               <a
                 href="tel:+5518930852246"
