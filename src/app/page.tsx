@@ -328,7 +328,7 @@ export default function Home() {
         </section>
 
         {/* ── IA Free ───────────────────────────────────────── */}
-        <section className="py-24 lg:py-32 bg-white" aria-labelledby="ia-free-title">
+        <section className="py-24 lg:py-32 bg-white" aria-labelledby="helena-title">
           <div className="container-page">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <FadeIn direction="left">
@@ -336,7 +336,7 @@ export default function Home() {
                   <span className="w-1.5 h-1.5 rounded-full bg-success shrink-0" />
                   Gratuito · Sem cadastro obrigatório
                 </div>
-                <h2 id="ia-free-title" className="type-h2 text-gray-900 mb-4">
+                <h2 id="helena-title" className="type-h2 text-gray-900 mb-4">
                   Conheça a Helena —{' '}
                   <span className="text-primary">assistente de TI gratuita para todos.</span>
                 </h2>
@@ -357,7 +357,7 @@ export default function Home() {
                   ))}
                 </ul>
                 <a
-                  href="https://ia-free.jpxdigital.com.br"
+                  href="https://helena.jpxdigital.com.br"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary text-white font-semibold rounded-xl hover:bg-primary-hover transition-colors text-[0.9375rem]"
