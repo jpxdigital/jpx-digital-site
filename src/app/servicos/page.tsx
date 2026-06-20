@@ -54,7 +54,7 @@ const allServices = [
     category: 'Certificados & PKI',
     items: [
       { href: '/servicos/certificados-digitais', icon: Award, title: 'Certificados Digitais ICP-Brasil', desc: 'Revendedor autorizado de e-CPF, e-CNPJ, NF-e, SSL/TLS — com gestão de renovação.' },
-      { href: '/segmentos/autoridades-certificadoras', icon: ShieldCheck, title: 'Sala Cofre Nível 4', desc: 'Projeto e implantação de sala cofre EN 1047-2 para ambientes regulados e ACs.' },
+      { href: '/servicos/sala-cofre', icon: ShieldCheck, title: 'Sala Cofre Nível 4', desc: 'Projeto, implantação, manutenção periódica e auditoria EN 1047-2 para ambientes regulados.' },
     ],
   },
   {

@@ -6,6 +6,7 @@ const services = [
   { href: '/servicos/backup-corporativo', label: 'Backup Corporativo' },
   { href: '/servicos/disaster-recovery', label: 'Disaster Recovery' },
   { href: '/servicos/certificados-digitais', label: 'Certificados Digitais' },
+  { href: '/servicos/sala-cofre', label: 'Sala Cofre Nível 4' },
   { href: '/servicos/resiliencia-cibernetica', label: 'Resiliência Cibernética' },
   { href: '/servicos/suporte-gerenciado', label: 'Suporte Gerenciado' },
 ]

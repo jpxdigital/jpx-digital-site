@@ -57,7 +57,7 @@ const content = {
   ],
   differentials: [
     { title: 'Conhecimento do ambiente ICP-Brasil', desc: 'Entendemos a hierarquia de confiança ICP-Brasil: AC Raiz, ACs de primeiro e segundo nível, ACs Subordinadas e Autoridades de Registro. Projetamos a infraestrutura considerando as especificidades de cada papel na cadeia.' },
-    { title: 'Sala cofre Nível 4 e segurança física', desc: 'Do projeto ao comissionamento: sala cofre com resistência a fogo, explosão e acesso físico não autorizado. Controle biométrico, CFTV com retenção auditável e sistema de supressão sem danos ao HSM.' },
+    { title: 'Sala cofre Nível 4 e segurança física', desc: 'Projeto, implantação, manutenção periódica e auditoria: sala cofre EN 1047-2 com controle biométrico, CFTV auditável e supressão sem danos ao HSM. Laudos técnicos para auditorias ITI.' },
     { title: 'OpenShift/OKD para ambientes regulados', desc: 'Plataforma Kubernetes enterprise com capacidade de operar em ambiente air-gapped, controle granular de políticas de segurança, namespaces isolados entre produção e homologação e suporte a auditoria de operações.' },
     { title: 'VMware vSphere para infraestrutura core', desc: 'Cluster VMware vSphere com HA e DRS para a camada de virtualização da AC — maturidade comprovada, compatibilidade com workloads críticos e integração com ferramentas de backup e DR corporativas.' },
   ],
