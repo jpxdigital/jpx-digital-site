@@ -8,21 +8,37 @@ Internet
   ▼
 Cloudflare (DNS + CDN + WAF + DDoS + Bot Management)
   │
-  ├──► VM1 — Site (OCI)                VM2 — Automação (OCI)
-  │    ├── Nginx (80/443)               ├── n8n (5678, interno)
-  │    ├── Next.js 15 (3000)            ├── PostgreSQL (5432, interno)
-  │    └── Redis (6379, interno)        ├── Redis (6379, interno)
-  │                                     └── Watchtower
+  ├──► [sa-saopaulo-1]  ──────────────────────────────────────────────
+  │    VM1 — Site                  VM2 — Automação
+  │    ├── Nginx (80/443)          ├── n8n (5678, interno)
+  │    ├── Next.js 15 (3000)       ├── PostgreSQL (5432, interno)
+  │    └── Redis (6379, interno)   ├── Redis (6379, interno)
+  │                                └── Watchtower
   │
-  └──► VM3 — Observabilidade (futuro)
-       ├── Grafana (3001, SSH tunnel)
-       ├── Prometheus (9090, interno)
-       ├── Loki (3100, interno)
-       ├── Promtail
+  └──► [us-ashburn-1]  ──────────────────────────────────────────────
+       VM3 — Observabilidade            VM4 — Docs & PDF
+       ├── Grafana (3001, SSH tunnel)   ├── Puppeteer (geração de PDF)
+       ├── Prometheus (9090, interno)   ├── Nginx (serve PDFs locais)
+       ├── Loki (3100, interno)         └── OCI Object Storage (bucket jpx-documentos)
+       ├── Promtail (coleta de todas as VMs)
        ├── Node Exporter (9100, interno)
        ├── cAdvisor (8080, interno)
        └── Nginx Exporter (9113, interno)
 ```
+
+**Regiões OCI:**
+
+| VM | Região | CLI Profile | Papel |
+|----|--------|-------------|-------|
+| VM1 | sa-saopaulo-1 | `jpx` (padrão) | Site principal (Next.js) |
+| VM2 | sa-saopaulo-1 | `jpx` (padrão) | Automação (n8n + PostgreSQL) |
+| VM3 | us-ashburn-1  | `jpx-ashburn`  | Observabilidade (Grafana + Prometheus + Loki) |
+| VM4 | us-ashburn-1  | `jpx-ashburn`  | Documentos (Puppeteer PDF + OCI Object Storage) |
+
+**Por que Ashburn para observabilidade e docs?**
+- Monitoramento em região separada: se São Paulo tiver problemas, os alertas continuam funcionando
+- PDF generation (Puppeteer) é CPU-intensivo — isolar em VM dedicada protege o n8n
+- OCI Object Storage em Ashburn: latência menor para clientes fora do Brasil
 
 ## Fluxo de um lead
 
