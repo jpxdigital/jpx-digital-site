@@ -3,7 +3,7 @@ import Link from 'next/link'
 import {
   Cloud, Database, RefreshCw, Shield, TrendingDown, Headphones,
   Server, Cpu, Network, Lock, Monitor, Box, Flame, Award,
-  ArrowRight, ShieldCheck,
+  ArrowRight, ShieldCheck, BrainCircuit,
 } from 'lucide-react'
 import { Nav } from '@/components/layout/Nav'
 import { Footer } from '@/components/layout/Footer'
@@ -62,6 +62,12 @@ const allServices = [
     items: [
       { href: '/servicos/suporte-gerenciado', icon: Headphones, title: 'Suporte Gerenciado', desc: 'Equipe especializada com SLA garantido.' },
       { href: '/servicos/consultoria-estrategica', icon: Network, title: 'Consultoria Estratégica', desc: 'Alinhamento entre TI e objetivos do negócio.' },
+    ],
+  },
+  {
+    category: 'IA Corporativa',
+    items: [
+      { href: '/servicos/ai-readiness-assessment', icon: BrainCircuit, title: 'AI Readiness Assessment', desc: 'Avaliação de maturidade, riscos, LGPD e roadmap para adoção segura de IA.' },
     ],
   },
 ]

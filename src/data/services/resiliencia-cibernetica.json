@@ -26,17 +26,41 @@
   "process": {
     "title": "Nossa arquitetura de resiliência cibernética",
     "steps": [
-      { "title": "Security Assessment e mapeamento de riscos", "desc": "Avaliamos a superfície de ataque atual: configurações de rede, exposição de serviços, gestão de identidades, controles de acesso privilegiado e higiene de patches. Entregamos relatório de riscos priorizado por impacto." },
-      { "title": "Hardening e remediação", "desc": "Aplicamos configurações baseadas em CIS Benchmarks para Windows Server, Linux, redes e endpoints. Desabilitamos serviços desnecessários, endurecemos políticas de senha, implementamos MFA e gerenciamos acessos privilegiados (PAM)." },
-      { "title": "Implantação de monitoramento e alertas", "desc": "Configuramos coleta centralizada de logs, correlação de eventos (SIEM), alertas para comportamentos anômalos e dashboard de visibilidade. Você sabe o que acontece na sua infraestrutura 24/7." },
-      { "title": "Plano de resposta a incidentes e simulações", "desc": "Documentamos o plano de resposta — quem faz o quê, em qual sequência, com quais ferramentas — e realizamos simulações de ataque para validar a capacidade de resposta." }
+      {
+        "title": "Security Assessment e mapeamento de riscos",
+        "desc": "Avaliamos a superfície de ataque atual: configurações de rede, exposição de serviços, gestão de identidades, controles de acesso privilegiado e higiene de patches. Entregamos relatório de riscos priorizado por impacto."
+      },
+      {
+        "title": "Hardening e remediação",
+        "desc": "Aplicamos configurações baseadas em CIS Benchmarks para Windows Server, Linux, redes e endpoints. Desabilitamos serviços desnecessários, endurecemos políticas de senha, implementamos MFA e gerenciamos acessos privilegiados (PAM)."
+      },
+      {
+        "title": "Implantação de monitoramento e alertas",
+        "desc": "Configuramos coleta centralizada de logs, correlação de eventos (SIEM), alertas para comportamentos anômalos e dashboard de visibilidade. Você sabe o que acontece na sua infraestrutura 24/7."
+      },
+      {
+        "title": "Plano de resposta a incidentes e simulações",
+        "desc": "Documentamos o plano de resposta — quem faz o quê, em qual sequência, com quais ferramentas — e realizamos simulações de ataque para validar a capacidade de resposta."
+      }
     ]
   },
   "benefits": [
-    { "title": "Visibilidade 24/7", "desc": "Logs centralizados, alertas de comportamento anômalo e dashboard de segurança em tempo real." },
-    { "title": "Superfície de ataque reduzida", "desc": "Hardening baseado em CIS Benchmarks elimina vetores desnecessários em todos os sistemas." },
-    { "title": "Resposta documentada", "desc": "Plano de resposta a incidentes testado — não descoberto durante um ataque real." },
-    { "title": "Conformidade com frameworks", "desc": "CIS Controls e NIST CSF como base — padrões reconhecidos por auditorias e seguradoras." }
+    {
+      "title": "Visibilidade 24/7",
+      "desc": "Logs centralizados, alertas de comportamento anômalo e dashboard de segurança em tempo real."
+    },
+    {
+      "title": "Superfície de ataque reduzida",
+      "desc": "Hardening baseado em CIS Benchmarks elimina vetores desnecessários em todos os sistemas."
+    },
+    {
+      "title": "Resposta documentada",
+      "desc": "Plano de resposta a incidentes testado — não descoberto durante um ataque real."
+    },
+    {
+      "title": "Conformidade com frameworks",
+      "desc": "CIS Controls e NIST CSF como base — padrões reconhecidos por auditorias e seguradoras."
+    }
   ],
   "deliverables": [
     "Relatório de Security Readiness Assessment",
@@ -49,10 +73,22 @@
     "Roadmap de melhoria contínua"
   ],
   "differentials": [
-    { "title": "Baseado em CIS Controls e NIST CSF", "desc": "Não inventamos frameworks. Aplicamos os padrões internacionais mais reconhecidos, adaptados para a realidade da sua empresa." },
-    { "title": "Abordagem Zero Trust de ponta a ponta", "desc": "Identidade, dispositivo, rede, aplicação. Cada camada é verificada. Não existe 'dentro do escritório = confiável' no nosso modelo." },
-    { "title": "Monitoramento 24/7 com correlação de eventos", "desc": "Logs centralizados, correlação automática e alertas de comportamento anômalo. Você é avisado de um ataque em andamento — não depois que o dano está feito." },
-    { "title": "Resposta a incidentes documentada e testada", "desc": "Plano de resposta com runbooks detalhados, contatos de escalação e fluxos de decisão. Testado em simulações antes de precisar em produção." }
+    {
+      "title": "Baseado em CIS Controls e NIST CSF",
+      "desc": "Não inventamos frameworks. Aplicamos os padrões internacionais mais reconhecidos, adaptados para a realidade da sua empresa."
+    },
+    {
+      "title": "Abordagem Zero Trust de ponta a ponta",
+      "desc": "Identidade, dispositivo, rede, aplicação. Cada camada é verificada. Não existe 'dentro do escritório = confiável' no nosso modelo."
+    },
+    {
+      "title": "Monitoramento 24/7 com correlação de eventos",
+      "desc": "Logs centralizados, correlação automática e alertas de comportamento anômalo. Você é avisado de um ataque em andamento — não depois que o dano está feito."
+    },
+    {
+      "title": "Resposta a incidentes documentada e testada",
+      "desc": "Plano de resposta com runbooks detalhados, contatos de escalação e fluxos de decisão. Testado em simulações antes de precisar em produção."
+    }
   ],
   "faqs": [
     {
@@ -75,5 +111,6 @@
       "question": "O que fazer se já sofremos um ataque cibernético?",
       "answer": "O primeiro passo é isolar os sistemas comprometidos para conter o dano. Depois: identificar o escopo do incidente, ativar o plano de resposta a incidentes e iniciar a recuperação a partir de um ponto limpo. A JPX Digital oferece suporte em resposta a incidentes — entre em contato imediatamente."
     }
-  ]
+  ],
+  "aiEnabled": true
 }

@@ -26,17 +26,41 @@
   "process": {
     "title": "Nossa abordagem FinOps",
     "steps": [
-      { "title": "Auditoria de custos e desperdício", "desc": "Analisamos toda a fatura cloud: recursos ociosos, instâncias superdimensionadas, storage não utilizado, snapshots antigos e licenças não otimizadas. Entregamos relatório com potencial de economia quantificado." },
-      { "title": "Rightsizing e eliminação de ociosidade", "desc": "Redimensionamos instâncias baseados em métricas reais de CPU, memória e I/O. Desligamos recursos fora de uso. Configuramos agendamentos de start/stop para ambientes de desenvolvimento." },
-      { "title": "Reservas e compromissos de longo prazo", "desc": "Para workloads estáveis, avaliamos Reserved Instances (AWS), Savings Plans (AWS/Azure) e Compute Reservations (OCI). Economia de 30-60% em relação ao preço on-demand." },
-      { "title": "Governança contínua", "desc": "Tags de custo por projeto, alertas de budget, políticas de aprovação para recursos acima de determinado custo e revisão mensal com relatório executivo de tendências." }
+      {
+        "title": "Auditoria de custos e desperdício",
+        "desc": "Analisamos toda a fatura cloud: recursos ociosos, instâncias superdimensionadas, storage não utilizado, snapshots antigos e licenças não otimizadas. Entregamos relatório com potencial de economia quantificado."
+      },
+      {
+        "title": "Rightsizing e eliminação de ociosidade",
+        "desc": "Redimensionamos instâncias baseados em métricas reais de CPU, memória e I/O. Desligamos recursos fora de uso. Configuramos agendamentos de start/stop para ambientes de desenvolvimento."
+      },
+      {
+        "title": "Reservas e compromissos de longo prazo",
+        "desc": "Para workloads estáveis, avaliamos Reserved Instances (AWS), Savings Plans (AWS/Azure) e Compute Reservations (OCI). Economia de 30-60% em relação ao preço on-demand."
+      },
+      {
+        "title": "Governança contínua",
+        "desc": "Tags de custo por projeto, alertas de budget, políticas de aprovação para recursos acima de determinado custo e revisão mensal com relatório executivo de tendências."
+      }
     ]
   },
   "benefits": [
-    { "title": "Economia imediata", "desc": "Potencial de 20-40% de redução na fatura logo nas primeiras ações de rightsizing e eliminação de ociosidade." },
-    { "title": "Previsibilidade", "desc": "Budget por equipe, alertas de desvio e relatório mensal. A fatura deixa de ser surpresa." },
-    { "title": "Visibilidade por área", "desc": "Tags de custo e dashboards por projeto e equipe. Cada área sabe quanto gasta em cloud." },
-    { "title": "Governança duradoura", "desc": "Processos e ferramentas que mantêm o custo controlado — não uma otimização pontual que se desfaz em 3 meses." }
+    {
+      "title": "Economia imediata",
+      "desc": "Potencial de 20-40% de redução na fatura logo nas primeiras ações de rightsizing e eliminação de ociosidade."
+    },
+    {
+      "title": "Previsibilidade",
+      "desc": "Budget por equipe, alertas de desvio e relatório mensal. A fatura deixa de ser surpresa."
+    },
+    {
+      "title": "Visibilidade por área",
+      "desc": "Tags de custo e dashboards por projeto e equipe. Cada área sabe quanto gasta em cloud."
+    },
+    {
+      "title": "Governança duradoura",
+      "desc": "Processos e ferramentas que mantêm o custo controlado — não uma otimização pontual que se desfaz em 3 meses."
+    }
   ],
   "deliverables": [
     "Relatório de auditoria de custos cloud",
@@ -48,10 +72,22 @@
     "Relatório executivo mensal de FinOps"
   ],
   "differentials": [
-    { "title": "Auditoria inicial com economia quantificada", "desc": "Antes de propor qualquer trabalho, entregamos um relatório mostrando exatamente quanto você pode economizar e como. Você decide com números na mão." },
-    { "title": "Expertise multi-cloud", "desc": "OCI, Azure e AWS têm modelos de precificação diferentes. Nossa equipe conhece as nuances de cada um e aplica a estratégia correta por provedor." },
-    { "title": "FinOps sem cortar o que importa", "desc": "Identificamos desperdício sem comprometer SLA, performance ou disponibilidade. A premissa é gastar de forma inteligente — não simplesmente gastar menos." },
-    { "title": "Governança que se mantém", "desc": "Implementamos processos e ferramentas que mantêm o custo controlado continuamente — não uma ação pontual que se desfaz em 3 meses." }
+    {
+      "title": "Auditoria inicial com economia quantificada",
+      "desc": "Antes de propor qualquer trabalho, entregamos um relatório mostrando exatamente quanto você pode economizar e como. Você decide com números na mão."
+    },
+    {
+      "title": "Expertise multi-cloud",
+      "desc": "OCI, Azure e AWS têm modelos de precificação diferentes. Nossa equipe conhece as nuances de cada um e aplica a estratégia correta por provedor."
+    },
+    {
+      "title": "FinOps sem cortar o que importa",
+      "desc": "Identificamos desperdício sem comprometer SLA, performance ou disponibilidade. A premissa é gastar de forma inteligente — não simplesmente gastar menos."
+    },
+    {
+      "title": "Governança que se mantém",
+      "desc": "Implementamos processos e ferramentas que mantêm o custo controlado continuamente — não uma ação pontual que se desfaz em 3 meses."
+    }
   ],
   "faqs": [
     {
@@ -74,5 +110,6 @@
       "question": "Como funciona a governança de custo em multi-cloud?",
       "answer": "Em ambientes multi-cloud, implementamos tagging consistente entre provedores, visibilidade unificada de custo e políticas de gasto por ambiente e equipe. É mais complexo, mas gerenciável com a estrutura correta."
     }
-  ]
+  ],
+  "aiEnabled": true
 }

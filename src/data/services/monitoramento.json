@@ -26,17 +26,41 @@
   "process": {
     "title": "Como implementamos monitoramento",
     "steps": [
-      { "title": "Inventário e definição de cobertura", "desc": "Mapeamos todos os componentes do ambiente: servidores, VMs, containers, bancos de dados, dispositivos de rede e serviços cloud. Definimos o que monitorar em cada componente e quais métricas são realmente relevantes." },
-      { "title": "Implantação e configuração de agentes", "desc": "Instalamos e configuramos agentes (Zabbix Agent, Node Exporter, outros exporters) ou integramos via API de cloud. Configuramos coleta de métricas, logs e traces." },
-      { "title": "Alertas e runbooks", "desc": "Configuramos alertas com thresholds baseados em dados históricos, severidades corretas e canais de notificação. Para cada alerta crítico, criamos runbook com procedimento de resolução." },
-      { "title": "Dashboards e relatórios", "desc": "Dashboards Grafana operacionais e executivos (SLA, disponibilidade, tendências). Relatórios automáticos mensais com métricas de disponibilidade por serviço." }
+      {
+        "title": "Inventário e definição de cobertura",
+        "desc": "Mapeamos todos os componentes do ambiente: servidores, VMs, containers, bancos de dados, dispositivos de rede e serviços cloud. Definimos o que monitorar em cada componente e quais métricas são realmente relevantes."
+      },
+      {
+        "title": "Implantação e configuração de agentes",
+        "desc": "Instalamos e configuramos agentes (Zabbix Agent, Node Exporter, outros exporters) ou integramos via API de cloud. Configuramos coleta de métricas, logs e traces."
+      },
+      {
+        "title": "Alertas e runbooks",
+        "desc": "Configuramos alertas com thresholds baseados em dados históricos, severidades corretas e canais de notificação. Para cada alerta crítico, criamos runbook com procedimento de resolução."
+      },
+      {
+        "title": "Dashboards e relatórios",
+        "desc": "Dashboards Grafana operacionais e executivos (SLA, disponibilidade, tendências). Relatórios automáticos mensais com métricas de disponibilidade por serviço."
+      }
     ]
   },
   "benefits": [
-    { "title": "Problema detectado antes do impacto", "desc": "Disco se enchendo, memória alta, serviço degradado — você sabe antes do usuário reclamar." },
-    { "title": "Alertas sem ruído", "desc": "Thresholds baseados em dados históricos. Cada alerta recebido significa que algo requer atenção." },
-    { "title": "Visibilidade executiva", "desc": "Dashboards de SLA e disponibilidade por serviço. Evidência de que a TI está funcionando." },
-    { "title": "Cobertura híbrida unificada", "desc": "On-prem, cloud, containers e aplicações em um único painel." }
+    {
+      "title": "Problema detectado antes do impacto",
+      "desc": "Disco se enchendo, memória alta, serviço degradado — você sabe antes do usuário reclamar."
+    },
+    {
+      "title": "Alertas sem ruído",
+      "desc": "Thresholds baseados em dados históricos. Cada alerta recebido significa que algo requer atenção."
+    },
+    {
+      "title": "Visibilidade executiva",
+      "desc": "Dashboards de SLA e disponibilidade por serviço. Evidência de que a TI está funcionando."
+    },
+    {
+      "title": "Cobertura híbrida unificada",
+      "desc": "On-prem, cloud, containers e aplicações em um único painel."
+    }
   ],
   "deliverables": [
     "Relatório de Monitoring Readiness Assessment",
@@ -48,10 +72,22 @@
     "Documentação de thresholds e políticas de alerta"
   ],
   "differentials": [
-    { "title": "Alertas que significam algo", "desc": "Eliminamos alertas redundantes e de baixo valor. Cada alerta recebido requer atenção — sem fadiga de alertas." },
-    { "title": "Cobertura híbrida unificada", "desc": "On-prem, cloud, containers e aplicações em um único painel. Sem precisar verificar 4 ferramentas diferentes." },
-    { "title": "Runbooks para cada incidente", "desc": "Cada alerta crítico tem um runbook: o que verificar, quem acionar e como resolver." },
-    { "title": "Métricas de SLA por serviço", "desc": "Disponibilidade mensal e anual por serviço. Base para SLAs contratuais e priorização de investimentos." }
+    {
+      "title": "Alertas que significam algo",
+      "desc": "Eliminamos alertas redundantes e de baixo valor. Cada alerta recebido requer atenção — sem fadiga de alertas."
+    },
+    {
+      "title": "Cobertura híbrida unificada",
+      "desc": "On-prem, cloud, containers e aplicações em um único painel. Sem precisar verificar 4 ferramentas diferentes."
+    },
+    {
+      "title": "Runbooks para cada incidente",
+      "desc": "Cada alerta crítico tem um runbook: o que verificar, quem acionar e como resolver."
+    },
+    {
+      "title": "Métricas de SLA por serviço",
+      "desc": "Disponibilidade mensal e anual por serviço. Base para SLAs contratuais e priorização de investimentos."
+    }
   ],
   "faqs": [
     {
@@ -74,5 +110,6 @@
       "question": "O monitoramento cobre ambientes cloud e on-prem ao mesmo tempo?",
       "answer": "Sim. Implementamos monitoramento unificado para ambientes híbridos: servidores físicos, VMs, cloud (OCI, Azure, AWS), containers, bancos de dados e dispositivos de rede — tudo em um único painel."
     }
-  ]
+  ],
+  "aiEnabled": true
 }

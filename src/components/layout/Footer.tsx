@@ -117,6 +117,10 @@ export function Footer() {
         <div className="border-t border-white/8 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-600">
           <p>© {new Date().getFullYear()} JPX Digital · Zerofill Tecnologia LTDA · CNPJ: 47.782.852/0001-08</p>
           <div className="flex items-center gap-5">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-white/10 text-gray-500 text-[0.65rem] font-medium tracking-wide">
+              <span className="w-1.5 h-1.5 rounded-full bg-secondary/70" />
+              AI-Assisted Consulting
+            </span>
             {legal.map((l) => (
               <Link key={l.href} href={l.href} className="hover:text-gray-400 transition-colors">
                 {l.label}
