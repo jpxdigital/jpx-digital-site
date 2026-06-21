@@ -3,7 +3,7 @@ import Link from 'next/link'
 import {
   ArrowRight, CheckCircle2, AlertTriangle, Server,
   Database, RefreshCw, Shield, TrendingDown, Cloud,
-  Headphones, Building2, Heart, Factory, Scale, ShieldCheck,
+  Headphones, Building2, Heart, Factory, Scale, ShieldCheck, BrainCircuit,
 } from 'lucide-react'
 import { Nav } from '@/components/layout/Nav'
 import { Footer } from '@/components/layout/Footer'
@@ -14,7 +14,7 @@ import { MotionProvider } from '@/components/providers/MotionProvider'
 export const metadata: Metadata = {
   title: 'Consultoria de TI, Cloud e Segurança Corporativa',
   description:
-    'A JPX Digital é uma consultoria especializada em cloud computing, backup corporativo, disaster recovery e resiliência cibernética para empresas que não podem parar.',
+    'Toda solução da JPX Digital é projetada para potencializar a produtividade humana com Inteligência Artificial, mantendo governança, segurança e supervisão especializada.',
 }
 
 const painCards = [
@@ -63,6 +63,7 @@ const painCards = [
 ]
 
 const differentials = [
+  'IA integrada a cada solução — diagnóstico, automação e decisão mais rápidos',
   'Assessment gratuito antes de qualquer proposta',
   'SLA documentado em contrato — não apenas prometido',
   'Você fala com quem executa, sem intermediários',
@@ -165,6 +166,23 @@ export default function Home() {
               </FadeIn>
 
             </div>
+          </div>
+        </section>
+
+        {/* ── Faixa IA ─────────────────────────────────────── */}
+        <section className="py-12 bg-primary border-b border-white/8">
+          <div className="container-page">
+            <FadeIn>
+              <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-center sm:text-left">
+                <div className="w-10 h-10 rounded-xl bg-secondary/20 flex items-center justify-center shrink-0">
+                  <BrainCircuit className="w-5 h-5 text-secondary" />
+                </div>
+                <p className="text-white/85 text-[0.9375rem] leading-relaxed max-w-3xl">
+                  <span className="text-white font-semibold">Toda solução da JPX é projetada para potencializar a produtividade humana com Inteligência Artificial</span>
+                  {' '}— mantendo governança, segurança e supervisão especializada.
+                </p>
+              </div>
+            </FadeIn>
           </div>
         </section>
 

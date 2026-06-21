@@ -150,13 +150,13 @@ export default function SobrePage() {
                   AI-Assisted Consulting
                 </div>
                 <h2 className="font-heading text-3xl font-bold text-gray-900 mb-6">
-                  Inteligência Artificial integrada à consultoria — com governança e supervisão especializada.
+                  Toda solução da JPX é projetada para potencializar a produtividade humana com Inteligência Artificial.
                 </h2>
-                <p className="text-gray-600 text-lg leading-relaxed mb-8">
-                  A JPX Digital integra Inteligência Artificial aos seus serviços de cloud, cibersegurança e infraestrutura para aumentar produtividade, acelerar diagnósticos, automatizar processos e apoiar decisões técnicas — sempre com supervisão de especialistas e governança adequada.
+                <p className="text-gray-600 text-lg leading-relaxed mb-6">
+                  Não como uma empresa que "faz IA" — mas como uma consultoria que aplica IA com governança, segurança e supervisão especializada em cada serviço que entrega.
                 </p>
                 <p className="text-gray-500 text-base leading-relaxed">
-                  Não vendemos IA pela IA. Nossos clientes querem resultados: menos custo operacional, mais produtividade, menos indisponibilidade e decisões técnicas mais rápidas. A IA é a ferramenta. O resultado é o que importa.
+                  Nossos clientes não compram tecnologia. Compram resultados: menos custo operacional, mais produtividade, menos indisponibilidade e decisões técnicas mais rápidas. A IA está no processo — não na vitrine.
                 </p>
               </FadeIn>
             </div>
