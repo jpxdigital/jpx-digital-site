@@ -44,9 +44,9 @@ export async function POST(req: NextRequest) {
     return json({ error: 'JSON inválido' }, 400)
   }
 
-  const { name, email, phone, company, interest, message } = body as {
+  const { name, email, phone, company, interest, serviceSlug, message } = body as {
     name?: string; email?: string; phone?: string
-    company?: string; interest?: string; message?: string
+    company?: string; interest?: string; serviceSlug?: string; message?: string
   }
 
   if (!name?.trim() || !email?.trim()) {
@@ -117,6 +117,7 @@ export async function POST(req: NextRequest) {
         dealstage: 'appointmentscheduled',
         closedate,
         description,
+        ...(serviceSlug ? { service_slug: serviceSlug } : {}),
       },
     }),
   })

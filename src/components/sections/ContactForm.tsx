@@ -2,21 +2,21 @@
 import { useState } from 'react'
 import type { LeadFormData, LeadApiResponse } from '@/types'
 
-const interestOptions = [
-  'Cloud Computing (OCI / Azure / AWS)',
-  'Backup Corporativo',
-  'Disaster Recovery',
-  'Resiliência Cibernética',
-  'Microsoft 365',
-  'FinOps',
-  'Docker & Kubernetes',
-  'Suporte Gerenciado',
-  'Consultoria Estratégica',
-  'Outro / Não sei ainda',
+const interestOptions: { label: string; slug: string }[] = [
+  { label: 'Cloud Computing (OCI / Azure / AWS)', slug: 'cloud-computing' },
+  { label: 'Backup Corporativo',                  slug: 'backup-corporativo' },
+  { label: 'Disaster Recovery',                   slug: 'disaster-recovery' },
+  { label: 'Resiliência Cibernética',             slug: 'resiliencia-cibernetica' },
+  { label: 'Microsoft 365',                       slug: 'backup-microsoft-365' },
+  { label: 'FinOps',                              slug: 'finops' },
+  { label: 'Docker & Kubernetes',                 slug: 'containers-kubernetes' },
+  { label: 'Suporte Gerenciado',                  slug: 'suporte-gerenciado' },
+  { label: 'Consultoria Estratégica',             slug: 'consultoria-estrategica' },
+  { label: 'Outro / Não sei ainda',               slug: '' },
 ]
 
 const empty: LeadFormData = {
-  name: '', email: '', phone: '', company: '', interest: '', message: '',
+  name: '', email: '', phone: '', company: '', interest: '', serviceSlug: '', message: '',
 }
 
 export function ContactForm() {
@@ -26,7 +26,14 @@ export function ContactForm() {
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
-  ) => setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+  ) => {
+    if (e.target.name === 'interest') {
+      const opt = interestOptions.find((o) => o.label === e.target.value)
+      setForm((prev) => ({ ...prev, interest: e.target.value, serviceSlug: opt?.slug ?? '' }))
+    } else {
+      setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    }
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -152,7 +159,7 @@ export function ContactForm() {
         >
           <option value="">Selecione uma área...</option>
           {interestOptions.map((o) => (
-            <option key={o} value={o}>{o}</option>
+            <option key={o.slug} value={o.label}>{o.label}</option>
           ))}
         </select>
       </div>
