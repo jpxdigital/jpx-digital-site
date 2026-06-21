@@ -162,7 +162,8 @@ n8n Workflow: gerar-proposta
   │      /templates/proposta.html + dados JSON + dados cliente
   │
   ├─4─ Converte HTML → PDF
-  │      Puppeteer (rodando na VM2)
+  │      POST https://pdf.jpxdigital.com.br/generate  (VM4 — vm-ashburn-1)
+  │      Puppeteer headless dentro de container Docker
   │
   ├─5─ Upload PDF → OCI Object Storage
   │      bucket: jpx-documentos/propostas/{ano-mes}/
@@ -215,8 +216,8 @@ Localização: `docs/doc-gen/`
 |---|---|---|
 | `src/data/services/*.json` | fonte única de dados | R$ 0 |
 | Next.js / ServiceLayout | renderiza páginas do site | R$ 0 |
-| n8n (self-hosted, VM2 OCI) | orquestra todos os fluxos | R$ 0 |
-| Puppeteer (VM2 OCI) | gera PDFs a partir de HTML | R$ 0 |
+| n8n (self-hosted, jpx-n8n SP) | orquestra todos os fluxos | R$ 0 |
+| Puppeteer (VM4 — vm-ashburn-1) | gera PDFs via `pdf.jpxdigital.com.br` | R$ 0 |
 | OCI Object Storage | armazena PDFs com signed URLs | R$ 0 |
 | HubSpot CRM Free | pipeline, deals, tarefas | R$ 0 |
 | Zoho Mail | disparo de e-mails transacionais | R$ 0 |
@@ -238,10 +239,23 @@ Nenhuma outra área da operação precisa ser atualizada manualmente.
 
 ---
 
+## Infraestrutura atual (junho 2026)
+
+| VM | IP | Papel |
+|---|---|---|
+| jpx-n8n (sa-saopaulo-1) | 137.131.205.54 (efêmero) → `n8n.jpxdigital.com.br` | n8n + Evolution API |
+| vm-ashburn-1 (us-ashburn-1) | 129.80.120.133 → `pdf.jpxdigital.com.br` | PDF service (Puppeteer) |
+| vm-ashburn-2 (us-ashburn-1) | 141.148.50.123 | Observabilidade (Grafana/Prometheus/Loki) |
+
 ## Próximos passos
 
-- [ ] Criar templates HTML em `docs/doc-gen/` (proposta, SOW, checklist)
-- [ ] Configurar Puppeteer na VM2 para geração de PDF
-- [ ] Criar bucket `jpx-documentos` no OCI Object Storage
-- [ ] Criar workflow n8n `gerar-proposta` consumindo os JSONs
-- [ ] Integrar HubSpot: mapear `slug` do serviço ao campo de produto no deal
+- [x] `proposta.html` criado em `docs/doc-gen/`
+- [x] Workflow `gerar-proposta` criado em `n8n-workflows/gerar-proposta.json`
+- [x] Criar `docs/doc-gen/sow.html`
+- [x] Criar `docs/doc-gen/checklist-assessment.html`
+- [x] Criar `docs/doc-gen/checklist-implantacao.html`
+- [x] Criar `docs/doc-gen/onboarding-kit.html`
+- [x] Criar bucket `jpx-documentos` no OCI Object Storage (Ashburn) — namespace `idn9vuw0dbep`
+- [ ] Construir imagem Docker do PDF service (`deploy/pdf-service/`) e publicar em `pdf.jpxdigital.com.br`
+- [ ] Importar workflow `n8n-workflows/gerar-proposta.json` no n8n
+- [ ] Criar propriedade `service_slug` no deal do HubSpot
