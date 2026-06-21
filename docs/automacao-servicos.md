@@ -256,6 +256,6 @@ Nenhuma outra área da operação precisa ser atualizada manualmente.
 - [x] Criar `docs/doc-gen/checklist-implantacao.html`
 - [x] Criar `docs/doc-gen/onboarding-kit.html`
 - [x] Criar bucket `jpx-documentos` no OCI Object Storage (Ashburn) — namespace `idn9vuw0dbep`
-- [ ] Construir imagem Docker do PDF service (`deploy/pdf-service/`) e publicar em `pdf.jpxdigital.com.br`
+- [x] Construir imagem Docker do PDF service e publicar em `https://pdf.jpxdigital.com.br` — Cloudflare Tunnel `79251c6f`
 - [ ] Importar workflow `n8n-workflows/gerar-proposta.json` no n8n
 - [ ] Criar propriedade `service_slug` no deal do HubSpot
