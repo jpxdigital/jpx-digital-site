@@ -61,11 +61,11 @@ const cases = [
     segment: 'Autoridade Certificadora',
     label: 'AC Subordinada ICP-Brasil — credenciamento ITI',
     challenge: 'Uma Autoridade Certificadora Subordinada precisava estruturar a infraestrutura técnica para obter credenciamento junto ao ITI. O ambiente existente não atendia aos requisitos de segurança física (sem sala cofre), o HSM operava em modo standalone sem redundância e não havia separação entre ambientes de produção e homologação para o portal de emissão.',
-    solution: 'Projetamos a infraestrutura completa: sala cofre com proteção EN 1047-2, controle de acesso biométrico com dupla custódia para o HSM, cluster Thales Luna ativo-passivo com failover automático < 30 segundos, VMware vSphere dual-site para a infraestrutura core e OpenShift/OKD para o portal de Autoridade de Registro com ambientes de produção e homologação isolados. Elaboramos toda a documentação técnica exigida pela DOC-ICP-05.',
+    solution: 'Configuramos a infraestrutura de TI completa dentro da sala cofre: cluster Thales Luna ativo-passivo com failover automático < 30 segundos, VMware vSphere dual-site para a infraestrutura core e OpenShift/OKD para o portal de Autoridade de Registro com ambientes de produção e homologação isolados. Elaboramos toda a documentação técnica exigida pela DOC-ICP-05.',
     results: [
       'Credenciamento ITI aprovado na primeira avaliação técnica',
       'Failover automático do HSM em cluster < 30s',
-      'Sala cofre EN 1047-2 com dupla custódia e CFTV auditável',
+      'Infraestrutura de TI dentro da sala cofre totalmente documentada',
       'RTO de 4h para ambiente completo de CA documentado em contrato',
     ],
     href: '/segmentos/autoridades-certificadoras',
