@@ -266,7 +266,7 @@ export default function Home() {
 
               <div className="grid grid-cols-2 gap-5">
                 {[
-                  { value: '20+', label: 'anos de experiência em infraestrutura crítica' },
+                  { value: '23+', label: 'anos de experiência em infraestrutura crítica' },
                   { value: '< 1h', label: 'RTO garantido em contrato para ambientes críticos' },
                   { value: '99,9%', label: 'de disponibilidade nos ambientes gerenciados' },
                   { value: '24h', label: 'retorno máximo após solicitação de assessment' },
