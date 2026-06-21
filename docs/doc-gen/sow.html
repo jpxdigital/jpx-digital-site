@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>SOW — {{service.assessment.name}} | JPX Digital</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --brand: #0A2463; --brand-light: #163a80; --accent: #0078D4;
+      --text: #111827; --text-muted: #6B7280;
+      --bg-light: #F8F9FA; --border: #E5E7EB; --white: #ffffff;
+    }
+    html { font-size: 14px; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; color: var(--text); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    .page { width: 210mm; margin: 0 auto; }
+    .section { padding: 40px 56px; page-break-inside: avoid; }
+    .section--dark { background: var(--brand); color: var(--white); }
+    .section--light { background: var(--bg-light); }
+    .label { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+    .label--muted { color: var(--text-muted); }
+    .label--white { color: rgba(255,255,255,0.6); }
+    h1 { font-size: 1.75rem; font-weight: 700; line-height: 1.2; }
+    h2 { font-size: 1.125rem; font-weight: 700; color: var(--brand); margin-bottom: 16px; }
+    h3 { font-size: 0.9375rem; font-weight: 700; margin-bottom: 6px; }
+    p { color: var(--text-muted); margin-bottom: 12px; }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+    /* Header */
+    .header { display: flex; justify-content: space-between; align-items: center; padding: 24px 56px; border-bottom: 1px solid var(--border); }
+    .logo { font-size: 1.125rem; font-weight: 800; color: var(--brand); letter-spacing: -0.02em; }
+    .logo span { color: var(--accent); }
+    .doc-type { font-size: 0.75rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+    /* Cover */
+    .cover-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px; }
+    .meta-item { }
+    .meta-item .value { font-size: 1rem; font-weight: 600; color: var(--white); margin-top: 4px; }
+    /* Scope table */
+    .scope-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+    .scope-table th { background: var(--brand); color: var(--white); padding: 10px 14px; text-align: left; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+    .scope-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; font-size: 0.875rem; }
+    .scope-table tr:last-child td { border-bottom: none; }
+    .scope-table tr:nth-child(even) td { background: var(--bg-light); }
+    .step-num { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: var(--accent); color: white; border-radius: 50%; font-size: 0.75rem; font-weight: 700; flex-shrink: 0; }
+    /* Deliverables */
+    .deliverable-list { list-style: none; display: grid; gap: 8px; margin-top: 12px; }
+    .deliverable-list li { display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; background: var(--white); border: 1px solid var(--border); border-radius: 6px; font-size: 0.875rem; }
+    .deliverable-list li::before { content: "✓"; color: #059669; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    /* Exclusions */
+    .exclusion-list { list-style: none; display: grid; gap: 8px; margin-top: 12px; }
+    .exclusion-list li { display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; background: #fff8f8; border: 1px solid #fde8e8; border-radius: 6px; font-size: 0.875rem; color: var(--text-muted); }
+    .exclusion-list li::before { content: "×"; color: #dc2626; font-weight: 700; flex-shrink: 0; }
+    /* Responsibilities */
+    .resp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px; }
+    .resp-card { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    .resp-card__header { background: var(--brand); color: white; padding: 10px 16px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+    .resp-card__body { padding: 14px 16px; }
+    .resp-card__body li { font-size: 0.8125rem; color: var(--text-muted); padding: 4px 0; padding-left: 14px; position: relative; }
+    .resp-card__body li::before { content: "–"; position: absolute; left: 0; color: var(--accent); }
+    /* Timeline */
+    .timeline { display: grid; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-top: 12px; }
+    .timeline-row { display: grid; grid-template-columns: 2fr 1fr 1fr; background: white; }
+    .timeline-row--header { background: var(--brand); color: white; }
+    .timeline-row div { padding: 10px 14px; font-size: 0.8125rem; border-right: 1px solid var(--border); }
+    .timeline-row div:last-child { border-right: none; }
+    .timeline-row--header div { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(255,255,255,0.8); }
+    /* Signature */
+    .sig-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 32px; }
+    .sig-line { border-top: 1px solid var(--text); padding-top: 8px; font-size: 0.8125rem; }
+    .sig-line .name { font-weight: 700; font-size: 0.875rem; }
+    /* Footer */
+    .footer { padding: 16px 56px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .footer-text { font-size: 0.6875rem; color: var(--text-muted); }
+    @media print { @page { margin: 0; size: A4; } }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">JPX<span>Digital</span></div>
+    <div class="doc-type">Statement of Work — Escopo de Serviço</div>
+  </div>
+
+  <!-- Capa -->
+  <div class="section section--dark">
+    <div class="label label--white">Documento de Escopo</div>
+    <h1 style="margin-top:12px; color:white;">{{service.heroHeadline}}</h1>
+    <div class="cover-meta">
+      <div class="meta-item">
+        <div class="label label--white">Cliente</div>
+        <div class="value">{{client.company}}</div>
+      </div>
+      <div class="meta-item">
+        <div class="label label--white">CNPJ</div>
+        <div class="value">{{client.cnpj}}</div>
+      </div>
+      <div class="meta-item">
+        <div class="label label--white">Serviço</div>
+        <div class="value">{{service.assessment.name}}</div>
+      </div>
+      <div class="meta-item">
+        <div class="label label--white">Referência</div>
+        <div class="value">SOW-{{meta.sowNumber}}</div>
+      </div>
+      <div class="meta-item">
+        <div class="label label--white">Emissão</div>
+        <div class="value">{{meta.date}}</div>
+      </div>
+      <div class="meta-item">
+        <div class="label label--white">Validade</div>
+        <div class="value">{{meta.validUntil}}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Objeto -->
+  <div class="section section--white">
+    <h2>1. Objeto</h2>
+    <p>{{service.problem.headline}}</p>
+    {{#each service.problem.body}}
+    <p>{{this}}</p>
+    {{/each}}
+  </div>
+
+  <hr class="divider" />
+
+  <!-- Escopo — Fases -->
+  <div class="section section--light">
+    <h2>2. Escopo do Projeto</h2>
+    <p style="margin-bottom:16px;">{{service.process.title}}</p>
+    <table class="scope-table">
+      <thead>
+        <tr>
+          <th style="width:40px;">#</th>
+          <th style="width:180px;">Fase</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each service.process.steps}}
+        <tr>
+          <td><div class="step-num">{{num}}</div></td>
+          <td><strong>{{title}}</strong></td>
+          <td>{{desc}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- Entregáveis -->
+  <div class="section section--white">
+    <h2>3. Entregáveis</h2>
+    <p>Ao final do projeto, serão entregues os seguintes documentos e artefatos:</p>
+    <ul class="deliverable-list">
+      {{#each service.deliverables}}
+      <li>{{this}}</li>
+      {{/each}}
+    </ul>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- Cronograma -->
+  <div class="section section--light">
+    <h2>4. Cronograma Estimado</h2>
+    <div class="timeline">
+      <div class="timeline-row timeline-row--header">
+        <div>Fase</div>
+        <div>Início</div>
+        <div>Duração</div>
+      </div>
+      {{#each meta.timeline}}
+      <div class="timeline-row">
+        <div>{{fase}}</div>
+        <div>{{inicio}}</div>
+        <div>{{duracao}}</div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- Não está no escopo -->
+  <div class="section section--white">
+    <h2>5. Fora do Escopo</h2>
+    <p>Os itens abaixo <strong>não estão incluídos</strong> neste SOW:</p>
+    <ul class="exclusion-list">
+      {{#each meta.exclusions}}
+      <li>{{this}}</li>
+      {{/each}}
+    </ul>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- Responsabilidades -->
+  <div class="section section--light">
+    <h2>6. Responsabilidades</h2>
+    <div class="resp-grid">
+      <div class="resp-card">
+        <div class="resp-card__header">JPX Digital</div>
+        <ul class="resp-card__body">
+          {{#each meta.responsibilitiesJPX}}
+          <li>{{this}}</li>
+          {{/each}}
+        </ul>
+      </div>
+      <div class="resp-card">
+        <div class="resp-card__header">{{client.company}}</div>
+        <ul class="resp-card__body">
+          {{#each meta.responsibilitiesClient}}
+          <li>{{this}}</li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- Aceite -->
+  <div class="section section--white">
+    <h2>7. Aceite</h2>
+    <p>Este documento entra em vigor mediante assinatura de ambas as partes e substitui qualquer comunicação verbal anterior referente ao escopo deste projeto.</p>
+    <div class="sig-grid">
+      <div>
+        <div class="sig-line">
+          <div class="name">JPX Digital Tecnologia</div>
+          <div>Data: _____ / _____ / _________</div>
+        </div>
+      </div>
+      <div>
+        <div class="sig-line">
+          <div class="name">{{client.company}}</div>
+          <div>{{client.contact}} — Data: _____ / _____ / _________</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-text">JPX Digital Tecnologia · jpxdigital.com.br · jp@jpxdigital.com.br</div>
+    <div class="footer-text">SOW-{{meta.sowNumber}} · Emitido em {{meta.date}}</div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+services:
+  pdf:
+    image: ghcr.io/jpxdigital/jpx-pdf:latest
+    container_name: jpx-pdf
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - /srv/pdf-service/templates:/templates:ro
+    environment:
+      - PORT=3000
+      - TEMPLATES_DIR=/templates
+    mem_limit: 512m
