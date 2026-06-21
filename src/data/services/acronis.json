@@ -1,0 +1,78 @@
+{
+  "slug": "acronis",
+  "category": "Continuidade & Segurança",
+  "heroHeadline": "Acronis Cyber Protect — Backup que Também Protege contra Ransomware em Tempo Real.",
+  "heroSub": "Enquanto outras soluções protegem seus dados após o ataque, o Acronis detecta e bloqueia o ransomware durante a execução.",
+  "ctaLabel": "Solicitar Backup Readiness Assessment",
+  "problem": {
+    "headline": "Backup corporativo tradicional não é mais suficiente. Ransomware criptografa seus dados em minutos — e pode comprometer o backup junto.",
+    "body": [
+      "A ameaça de ransomware mudou o jogo do backup corporativo. Atacantes modernos conhecem onde os backups ficam — e os comprometem antes de criptografar os dados de produção. Um backup que estava ok ontem pode estar inacessível hoje.",
+      "O Acronis Cyber Protect combina backup de imagem completa (bare-metal restore), proteção anti-ransomware com IA (Acronis Active Protection), avaliação de vulnerabilidades, patch management e Instant Restore em um único agente gerenciado centralmente.",
+      "A JPX Digital é parceira Acronis e implementa, configura e gerencia ambientes Acronis para empresas de todos os portes — de PMEs com dezenas de máquinas a ambientes corporativos com centenas de endpoints e servidores."
+    ]
+  },
+  "assessment": {
+    "name": "Backup Readiness Assessment (Acronis)",
+    "body": "Mapeamos o que precisa ser protegido: servidores, VMs, endpoints, dados críticos. Definimos RPO e RTO para cada workload e calculamos o armazenamento necessário (local + cloud). Identificamos gaps de proteção no ambiente atual antes de qualquer implantação.",
+    "checklist": [
+      "Inventário completo de sistemas a proteger (servidores, VMs, endpoints)",
+      "Definição de RPO e RTO por workload crítico",
+      "Dimensionamento de storage de backup (local e cloud)",
+      "Análise do ambiente de backup atual e gaps de cobertura",
+      "Proposta de política de backup e retenção por workload"
+    ]
+  },
+  "process": {
+    "title": "Nossa implementação Acronis",
+    "steps": [
+      { "title": "Assessment do ambiente de backup", "desc": "Mapeamos o que precisa ser protegido: servidores, VMs, endpoints, dados críticos. Definimos RPO e RTO para cada workload e calculamos o armazenamento necessário (local + cloud)." },
+      { "title": "Instalação e configuração central", "desc": "Instalamos o Acronis Cyber Infrastructure (self-hosted) ou configuramos acesso ao Acronis Cloud. Implantamos agentes em todos os sistemas e configuramos políticas de backup por grupo (frequência, retenção, destino, criptografia)." },
+      { "title": "Testes de restauração documentados", "desc": "Realizamos testes de restauração completa (bare-metal, Instant Restore e granular) antes de qualquer go-live. Um backup que nunca foi testado é um backup que pode não funcionar quando for necessário." },
+      { "title": "Gestão e alertas contínuos", "desc": "Monitoramos jobs de backup diariamente, investigamos falhas antes que se tornem problemas, gerenciamos capacidade de armazenamento e realizamos testes de restauração periódicos com relatório documentado." }
+    ]
+  },
+  "benefits": [
+    { "title": "Proteção durante o ataque", "desc": "Acronis Active Protection detecta ransomware em execução e bloqueia antes que comprometa os dados — não só depois." },
+    { "title": "RTO de minutos com Instant Restore", "desc": "Servidor falhado → sistema rodando como VM em 1-5 minutos. A restauração completa acontece em segundo plano." },
+    { "title": "Gestão unificada", "desc": "Servidores, VMs e endpoints de toda a empresa em um único console com políticas centralizadas." },
+    { "title": "Backup criptografado", "desc": "AES-256 em trânsito e em repouso. Seus dados de backup não são legíveis mesmo se o storage for comprometido." }
+  ],
+  "deliverables": [
+    "Relatório de Backup Readiness Assessment (Acronis)",
+    "Ambiente Acronis implantado e configurado",
+    "Políticas de backup por grupo de workload",
+    "Relatório de testes de restauração documentados",
+    "Runbook de procedimentos de restore",
+    "Configuração de alertas e monitoramento de jobs",
+    "Relatório mensal de status de backup"
+  ],
+  "differentials": [
+    { "title": "Proteção anti-ransomware ativa", "desc": "O Acronis Active Protection detecta comportamentos de ransomware (criptografia em massa de arquivos) e os bloqueia em tempo real, restaurando automaticamente os arquivos afetados do cache local." },
+    { "title": "Instant Restore — RTO de minutos", "desc": "Em caso de falha de servidor, inicializamos o sistema diretamente do backup como VM em 1-5 minutos, enquanto a restauração completa acontece em segundo plano. Downtime de minutos, não horas." },
+    { "title": "Gestão unificada servidor e endpoint", "desc": "Um único console para gerenciar backup de servidores, VMs e notebooks da empresa. Políticas centralizadas, relatórios unificados e inventário completo do que está protegido." },
+    { "title": "Parceiro Acronis com suporte técnico", "desc": "Como parceiros Acronis, abrimos casos diretamente com o suporte técnico do fabricante quando necessário — sem depender apenas de documentação ou fórum." }
+  ],
+  "faqs": [
+    {
+      "question": "Acronis é mais seguro que outras soluções de backup?",
+      "answer": "Acronis se diferencia por combinar backup com proteção ativa contra ransomware (Acronis Active Protection) — detecta e bloqueia tentativas de criptografar arquivos em tempo real. A maioria das soluções de backup protege dados após o ataque; o Acronis atua durante o ataque. Além disso, os backups são armazenados criptografados com AES-256."
+    },
+    {
+      "question": "Acronis faz backup de endpoints (notebooks e desktops) também?",
+      "answer": "Sim. O Acronis Cyber Protect Home Office e o Acronis Cyber Protect Cloud cobrem endpoints — Windows, macOS e Linux. Para empresas, o Acronis Cyber Protect Cloud permite gerenciar backup de servidores e endpoints em um único painel, com políticas centralizadas."
+    },
+    {
+      "question": "Qual é o RTO típico com Acronis?",
+      "answer": "Depende da modalidade de restauração. Para restauração de arquivo individual: minutos. Para restauração completa de servidor em hardware ou VM similar: 30 minutos a 2 horas dependendo do tamanho e velocidade do link. Para Instant Restore (boot do backup como VM): 1-5 minutos — o servidor está operando diretamente do backup enquanto a restauração completa acontece em segundo plano."
+    },
+    {
+      "question": "O que é o Acronis Instant Restore?",
+      "answer": "Instant Restore (ou Instant VM Recovery) permite inicializar o backup diretamente como uma máquina virtual no hypervisor local (VMware, Hyper-V) em minutos — sem esperar a restauração completa do disco. O sistema está operacional enquanto a restauração acontece em segundo plano. É um dos melhores recursos para minimizar downtime em incidentes."
+    },
+    {
+      "question": "Acronis substitui outros controles de segurança?",
+      "answer": "Não. Acronis complementa — não substitui — antivírus, EDR e outras ferramentas de segurança. O Acronis Cyber Protect inclui funcionalidades de segurança integradas (proteção anti-ransomware, avaliação de vulnerabilidades, patch management), mas a arquitetura de segurança da empresa deve ter defesa em profundidade com múltiplas camadas."
+    }
+  ]
+}
