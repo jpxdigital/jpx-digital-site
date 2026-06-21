@@ -37,14 +37,40 @@ export function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
+    if (!form.name.trim()) {
+      setStatus('error')
+      setErrorMsg('Informe seu nome completo.')
+      return
+    }
+    if (!form.email.trim() || !emailRegex.test(form.email.trim())) {
+      setStatus('error')
+      setErrorMsg('Informe um e-mail válido (ex: joao@empresa.com).')
+      return
+    }
+
     setStatus('submitting')
     setErrorMsg('')
+
     try {
+      const controller = new AbortController()
+      const timeout = setTimeout(() => controller.abort(), 15_000)
+
       const res = await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
+        signal: controller.signal,
       })
+      clearTimeout(timeout)
+
+      if (!res.ok && res.headers.get('content-type')?.includes('text/html')) {
+        setStatus('error')
+        setErrorMsg('Erro temporário no servidor. Tente novamente em alguns segundos.')
+        return
+      }
+
       const data: LeadApiResponse = await res.json()
       if (data.success) {
         setStatus('success')
@@ -53,9 +79,13 @@ export function ContactForm() {
         setStatus('error')
         setErrorMsg(data.error ?? 'Erro desconhecido. Tente novamente.')
       }
-    } catch {
+    } catch (err) {
       setStatus('error')
-      setErrorMsg('Falha na conexão. Verifique sua internet e tente novamente.')
+      if (err instanceof DOMException && err.name === 'AbortError') {
+        setErrorMsg('O servidor demorou para responder. Tente novamente.')
+      } else {
+        setErrorMsg('Não foi possível enviar. Verifique sua conexão e tente novamente.')
+      }
     }
   }
 
@@ -76,7 +106,7 @@ export function ContactForm() {
   const disabled = status === 'submitting'
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="space-y-5">
+    <form onSubmit={handleSubmit} className="space-y-5">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div className="space-y-1.5">
           <label className="text-sm font-medium text-gray-700" htmlFor="cf-name">

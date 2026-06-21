@@ -46,8 +46,8 @@ const segments = [
     href: '/segmentos/autoridades-certificadoras',
     icon: ShieldCheck,
     title: 'Autoridades Certificadoras',
-    desc: 'TI para ACs ICP-Brasil: clusters HSM com failover automático, VMware vSphere, OpenShift/OKD para portais de emissão, suporte à TI dentro da sala cofre e suporte ao credenciamento ITI. Atendemos ACs em fase inicial e ACs já credenciadas.',
-    pills: ['Sala Cofre N4', 'Cluster HSM', 'OpenShift/OKD', 'VMware vSphere', 'Credenciamento ITI'],
+    desc: 'TI para ACs ICP-Brasil: clusters HSM com failover automático, VMware vSphere, OpenShift/OKD para portais de emissão e suporte ao credenciamento ITI. Atendemos ACs em fase inicial e ACs já credenciadas.',
+    pills: ['Cluster HSM', 'OpenShift/OKD', 'VMware vSphere', 'Credenciamento ITI'],
   },
 ]
 

@@ -53,6 +53,11 @@ export async function POST(req: NextRequest) {
     return json({ error: 'Nome e e-mail são obrigatórios' }, 400)
   }
 
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
+  if (!emailRegex.test(email.trim())) {
+    return json({ error: 'Informe um e-mail válido (ex: joao@empresa.com)' }, 400)
+  }
+
   const authHeaders = {
     Authorization: `Bearer ${HUBSPOT_TOKEN}`,
     'Content-Type': 'application/json',
