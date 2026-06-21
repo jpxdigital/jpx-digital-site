@@ -1,0 +1,23 @@
+services:
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      TUNNEL_TOKEN: ${TUNNEL_TOKEN}
+    networks:
+      - internal
+
+  pdf:
+    image: ghcr.io/jpxdigital/jpx-pdf:latest
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      API_SECRET: ${PDF_API_SECRET}
+    networks:
+      - internal
+
+networks:
+  internal:
+    driver: bridge
