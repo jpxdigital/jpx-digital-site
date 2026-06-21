@@ -1,0 +1,61 @@
+{
+  "_comment": "Contrato de variáveis para os templates de proposta JPX Digital.",
+  "_note": "O workflow n8n monta este objeto combinando: JSON do serviço + dados do deal HubSpot + dados calculados (meta).",
+
+  "client": {
+    "name":    "STRING — primeiro nome do contato (ex: 'João')",
+    "contact": "STRING — nome completo do responsável (ex: 'João Martins')",
+    "company": "STRING — razão social ou nome fantasia (ex: 'Acme Ltda')",
+    "cnpj":    "STRING | null — CNPJ formatado ou null para omitir o campo",
+    "email":   "STRING — e-mail do contato",
+    "segment": "STRING — segmento do cliente (ex: 'Advocacia', 'Indústria')"
+  },
+
+  "service": {
+    "_source": "Lido diretamente do arquivo src/data/services/<slug>.json",
+    "slug":       "STRING",
+    "category":   "STRING",
+    "heroHeadline": "STRING",
+    "heroSub":    "STRING",
+    "ctaLabel":   "STRING",
+
+    "problem": {
+      "headline": "STRING",
+      "body":     ["STRING"]
+    },
+
+    "assessment": {
+      "name":      "STRING",
+      "body":      "STRING",
+      "checklist": ["STRING"]
+    },
+
+    "process": {
+      "title": "STRING",
+      "steps": [
+        {
+          "num":   "NUMBER — adicionado pelo n8n antes de renderizar (1, 2, 3...)",
+          "title": "STRING",
+          "desc":  "STRING"
+        }
+      ]
+    },
+
+    "benefits":     [{ "title": "STRING", "desc": "STRING" }],
+    "deliverables": ["STRING"],
+    "differentials":[{ "title": "STRING", "desc": "STRING" }],
+
+    "supportedEnvironments": [
+      { "categoria": "STRING", "itens": ["STRING"] }
+    ],
+
+    "faqs": [{ "question": "STRING", "answer": "STRING" }]
+  },
+
+  "meta": {
+    "date":           "STRING — data de emissão formatada (ex: '20 de junho de 2026')",
+    "proposalNumber": "STRING — código sequencial (ex: 'JPX-2026-042')",
+    "validUntil":     "STRING — data de validade formatada (ex: '20 de julho de 2026')",
+    "outputPath":     "STRING — caminho OCI onde o PDF será salvo"
+  }
+}

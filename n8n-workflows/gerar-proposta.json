@@ -1,0 +1,250 @@
+{
+  "name": "JPX — Gerar Proposta Comercial",
+  "description": "Acionado quando um deal no HubSpot entra no estágio 'Proposta Solicitada'. Lê o JSON do serviço, combina com dados do cliente, gera PDF via Puppeteer, faz upload no OCI Object Storage e envia e-mail ao cliente com o link.",
+  "version": 1,
+  "nodes": [
+
+    {
+      "id": "trigger",
+      "name": "HubSpot — Deal: Proposta Solicitada",
+      "type": "n8n-nodes-base.hubspotTrigger",
+      "position": [0, 0],
+      "parameters": {
+        "eventsUi": {
+          "eventValues": [{ "name": "deal.propertyChange", "propertyName": "dealstage" }]
+        }
+      },
+      "_note": "Filtra no nó seguinte para o estágio correto."
+    },
+
+    {
+      "id": "filter-stage",
+      "name": "Filtrar — estágio Proposta Solicitada",
+      "type": "n8n-nodes-base.if",
+      "position": [200, 0],
+      "parameters": {
+        "conditions": {
+          "string": [{
+            "value1": "={{ $json.propertyValue }}",
+            "operation": "equal",
+            "value2": "proposalrequested"
+          }]
+        }
+      }
+    },
+
+    {
+      "id": "get-deal",
+      "name": "HubSpot — Buscar deal completo",
+      "type": "n8n-nodes-base.hubspot",
+      "position": [400, 0],
+      "parameters": {
+        "resource": "deal",
+        "operation": "get",
+        "dealId": "={{ $json.objectId }}",
+        "additionalFields": {
+          "propertiesWithHistory": "dealname,hs_deal_stage_probability,service_slug,amount"
+        }
+      }
+    },
+
+    {
+      "id": "get-contact",
+      "name": "HubSpot — Buscar contato do deal",
+      "type": "n8n-nodes-base.hubspot",
+      "position": [400, 160],
+      "parameters": {
+        "resource": "deal",
+        "operation": "getAssociations",
+        "dealId": "={{ $('get-deal').item.json.id }}",
+        "toObjectType": "contacts"
+      }
+    },
+
+    {
+      "id": "get-contact-details",
+      "name": "HubSpot — Dados do contato",
+      "type": "n8n-nodes-base.hubspot",
+      "position": [600, 160],
+      "parameters": {
+        "resource": "contact",
+        "operation": "get",
+        "contactId": "={{ $json.results[0].id }}",
+        "additionalFields": {
+          "propertiesWithHistory": "firstname,lastname,email,company,phone"
+        }
+      }
+    },
+
+    {
+      "id": "read-service-json",
+      "name": "Ler JSON do serviço",
+      "type": "n8n-nodes-base.readWriteFile",
+      "position": [600, 0],
+      "parameters": {
+        "operation": "read",
+        "fileName": "=/srv/sites/jpxdigital/src/data/services/{{ $('get-deal').item.json.properties.service_slug }}.json"
+      },
+      "_note": "service_slug é uma propriedade customizada no deal HubSpot. Ex: 'backup-corporativo'."
+    },
+
+    {
+      "id": "parse-service-json",
+      "name": "Parse JSON do serviço",
+      "type": "n8n-nodes-base.set",
+      "position": [800, 0],
+      "parameters": {
+        "values": {
+          "object": [{ "name": "service", "value": "={{ JSON.parse($json.data.toString()) }}" }]
+        }
+      }
+    },
+
+    {
+      "id": "add-step-numbers",
+      "name": "Adicionar num aos steps",
+      "type": "n8n-nodes-base.code",
+      "position": [800, 160],
+      "parameters": {
+        "jsCode": "const service = $('parse-service-json').item.json.service;\nservice.process.steps = service.process.steps.map((s, i) => ({ ...s, num: i + 1 }));\nreturn [{ json: { service } }];"
+      }
+    },
+
+    {
+      "id": "build-payload",
+      "name": "Montar payload do template",
+      "type": "n8n-nodes-base.set",
+      "position": [1000, 0],
+      "parameters": {
+        "values": {
+          "object": [{
+            "name": "payload",
+            "value": "={{ JSON.stringify({ client: { name: $('get-contact-details').item.json.properties.firstname, contact: $('get-contact-details').item.json.properties.firstname + ' ' + $('get-contact-details').item.json.properties.lastname, company: $('get-contact-details').item.json.properties.company, cnpj: null, email: $('get-contact-details').item.json.properties.email, segment: $('get-deal').item.json.properties.segment || '' }, service: $('add-step-numbers').item.json.service, meta: { date: new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' }), proposalNumber: 'JPX-' + new Date().getFullYear() + '-' + String($('get-deal').item.json.id).slice(-3).padStart(3,'0'), validUntil: new Date(Date.now() + 30*24*60*60*1000).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' }), outputPath: 'propostas/' + new Date().toISOString().slice(0,7) + '/' + $('get-contact-details').item.json.properties.company.toLowerCase().replace(/[^a-z0-9]+/g,'-') + '-' + $('get-deal').item.json.properties.service_slug + '.pdf' } }) }}"
+          }]
+        }
+      }
+    },
+
+    {
+      "id": "generate-pdf",
+      "name": "Gerar PDF via Puppeteer",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [1200, 0],
+      "parameters": {
+        "command": "node /srv/sites/jpxdigital/docs/doc-gen/preview.js proposta /tmp/proposta-data-{{ $now.toMillis() }}.json",
+        "_note": "Alternativa: chamar um endpoint HTTP interno que aceita o payload e retorna o PDF em base64."
+      },
+      "_alternative": "Usar um HTTP Request node apontando para um endpoint /api/generate-pdf na VM2."
+    },
+
+    {
+      "id": "upload-oci",
+      "name": "Upload PDF → OCI Object Storage",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [1400, 0],
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://objectstorage.sa-saopaulo-1.oraclecloud.com/n/{{ $env.OCI_NAMESPACE }}/b/jpx-documentos/o/{{ encodeURIComponent($('build-payload').item.json.meta.outputPath) }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [{ "name": "Content-Type", "value": "application/pdf" }]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [{ "name": "binary", "value": "={{ $binary.data }}" }]
+        }
+      }
+    },
+
+    {
+      "id": "generate-signed-url",
+      "name": "Gerar pre-authenticated URL (7 dias)",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [1600, 0],
+      "parameters": {
+        "method": "POST",
+        "url": "=https://objectstorage.sa-saopaulo-1.oraclecloud.com/n/{{ $env.OCI_NAMESPACE }}/b/jpx-documentos/p/",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendBody": true,
+        "bodyContentType": "json",
+        "jsonBody": "={{ JSON.stringify({ accessType: 'ObjectRead', name: 'proposta-' + $now.toMillis(), objectName: $('build-payload').item.json.meta.outputPath, timeExpires: new Date(Date.now() + 7*24*60*60*1000).toISOString() }) }}"
+      }
+    },
+
+    {
+      "id": "update-deal-hubspot",
+      "name": "HubSpot — Atualizar deal",
+      "type": "n8n-nodes-base.hubspot",
+      "position": [1800, 0],
+      "parameters": {
+        "resource": "deal",
+        "operation": "update",
+        "dealId": "={{ $('get-deal').item.json.id }}",
+        "updateFields": {
+          "customPropertiesUi": {
+            "customPropertiesValues": [
+              { "property": "proposal_pdf_url",  "value": "={{ $json.fullPath }}" },
+              { "property": "proposal_sent_date", "value": "={{ $now.toISO() }}" },
+              { "property": "dealstage",          "value": "proposaldelivered" }
+            ]
+          }
+        }
+      }
+    },
+
+    {
+      "id": "send-email",
+      "name": "Zoho SMTP — Enviar proposta ao cliente",
+      "type": "n8n-nodes-base.emailSend",
+      "position": [2000, 0],
+      "parameters": {
+        "fromEmail": "contato@jpxdigital.com.br",
+        "toEmail":   "={{ $('get-contact-details').item.json.properties.email }}",
+        "subject":   "={{ 'Proposta ' + $('parse-service-json').item.json.service.assessment.name + ' — JPX Digital' }}",
+        "emailType": "html",
+        "message":   "={{ '<p>Olá, ' + $('build-payload').item.json.client.name + '.</p><p>Segue a proposta para o <strong>' + $('parse-service-json').item.json.service.assessment.name + '</strong>.</p><p><a href=\"' + $('generate-signed-url').item.json.fullPath + '\">Acessar proposta (válida por 7 dias)</a></p><p>Qualquer dúvida, estou à disposição.</p><p>João Martins<br>JPX Digital</p>' }}"
+      }
+    },
+
+    {
+      "id": "notify-telegram",
+      "name": "Telegram — Notificação interna",
+      "type": "n8n-nodes-base.telegram",
+      "position": [2000, 160],
+      "parameters": {
+        "chatId": "={{ $env.TELEGRAM_CHAT_ID }}",
+        "text":   "={{ '📄 Proposta enviada\\n\\nCliente: ' + $('build-payload').item.json.client.company + '\\nServiço: ' + $('parse-service-json').item.json.service.assessment.name + '\\nProposata: ' + $('build-payload').item.json.meta.proposalNumber + '\\n\\n' + $('generate-signed-url').item.json.fullPath }}"
+      }
+    }
+
+  ],
+
+  "connections": {
+    "trigger":               { "main": [[{ "node": "filter-stage", "type": "main", "index": 0 }]] },
+    "filter-stage":          { "main": [[{ "node": "get-deal",    "type": "main", "index": 0 }], []] },
+    "get-deal":              { "main": [[{ "node": "read-service-json", "type": "main", "index": 0 }, { "node": "get-contact", "type": "main", "index": 0 }]] },
+    "get-contact":           { "main": [[{ "node": "get-contact-details", "type": "main", "index": 0 }]] },
+    "get-contact-details":   { "main": [[{ "node": "build-payload", "type": "main", "index": 0 }]] },
+    "read-service-json":     { "main": [[{ "node": "parse-service-json", "type": "main", "index": 0 }]] },
+    "parse-service-json":    { "main": [[{ "node": "add-step-numbers", "type": "main", "index": 0 }]] },
+    "add-step-numbers":      { "main": [[{ "node": "build-payload", "type": "main", "index": 0 }]] },
+    "build-payload":         { "main": [[{ "node": "generate-pdf", "type": "main", "index": 0 }]] },
+    "generate-pdf":          { "main": [[{ "node": "upload-oci",   "type": "main", "index": 0 }]] },
+    "upload-oci":            { "main": [[{ "node": "generate-signed-url", "type": "main", "index": 0 }]] },
+    "generate-signed-url":   { "main": [[{ "node": "update-deal-hubspot", "type": "main", "index": 0 }]] },
+    "update-deal-hubspot":   { "main": [[{ "node": "send-email",   "type": "main", "index": 0 }, { "node": "notify-telegram", "type": "main", "index": 0 }]] }
+  },
+
+  "settings": {
+    "executionOrder": "v1"
+  },
+
+  "envVars": {
+    "OCI_NAMESPACE":     "Namespace do OCI Object Storage (console OCI → Object Storage → Namespace)",
+    "TELEGRAM_CHAT_ID":  "ID do chat/grupo interno JPX no Telegram",
+    "HUBSPOT_API_KEY":   "Credencial configurada no n8n (não expor aqui)"
+  }
+}

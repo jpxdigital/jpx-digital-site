@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proposta Comercial — {{service.assessment.name}} | JPX Digital</title>
+  <style>
+    /* ── Reset & Base ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brand:        #0A2463;
+      --brand-light:  #163a80;
+      --accent:       #0078D4;
+      --text:         #111827;
+      --text-muted:   #6B7280;
+      --bg-light:     #F8F9FA;
+      --border:       #E5E7EB;
+      --success:      #059669;
+      --white:        #ffffff;
+    }
+
+    html { font-size: 14px; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Layout ────────────────────────────────────────────────────── */
+    .page {
+      width: 210mm;
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 48px 56px;
+      page-break-inside: avoid;
+    }
+
+    .section--dark {
+      background: var(--brand);
+      color: var(--white);
+    }
+
+    .section--light {
+      background: var(--bg-light);
+    }
+
+    .section--white {
+      background: var(--white);
+    }
+
+    /* ── Tipografia ────────────────────────────────────────────────── */
+    .label {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .label--white {
+      color: rgba(255,255,255,0.6);
+    }
+
+    h1 { font-size: 2rem;   font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; }
+    h2 { font-size: 1.375rem; font-weight: 700; line-height: 1.3; letter-spacing: -0.015em; margin-bottom: 16px; }
+    h3 { font-size: 1rem;   font-weight: 700; line-height: 1.4; margin-bottom: 6px; }
+
+    p  { font-size: 0.9375rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 12px; }
+    p:last-child { margin-bottom: 0; }
+
+    p.dark { color: rgba(255,255,255,0.75); }
+
+    /* ── ══════════════════════════════════════════════════════════════
+       CAPA
+    ══════════════════════════════════════════════════════════════ ── */
+    .cover {
+      background: var(--brand);
+      color: var(--white);
+      padding: 64px 56px 56px;
+      min-height: 260mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      page-break-after: always;
+    }
+
+    .cover__logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--white);
+    }
+
+    .cover__logo span {
+      color: var(--accent);
+    }
+
+    .cover__body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 56px 0;
+    }
+
+    .cover__category {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 16px;
+    }
+
+    .cover__title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+
+    .cover__title-accent {
+      color: #60A5FA;
+    }
+
+    .cover__sub {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.65);
+      max-width: 480px;
+    }
+
+    .cover__meta {
+      display: flex;
+      gap: 40px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding-top: 24px;
+    }
+
+    .cover__meta-item label {
+      display: block;
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 4px;
+    }
+
+    .cover__meta-item span {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+    }
+
+    /* ── ══════════════════════════════════════════════════════════════
+       SEÇÃO: PARA QUEM É ESTA PROPOSTA
+    ══════════════════════════════════════════════════════════════ ── */
+    .recipient-bar {
+      background: var(--bg-light);
+      border-left: 4px solid var(--accent);
+      padding: 20px 56px;
+      display: flex;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .recipient-bar__item label {
+      display: block;
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    .recipient-bar__item span {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* ── ══════════════════════════════════════════════════════════════
+       SEÇÃO: CONTEXTO (PROBLEMA)
+    ══════════════════════════════════════════════════════════════ ── */
+    .problem__headline {
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -0.015em;
+      color: var(--brand);
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    /* ── ══════════════════════════════════════════════════════════════
+       SEÇÃO: ASSESSMENT
+    ══════════════════════════════════════════════════════════════ ── */
+    .assessment-box {
+      background: var(--brand);
+      color: var(--white);
+      border-radius: 8px;
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+
+    .assessment-box__name {
+      font-size: 1.125rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .assessment-box__body {
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.9375rem;
+      line-height: 1.5;
+      color: var(--text);
+    }
+
+    .checklist li::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 20px;
+      min-width: 20px;
+      border: 2px solid var(--border);
+      border-radius: 4px;
+      margin-top: 1px;
+    }
+
+    /* ── ══════════════════════════════════════════════════════════════
+       SEÇÃO: METODOLOGIA
+    ══════════════════════════════════════════════════════════════ ── */
+    .methodology {
+      display: flex;
+      gap: 0;
+      margin-top: 24px;
+    }
+
+    .methodology__step {
+      flex: 1;
+      text-align: center;
+      position: relative;
+    }
+
+    .methodology__step:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -8px;
+      top: 14px;
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.35);
+    }
+
+    .methodology__num {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 50%;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--white);
+      margin: 0 auto 8px;
+    }
+
+    .methodology__label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.02em;
+    }
+
+    .methodology__label--active {
+      color: #60A5FA;
+    }
+
+    /* ── ══════════════════════════════════════════════════════════════
+       SEÇÃO: PROCESSO
+    ══════════════════════════════════════════════════════════════ ── */
+    .process-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .process-step {
+      display: flex;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .process-step:last-child {
+      border-bottom: none;
+    }
+
+    .process-step__num {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      background: var(--brand);
+      border-radius: 50%;
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-top: 2px;
+    }
+
+    .process-step__title {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .process-step__desc {
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    /* ── ══════════════════════════════════════════════════════════════
+       SEÇÃO: ENTREGÁVEIS
+    ══════════════════════════════════════════════════════════════ ── */
+    .deliverables-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .deliverable-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px 14px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.45;
+    }
+
+    .deliverable-item::before {
+      content: '↗';
+      color: var(--success);
+      font-weight: 700;
+      font-size: 0.875rem;
+      margin-top: 1px;
+    }
+
+    /* ── ══════════════════════════════════════════════════════════════
+       SEÇÃO: BENEFÍCIOS
+    ══════════════════════════════════════════════════════════════ ── */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .benefit-card {
+      padding: 20px;
+      border-radius: 8px;
+      background: var(--white);
+      border: 1px solid var(--border);
+    }
+
+    .benefit-card__title {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--brand);
+      margin-bottom: 6px;
+    }
+
+    .benefit-card__desc {
+      font-size: 0.8125rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    /* ── ══════════════════════════════════════════════════════════════
+       SEÇÃO: DIFERENCIAIS
+    ══════════════════════════════════════════════════════════════ ── */
+    .differentials-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .differential {
+      padding-left: 16px;
+      border-left: 3px solid var(--accent);
+    }
+
+    .differential__title {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .differential__desc {
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.65);
+      margin: 0;
+    }
+
+    /* ── ══════════════════════════════════════════════════════════════
+       SEÇÃO: PRÓXIMOS PASSOS (CTA)
+    ══════════════════════════════════════════════════════════════ ── */
+    .next-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 24px 0;
+    }
+
+    .next-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .next-step__num {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      background: var(--accent);
+      border-radius: 50%;
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--white);
+    }
+
+    .next-step__text {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--text);
+      padding-top: 4px;
+    }
+
+    .cta-box {
+      background: var(--brand);
+      border-radius: 8px;
+      padding: 28px 32px;
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .cta-box__text h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .cta-box__text p {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.6);
+      margin: 0;
+    }
+
+    .cta-box__contact {
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .cta-box__contact a {
+      display: block;
+      color: #60A5FA;
+      font-weight: 600;
+      font-size: 0.9375rem;
+      text-decoration: none;
+    }
+
+    /* ── ══════════════════════════════════════════════════════════════
+       RODAPÉ
+    ══════════════════════════════════════════════════════════════ ── */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 16px 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .footer__brand {
+      font-weight: 700;
+      color: var(--brand);
+    }
+
+    .footer__validity {
+      background: #FEF3C7;
+      color: #92400E;
+      font-weight: 600;
+      font-size: 0.6875rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    /* ── Print / PDF ───────────────────────────────────────────────── */
+    @media print {
+      @page { size: A4; margin: 0; }
+      .cover { page-break-after: always; }
+      .section { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- CAPA                                                           -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="cover">
+    <div class="cover__logo">JPX<span>Digital</span></div>
+
+    <div class="cover__body">
+      <div class="cover__category">Proposta Comercial · {{service.category}}</div>
+      <h1 class="cover__title">
+        {{service.assessment.name}}<br />
+        <span class="cover__title-accent">para {{client.company}}.</span>
+      </h1>
+      <p class="cover__sub">{{service.heroSub}}</p>
+    </div>
+
+    <div class="cover__meta">
+      <div class="cover__meta-item">
+        <label>Preparado para</label>
+        <span>{{client.name}}</span>
+      </div>
+      <div class="cover__meta-item">
+        <label>Empresa</label>
+        <span>{{client.company}}</span>
+      </div>
+      <div class="cover__meta-item">
+        <label>Data</label>
+        <span>{{meta.date}}</span>
+      </div>
+      <div class="cover__meta-item">
+        <label>Nº da Proposta</label>
+        <span>{{meta.proposalNumber}}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- BARRA DO DESTINATÁRIO                                          -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="recipient-bar">
+    <div class="recipient-bar__item">
+      <label>Responsável pelo projeto</label>
+      <span>{{client.contact}}</span>
+    </div>
+    <div class="recipient-bar__item">
+      <label>E-mail</label>
+      <span>{{client.email}}</span>
+    </div>
+    {{#if client.cnpj}}
+    <div class="recipient-bar__item">
+      <label>CNPJ</label>
+      <span>{{client.cnpj}}</span>
+    </div>
+    {{/if}}
+    <div class="recipient-bar__item">
+      <label>Válida até</label>
+      <span>{{meta.validUntil}}</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- CONTEXTO — PROBLEMA DE NEGÓCIO                                 -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section section--white">
+    <div class="label">Contexto</div>
+    <div class="problem__headline">{{service.problem.headline}}</div>
+    {{#each service.problem.body}}
+    <p>{{this}}</p>
+    {{/each}}
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- ASSESSMENT — PORTA DE ENTRADA                                  -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section section--light">
+    <div class="label">Diagnóstico inicial</div>
+    <h2>Começamos com um Assessment</h2>
+
+    <div class="assessment-box">
+      <div class="assessment-box__name">{{service.assessment.name}}</div>
+      <p class="assessment-box__body">{{service.assessment.body}}</p>
+    </div>
+
+    <h3 style="margin-bottom: 14px; color: var(--text);">O que será avaliado:</h3>
+    <ul class="checklist">
+      {{#each service.assessment.checklist}}
+      <li>{{this}}</li>
+      {{/each}}
+    </ul>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- METODOLOGIA JPX                                                -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section section--dark">
+    <div class="label label--white">Metodologia JPX Digital</div>
+    <h2 style="color: white; margin-bottom: 24px;">Cada engajamento segue o mesmo processo estruturado</h2>
+    <div class="methodology">
+      <div class="methodology__step">
+        <div class="methodology__num">1</div>
+        <div class="methodology__label methodology__label--active">Assessment</div>
+      </div>
+      <div class="methodology__step">
+        <div class="methodology__num">2</div>
+        <div class="methodology__label">Arquitetura</div>
+      </div>
+      <div class="methodology__step">
+        <div class="methodology__num">3</div>
+        <div class="methodology__label">Implantação</div>
+      </div>
+      <div class="methodology__step">
+        <div class="methodology__num">4</div>
+        <div class="methodology__label">Validação</div>
+      </div>
+      <div class="methodology__step">
+        <div class="methodology__num">5</div>
+        <div class="methodology__label">Documentação</div>
+      </div>
+      <div class="methodology__step">
+        <div class="methodology__num">6</div>
+        <div class="methodology__label">Operação</div>
+      </div>
+      <div class="methodology__step">
+        <div class="methodology__num">7</div>
+        <div class="methodology__label">Melhoria Contínua</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- PROCESSO DE TRABALHO                                           -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section section--white">
+    <div class="label">Como trabalhamos</div>
+    <h2>{{service.process.title}}</h2>
+    <div class="process-steps">
+      {{#each service.process.steps}}
+      <div class="process-step">
+        <div class="process-step__num">{{num}}</div>
+        <div>
+          <div class="process-step__title">{{title}}</div>
+          <p class="process-step__desc">{{desc}}</p>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- ENTREGÁVEIS                                                     -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section section--light">
+    <div class="label">O que você recebe</div>
+    <h2>Entregáveis documentados</h2>
+    <div class="deliverables-grid">
+      {{#each service.deliverables}}
+      <div class="deliverable-item">{{this}}</div>
+      {{/each}}
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- BENEFÍCIOS                                                      -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section section--white">
+    <div class="label">Resultados esperados</div>
+    <h2>O que muda para o negócio</h2>
+    <div class="benefits-grid">
+      {{#each service.benefits}}
+      <div class="benefit-card">
+        <div class="benefit-card__title">{{title}}</div>
+        <p class="benefit-card__desc">{{desc}}</p>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- DIFERENCIAIS JPX                                               -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section section--dark">
+    <div class="label label--white">Por que JPX Digital</div>
+    <h2 style="color: white; margin-bottom: 24px;">Nossos diferenciais neste serviço</h2>
+    <div class="differentials-list">
+      {{#each service.differentials}}
+      <div class="differential">
+        <div class="differential__title">{{title}}</div>
+        <p class="differential__desc">{{desc}}</p>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- PRÓXIMOS PASSOS                                                 -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section section--white">
+    <div class="label">Próximos passos</div>
+    <h2>Como avançar</h2>
+
+    <div class="next-steps">
+      <div class="next-step">
+        <div class="next-step__num">1</div>
+        <div class="next-step__text">Aprovação desta proposta e alinhamento de agenda</div>
+      </div>
+      <div class="next-step">
+        <div class="next-step__num">2</div>
+        <div class="next-step__text">Realização do <strong>{{service.assessment.name}}</strong> — sem custo adicional</div>
+      </div>
+      <div class="next-step">
+        <div class="next-step__num">3</div>
+        <div class="next-step__text">Apresentação dos resultados e aprovação do escopo definitivo</div>
+      </div>
+      <div class="next-step">
+        <div class="next-step__num">4</div>
+        <div class="next-step__text">Assinatura do contrato e início da implantação</div>
+      </div>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box__text">
+        <h3>Pronto para avançar, {{client.name}}?</h3>
+        <p>Responda este e-mail ou entre em contato diretamente.</p>
+      </div>
+      <div class="cta-box__contact">
+        <a href="mailto:contato@jpxdigital.com.br">contato@jpxdigital.com.br</a>
+        <a href="https://jpxdigital.com.br">jpxdigital.com.br</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- RODAPÉ                                                          -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="footer">
+    <span class="footer__brand">JPX Digital</span>
+    <span>Proposta nº {{meta.proposalNumber}} · Preparada em {{meta.date}}</span>
+    <span class="footer__validity">Válida até {{meta.validUntil}}</span>
+  </div>
+
+</div>
+</body>
+</html>
