@@ -78,7 +78,7 @@ const segments = [
   { href: '/segmentos/industrias', icon: Factory, title: 'Indústrias', desc: 'Linha de produção contínua. Integração ERP-OT. Custo de parada calculado.' },
   { href: '/segmentos/escritorios', icon: Building2, title: 'Escritórios Corporativos', desc: 'Microsoft 365 correto, backup de endpoints e suporte MSP com SLA.' },
   { href: '/segmentos/advocacia', icon: Scale, title: 'Advocacia', desc: 'Sigilo profissional protegido. Backup jurídico imutável. Certificados gerenciados.' },
-  { href: '/segmentos/autoridades-certificadoras', icon: ShieldCheck, title: 'Autoridades Certificadoras', desc: 'Sala cofre N4, cluster HSM, VMware e OpenShift para ACs ICP-Brasil.' },
+  { href: '/segmentos/autoridades-certificadoras', icon: ShieldCheck, title: 'Autoridades Certificadoras', desc: 'Cluster HSM, VMware e OpenShift para ACs ICP-Brasil. Suporte ao credenciamento ITI.' },
 ]
 
 export default function Home() {

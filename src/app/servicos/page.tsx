@@ -54,7 +54,7 @@ const allServices = [
     category: 'Certificados & PKI',
     items: [
       { href: '/servicos/certificados-digitais', icon: Award, title: 'Certificados Digitais ICP-Brasil', desc: 'Revendedor autorizado de e-CPF, e-CNPJ, NF-e, SSL/TLS — com gestão de renovação.' },
-      { href: '/servicos/sala-cofre', icon: ShieldCheck, title: 'Sala Cofre Nível 4', desc: 'Suporte de TI e auditoria lógica para ambientes de sala cofre regulados.' },
+
     ],
   },
   {
