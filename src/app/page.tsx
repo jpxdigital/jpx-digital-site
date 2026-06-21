@@ -14,7 +14,7 @@ import { MotionProvider } from '@/components/providers/MotionProvider'
 export const metadata: Metadata = {
   title: 'Consultoria de TI, Cloud e Segurança Corporativa',
   description:
-    'Toda solução da JPX Digital é projetada para potencializar a produtividade humana com Inteligência Artificial, mantendo governança, segurança e supervisão especializada.',
+    'A JPX Digital integra Inteligência Artificial aos seus serviços de cloud, cibersegurança e infraestrutura para aumentar produtividade, acelerar diagnósticos e apoiar decisões técnicas — com supervisão especializada e governança adequada.',
 }
 
 const painCards = [
@@ -178,8 +178,8 @@ export default function Home() {
                   <BrainCircuit className="w-5 h-5 text-secondary" />
                 </div>
                 <p className="text-white/85 text-[0.9375rem] leading-relaxed max-w-3xl">
-                  <span className="text-white font-semibold">Toda solução da JPX é projetada para potencializar a produtividade humana com Inteligência Artificial</span>
-                  {' '}— mantendo governança, segurança e supervisão especializada.
+                  <span className="text-white font-semibold">A JPX Digital integra Inteligência Artificial aos seus serviços de cloud, cibersegurança e infraestrutura</span>
+                  {' '}para aumentar produtividade, acelerar diagnósticos, automatizar processos e apoiar decisões técnicas — sempre com supervisão de especialistas e governança adequada.
                 </p>
               </div>
             </FadeIn>
