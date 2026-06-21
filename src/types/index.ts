@@ -4,6 +4,7 @@ export interface LeadFormData {
   phone: string
   company: string
   interest: string
+  serviceSlug?: string
   message: string
 }
 
