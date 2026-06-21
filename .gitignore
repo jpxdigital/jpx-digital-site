@@ -1,17 +1,30 @@
 node_modules/
 dist/
-.env
-.env.local
-.env.deploy
 .DS_Store
 *.log
+
+# Variáveis de ambiente e segredos — NUNCA commitar
+.env
+.env.*
+.env.local
+.env.deploy
 KEYS.md
+secrets.md
+secrets/
+*.pem
+*.key
+*.p12
+*.pfx
 
 # Next.js
 .next/
 out/
 
-# Deploy — arquivos de ambiente (nunca commitar valores reais)
+# Deploy — arquivos de ambiente
 deploy/vm1/.env
 deploy/vm2/.env
 deploy/monitoring/.env
+deploy/pdf-service/.env
+
+# n8n workflows com credenciais embutidas
+n8n-workflows/*.credentials.json
