@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 }
 
 const schemas = [
-  serviceSchema('TI para Autoridades Certificadoras', 'Infraestrutura técnica para ACs ICP-Brasil: sala cofre N4, clusters HSM, VMware e OpenShift. Suporte ao credenciamento ITI.', 'IT Infrastructure Service'),
+  serviceSchema('TI para Autoridades Certificadoras', 'Infraestrutura de TI para ACs ICP-Brasil: clusters HSM, VMware e OpenShift. Suporte à TI dentro da sala cofre e ao credenciamento ITI.', 'IT Infrastructure Service'),
   breadcrumbSchema([
     { name: 'Home', item: BASE },
     { name: 'Segmentos', item: `${BASE}/segmentos` },
