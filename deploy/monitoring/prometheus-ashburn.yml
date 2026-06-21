@@ -1,0 +1,24 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: node
+    static_configs:
+      - targets:
+          - node-exporter:9100      # vm-ashburn-2 (esta VM, via nome Docker)
+          - 129.80.120.133:9100     # vm-ashburn-1
+          - 168.75.81.244:9100      # vm1-saopaulo (site)
+          - 137.131.205.54:9100     # vm2-saopaulo (n8n)
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: '(.+):\d+'
+        target_label: instance
+
+  - job_name: cadvisor
+    static_configs:
+      - targets: [cadvisor:8080]
+
+  - job_name: prometheus
+    static_configs:
+      - targets: [localhost:9090]
