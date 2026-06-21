@@ -7,6 +7,14 @@ set -e
 echo "==> Atualizando sistema"
 sudo apt-get update -qq && sudo apt-get upgrade -y -qq
 
+echo "==> Liberando SSH permanentemente (antes do Docker)"
+export DEBIAN_FRONTEND=noninteractive
+sudo apt-get install -y -qq iptables-persistent
+sudo iptables -C INPUT -p tcp --dport 22 -j ACCEPT 2>/dev/null \
+  || sudo iptables -I INPUT 1 -p tcp --dport 22 -j ACCEPT
+sudo iptables-save | sudo tee /etc/iptables/rules.v4 > /dev/null
+sudo ip6tables-save | sudo tee /etc/iptables/rules.v6 > /dev/null
+
 echo "==> Instalando Docker"
 curl -fsSL https://get.docker.com | sudo sh
 sudo usermod -aG docker $USER
