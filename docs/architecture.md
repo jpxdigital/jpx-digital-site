@@ -32,8 +32,8 @@ Cloudflare (DNS + CDN + WAF + DDoS + Bot Management)
 |----|--------|-------------|-------|
 | VM1 | sa-saopaulo-1 | `jpx` (padrão) | Site principal (Next.js) |
 | VM2 | sa-saopaulo-1 | `jpx` (padrão) | Automação (n8n + PostgreSQL) |
-| VM3 | us-ashburn-1  | `jpx-ashburn`  | Observabilidade (Grafana + Prometheus + Loki) |
-| VM4 | us-ashburn-1  | `jpx-ashburn`  | Documentos (Puppeteer PDF + OCI Object Storage) |
+| VM3 | us-ashburn-1  | `jpx-ashburn`  | Observabilidade (Grafana + Prometheus + Loki) — 141.148.50.123 |
+| VM4 | us-ashburn-1  | `jpx-ashburn`  | Documentos (Puppeteer PDF + Cloudflare Tunnel) — 129.80.120.133 |
 
 **Por que Ashburn para observabilidade e docs?**
 - Monitoramento em região separada: se São Paulo tiver problemas, os alertas continuam funcionando
