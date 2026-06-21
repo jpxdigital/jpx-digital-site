@@ -26,17 +26,41 @@
   "process": {
     "title": "Como conduzimos a consultoria estratégica",
     "steps": [
-      { "title": "Entendimento do negócio", "desc": "Antes de analisar a TI, entendemos o negócio: modelo de operação, planos de crescimento, restrições regulatórias, pressões competitivas e dependências de tecnologia. TI serve o negócio — a estratégia de TI começa pelo negócio." },
-      { "title": "Assessment técnico do ambiente atual", "desc": "Inventário de infraestrutura, análise de riscos (segurança, disponibilidade, capacidade), avaliação de custos atuais e mapeamento de dependências críticas. Entrevistas com equipe técnica e usuários-chave." },
-      { "title": "Diagnóstico e priorização", "desc": "Consolidamos os achados em um diagnóstico estruturado: o que está funcionando bem (e não precisa ser mudado), os riscos que precisam ser endereçados com urgência e as oportunidades de melhoria com melhor relação custo-benefício." },
-      { "title": "Roadmap e planejamento de capacidade", "desc": "Construímos o roadmap de TI: iniciativas priorizadas por impacto e custo, estimativas de investimento, cronograma e indicadores de resultado. O roadmap é um documento vivo — revisado periodicamente conforme o negócio evolui." }
+      {
+        "title": "Entendimento do negócio",
+        "desc": "Antes de analisar a TI, entendemos o negócio: modelo de operação, planos de crescimento, restrições regulatórias, pressões competitivas e dependências de tecnologia. TI serve o negócio — a estratégia de TI começa pelo negócio."
+      },
+      {
+        "title": "Assessment técnico do ambiente atual",
+        "desc": "Inventário de infraestrutura, análise de riscos (segurança, disponibilidade, capacidade), avaliação de custos atuais e mapeamento de dependências críticas. Entrevistas com equipe técnica e usuários-chave."
+      },
+      {
+        "title": "Diagnóstico e priorização",
+        "desc": "Consolidamos os achados em um diagnóstico estruturado: o que está funcionando bem (e não precisa ser mudado), os riscos que precisam ser endereçados com urgência e as oportunidades de melhoria com melhor relação custo-benefício."
+      },
+      {
+        "title": "Roadmap e planejamento de capacidade",
+        "desc": "Construímos o roadmap de TI: iniciativas priorizadas por impacto e custo, estimativas de investimento, cronograma e indicadores de resultado. O roadmap é um documento vivo — revisado periodicamente conforme o negócio evolui."
+      }
     ]
   },
   "benefits": [
-    { "title": "Diagnóstico antes da solução", "desc": "Nunca propomos uma solução sem antes entender o problema real. O assessment vem antes de qualquer proposta comercial." },
-    { "title": "Independência comercial", "desc": "Não temos metas de venda de produto. Recomendamos o que é certo para o negócio — mesmo que isso signifique não comprar nada." },
-    { "title": "CTO as a Service", "desc": "Para empresas sem diretor de TI: participamos de reuniões estratégicas, gerenciamos fornecedores e representamos a TI junto à diretoria." },
-    { "title": "Roadmap executável", "desc": "Planejamento com prioridades, estimativas de custo e cronograma realistas — não uma lista de aspirações sem viabilidade." }
+    {
+      "title": "Diagnóstico antes da solução",
+      "desc": "Nunca propomos uma solução sem antes entender o problema real. O assessment vem antes de qualquer proposta comercial."
+    },
+    {
+      "title": "Independência comercial",
+      "desc": "Não temos metas de venda de produto. Recomendamos o que é certo para o negócio — mesmo que isso signifique não comprar nada."
+    },
+    {
+      "title": "CTO as a Service",
+      "desc": "Para empresas sem diretor de TI: participamos de reuniões estratégicas, gerenciamos fornecedores e representamos a TI junto à diretoria."
+    },
+    {
+      "title": "Roadmap executável",
+      "desc": "Planejamento com prioridades, estimativas de custo e cronograma realistas — não uma lista de aspirações sem viabilidade."
+    }
   ],
   "deliverables": [
     "Relatório de IT Strategic Assessment",
@@ -47,10 +71,22 @@
     "Relatório executivo para apresentação à diretoria"
   ],
   "differentials": [
-    { "title": "Independência comercial real", "desc": "Não temos metas de venda de produto. A recomendação que fazemos é a que acreditamos ser correta para o cliente — mesmo que isso signifique não comprar nada por enquanto." },
-    { "title": "CTO as a Service", "desc": "Para empresas sem diretor de TI, atuamos como CTO externo: participamos de reuniões estratégicas, avaliamos decisões de arquitetura, gerenciamos fornecedores e representamos a TI junto à diretoria." },
-    { "title": "Diagnóstico antes da solução", "desc": "Nunca propomos uma solução sem primeiro entender o problema real. O assessment vem antes de qualquer proposta comercial de implementação." },
-    { "title": "Roadmap executável, não teórico", "desc": "O planejamento estratégico que entregamos tem prioridades, estimativas de custo e cronograma realistas — não uma lista de aspirações sem viabilidade." }
+    {
+      "title": "Independência comercial real",
+      "desc": "Não temos metas de venda de produto. A recomendação que fazemos é a que acreditamos ser correta para o cliente — mesmo que isso signifique não comprar nada por enquanto."
+    },
+    {
+      "title": "CTO as a Service",
+      "desc": "Para empresas sem diretor de TI, atuamos como CTO externo: participamos de reuniões estratégicas, avaliamos decisões de arquitetura, gerenciamos fornecedores e representamos a TI junto à diretoria."
+    },
+    {
+      "title": "Diagnóstico antes da solução",
+      "desc": "Nunca propomos uma solução sem primeiro entender o problema real. O assessment vem antes de qualquer proposta comercial de implementação."
+    },
+    {
+      "title": "Roadmap executável, não teórico",
+      "desc": "O planejamento estratégico que entregamos tem prioridades, estimativas de custo e cronograma realistas — não uma lista de aspirações sem viabilidade."
+    }
   ],
   "faqs": [
     {
@@ -73,5 +109,6 @@
       "question": "A JPX Digital faz análise de segurança antes de recomendar soluções?",
       "answer": "Sempre. Qualquer engajamento de consultoria inclui uma análise de maturidade de segurança: controles existentes, lacunas, riscos críticos e roadmap de melhoria. Não recomendamos expansão de infraestrutura sem primeiro entender os riscos de segurança do ambiente atual."
     }
-  ]
+  ],
+  "aiEnabled": true
 }

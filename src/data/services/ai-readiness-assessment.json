@@ -1,0 +1,81 @@
+{
+  "slug": "ai-readiness-assessment",
+  "category": "IA Corporativa",
+  "aiEnabled": true,
+  "heroHeadline": "AI Readiness Assessment — Avaliação de Maturidade para Adoção Segura de Inteligência Artificial.",
+  "heroSub": "Antes de adotar IA na operação, você precisa saber o que está pronto, o que é risco e o que falta. Um assessment independente evita adoção caótica, vazamento de dados e conformidade negligenciada.",
+  "ctaLabel": "Solicitar AI Readiness Assessment",
+  "problem": {
+    "headline": "Empresas que adotam IA sem avaliação prévia criam riscos que superam os benefícios: dados confidenciais em ferramentas sem contrato, processos críticos dependentes de respostas não auditadas e nenhuma política de uso.",
+    "body": [
+      "A pressão para adotar IA aumentou. Colaboradores já usam ChatGPT, Copilot e ferramentas de IA generativa no dia a dia — com ou sem autorização formal. Sem uma política estruturada, a empresa perde controle sobre o que é compartilhado, como os resultados são usados e quem é responsável por erros.",
+      "O risco não é só de segurança. É operacional: equipes que confiam cegamente em respostas geradas por IA sem validação técnica cometem erros que custam caro. E é regulatório: a LGPD não distingue entre vazamento acidental e dado enviado para uma API de IA sem DPA assinado.",
+      "A JPX Digital conduz o AI Readiness Assessment: um diagnóstico estruturado da maturidade da empresa para adoção de IA — cobrindo segurança, governança, LGPD, ferramentas em uso e roadmap de implantação responsável."
+    ]
+  },
+  "assessment": {
+    "name": "AI Readiness Assessment",
+    "body": "Mapeamos o estado atual da empresa: quais ferramentas de IA já estão em uso (com ou sem controle), quais dados estão expostos, qual é o nível de maturidade técnica da equipe e quais processos têm maior potencial de ganho com automação inteligente. O resultado é um relatório de maturidade com riscos, lacunas e roadmap priorizado.",
+    "checklist": [
+      "Inventário de ferramentas de IA em uso (autorizadas e não autorizadas)",
+      "Análise de exposição de dados sensíveis e conformidade LGPD",
+      "Avaliação de maturidade técnica e de governança",
+      "Mapeamento de processos com maior potencial de IA",
+      "Roadmap de adoção com prioridades e estimativas"
+    ]
+  },
+  "process": {
+    "title": "Como conduzimos o AI Readiness Assessment",
+    "steps": [
+      { "title": "Inventário de uso atual", "desc": "Mapeamos quais ferramentas de IA a empresa já utiliza — formalmente ou não. ChatGPT, Copilot, ferramentas de automação, APIs de LLM, plugins em IDEs. O ponto de partida é o que já existe, não o que a empresa acha que existe." },
+      { "title": "Análise de riscos e conformidade", "desc": "Avaliamos os riscos de cada ferramenta: dados que podem estar sendo compartilhados, contratos e DPAs existentes, exposição à LGPD, políticas de retenção dos provedores e rastreabilidade das interações. Classificamos os riscos por severidade." },
+      { "title": "Avaliação de maturidade", "desc": "Medimos a maturidade da empresa em cinco dimensões: dados (qualidade e estrutura), infraestrutura (capacidade para rodar modelos), processos (documentação e previsibilidade), pessoas (capacidade técnica e cultural) e governança (políticas e controles)." },
+      { "title": "Mapeamento de oportunidades", "desc": "Identificamos os processos com maior potencial de ganho com IA: automação de documentação técnica, triagem de chamados, análise de logs, geração de relatórios, revisão de contratos, monitoramento inteligente. Priorizamos por impacto e viabilidade." },
+      { "title": "Roadmap e entregáveis", "desc": "Consolidamos tudo em um relatório executivo com mapa de maturidade, riscos priorizados, quick wins (o que pode ser implantado em 30 dias) e roadmap de 12 meses. Inclui recomendações de ferramentas, políticas de uso e próximos passos concretos." }
+    ]
+  },
+  "benefits": [
+    { "title": "Diagnóstico antes da adoção", "desc": "Saber onde a empresa está antes de decidir para onde vai. O assessment evita investimento em ferramentas que não se encaixam na maturidade atual." },
+    { "title": "Conformidade LGPD desde o início", "desc": "Identificamos quais usos de IA geram obrigações regulatórias e como endereçá-las antes que virem problema." },
+    { "title": "Quick wins identificados", "desc": "O relatório inclui automações de baixo esforço e alto impacto que podem ser implantadas em 30 dias — com resultado visível antes do roadmap completo." },
+    { "title": "Política de uso construída", "desc": "Saímos do assessment com uma política de uso de IA corporativa: o que pode ser usado, por quem, com quais dados e sob quais condições." }
+  ],
+  "deliverables": [
+    "Inventário de ferramentas de IA em uso na empresa",
+    "Relatório de maturidade em IA (5 dimensões)",
+    "Mapa de riscos: segurança, privacidade e LGPD",
+    "Lista de quick wins para implantação imediata",
+    "Roadmap de adoção de IA (12 meses)",
+    "Minuta de política corporativa de uso de IA",
+    "Relatório executivo para apresentação à diretoria"
+  ],
+  "differentials": [
+    { "title": "Independência de fornecedor", "desc": "Não vendemos ferramentas de IA. Recomendamos o que é adequado para o perfil e maturidade do cliente — não o que tem melhor margem comercial." },
+    { "title": "Foco em resultado, não em tecnologia", "desc": "O assessment começa pelos processos de negócio, não pela tecnologia. Primeiro entendemos onde há ganho real; depois avaliamos qual ferramenta de IA faz sentido." },
+    { "title": "Governança e supervisão especializada", "desc": "Toda recomendação inclui os controles necessários: auditoria, supervisão humana, rastreabilidade e políticas de uso. IA sem governança é risco, não oportunidade." },
+    { "title": "Experiência com automação operacional", "desc": "A JPX já opera com IA em seus próprios processos: automação de propostas, análise de logs, workflows inteligentes. Recomendamos o que aplicamos." }
+  ],
+  "faqs": [
+    {
+      "question": "Minha empresa ainda não usa IA. Vale fazer o assessment?",
+      "answer": "Sim — e esse é o melhor momento. O assessment feito antes da adoção é mais eficiente: define as bases corretas de governança, evita escolhas precipitadas e identifica onde a IA vai gerar mais valor antes de qualquer investimento."
+    },
+    {
+      "question": "O que é avaliado no mapa de maturidade em IA?",
+      "answer": "Cinco dimensões: (1) Dados — qualidade, estrutura e disponibilidade dos dados da empresa; (2) Infraestrutura — capacidade técnica para processar e integrar modelos de IA; (3) Processos — documentação e previsibilidade dos processos candidatos à automação; (4) Pessoas — capacidade técnica da equipe e abertura cultural; (5) Governança — existência de políticas, controles e responsáveis definidos."
+    },
+    {
+      "question": "A JPX Digital implanta as ferramentas de IA ou só avalia?",
+      "answer": "O AI Readiness Assessment é a fase de diagnóstico. A implantação das ferramentas e automações identificadas é uma etapa posterior, que pode ou não ser conduzida pela JPX dependendo do escopo. O assessment já entrega quick wins que a equipe interna pode executar."
+    },
+    {
+      "question": "Como a LGPD se aplica ao uso de IA corporativa?",
+      "answer": "Sempre que dados pessoais são enviados para uma API de IA (mesmo para análise ou resumo), aplica-se a LGPD. Isso exige base legal para o tratamento, DPA com o fornecedor, política de retenção e, em alguns casos, registro de atividades de tratamento. O assessment mapeia todos esses pontos e recomenda os ajustes necessários."
+    },
+    {
+      "question": "Qual é o prazo e formato de entrega do assessment?",
+      "answer": "O AI Readiness Assessment é conduzido em 2 a 3 semanas, com entrevistas com equipe técnica e gestores, análise do ambiente e consolidação dos achados. A entrega inclui relatório técnico, relatório executivo e uma apresentação dos resultados para a liderança da empresa."
+    }
+  ],
+  "schemas": []
+}

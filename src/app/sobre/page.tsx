@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowRight, CheckCircle2, Shield, Target, Zap, Users } from 'lucide-react'
+import { ArrowRight, CheckCircle2, Shield, Target, Zap, Users, BrainCircuit } from 'lucide-react'
 import { Nav } from '@/components/layout/Nav'
 import { Footer } from '@/components/layout/Footer'
 import { MotionProvider } from '@/components/providers/MotionProvider'
@@ -9,7 +9,7 @@ import { FadeIn } from '@/components/ui/FadeIn'
 export const metadata: Metadata = {
   title: 'Sobre a JPX Digital | Consultoria de TI Premium',
   description:
-    'JPX Digital é uma consultoria boutique especializada em cloud computing, segurança cibernética e infraestrutura crítica. Conheça nossa história, valores e compromisso com excelência técnica.',
+    'A JPX Digital integra Inteligência Artificial aos seus serviços de cloud, cibersegurança e infraestrutura para aumentar produtividade, acelerar diagnósticos e automatizar processos — sempre com supervisão especializada.',
 }
 
 const valores = [
@@ -135,6 +135,29 @@ export default function SobrePage() {
                     ))}
                   </ul>
                 </div>
+              </FadeIn>
+            </div>
+          </div>
+        </section>
+
+        {/* IA integrada à operação */}
+        <section className="py-20 bg-white border-b border-border">
+          <div className="container-page">
+            <div className="max-w-3xl mx-auto text-center">
+              <FadeIn>
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary/8 border border-secondary/20 text-secondary text-xs font-semibold tracking-widest uppercase mb-6">
+                  <BrainCircuit className="w-3.5 h-3.5" />
+                  AI-Assisted Consulting
+                </div>
+                <h2 className="font-heading text-3xl font-bold text-gray-900 mb-6">
+                  Inteligência Artificial integrada à consultoria — com governança e supervisão especializada.
+                </h2>
+                <p className="text-gray-600 text-lg leading-relaxed mb-8">
+                  A JPX Digital integra Inteligência Artificial aos seus serviços de cloud, cibersegurança e infraestrutura para aumentar produtividade, acelerar diagnósticos, automatizar processos e apoiar decisões técnicas — sempre com supervisão de especialistas e governança adequada.
+                </p>
+                <p className="text-gray-500 text-base leading-relaxed">
+                  Não vendemos IA pela IA. Nossos clientes querem resultados: menos custo operacional, mais produtividade, menos indisponibilidade e decisões técnicas mais rápidas. A IA é a ferramenta. O resultado é o que importa.
+                </p>
               </FadeIn>
             </div>
           </div>

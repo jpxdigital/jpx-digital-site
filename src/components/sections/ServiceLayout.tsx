@@ -11,6 +11,7 @@ import { ContactForm } from '@/components/sections/ContactForm'
 export interface ServicePageContent {
   slug: string
   category: string
+  aiEnabled?: boolean
 
   // Hero
   heroHeadline: string
@@ -113,10 +114,18 @@ export function ServiceLayout({ content }: { content: ServicePageContent }) {
             <Breadcrumb slug={content.slug} label={breadcrumbLabel} baseSection={baseSection} />
 
             <FadeIn>
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/8 border border-white/15 text-white/70 text-xs font-medium tracking-wide mb-6">
-                <span className="w-1.5 h-1.5 rounded-full bg-secondary" />
-                {content.category}
-              </span>
+              <div className="flex flex-wrap items-center gap-2 mb-6">
+                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/8 border border-white/15 text-white/70 text-xs font-medium tracking-wide">
+                  <span className="w-1.5 h-1.5 rounded-full bg-secondary" />
+                  {content.category}
+                </span>
+                {content.aiEnabled && (
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary/15 border border-secondary/30 text-secondary text-xs font-medium tracking-wide">
+                    <span className="w-1.5 h-1.5 rounded-full bg-secondary" />
+                    AI-Assisted
+                  </span>
+                )}
+              </div>
             </FadeIn>
 
             <FadeIn delay={0.05}>
