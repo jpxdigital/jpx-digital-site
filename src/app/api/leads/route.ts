@@ -1,4 +1,27 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { promises as dns } from 'node:dns'
+
+// Cache de domínios verificados para não fazer lookup a cada request
+const mxCache = new Map<string, { valid: boolean; expiresAt: number }>()
+
+async function domainHasMx(domain: string): Promise<boolean> {
+  const now = Date.now()
+  const cached = mxCache.get(domain)
+  if (cached && cached.expiresAt > now) return cached.valid
+
+  let valid = false
+  try {
+    const records = await Promise.race([
+      dns.resolveMx(domain),
+      new Promise<never>((_, reject) => setTimeout(() => reject(new Error('timeout')), 3000)),
+    ])
+    valid = (records as Awaited<ReturnType<typeof dns.resolveMx>>).length > 0
+  } catch {
+    valid = false
+  }
+  mxCache.set(domain, { valid, expiresAt: now + 60 * 60 * 1000 }) // cache 1h
+  return valid
+}
 
 // In-memory rate limiter — upgrade para Redis na Fase 2
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>()
@@ -82,6 +105,12 @@ async function handlePost(req: NextRequest) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
   if (!emailRegex.test(email.trim())) {
     return json({ error: 'Informe um e-mail válido (ex: joao@empresa.com)' }, 400)
+  }
+
+  const emailDomain = email.trim().toLowerCase().split('@')[1]
+  const validDomain = await domainHasMx(emailDomain)
+  if (!validDomain) {
+    return json({ error: 'E-mail inválido. Use um endereço de e-mail real.' }, 400)
   }
 
   const authHeaders = {
