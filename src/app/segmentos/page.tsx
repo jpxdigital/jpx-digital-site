@@ -46,8 +46,8 @@ const segments = [
     href: '/segmentos/autoridades-certificadoras',
     icon: ShieldCheck,
     title: 'Autoridades Certificadoras',
-    desc: 'TI para ACs ICP-Brasil: clusters HSM com failover automático, VMware vSphere, OpenShift/OKD para portais de emissão e suporte ao credenciamento ITI. Atendemos ACs em fase inicial e ACs já credenciadas.',
-    pills: ['Cluster HSM', 'OpenShift/OKD', 'VMware vSphere', 'Credenciamento ITI'],
+    desc: 'Revendedor autorizado ACDIGITAL. Emitimos eCPF e eCNPJ nos formatos A1 e A3 para pessoas físicas e jurídicas — 100% remoto, com validade jurídica plena na ICP-Brasil.',
+    pills: ['eCPF A1/A3', 'eCNPJ A1/A3', 'ICP-Brasil', '100% remoto'],
   },
 ]
 
