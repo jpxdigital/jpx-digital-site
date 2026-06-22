@@ -1,5 +1,6 @@
 'use client'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import { Turnstile, type TurnstileInstance } from '@marsidev/react-turnstile'
 import type { LeadFormData, LeadApiResponse } from '@/types'
 
 const interestOptions: { label: string; slug: string }[] = [
@@ -23,6 +24,8 @@ export function ContactForm() {
   const [form, setForm] = useState<LeadFormData>(empty)
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
   const [errorMsg, setErrorMsg] = useState('')
+  const [turnstileToken, setTurnstileToken] = useState('')
+  const turnstileRef = useRef<TurnstileInstance>(null)
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -60,7 +63,7 @@ export function ContactForm() {
       const res = await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, turnstileToken }),
         signal: controller.signal,
       })
       clearTimeout(timeout)
@@ -75,12 +78,15 @@ export function ContactForm() {
       if (data.success) {
         setStatus('success')
         setForm(empty)
+        setTurnstileToken('')
       } else {
         setStatus('error')
         setErrorMsg(data.error ?? 'Erro desconhecido. Tente novamente.')
       }
     } catch (err) {
       setStatus('error')
+      turnstileRef.current?.reset()
+      setTurnstileToken('')
       if (err instanceof DOMException && err.name === 'AbortError') {
         setErrorMsg('O servidor demorou para responder. Tente novamente.')
       } else {
@@ -103,7 +109,9 @@ export function ContactForm() {
     )
   }
 
+  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
   const disabled = status === 'submitting'
+  const canSubmit = !disabled && (!siteKey || !!turnstileToken)
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
@@ -216,10 +224,21 @@ export function ContactForm() {
         </p>
       )}
 
+      {siteKey && (
+        <Turnstile
+          ref={turnstileRef}
+          siteKey={siteKey}
+          onSuccess={setTurnstileToken}
+          onExpire={() => setTurnstileToken('')}
+          onError={() => setTurnstileToken('')}
+          options={{ theme: 'light', language: 'pt-BR' }}
+        />
+      )}
+
       <div className="pt-1">
         <button
           type="submit"
-          disabled={disabled}
+          disabled={!canSubmit}
           className="w-full px-6 py-3.5 bg-primary text-white font-semibold rounded-lg hover:bg-primary-hover transition-colors disabled:opacity-60 disabled:cursor-not-allowed text-sm"
         >
           {disabled ? 'Enviando...' : 'Solicitar Assessment'}
