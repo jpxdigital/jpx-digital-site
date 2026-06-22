@@ -9,10 +9,12 @@ type Step =
   | 'diagnostico_area'
   | 'servico_qual'
   | 'servico_acao'
+  | 'servico_certificado'
   | 'suporte_cliente'
   | 'fim_form'
   | 'fim_email'
   | 'fim_pagina'
+  | 'fim_certificado'
 
 interface Option { label: string; next: Step; userText?: string }
 
@@ -40,8 +42,15 @@ const FLOW: Record<Step, { msg: string; options?: Option[]; cta?: { label: strin
     options: [
       { label: 'Cloud Computing (OCI / Azure / AWS)', next: 'servico_acao', userText: 'Cloud Computing' },
       { label: 'Backup Corporativo', next: 'servico_acao', userText: 'Backup Corporativo' },
-      { label: 'Disaster Recovery', next: 'servico_acao', userText: 'Disaster Recovery' },
+      { label: 'Certificado Digital eCPF / eCNPJ', next: 'servico_certificado', userText: 'Certificado Digital eCPF/eCNPJ' },
       { label: 'Segurança e Resiliência', next: 'servico_acao', userText: 'Segurança e Resiliência' },
+    ],
+  },
+  servico_certificado: {
+    msg: 'Emitimos eCPF e eCNPJ nos formatos A1 e A3 — 100% remoto, você recebe seu certificado sem sair de casa. Quer ver os detalhes ou falar direto com a gente?',
+    options: [
+      { label: 'Ver página de certificados', next: 'fim_certificado', userText: 'Quero ver a página de certificados' },
+      { label: 'Falar com especialista', next: 'fim_form', userText: 'Falar com especialista' },
     ],
   },
   servico_acao: {
@@ -69,6 +78,10 @@ const FLOW: Record<Step, { msg: string; options?: Option[]; cta?: { label: strin
   fim_pagina: {
     msg: 'Acesse a página de serviços para ver todos os detalhes. Se precisar de mais informações, o formulário de contato está disponível lá.',
     cta: { label: 'Ver serviços', href: '/servicos' },
+  },
+  fim_certificado: {
+    msg: 'Na página de certificados você encontra eCPF A1/A3, eCNPJ A1/A3, comparativo de formatos e como funciona o processo remoto.',
+    cta: { label: 'Ver certificados digitais', href: '/segmentos/autoridades-certificadoras' },
   },
 }
 
