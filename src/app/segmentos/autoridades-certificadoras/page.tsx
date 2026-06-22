@@ -40,7 +40,7 @@ const schemas = [
     { question: 'Qual a diferença entre o certificado A1 e o A3?', answer: 'O A1 é armazenado em arquivo no computador (software), válido por 1 ano, mais prático para uso cotidiano. O A3 é armazenado em dispositivo físico (token USB ou cartão inteligente), válido por 3 anos, com nível de segurança mais alto — a chave privada nunca sai do hardware.' },
     { question: 'Para que serve o certificado digital eCPF?', answer: 'O eCPF permite assinar documentos eletronicamente com validade jurídica, acessar serviços da Receita Federal (e-CAC), assinar contratos digitais, acessar o Portal do Gov.br com nível ouro, usar o sistema PJe (Processo Judicial Eletrônico), emitir nota fiscal como autônomo e autenticar-se em sistemas que exigem identificação digital.' },
     { question: 'Para que serve o certificado eCNPJ?', answer: 'O eCNPJ é obrigatório para emissão de NF-e, NFS-e, CT-e e MDF-e, assinar obrigações do SPED (ECD, ECF), transmitir eSocial e REINF, acessar o e-CAC PJ, participar de licitações eletrônicas (Comprasnet, BLL) e assinar contratos em nome da empresa.' },
-    { question: 'A JPX Digital é uma Autoridade Certificadora?', answer: 'Não. A JPX Digital atua como Autoridade de Registro (AR) revendedora autorizada da ACDIGITAL — Autoridade Certificadora e Segurança Digital Ltda, CNPJ 00.087.112/0001-21, integrante da hierarquia ICP-Brasil. Nossa função é validar a identidade do solicitante e emitir o certificado vinculado à cadeia de confiança da ACDIGITAL.' },
+    { question: 'A JPX Digital é uma Autoridade Certificadora?', answer: 'Não. A JPX Digital é revendedora autorizada da ACDIGITAL — Autoridade Certificadora e Segurança Digital Ltda, CNPJ 00.087.112/0001-21, integrante da hierarquia ICP-Brasil. Os certificados são emitidos pela ACDIGITAL; nossa função é atender o cliente, validar a identidade por videoconferência e entregar o certificado.' },
     { question: 'Certificado digital substitui assinatura à mão?', answer: 'Sim. Documentos assinados com certificado digital ICP-Brasil têm a mesma validade jurídica que documentos físicos assinados manualmente, conforme a Medida Provisória 2.200-2/2001 e a Lei 14.063/2020. São aceitos por bancos, cartórios, tribunais, Receita Federal e órgãos públicos em geral.' },
   ]),
 ]
@@ -304,7 +304,7 @@ export default function Page() {
                 <h2 className="type-h2 text-gray-900 mb-4">ACDIGITAL — Autoridade Certificadora e Segurança Digital Ltda</h2>
                 <div className="space-y-4 text-gray-700 leading-relaxed">
                   <p>A ACDIGITAL é uma Autoridade Certificadora credenciada pelo ITI (Instituto Nacional de Tecnologia da Informação), integrante da hierarquia oficial da ICP-Brasil. Todos os certificados emitidos pela ACDIGITAL pertencem à cadeia de confiança regulada pelo governo federal.</p>
-                  <p>Como revendedora autorizada (Autoridade de Registro), a JPX Digital valida a identidade dos solicitantes, emite os certificados e oferece suporte técnico completo — mantendo todos os requisitos de conformidade exigidos pelas normas ICP-Brasil.</p>
+                  <p>Como revendedora autorizada da ACDIGITAL, a JPX Digital atende o cliente, valida a identidade por videoconferência e entrega o certificado com suporte técnico completo na instalação e renovação.</p>
                 </div>
                 <div className="mt-6 grid grid-cols-2 gap-3">
                   {[
