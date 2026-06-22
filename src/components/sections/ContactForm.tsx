@@ -68,13 +68,15 @@ export function ContactForm() {
       })
       clearTimeout(timeout)
 
-      if (!res.ok && res.headers.get('content-type')?.includes('text/html')) {
+      let data: LeadApiResponse
+      try {
+        data = await res.json()
+      } catch {
         setStatus('error')
-        setErrorMsg('Erro temporário no servidor. Tente novamente em alguns segundos.')
+        setErrorMsg(`Erro no servidor (HTTP ${res.status}). Tente novamente.`)
         return
       }
 
-      const data: LeadApiResponse = await res.json()
       if (data.success) {
         setStatus('success')
         setForm(empty)
