@@ -58,12 +58,8 @@
       "answer": "A1 é um arquivo de software instalado no computador — mais fácil de usar, sem token, mas com validade de 1 ano e vinculado ao dispositivo. A3 fica gravado em um token USB, cartão inteligente ou HSM — tem validade de 1 a 3 anos, a chave privada nunca sai do hardware e é mais seguro. Para assinaturas com maior valor jurídico ou ambientes que precisam de mobilidade, A3 é o padrão recomendado."
     },
     {
-      "question": "A JPX Digital é uma Autoridade de Registro (AR)?",
-      "answer": "Sim. A JPX Digital atua como revendedora autorizada e integrada à cadeia ICP-Brasil, realizando o processo de validação presencial ou por videoconferência conforme os requisitos da ICP-Brasil. O certificado é emitido por uma AC credenciada pelo ITI, com toda a cadeia de confiança ICP-Brasil válida."
-    },
-    {
       "question": "Quais certificados posso emitir pela JPX Digital?",
-      "answer": "e-CPF A1 e A3 (pessoas físicas), e-CNPJ A1 e A3 (pessoas jurídicas), certificados para NF-e, NFC-e, CT-e e demais documentos fiscais eletrônicos, certificados para servidores e aplicações (SSL/TLS), e certificados para assinatura eletrônica avançada. Entre em contato para confirmar disponibilidade do tipo específico que você precisa."
+      "answer": "eCPF A1 e A3 (pessoas físicas) e eCNPJ A1 e A3 (pessoas jurídicas). Não emitimos certificados SSL/TLS."
     },
     {
       "question": "O que é necessário para emitir um certificado e-CNPJ?",
