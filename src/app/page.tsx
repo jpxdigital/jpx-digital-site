@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import React from 'react'
 import Link from 'next/link'
 import {
   ArrowRight, CheckCircle2, AlertTriangle, Server,
@@ -73,12 +74,12 @@ const differentials = [
   'Atendimento 100% em português, com contexto de negócio',
 ]
 
-const segments = [
+const segments: { href: string; icon: React.ElementType; title: string; desc: string; noCta?: boolean }[] = [
   { href: '/segmentos/hospitais-clinicas', icon: Heart, title: 'Hospitais & Clínicas', desc: 'LGPD, backup de prontuários por 20 anos e disponibilidade que não falha.' },
   { href: '/segmentos/industrias', icon: Factory, title: 'Indústrias', desc: 'Linha de produção contínua. Integração ERP-OT. Custo de parada calculado.' },
   { href: '/segmentos/escritorios', icon: Building2, title: 'Escritórios Corporativos', desc: 'Microsoft 365 correto, backup de endpoints e suporte MSP com SLA.' },
   { href: '/segmentos/advocacia', icon: Scale, title: 'Advocacia', desc: 'Sigilo profissional protegido. Backup jurídico imutável. Certificados gerenciados.' },
-  { href: '/segmentos/autoridades-certificadoras', icon: ShieldCheck, title: 'Autoridades Certificadoras', desc: 'Cluster HSM, VMware e OpenShift para ACs ICP-Brasil. Suporte ao credenciamento ITI.' },
+  { href: '/segmentos/autoridades-certificadoras', icon: ShieldCheck, title: 'Certificados Digitais ICP-Brasil', desc: 'Revendedor autorizado ACDIGITAL. Emitimos eCPF e eCNPJ nos formatos A1 e A3 para pessoas físicas e jurídicas — assinatura digital com validade jurídica plena.', noCta: true },
 ]
 
 export default function Home() {
@@ -321,21 +322,30 @@ export default function Home() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
               {segments.map((seg, i) => {
                 const Icon = seg.icon
-                return (
-                  <FadeIn key={seg.href} delay={i * 0.07}>
-                    <Link
-                      href={seg.href}
-                      className="group flex flex-col p-6 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 hover:border-white/20 transition-all duration-200"
-                    >
-                      <div className="w-10 h-10 rounded-lg bg-white/8 text-white/70 flex items-center justify-center mb-4 group-hover:bg-secondary group-hover:text-white transition-colors">
-                        <Icon className="w-5 h-5" />
-                      </div>
-                      <h3 className="font-heading font-bold text-white mb-3">{seg.title}</h3>
-                      <p className="text-gray-400 text-sm leading-relaxed flex-1 mb-4">{seg.desc}</p>
+                const cardClass = "group flex flex-col p-6 bg-white/5 border border-white/10 rounded-2xl transition-all duration-200"
+                const inner = (
+                  <>
+                    <div className="w-10 h-10 rounded-lg bg-white/8 text-white/70 flex items-center justify-center mb-4 group-hover:bg-secondary group-hover:text-white transition-colors">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <h3 className="font-heading font-bold text-white mb-3">{seg.title}</h3>
+                    <p className="text-gray-400 text-sm leading-relaxed flex-1 mb-4">{seg.desc}</p>
+                    {!seg.noCta && (
                       <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-secondary group-hover:gap-3 transition-all">
                         Ver soluções <ArrowRight className="w-3.5 h-3.5" />
                       </span>
-                    </Link>
+                    )}
+                  </>
+                )
+                return (
+                  <FadeIn key={seg.href} delay={i * 0.07}>
+                    {seg.noCta ? (
+                      <div className={cardClass}>{inner}</div>
+                    ) : (
+                      <Link href={seg.href} className={`${cardClass} hover:bg-white/10 hover:border-white/20`}>
+                        {inner}
+                      </Link>
+                    )}
                   </FadeIn>
                 )
               })}
