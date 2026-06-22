@@ -51,9 +51,9 @@ const allServices = [
     ],
   },
   {
-    category: 'Certificados & PKI',
+    category: 'Certificados',
     items: [
-      { href: '/servicos/certificados-digitais', icon: Award, title: 'Certificados Digitais ICP-Brasil', desc: 'Revendedor autorizado de e-CPF, e-CNPJ, NF-e, SSL/TLS — com gestão de renovação.' },
+      { href: '/servicos/certificados-digitais', icon: Award, title: 'Certificados Digitais ICP-Brasil', desc: 'Revendedor autorizado ACDIGITAL. Emitimos e-CPF e e-CNPJ A1/A3 — 100% remoto, com gestão de renovação.' },
 
     ],
   },
