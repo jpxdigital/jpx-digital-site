@@ -40,7 +40,7 @@ const schemas = [
     { question: 'Qual a diferença entre o certificado A1 e o A3?', answer: 'O A1 é armazenado em arquivo no computador (software), válido por 1 ano, mais prático para uso cotidiano. O A3 é armazenado em dispositivo físico (token USB ou cartão inteligente), válido por 3 anos, com nível de segurança mais alto — a chave privada nunca sai do hardware.' },
     { question: 'Para que serve o certificado digital eCPF?', answer: 'O eCPF permite assinar documentos eletronicamente com validade jurídica, acessar serviços da Receita Federal (e-CAC), assinar contratos digitais, acessar o Portal do Gov.br com nível ouro, usar o sistema PJe (Processo Judicial Eletrônico), emitir nota fiscal como autônomo e autenticar-se em sistemas que exigem identificação digital.' },
     { question: 'Para que serve o certificado eCNPJ?', answer: 'O eCNPJ é obrigatório para emissão de NF-e, NFS-e, CT-e e MDF-e, assinar obrigações do SPED (ECD, ECF), transmitir eSocial e REINF, acessar o e-CAC PJ, participar de licitações eletrônicas (Comprasnet, BLL) e assinar contratos em nome da empresa.' },
-    { question: 'A JPX Digital é uma Autoridade Certificadora?', answer: 'Não. A JPX Digital é revendedora autorizada da ACDIGITAL — Autoridade Certificadora e Segurança Digital Ltda, CNPJ 00.087.112/0001-21, integrante da hierarquia ICP-Brasil. Os certificados são emitidos pela ACDIGITAL; nossa função é atender o cliente, validar a identidade por videoconferência e entregar o certificado.' },
+    { question: 'A JPX Digital é uma Autoridade Certificadora?', answer: 'Não. A JPX Digital é revendedora autorizada da ACDIGITAL — Autoridade Certificadora e Segurança Digital Ltda, CNPJ 00.087.112/0001-21, integrante da hierarquia ICP-Brasil. Nossa função é orientar o cliente na escolha do certificado certo e coordenar o processo de emissão junto à ACDIGITAL.' },
     { question: 'Certificado digital substitui assinatura à mão?', answer: 'Sim. Documentos assinados com certificado digital ICP-Brasil têm a mesma validade jurídica que documentos físicos assinados manualmente, conforme a Medida Provisória 2.200-2/2001 e a Lei 14.063/2020. São aceitos por bancos, cartórios, tribunais, Receita Federal e órgãos públicos em geral.' },
   ]),
 ]
@@ -87,14 +87,14 @@ const produtos = [
 const diferenciais = [
   { titulo: 'Cadeia ICP-Brasil homologada', desc: 'Todos os certificados emitidos pertencem à hierarquia oficial ICP-Brasil, reconhecidos por bancos, cartórios, tribunais e órgãos públicos sem questionamentos.' },
   { titulo: 'Suporte especializado', desc: 'Apoio técnico na instalação e configuração do certificado, drivers de token, integração com softwares de contabilidade, jurídico e emissão fiscal.' },
-  { titulo: '100% remoto — sem sair de casa', desc: 'Toda a validação de identidade é feita por videoconferência com documentos originais. Você recebe seu certificado sem precisar se deslocar a nenhuma agência.' },
+  { titulo: '100% remoto — sem sair de casa', desc: 'O processo de emissão é feito pela ACDIGITAL 100% remoto. Você não precisa se deslocar a nenhuma agência.' },
   { titulo: 'Renovação simplificada', desc: 'Alertamos antes do vencimento e tornamos a renovação rápida, sem burocracia, mantendo a continuidade das suas operações.' },
 ]
 
 const comoFunciona = [
   { num: '01', titulo: 'Escolha o certificado', desc: 'Defina se é para pessoa física (eCPF) ou jurídica (eCNPJ) e o formato — A1 (software, 1 ano) ou A3 (token/cartão, 3 anos).' },
-  { num: '02', titulo: 'Agendamento da validação', desc: 'Agende uma videoconferência no horário que for melhor para você. Enviamos com antecedência a lista de documentos necessários para cada tipo de certificado.' },
-  { num: '03', titulo: 'Validação de identidade', desc: 'Nossa equipe valida os documentos originais conforme as Práticas de Certificação da ACDIGITAL — etapa obrigatória para garantir a autenticidade do certificado.' },
+  { num: '02', titulo: 'Documentação', desc: 'Enviamos antecipadamente a lista de documentos necessários para cada tipo de certificado. Orientamos tudo para que o processo não tenha retrabalho.' },
+  { num: '03', titulo: 'Emissão pela ACDIGITAL', desc: 'A ACDIGITAL realiza a emissão do certificado conforme as normas ICP-Brasil. O processo é 100% remoto — você não precisa se deslocar.' },
   { num: '04', titulo: 'Emissão e instalação', desc: 'Certificado emitido na cadeia ACDIGITAL/ICP-Brasil e entregue em arquivo (A1) ou gravado no token/cartão (A3), com suporte na instalação.' },
 ]
 
@@ -304,7 +304,7 @@ export default function Page() {
                 <h2 className="type-h2 text-gray-900 mb-4">ACDIGITAL — Autoridade Certificadora e Segurança Digital Ltda</h2>
                 <div className="space-y-4 text-gray-700 leading-relaxed">
                   <p>A ACDIGITAL é uma Autoridade Certificadora credenciada pelo ITI (Instituto Nacional de Tecnologia da Informação), integrante da hierarquia oficial da ICP-Brasil. Todos os certificados emitidos pela ACDIGITAL pertencem à cadeia de confiança regulada pelo governo federal.</p>
-                  <p>Como revendedora autorizada da ACDIGITAL, a JPX Digital atende o cliente, valida a identidade por videoconferência e entrega o certificado com suporte técnico completo na instalação e renovação.</p>
+                  <p>Como revendedora autorizada da ACDIGITAL, a JPX Digital orienta o cliente na escolha do certificado certo e coordena o processo de emissão — a emissão é feita pela ACDIGITAL conforme as normas ICP-Brasil.</p>
                 </div>
                 <div className="mt-6 grid grid-cols-2 gap-3">
                   {[
@@ -376,8 +376,8 @@ export default function Page() {
                 { q: 'Qual a diferença entre certificado A1 e A3?', a: 'O A1 é armazenado em arquivo no computador, com validade de 1 ano — prático para uso cotidiano. O A3 é armazenado em dispositivo físico (token USB ou cartão inteligente), com validade de 3 anos — a chave privada nunca sai do hardware, oferecendo maior segurança para documentos e contratos de alto valor.' },
                 { q: 'Preciso de eCPF e eCNPJ ao mesmo tempo?', a: 'Depende da sua necessidade. Quem assina documentos em nome da empresa geralmente precisa do eCNPJ vinculado ao CNPJ. O eCPF é para assinar em nome próprio. Profissionais liberais que também têm empresa frequentemente precisam dos dois. Nossa equipe orienta sobre o certificado mais adequado para cada caso.' },
                 { q: 'Vocês emitem certificado SSL?', a: 'Não. A JPX Digital emite apenas certificados para pessoas físicas (eCPF) e jurídicas (eCNPJ) na hierarquia ICP-Brasil através da ACDIGITAL. Certificados SSL para sites e servidores são de uma categoria diferente — não fazem parte do nosso portfólio de certificação digital.' },
-                { q: 'Quanto tempo demora para emitir?', a: 'Após a validação de identidade, a emissão é imediata. O prazo depende basicamente do agendamento da validação — que pode ser feita por videoconferência. Em geral, do contato inicial à emissão do certificado, o processo leva de 1 a 3 dias úteis.' },
-                { q: 'O que acontece quando o certificado vence?', a: 'Monitoramos o vencimento e avisamos com antecedência. A renovação segue o mesmo processo da emissão original — validação de identidade e nova emissão. Não há perda de dados ou documentos já assinados, que permanecem válidos pelo período em que o certificado estava vigente.' },
+                { q: 'Quanto tempo demora para emitir?', a: 'Em geral, do contato inicial à emissão pela ACDIGITAL, o processo leva de 1 a 3 dias úteis. Cuidamos de toda a orientação para que não haja retrabalho.' },
+                { q: 'O que acontece quando o certificado vence?', a: 'Monitoramos o vencimento e avisamos com antecedência. A renovação segue o mesmo processo da emissão original. Não há perda de dados ou documentos já assinados, que permanecem válidos pelo período em que o certificado estava vigente.' },
               ].map((faq, i) => (
                 <FadeIn key={i} delay={i * 0.04}>
                   <details className="group bg-muted border border-border rounded-xl overflow-hidden">
@@ -431,7 +431,7 @@ export default function Page() {
               <FadeIn direction="left">
                 <h2 className="type-h2 text-white mb-4">Pronto para emitir seu certificado digital?</h2>
                 <p className="text-gray-400 text-lg leading-relaxed mb-8">
-                  Preencha o formulário e nossa equipe entra em contato para orientar sobre o certificado ideal, agendar a validação de identidade e dar início à emissão.
+                  Preencha o formulário e nossa equipe entra em contato para orientar sobre o certificado ideal e dar início ao processo de emissão junto à ACDIGITAL.
                 </p>
                 <ul className="space-y-3">
                   {[

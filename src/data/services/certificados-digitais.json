@@ -1,20 +1,20 @@
 {
   "slug": "certificados-digitais",
-  "category": "Certificados & PKI",
-  "heroHeadline": "Certificados Digitais ICP-Brasil — Emissão, Gestão e Renovação para sua Empresa.",
-  "heroSub": "A JPX Digital é revendedora autorizada de certificados ICP-Brasil. e-CPF, e-CNPJ, NF-e, SSL/TLS — com suporte técnico para instalação e alerta proativo de vencimento.",
+  "category": "Certificados",
+  "heroHeadline": "Certificados Digitais ICP-Brasil — eCPF e eCNPJ para Pessoas Físicas e Jurídicas.",
+  "heroSub": "A JPX Digital é revendedora autorizada ACDIGITAL. Orientamos na escolha do certificado certo e cuidamos do processo de emissão junto à ACDIGITAL — sem burocracia, 100% remoto.",
   "ctaLabel": "Solicitar Certificado Digital",
   "problem": {
     "headline": "Certificado vencido no dia da nota fiscal não é uma falha técnica — é uma crise operacional que para o faturamento.",
     "body": [
-      "Certificado digital não é só burocracia fiscal. É a identidade digital da sua empresa para assinar documentos, emitir notas fiscais, autenticar sistemas e acessar portais governamentais com validade jurídica plena.",
-      "O problema mais comum não é emitir o certificado — é gerenciá-lo. Certificados com validade de 1 a 3 anos vencendo sem aviso, tipo errado (A1 vs A3) para o caso de uso, instalação incorreta nos sistemas de emissão de NF-e — são erros evitáveis com a orientação certa.",
-      "A JPX Digital é revendedora autorizada de certificados ICP-Brasil com suporte técnico para orientar a escolha, suportar a instalação e gerenciar prazos de vencimento proativamente."
+      "Certificado digital é a identidade digital do CPF ou CNPJ para assinar documentos, emitir notas fiscais e acessar portais governamentais com validade jurídica plena.",
+      "O problema mais comum não é emitir o certificado — é gerenciá-lo. Certificados vencendo sem aviso, tipo errado (A1 vs A3) para o caso de uso, instalação incorreta nos sistemas de NF-e — são erros evitáveis com a orientação certa.",
+      "A JPX Digital é revendedora autorizada ACDIGITAL: orientamos a escolha, coordenamos a emissão e gerenciamos prazos de vencimento proativamente."
     ]
   },
   "assessment": {
-    "name": "PKI Readiness Assessment",
-    "body": "Mapeamos todos os certificados digitais da empresa (e-CPF, e-CNPJ, NF-e, SSL/TLS), identificamos os que estão próximos do vencimento, os que foram emitidos com tipo incorreto e os sistemas que dependem de cada certificado. Você recebe um inventário completo com plano de renovação.",
+    "name": "Diagnóstico de Certificados Digitais",
+    "body": "Mapeamos todos os certificados digitais da empresa (eCPF, eCNPJ), identificamos os que estão próximos do vencimento e os sistemas que dependem de cada certificado. Você recebe um inventário completo com plano de renovação.",
     "checklist": [
       "Inventário de todos os certificados digitais da empresa",
       "Identificação de certificados próximos do vencimento",
@@ -26,52 +26,52 @@
   "process": {
     "title": "Como funciona o processo de emissão",
     "steps": [
-      { "title": "Escolha e pedido", "desc": "Orientamos sobre o tipo correto (e-CPF, e-CNPJ, aplicação, SSL) e a mídia mais adequada (A1 software ou A3 token/HSM). O pedido é feito online com nosso suporte e a documentação é organizada antes da validação." },
-      { "title": "Validação de identidade", "desc": "Conforme norma ICP-Brasil, a emissão exige validação presencial com documento de identidade original ou videoconferência com agente credenciado. Orientamos todo o processo e os documentos necessários antecipadamente para evitar retrabalho." },
-      { "title": "Emissão e instalação", "desc": "Após a validação, o certificado é emitido e instalado no dispositivo (software A1, token A3 ou cartão inteligente). Para sistemas e servidores, auxiliamos na instalação e configuração nos ambientes de produção." },
-      { "title": "Gestão de vencimento", "desc": "Registramos todos os certificados emitidos com seus prazos de validade. Você recebe alertas com 90, 60 e 30 dias de antecedência. Nenhum certificado vence sem aviso, sem afetar suas operações." }
+      { "title": "Escolha e pedido", "desc": "Orientamos sobre o tipo correto (eCPF ou eCNPJ) e a mídia mais adequada (A1 software ou A3 token). O pedido é feito com nosso suporte e a documentação necessária é enviada antecipadamente." },
+      { "title": "Emissão pela ACDIGITAL", "desc": "A ACDIGITAL — Autoridade Certificadora credenciada pelo ITI — realiza a emissão do certificado conforme as normas ICP-Brasil. O processo é 100% remoto: você não precisa se deslocar." },
+      { "title": "Entrega e instalação", "desc": "O certificado é entregue em arquivo (A1) ou gravado no token (A3). Auxiliamos na instalação e configuração nos sistemas de NF-e, portais governamentais e assinadores de documentos." },
+      { "title": "Gestão de vencimento", "desc": "Registramos todos os certificados com seus prazos de validade. Você recebe alertas com 90, 60 e 30 dias de antecedência. Nenhum certificado vence sem aviso." }
     ]
   },
   "benefits": [
-    { "title": "Orientação no tipo correto", "desc": "A1 ou A3, e-CPF ou e-CNPJ, certificado de aplicação — orientamos o tipo certo para cada caso de uso antes da emissão." },
+    { "title": "Orientação no tipo correto", "desc": "A1 ou A3, eCPF ou eCNPJ — orientamos o tipo certo para cada caso de uso antes da emissão." },
     { "title": "Suporte técnico de instalação", "desc": "Instalamos o certificado nos sistemas de NF-e, portais governamentais e assinadores — sem deixar isso para o cliente resolver sozinho." },
     { "title": "Alertas proativos de vencimento", "desc": "90, 60 e 30 dias de antecedência. Nenhum certificado vence sem aviso e sem tempo de renovar." },
-    { "title": "Cadeia ICP-Brasil completa", "desc": "Certificados com validade jurídica plena, emitidos por AC credenciada pelo ITI — aceitos em todos os sistemas que exigem ICP-Brasil." }
+    { "title": "Cadeia ICP-Brasil completa", "desc": "Certificados com validade jurídica plena, emitidos pela ACDIGITAL — AC credenciada pelo ITI, aceitos em todos os sistemas que exigem ICP-Brasil." }
   ],
   "deliverables": [
     "Inventário completo de certificados digitais da empresa",
-    "Certificados emitidos com cadeia ICP-Brasil completa",
+    "Certificados emitidos pela ACDIGITAL com cadeia ICP-Brasil completa",
     "Suporte técnico de instalação nos sistemas de produção",
     "Calendário de vencimentos com alertas configurados",
     "Documentação de uso por sistema e responsável",
     "Suporte para auditorias e comprovação de validade"
   ],
   "differentials": [
-    { "title": "Revendedor autorizado ICP-Brasil", "desc": "Cadeia de confiança completa — certificados emitidos por Autoridade Certificadora credenciada pelo ITI, com validade jurídica plena em todo território nacional e em sistemas que exigem ICP-Brasil." },
-    { "title": "Suporte técnico incluso", "desc": "Não entregamos um token e sumimos. Nossa equipe instala o certificado, configura o ambiente e resolve problemas de compatibilidade com sistemas de NF-e, portais governamentais e assinadores de documentos." },
+    { "title": "Revendedor autorizado ACDIGITAL", "desc": "Cadeia de confiança completa — certificados emitidos pela ACDIGITAL, Autoridade Certificadora credenciada pelo ITI, com validade jurídica plena em todo território nacional." },
+    { "title": "Suporte técnico incluso", "desc": "Não entregamos o certificado e sumimos. Nossa equipe instala, configura o ambiente e resolve problemas de compatibilidade com sistemas de NF-e, portais governamentais e assinadores de documentos." },
     { "title": "Gestão proativa de renovação", "desc": "Mantemos controle dos vencimentos e avisamos antes que o problema aconteça. Para empresas com múltiplos certificados, isso é a diferença entre uma operação sem interrupções e uma crise no momento errado." },
-    { "title": "Certificados para todos os casos de uso", "desc": "Pessoa física (e-CPF), pessoa jurídica (e-CNPJ), nota fiscal eletrônica, sistemas e servidores (SSL/TLS), HSMs para Autoridades Certificadoras. Atendemos da PME à infraestrutura de PKI corporativa." }
+    { "title": "eCPF e eCNPJ A1 e A3", "desc": "Pessoa física (eCPF) e pessoa jurídica (eCNPJ) nos formatos A1 (software, 1 ano) e A3 (token/cartão, 3 anos). Orientamos o formato ideal para o seu caso de uso." }
   ],
   "faqs": [
     {
       "question": "Qual a diferença entre certificado A1 e A3?",
-      "answer": "A1 é um arquivo de software instalado no computador — mais fácil de usar, sem token, mas com validade de 1 ano e vinculado ao dispositivo. A3 fica gravado em um token USB, cartão inteligente ou HSM — tem validade de 1 a 3 anos, a chave privada nunca sai do hardware e é mais seguro. Para assinaturas com maior valor jurídico ou ambientes que precisam de mobilidade, A3 é o padrão recomendado."
+      "answer": "A1 é um arquivo de software instalado no computador — mais fácil de usar, sem token, mas com validade de 1 ano e vinculado ao dispositivo. A3 fica gravado em um token USB ou cartão inteligente — tem validade de 3 anos, a chave privada nunca sai do hardware e é mais seguro. Para assinaturas com maior valor jurídico ou mobilidade, A3 é o padrão recomendado."
     },
     {
       "question": "Quais certificados posso emitir pela JPX Digital?",
       "answer": "eCPF A1 e A3 (pessoas físicas) e eCNPJ A1 e A3 (pessoas jurídicas). Não emitimos certificados SSL/TLS."
     },
     {
-      "question": "O que é necessário para emitir um certificado e-CNPJ?",
-      "answer": "Para e-CNPJ, é necessário: contrato social e alterações, cartão CNPJ, documentos de identidade e CPF do responsável legal, comprovante de endereço da empresa e comparecimento pessoal do titular (ou videoconferência). Para certificado em token A3, o token USB deve ser adquirido previamente. Orientamos todo o processo de documentação antes da validação."
+      "question": "O que é necessário para emitir um certificado eCNPJ?",
+      "answer": "Para eCNPJ, é necessário: contrato social e alterações, cartão CNPJ, documentos de identidade e CPF do responsável legal e comprovante de endereço da empresa. Para certificado em token A3, o token USB deve ser adquirido previamente. Orientamos toda a documentação necessária antes do início do processo."
     },
     {
       "question": "Como a JPX Digital gerencia a renovação dos meus certificados?",
-      "answer": "Mantemos um cadastro dos certificados emitidos e seus prazos de validade. Enviamos avisos de vencimento com 90, 60 e 30 dias de antecedência para que você planeje a renovação. O processo de renovação é iniciado antes do vencimento para evitar interrupção na assinatura de documentos ou emissão de notas fiscais."
+      "answer": "Mantemos um cadastro dos certificados com seus prazos de validade. Enviamos avisos de vencimento com 90, 60 e 30 dias de antecedência para que você planeje a renovação sem interrupção nas operações."
     },
     {
       "question": "Certificado digital é obrigatório para emitir nota fiscal?",
-      "answer": "Sim. A emissão de NF-e (Nota Fiscal Eletrônica), NFC-e (Nota Fiscal de Consumidor Eletrônica), CT-e (Conhecimento de Transporte Eletrônico) e outros documentos fiscais eletrônicos exige certificado digital ICP-Brasil, seja da empresa (e-CNPJ) ou do sistema emissor (certificado de aplicação). Sem o certificado, a empresa não consegue assinar as notas fiscais."
+      "answer": "Sim. A emissão de NF-e, NFC-e, CT-e e outros documentos fiscais eletrônicos exige certificado digital ICP-Brasil da empresa (eCNPJ). Sem o certificado, a empresa não consegue assinar as notas fiscais."
     }
   ]
 }
