@@ -53,7 +53,7 @@ export async function POST(req: NextRequest) {
     return await handlePost(req)
   } catch (err) {
     console.error('[leads] unhandled error:', err)
-    return json({ error: 'Erro interno no servidor. Tente novamente em instantes.' }, 500)
+    return json({ error: 'Erro interno. Tente novamente ou envie e-mail para jp@jpxdigital.com.br' }, 400)
   }
 }
 
@@ -61,7 +61,7 @@ async function handlePost(req: NextRequest) {
   const { HUBSPOT_TOKEN, N8N_WEBHOOK_URL, N8N_INTERNAL_SECRET, TURNSTILE_SECRET_KEY } = process.env
 
   if (!HUBSPOT_TOKEN) {
-    return json({ error: 'Server misconfigured' }, 500)
+    return json({ error: 'Server misconfigured' }, 400)
   }
 
   const ip = getClientIp(req)
@@ -155,7 +155,8 @@ async function handlePost(req: NextRequest) {
     contactId = data.id
   } else {
     const detail = await contactRes.text()
-    return json({ error: 'Erro ao criar contato no CRM', detail }, 502)
+    console.error('[leads] HubSpot contact error', contactRes.status, detail)
+    return json({ error: 'Não foi possível registrar seu contato. Tente novamente ou envie um e-mail para jp@jpxdigital.com.br' }, 400)
   }
 
   // 2. Criar deal
