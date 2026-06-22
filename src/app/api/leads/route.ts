@@ -26,7 +26,7 @@ function getClientIp(req: NextRequest): string {
 }
 
 export async function POST(req: NextRequest) {
-  const { HUBSPOT_TOKEN, N8N_WEBHOOK_URL, N8N_INTERNAL_SECRET } = process.env
+  const { HUBSPOT_TOKEN, N8N_WEBHOOK_URL, N8N_INTERNAL_SECRET, TURNSTILE_SECRET_KEY } = process.env
 
   if (!HUBSPOT_TOKEN) {
     return json({ error: 'Server misconfigured' }, 500)
@@ -44,9 +44,26 @@ export async function POST(req: NextRequest) {
     return json({ error: 'JSON inválido' }, 400)
   }
 
-  const { name, email, phone, company, interest, serviceSlug, message } = body as {
+  const { name, email, phone, company, interest, serviceSlug, message, turnstileToken } = body as {
     name?: string; email?: string; phone?: string
     company?: string; interest?: string; serviceSlug?: string; message?: string
+    turnstileToken?: string
+  }
+
+  // Validar Turnstile quando a chave secreta estiver configurada
+  if (TURNSTILE_SECRET_KEY) {
+    if (!turnstileToken) {
+      return json({ error: 'Verificação de segurança necessária. Recarregue a página.' }, 400)
+    }
+    const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ secret: TURNSTILE_SECRET_KEY, response: turnstileToken, remoteip: ip }),
+    })
+    const verifyData = await verifyRes.json() as { success: boolean }
+    if (!verifyData.success) {
+      return json({ error: 'Verificação de segurança falhou. Recarregue a página e tente novamente.' }, 400)
+    }
   }
 
   if (!name?.trim() || !email?.trim()) {
