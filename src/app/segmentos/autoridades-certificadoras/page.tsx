@@ -87,13 +87,13 @@ const produtos = [
 const diferenciais = [
   { titulo: 'Cadeia ICP-Brasil homologada', desc: 'Todos os certificados emitidos pertencem à hierarquia oficial ICP-Brasil, reconhecidos por bancos, cartórios, tribunais e órgãos públicos sem questionamentos.' },
   { titulo: 'Suporte especializado', desc: 'Apoio técnico na instalação e configuração do certificado, drivers de token, integração com softwares de contabilidade, jurídico e emissão fiscal.' },
-  { titulo: 'Atendimento presencial e remoto', desc: 'A validação de identidade pode ser feita presencialmente ou por videoconferência com documentos originais — processo ágil e seguro conforme normas ACDIGITAL.' },
+  { titulo: '100% remoto — sem sair de casa', desc: 'Toda a validação de identidade é feita por videoconferência com documentos originais. Você recebe seu certificado sem precisar se deslocar a nenhuma agência.' },
   { titulo: 'Renovação simplificada', desc: 'Alertamos antes do vencimento e tornamos a renovação rápida, sem burocracia, mantendo a continuidade das suas operações.' },
 ]
 
 const comoFunciona = [
   { num: '01', titulo: 'Escolha o certificado', desc: 'Defina se é para pessoa física (eCPF) ou jurídica (eCNPJ) e o formato — A1 (software, 1 ano) ou A3 (token/cartão, 3 anos).' },
-  { num: '02', titulo: 'Agendamento da validação', desc: 'Agende atendimento presencial ou por videoconferência. Separamos com antecedência os documentos necessários para cada tipo de certificado.' },
+  { num: '02', titulo: 'Agendamento da validação', desc: 'Agende uma videoconferência no horário que for melhor para você. Enviamos com antecedência a lista de documentos necessários para cada tipo de certificado.' },
   { num: '03', titulo: 'Validação de identidade', desc: 'Nossa equipe valida os documentos originais conforme as Práticas de Certificação da ACDIGITAL — etapa obrigatória para garantir a autenticidade do certificado.' },
   { num: '04', titulo: 'Emissão e instalação', desc: 'Certificado emitido na cadeia ACDIGITAL/ICP-Brasil e entregue em arquivo (A1) ou gravado no token/cartão (A3), com suporte na instalação.' },
 ]
@@ -343,7 +343,7 @@ export default function Page() {
           <div className="container-page">
             <FadeIn>
               <h2 className="type-h2 text-gray-900 mb-3">Como funciona a emissão</h2>
-              <p className="text-gray-600 mb-10 max-w-2xl">Processo simples em 4 etapas — presencial ou por videoconferência.</p>
+              <p className="text-gray-600 mb-10 max-w-2xl">Processo simples em 4 etapas — 100% remoto por videoconferência, sem sair de casa.</p>
             </FadeIn>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {comoFunciona.map((c, i) => (
@@ -436,7 +436,7 @@ export default function Page() {
                 <ul className="space-y-3">
                   {[
                     'eCPF e eCNPJ nos formatos A1 e A3',
-                    'Atendimento presencial ou por videoconferência',
+                    '100% remoto — sem sair de casa',
                     'Suporte técnico na instalação e renovação',
                     'Retorno em até 1 dia útil',
                   ].map((p) => (
