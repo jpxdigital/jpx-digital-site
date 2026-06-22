@@ -55,6 +55,7 @@ jobs:
           build-args: |
             NEXT_PUBLIC_SITE_URL=https://jpxdigital.com.br
             NEXT_PUBLIC_COMMIT_SHA=${{ github.sha }}
+            NEXT_PUBLIC_TURNSTILE_SITE_KEY=${{ secrets.TURNSTILE_SITE_KEY }}
 
   deploy:
     name: Deploy to VM1
