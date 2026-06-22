@@ -26,6 +26,15 @@ function getClientIp(req: NextRequest): string {
 }
 
 export async function POST(req: NextRequest) {
+  try {
+    return await handlePost(req)
+  } catch (err) {
+    console.error('[leads] unhandled error:', err)
+    return json({ error: 'Erro interno no servidor. Tente novamente em instantes.' }, 500)
+  }
+}
+
+async function handlePost(req: NextRequest) {
   const { HUBSPOT_TOKEN, N8N_WEBHOOK_URL, N8N_INTERNAL_SECRET, TURNSTILE_SECRET_KEY } = process.env
 
   if (!HUBSPOT_TOKEN) {
@@ -174,7 +183,7 @@ export async function POST(req: NextRequest) {
   }
 
   return json({ success: true, contactId, dealId })
-}
+} // fim handlePost
 
 export async function OPTIONS() {
   return new NextResponse(null, { status: 204 })
