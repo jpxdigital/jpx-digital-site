@@ -1,0 +1,154 @@
+{
+  "slug": "fortinet",
+  "category": "Segurança",
+  "heroHeadline": "Fortinet — Security Fabric para Redes Corporativas, Filiais e Ambientes Híbridos.",
+  "heroSub": "Do NGFW ao SD-WAN, do endpoint ao e-mail — o Fortinet Security Fabric integra proteção em todas as camadas em uma arquitetura única, gerenciada centralmente e com visibilidade consolidada.",
+  "ctaLabel": "Solicitar Fortinet Assessment",
+  "problem": {
+    "headline": "Segurança em silos não funciona. Ferramentas desconectadas geram lacunas que atacantes exploram — e equipes que não conseguem responder a tempo.",
+    "body": [
+      "A maioria das empresas acumulou ferramentas de segurança de fabricantes diferentes: um firewall de um fornecedor, endpoint de outro, Wi-Fi de outro. Cada produto tem seu console, seus alertas e sua lógica. O resultado é uma equipe de TI sobrecarregada e pontos cegos entre as ferramentas.",
+      "Quando um incidente acontece, o tempo de detecção e resposta aumenta porque não há correlação automática de eventos entre as camadas. O atacante já se movimentou enquanto a equipe ainda está tentando cruzar logs de sistemas diferentes.",
+      "O Fortinet Security Fabric resolve isso com uma arquitetura integrada: FortiGate (NGFW + SD-WAN), FortiManager, FortiAnalyzer, FortiClient, FortiAP e FortiSwitch todos falam a mesma linguagem, compartilham inteligência de ameaças em tempo real e são gerenciados de um único painel."
+    ]
+  },
+  "assessment": {
+    "name": "Fortinet Network Security Assessment",
+    "body": "Avaliamos a arquitetura de rede e segurança atual, identificamos gaps de proteção, mapeamos quais produtos Fortinet resolvem cada lacuna e estimamos o dimensionamento correto de hardware e licenças para o seu ambiente — sem superdimensionar.",
+    "checklist": [
+      "Mapeamento de topologia, fluxos de tráfego e pontos de exposição",
+      "Auditoria de configuração de firewall e regras existentes",
+      "Avaliação de maturidade de segurança por camada (rede, endpoint, e-mail, Wi-Fi)",
+      "Dimensionamento de FortiGate por throughput e funcionalidades necessárias",
+      "Proposta de roadmap de implantação por prioridade de risco"
+    ]
+  },
+  "process": {
+    "title": "Como implantamos o Fortinet Security Fabric",
+    "steps": [
+      {
+        "title": "Assessment e arquitetura",
+        "desc": "Mapeamos o ambiente atual, identificamos gaps e definimos a arquitetura alvo: quais produtos Fortinet, em qual ordem de implantação, com qual topologia de rede. Cada decisão é documentada com justificativa técnica e de negócio."
+      },
+      {
+        "title": "Implantação do FortiGate como núcleo",
+        "desc": "O FortiGate é o ponto de entrada do Security Fabric: NGFW com IPS, controle de aplicação, inspeção SSL e SD-WAN integrados em hardware dedicado. Configuramos políticas, segmentação de rede, VPN/ZTNA e integração com FortiGuard Threat Intelligence."
+      },
+      {
+        "title": "Gestão centralizada com FortiManager e FortiAnalyzer",
+        "desc": "FortiManager centraliza políticas e configurações de todos os dispositivos FortiGate (matriz, filiais, cloud). FortiAnalyzer consolida logs, gera relatórios de conformidade e alimenta o NOC com alertas correlacionados — uma única tela para toda a segurança de rede."
+      },
+      {
+        "title": "Expansão do Fabric (FortiClient, FortiAP, FortiSwitch)",
+        "desc": "Integramos endpoint security via FortiClient (com ZTNA), wireless corporativo via FortiAP e switching seguro via FortiSwitch — todos gerenciados direto pelo FortiGate, sem consoles adicionais. O Fabric passa a cobrir todas as camadas."
+      },
+      {
+        "title": "Operação, monitoramento e evolução",
+        "desc": "Configuramos alertas, dashboards operacionais, revisão periódica de políticas e atualizações de assinaturas FortiGuard. Documentamos runbooks para operação e entregamos o ambiente com a equipe treinada."
+      }
+    ]
+  },
+  "benefits": [
+    {
+      "title": "Visibilidade consolidada em um único painel",
+      "desc": "FortiManager + FortiAnalyzer eliminam a necessidade de cruzar logs de sistemas diferentes. Todos os eventos de rede, endpoint e Wi-Fi são correlacionados automaticamente."
+    },
+    {
+      "title": "NGFW + SD-WAN no mesmo appliance",
+      "desc": "O FortiGate entrega firewall de próxima geração, IPS, controle de aplicação, inspeção SSL e SD-WAN em um único hardware — sem a necessidade de appliances separados para cada função."
+    },
+    {
+      "title": "Escalabilidade de filial para datacenter",
+      "desc": "A mesma plataforma funciona do FortiGate 40F (escritório de 10 pessoas) ao FortiGate 7000 (datacenter enterprise). A gestão centralizada escala junto — sem mudar de ferramenta."
+    },
+    {
+      "title": "FortiGuard Threat Intelligence em tempo real",
+      "desc": "Assinaturas de IPS, antivírus, controle de aplicações e categorias de URL atualizadas continuamente pela rede global FortiGuard — mais de 100 bilhões de eventos analisados por dia."
+    }
+  ],
+  "deliverables": [
+    "Relatório de Fortinet Network Security Assessment",
+    "Documento de arquitetura Security Fabric com justificativas técnicas",
+    "FortiGate configurado com políticas, IPS, App Control e SSL Inspection",
+    "FortiManager e FortiAnalyzer integrados (quando aplicável)",
+    "Documentação de regras, VLANs, VPN e topologia",
+    "Runbook de operação e procedimentos de resposta a incidentes",
+    "Treinamento da equipe de TI no ambiente implantado"
+  ],
+  "differentials": [
+    {
+      "title": "Especialistas certificados em Fortinet",
+      "desc": "Engenheiros com certificação NSE (Network Security Expert) em implantação, configuração avançada e troubleshooting de FortiGate, FortiManager e FortiAnalyzer."
+    },
+    {
+      "title": "Dimensionamento honesto",
+      "desc": "Recomendamos o modelo correto para o throughput e funcionalidades que você realmente precisa — não o appliance mais caro. Um FortiGate superdimensionado não é segurança, é desperdício."
+    },
+    {
+      "title": "Integração com o ambiente existente",
+      "desc": "Fortinet integra com Active Directory, RADIUS, SIEM externo (Splunk, QRadar, Elastic) e cloud (AWS, Azure). Configuramos as integrações para que o Fabric funcione no contexto do seu ambiente."
+    },
+    {
+      "title": "Migração sem downtime",
+      "desc": "Para substituição de firewall existente, realizamos a migração com o ambiente anterior em stand-by, validação de cada fluxo crítico antes do corte e rollback documentado caso necessário."
+    }
+  ],
+  "supportedEnvironments": [
+    {
+      "categoria": "Soluções FortiGate",
+      "itens": [
+        "Next-Generation Firewall (NGFW)",
+        "Intrusion Prevention System (IPS)",
+        "Controle de aplicação e filtragem de URL",
+        "Inspeção SSL/TLS",
+        "SD-WAN integrado"
+      ]
+    },
+    {
+      "categoria": "Security Fabric",
+      "itens": [
+        "FortiManager — gestão centralizada de políticas",
+        "FortiAnalyzer — logs, relatórios e correlação de eventos",
+        "FortiClient — endpoint security e ZTNA",
+        "FortiAP — wireless corporativo gerenciado",
+        "FortiSwitch — switching seguro integrado ao FortiGate"
+      ]
+    },
+    {
+      "categoria": "Proteção Adicional",
+      "itens": [
+        "FortiWeb — Web Application Firewall",
+        "FortiMail — segurança de e-mail",
+        "FortiSandbox — análise de ameaças avançadas",
+        "FortiSOAR — orquestração de resposta a incidentes",
+        "FortiGuard Threat Intelligence"
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Quando faz sentido migrar para Fortinet em vez de manter o firewall atual?",
+      "answer": "Quando o firewall atual não oferece IPS, controle de aplicação ou inspeção SSL; quando há múltiplos consoles para gerenciar rede, endpoint e Wi-Fi separadamente; quando a empresa tem filiais sem segurança de rede adequada (SD-WAN resolve isso no FortiGate); ou quando o appliance atual está fora de suporte e sem atualizações de segurança."
+    },
+    {
+      "question": "Qual FortiGate é o certo para minha empresa?",
+      "answer": "Depende do número de usuários, throughput de internet e quais funcionalidades do NGFW serão ativas (IPS e SSL inspection consomem muito mais CPU que firewall básico). O FortiGate 60F/80F atende escritórios de até 50 usuários. O 100F/200F cobre médias empresas. O 400F/600F é para ambientes corporativos com alto throughput. Fazemos o dimensionamento correto no assessment."
+    },
+    {
+      "question": "Fortinet funciona junto com outros fabricantes que já temos?",
+      "answer": "Sim. FortiGate integra via syslog com qualquer SIEM (Splunk, QRadar, Elastic, Grafana/Loki). Integra com Active Directory para autenticação de usuários nas políticas. Conecta via BGP/OSPF com roteadores de outros fabricantes. O Fabric completo (FortiManager + FortiAnalyzer + FortiClient) funciona melhor com produtos Fortinet, mas o FortiGate como NGFW é agnóstico ao resto do ambiente."
+    },
+    {
+      "question": "O que é o FortiGuard e preciso de assinatura?",
+      "answer": "FortiGuard é o serviço de inteligência de ameaças da Fortinet: assinaturas de IPS, antivírus, controle de aplicação, filtragem de URL e reputação de IP/domínio. Sem a assinatura FortiGuard ativa, o FortiGate funciona como firewall básico mas perde as proteções de próxima geração. Recomendamos sempre incluir a assinatura — é onde está o valor real do NGFW."
+    },
+    {
+      "question": "FortiManager é necessário se tenho apenas um FortiGate?",
+      "answer": "Com um único FortiGate, o gerenciamento pela interface web local é suficiente. FortiManager passa a fazer sentido a partir de 3-5 dispositivos (matriz + filiais), quando o gerenciamento centralizado de políticas e a consistência de configuração justificam o investimento. FortiAnalyzer é recomendado mesmo para ambientes menores quando há requisito de log centralizado para compliance ou NOC."
+    },
+    {
+      "question": "Fortinet suporta trabalho remoto e ZTNA?",
+      "answer": "Sim. O FortiClient com FortiGate suporta VPN SSL e IPsec para acesso remoto tradicional. Para Zero Trust Network Access (ZTNA), o FortiClient verifica identidade + dispositivo + postura de segurança antes de liberar acesso a cada aplicação específica — sem colocar o usuário dentro da rede inteira como a VPN tradicional faz."
+    }
+  ]
+}

@@ -46,6 +46,7 @@ const allServices = [
       { href: '/servicos/virtualizacao', icon: Box, title: 'VMware & Virtualização', desc: 'VMware vSphere, Hyper-V e KVM — HA, DRS e hiperconvergência.' },
       { href: '/servicos/containers-kubernetes', icon: Cpu, title: 'OpenShift / OKD & Kubernetes', desc: 'Kubernetes enterprise para ambientes regulados e produção crítica.' },
       { href: '/servicos/firewall-vpn', icon: Flame, title: 'Firewall & VPN', desc: 'Perímetro seguro e acesso remoto corporativo.' },
+      { href: '/servicos/fortinet', icon: ShieldCheck, title: 'Fortinet Security Fabric', desc: 'FortiGate NGFW, SD-WAN, FortiManager e FortiAnalyzer — plataforma integrada de segurança de rede.' },
       { href: '/servicos/monitoramento', icon: Monitor, title: 'Monitoramento', desc: 'Visibilidade 24/7 de toda a sua infraestrutura.' },
       { href: '/servicos/hardening', icon: Lock, title: 'Hardening', desc: 'Endurecimento de servidores, redes e endpoints.' },
     ],
