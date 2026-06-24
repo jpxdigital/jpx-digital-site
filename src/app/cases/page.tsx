@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowRight, CheckCircle2, Building2, Heart, Scale, Factory, ShieldCheck, ShieldAlert, Target } from 'lucide-react'
+import { ArrowRight, CheckCircle2, Building2, Heart, Scale, Factory, ShieldCheck, ShieldAlert, Target, Network, Flame } from 'lucide-react'
 import { Nav } from '@/components/layout/Nav'
 import { Footer } from '@/components/layout/Footer'
 import { MotionProvider } from '@/components/providers/MotionProvider'
@@ -69,6 +69,34 @@ const cases = [
       'Budget alerts ativos — sem surpresas',
     ],
     href: '/segmentos/escritorios',
+  },
+  {
+    icon: Flame,
+    segment: 'Varejo',
+    label: 'Rede de varejo — 14 filiais com SD-WAN e NGFW FortiGate',
+    challenge: 'Rede de varejo com 14 lojas usando links dedicados caros e firewall legado sem IPS nem controle de aplicação. Cada filial gerenciada de forma independente, sem visibilidade centralizada. Incidentes de segurança demorariam horas para ser detectados.',
+    solution: 'Substituição de todo o perímetro por FortiGate em cada filial com SD-WAN integrado. Links MPLS substituídos por dual broadband com failover automático. FortiManager centralizando políticas para as 14 unidades. FortiAnalyzer com dashboard consolidado e alertas em tempo real para o NOC.',
+    results: [
+      'Redução de 52% no custo de link substituindo MPLS por SD-WAN',
+      '14 filiais gerenciadas de um único painel — FortiManager',
+      'IPS e controle de aplicação ativos em toda a rede',
+      'Tempo de detecção de incidentes: de horas para minutos',
+    ],
+    href: '/servicos/fortinet',
+  },
+  {
+    icon: Network,
+    segment: 'Indústria',
+    label: 'Indústria manufatureira — segmentação IT/OT com FortiGate',
+    challenge: 'Planta industrial com rede plana sem segmentação entre ambiente corporativo (IT) e chão de fábrica (OT/SCADA). Um incidente de ransomware em um notebook corporativo poderia se propagar livremente até os controladores de produção — cenário confirmado no assessment inicial.',
+    solution: 'Projeto de segmentação IT/OT com FortiGate como ponto de controle entre os segmentos. Políticas restritivas no tráfego entre IT e OT com whitelist de protocolos industriais (Modbus, OPC-UA). FortiAnalyzer monitorando cruzamento de segmentos e alertando para qualquer anomalia.',
+    results: [
+      'Rede plana eliminada — IT e OT isolados com controle granular',
+      'Zero impacto na produção durante a implementação',
+      'Protocolos industriais controlados e auditados',
+      'Conformidade com IEC 62443 documentada para auditoria',
+    ],
+    href: '/servicos/fortinet',
   },
   {
     icon: ShieldAlert,
