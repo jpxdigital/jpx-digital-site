@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowRight, CheckCircle2, Building2, Heart, Scale, Factory, ShieldCheck } from 'lucide-react'
+import { ArrowRight, CheckCircle2, Building2, Heart, Scale, Factory, ShieldCheck, ShieldAlert, Target } from 'lucide-react'
 import { Nav } from '@/components/layout/Nav'
 import { Footer } from '@/components/layout/Footer'
 import { MotionProvider } from '@/components/providers/MotionProvider'
@@ -69,6 +69,48 @@ const cases = [
       'Budget alerts ativos — sem surpresas',
     ],
     href: '/segmentos/escritorios',
+  },
+  {
+    icon: ShieldAlert,
+    segment: 'Infraestrutura Crítica',
+    label: 'Setor Regulado — Ambiente Distribuído e Heterogêneo',
+    challenge: 'Cliente de setor regulado com infraestrutura crítica distribuída em múltiplas localidades e tecnologias heterogêneas. Necessidade de cobertura real de segurança ofensiva para cumprir requisitos regulatórios — com sigilo absoluto e NDA rígido.',
+    solution: 'Pentest contínuo cobrindo aplicações web, APIs e infraestrutura em todas as localidades. Identificamos múltiplas Remote Code Executions (RCE), SQL Injections em sistemas críticos e IDOR em portais de acesso. Cada achado entregue em tempo real com PoC e sugestão de remediação antes do próximo ciclo.',
+    results: [
+      'Comprometimento de sistemas de alta criticidade evitado',
+      'RCE + SQLi + IDOR identificados, documentados e corrigidos',
+      'Parceria ativa de longo prazo — cobertura contínua',
+      'Zero incidentes desde o início do engajamento',
+    ],
+    href: '/servicos/pentest-continuo',
+  },
+  {
+    icon: Target,
+    segment: 'Indústria',
+    label: 'Indústria de Grande Porte — Red Team Corporativo',
+    challenge: 'O cliente queria validar se um atacante externo poderia, a partir de um ponto inicial de acesso, comprometer o ambiente corporativo inteiro. Red Team com objetivo explícito de full domain compromise, restrição de janela de teste e NDA absoluto.',
+    solution: 'Engajamento Red Team com escopo aberto. Descobrimos cadeia de exploração partindo de RCE em aplicação interna, com movimento lateral progressivo entre segmentos de rede até escalada de privilégios e controle administrativo total da rede corporativa via Active Directory.',
+    results: [
+      'Acesso administrativo a toda a rede corporativa evitado',
+      'Cadeia completa de exploração documentada com PoC',
+      'Corrigido antes de qualquer exposição real',
+      'Plano de hardening entregue para cada etapa da cadeia',
+    ],
+    href: '/servicos/pentest',
+  },
+  {
+    icon: ShieldCheck,
+    segment: 'Compliance',
+    label: 'Compliance LGPD/ANPD — Sistemas Legados com Dados Sensíveis',
+    challenge: 'Empresa com obrigações LGPD precisava comprovar adequação técnica de sistemas legados que armazenavam dados pessoais sensíveis. Análise de conformidade técnica combinada com pentest de infraestrutura para geração de evidências para a ANPD.',
+    solution: 'Análise de conformidade técnica (LGPD) integrada com pentest de infraestrutura nos sistemas legados. Identificamos vulnerabilidades em sistemas sem suporte ativo que processavam dados pessoais protegidos. Plano de remediação priorizado entregue com prazo de 30 dias para os achados críticos.',
+    results: [
+      'Vulnerabilidades em dados pessoais identificadas e corrigidas',
+      'Plano de remediação priorizado entregue em 30 dias',
+      'Evidências de teste prontas para ANPD e auditorias',
+      'Sistemas legados mapeados para migração ou descontinuação',
+    ],
+    href: '/servicos/analise-vulnerabilidades',
   },
 ]
 

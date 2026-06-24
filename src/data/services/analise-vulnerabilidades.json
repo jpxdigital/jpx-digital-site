@@ -1,0 +1,149 @@
+{
+  "slug": "analise-vulnerabilidades",
+  "category": "Segurança Ofensiva",
+  "heroHeadline": "Análise de Vulnerabilidades — Visibilidade Contínua dos Riscos no Seu Ambiente.",
+  "heroSub": "Varredura automatizada recorrente combinada com validação manual de findings. Classificação por criticidade CVSS 3.1 e plano de remediação priorizado — para você corrigir o que importa primeiro, antes que um atacante explore o que ficou para depois.",
+  "ctaLabel": "Quero analisar meu ambiente",
+  "problem": {
+    "headline": "Novas vulnerabilidades surgem todos os dias. Sem varredura recorrente, você só descobre que estava exposto depois que o incidente acontece.",
+    "body": [
+      "O CVE database cresce com centenas de novas vulnerabilidades por semana. Uma aplicação ou servidor sem patch de 30 dias pode estar exposto a dezenas de falhas com exploits públicos — e você não saberá até que alguém use um deles.",
+      "A maioria das análises de vulnerabilidade é pontual: um scan hoje, um relatório amanhã, e nada até o próximo contrato. O problema é que seu ambiente muda continuamente — novos serviços, novas versões, novas configurações. A janela de exposição entre um scan e o próximo é onde os ataques acontecem.",
+      "Nossa análise de vulnerabilidades combina scan automatizado recorrente com validação manual de findings, eliminando falsos positivos e identificando o que realmente representa risco. Você recebe visibilidade contínua, não uma fotografia estática."
+    ]
+  },
+  "assessment": {
+    "name": "Baseline de Vulnerabilidades",
+    "body": "Iniciamos com um scan baseline completo de todo o escopo definido: aplicações web, APIs, servidores, dispositivos de rede e cloud. O resultado é um relatório de linha de base com todos os findings classificados por CVSS 3.1, validados manualmente para eliminar falsos positivos, e com plano de remediação inicial priorizado.",
+    "checklist": [
+      "Inventário de ativos no escopo (IP, domínios, aplicações)",
+      "Scan baseline com ferramentas profissionais (Nessus, Burp Suite, Nuclei)",
+      "Validação manual de findings críticos e altos",
+      "Classificação CVSS 3.1 por vulnerabilidade",
+      "Plano de remediação inicial com priorização por risco"
+    ]
+  },
+  "process": {
+    "title": "Ciclo de análise contínua",
+    "steps": [
+      {
+        "title": "Scan automatizado recorrente",
+        "desc": "Varredura programada em todos os ativos do escopo com ferramentas de mercado (Nessus, Nuclei, Burp Suite). Frequência configurável — semanal, quinzenal ou mensal — com alertas imediatos para novos findings críticos."
+      },
+      {
+        "title": "Validação manual de findings",
+        "desc": "Cada finding classificado como crítico ou alto é validado manualmente por um analista antes de entrar no relatório. Eliminamos falsos positivos e enriquecemos a análise com contexto de exploitabilidade real — se há exploit público, se requer autenticação, se é remotamente explorável."
+      },
+      {
+        "title": "Classificação e priorização CVSS 3.1",
+        "desc": "Todos os findings são classificados pelo Common Vulnerability Scoring System v3.1, ajustado pelo contexto do ambiente (exposição, dados processados, criticidade do sistema). O resultado é uma lista priorizada para a equipe de TI — não apenas um número de CVSS genérico."
+      },
+      {
+        "title": "Plano de remediação",
+        "desc": "Para cada finding, entregamos a remediação recomendada: patch, configuração, workaround ou mitigação compensatória. O plano é priorizado considerando criticidade, esforço de correção e impacto operacional."
+      },
+      {
+        "title": "Verificação de correções e fechamento de ciclo",
+        "desc": "Após a remediação, revalidamos os findings corrigidos para confirmar que a correção foi efetiva. O ciclo fecha com relatório de status — o que foi corrigido, o que está em andamento e o que foi aceito como risco com justificativa."
+      }
+    ]
+  },
+  "benefits": [
+    {
+      "title": "Visibilidade contínua, não pontual",
+      "desc": "Scans recorrentes garantem que novas vulnerabilidades introduzidas por updates, mudanças de configuração ou novos deploys sejam detectadas rapidamente."
+    },
+    {
+      "title": "Zero falsos positivos no topo da lista",
+      "desc": "Validação manual elimina o ruído. A equipe de TI recebe apenas os findings reais que precisam de atenção — não uma lista de 300 itens para triagem manual."
+    },
+    {
+      "title": "Priorização por risco real",
+      "desc": "CVSS ajustado pelo contexto: um finding crítico em um servidor interno sem acesso externo tem prioridade diferente do mesmo finding exposto na Internet. A lista reflete risco real, não score genérico."
+    },
+    {
+      "title": "Evidências para compliance",
+      "desc": "Histórico de scans, findings e remediações pronto para ISO 27001, LGPD/ANPD e auditorias setoriais. Demonstra programa de gestão de vulnerabilidades ativo e documentado."
+    }
+  ],
+  "deliverables": [
+    "Relatório de scan recorrente (frequência configurável)",
+    "Lista de findings validados com CVSS 3.1 e classificação de risco",
+    "Plano de remediação priorizado por criticidade e esforço",
+    "Alertas imediatos para novos findings críticos entre scans",
+    "Relatório de verificação de correções",
+    "Histórico consolidado para uso em auditorias e compliance"
+  ],
+  "differentials": [
+    {
+      "title": "Validação manual — sem lista de 300 falsos positivos",
+      "desc": "Toda análise automatizada gera ruído. Nosso analista filtra os resultados antes de entregar. Você recebe apenas o que realmente precisa de ação."
+    },
+    {
+      "title": "Contexto de exploitabilidade real",
+      "desc": "Além do CVSS genérico, informamos se há exploit público disponível, se requer autenticação, se é remotamente explorável e qual o impacto real para o seu ambiente específico."
+    },
+    {
+      "title": "Integração com processo de remediação do cliente",
+      "desc": "Adaptamos o relatório ao fluxo de trabalho do cliente: tickets no Jira, alertas no Slack, dashboards customizados ou relatório PDF — na frequência e formato que funciona para a equipe."
+    },
+    {
+      "title": "Cobertura de todos os vetores",
+      "desc": "Web, APIs, infraestrutura (Linux, Windows, rede), cloud (AWS, Azure, GCP, OCI) e endpoints — em um programa unificado de gestão de vulnerabilidades."
+    }
+  ],
+  "supportedEnvironments": [
+    {
+      "categoria": "Aplicações e APIs",
+      "itens": [
+        "Aplicações web (OWASP Top 10)",
+        "APIs REST e GraphQL",
+        "Portais e intranets",
+        "E-commerce e sistemas de pagamento",
+        "Single Page Applications (SPA)"
+      ]
+    },
+    {
+      "categoria": "Infraestrutura",
+      "itens": [
+        "Servidores Linux (Red Hat, Ubuntu, Debian)",
+        "Servidores Windows Server",
+        "Dispositivos de rede (switches, roteadores, firewalls)",
+        "Bancos de dados expostos",
+        "Serviços e portas de rede"
+      ]
+    },
+    {
+      "categoria": "Cloud e Endpoints",
+      "itens": [
+        "AWS (EC2, RDS, S3, Lambda)",
+        "Microsoft Azure",
+        "Google Cloud Platform (GCP)",
+        "Oracle Cloud (OCI)",
+        "Endpoints Windows e Linux"
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Qual a diferença entre análise de vulnerabilidades e pentest?",
+      "answer": "Análise de vulnerabilidades identifica e classifica falhas de segurança — enumera o que existe, valida se é real (não falso positivo) e prioriza o que corrigir primeiro. Pentest vai além: tenta explorar as vulnerabilidades encontradas para provar que são exploráveis e medir o impacto real de um ataque bem-sucedido. Os dois se complementam: a análise de vulnerabilidades é o programa contínuo; o pentest é o teste de profundidade periódico."
+    },
+    {
+      "question": "Com que frequência deve ser feito o scan?",
+      "answer": "Depende da velocidade de mudança do ambiente. Para ambientes em desenvolvimento ativo (deploys frequentes), scans semanais ou quinzenais. Para ambientes mais estáveis, mensal é suficiente. O scan baseline inicial sempre cobre o ambiente completo; os scans subsequentes podem focar em novos ativos ou mudanças recentes."
+    },
+    {
+      "question": "O scan pode impactar a disponibilidade dos sistemas?",
+      "answer": "Scans de vulnerabilidade podem gerar carga de rede e requisições atípicas. Em produção, configuramos os scans para horários de menor carga (fora do horário comercial) e com throttling para evitar impacto. Em sistemas críticos que não toleram qualquer carga adicional, o scan pode ser feito em ambiente de staging com configuração idêntica."
+    },
+    {
+      "question": "O relatório serve para ISO 27001 ou LGPD?",
+      "answer": "Sim. ISO 27001 (controle A.12.6 — gestão de vulnerabilidades técnicas) e LGPD/ANPD exigem demonstração de programa ativo de identificação e tratamento de vulnerabilidades. O histórico de scans, findings e remediações que entregamos pode ser usado diretamente como evidência em auditorias."
+    },
+    {
+      "question": "O que acontece quando um finding crítico é encontrado?",
+      "answer": "Findings críticos são comunicados imediatamente via canal definido (e-mail, Slack, ticket) — sem esperar o próximo relatório programado. Junto com o alerta, enviamos a análise de exploitabilidade e a recomendação de remediação imediata ou mitigação compensatória enquanto o patch não está disponível."
+    }
+  ]
+}
