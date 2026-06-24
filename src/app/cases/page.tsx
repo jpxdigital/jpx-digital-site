@@ -7,9 +7,9 @@ import { MotionProvider } from '@/components/providers/MotionProvider'
 import { FadeIn } from '@/components/ui/FadeIn'
 
 export const metadata: Metadata = {
-  title: 'Cases de Sucesso — Projetos de Infraestrutura e Cloud',
+  title: 'Cases de Sucesso — Infraestrutura, Cloud e Segurança Ofensiva',
   description:
-    'Projetos reais de cloud, backup corporativo, disaster recovery e infraestrutura para hospitais, indústrias, escritórios e advocacia. Resultados concretos, sem generalização.',
+    'Projetos reais de cloud, backup, disaster recovery, pentest, segmentação IT/OT com Fortinet e segurança ofensiva para hospitais, indústrias, varejo e advocacia. Resultados concretos, sem generalização.',
   alternates: { canonical: 'https://jpxdigital.com.br/cases' },
 }
 
