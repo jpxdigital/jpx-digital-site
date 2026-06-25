@@ -10,11 +10,17 @@ type Step =
   | 'servico_qual'
   | 'servico_acao'
   | 'servico_certificado'
+  | 'servico_seguranca'
+  | 'servico_pentest'
+  | 'servico_fortinet'
   | 'suporte_cliente'
   | 'fim_form'
   | 'fim_email'
   | 'fim_pagina'
   | 'fim_certificado'
+  | 'fim_pentest'
+  | 'fim_fortinet'
+  | 'fim_pentest_continuo'
 
 interface Option { label: string; next: Step; userText?: string }
 
@@ -32,18 +38,42 @@ const FLOW: Record<Step, { msg: string; options?: Option[]; cta?: { label: strin
     msg: 'Ótimo! Qual é a principal preocupação da sua empresa hoje?',
     options: [
       { label: 'Backup e recuperação de dados', next: 'fim_form', userText: 'Backup e recuperação' },
-      { label: 'Segurança cibernética', next: 'fim_form', userText: 'Segurança cibernética' },
+      { label: 'Pentest ou segurança ofensiva', next: 'servico_pentest', userText: 'Pentest e segurança ofensiva' },
       { label: 'Cloud e redução de custos', next: 'fim_form', userText: 'Cloud e custos' },
-      { label: 'Continuidade / Disaster Recovery', next: 'fim_form', userText: 'Continuidade e DR' },
+      { label: 'Firewall, rede ou Fortinet', next: 'servico_fortinet', userText: 'Firewall e Fortinet' },
     ],
   },
   servico_qual: {
-    msg: 'Sobre qual serviço você tem dúvidas?',
+    msg: 'Sobre qual área você tem dúvidas?',
     options: [
-      { label: 'Cloud Computing (OCI / Azure / AWS)', next: 'servico_acao', userText: 'Cloud Computing' },
-      { label: 'Backup Corporativo', next: 'servico_acao', userText: 'Backup Corporativo' },
-      { label: 'Certificado Digital eCPF / eCNPJ', next: 'servico_certificado', userText: 'Certificado Digital eCPF/eCNPJ' },
-      { label: 'Segurança e Resiliência', next: 'servico_acao', userText: 'Segurança e Resiliência' },
+      { label: 'Cloud (OCI / Azure / AWS)', next: 'servico_acao', userText: 'Cloud Computing' },
+      { label: 'Backup e Continuidade', next: 'servico_acao', userText: 'Backup e Continuidade' },
+      { label: 'Segurança (pentest, Fortinet, hardening)', next: 'servico_seguranca', userText: 'Segurança' },
+      { label: 'Certificado Digital eCPF / eCNPJ', next: 'servico_certificado', userText: 'Certificado Digital' },
+    ],
+  },
+  servico_seguranca: {
+    msg: 'Qual área de segurança te interessa?',
+    options: [
+      { label: 'Pentest e segurança ofensiva', next: 'servico_pentest', userText: 'Pentest e segurança ofensiva' },
+      { label: 'Fortinet / Firewall & SD-WAN', next: 'servico_fortinet', userText: 'Fortinet e Firewall' },
+      { label: 'Hardening e resiliência cibernética', next: 'servico_acao', userText: 'Hardening e resiliência' },
+      { label: 'Análise de vulnerabilidades', next: 'servico_pentest', userText: 'Análise de vulnerabilidades' },
+    ],
+  },
+  servico_pentest: {
+    msg: 'Realizamos pentest em web, mobile, APIs e infraestrutura com metodologia red team — e pentest contínuo com dashboard 24/7. Quer ver os detalhes ou falar com um especialista?',
+    options: [
+      { label: 'Ver página de pentest', next: 'fim_pentest', userText: 'Quero ver a página de pentest' },
+      { label: 'Ver pentest contínuo', next: 'fim_pentest_continuo', userText: 'Quero ver o pentest contínuo' },
+      { label: 'Falar com especialista', next: 'fim_form', userText: 'Falar com especialista' },
+    ],
+  },
+  servico_fortinet: {
+    msg: 'Somos especialistas certificados Fortinet NSE — FortiGate NGFW, SD-WAN, FortiManager e Security Fabric completo. Quer ver os detalhes ou falar com um especialista?',
+    options: [
+      { label: 'Ver página Fortinet', next: 'fim_fortinet', userText: 'Quero ver a página Fortinet' },
+      { label: 'Falar com especialista', next: 'fim_form', userText: 'Falar com especialista' },
     ],
   },
   servico_certificado: {
@@ -82,6 +112,18 @@ const FLOW: Record<Step, { msg: string; options?: Option[]; cta?: { label: strin
   fim_certificado: {
     msg: 'Na página de certificados você encontra eCPF A1/A3, eCNPJ A1/A3, comparativo de formatos e como funciona o processo remoto.',
     cta: { label: 'Ver certificados digitais', href: '/segmentos/autoridades-certificadoras' },
+  },
+  fim_pentest: {
+    msg: 'Na página de pentest você encontra nossa metodologia (OWASP, PTES, MITRE ATT&CK), escopo de cobertura e nossos cases de segurança ofensiva.',
+    cta: { label: 'Ver Pentest', href: '/servicos/pentest' },
+  },
+  fim_pentest_continuo: {
+    msg: 'No pentest contínuo você tem achados em tempo real, dashboard 24/7 e integração com Jira e Slack. Vulnerabilidades corrigidas antes do relatório final.',
+    cta: { label: 'Ver Pentest Contínuo', href: '/servicos/pentest-continuo' },
+  },
+  fim_fortinet: {
+    msg: 'Na página Fortinet você encontra FortiGate NGFW, SD-WAN, FortiManager, FortiAnalyzer, Security Fabric e nossos cases de implantação em filiais e ambientes industriais.',
+    cta: { label: 'Ver Fortinet Security Fabric', href: '/servicos/fortinet' },
   },
 }
 
