@@ -9,18 +9,31 @@ type Step =
   | 'diagnostico_area'
   | 'servico_qual'
   | 'servico_acao'
-  | 'servico_certificado'
+  | 'servico_cloud'
+  | 'servico_backup'
+  | 'servico_outros'
   | 'servico_seguranca'
   | 'servico_pentest'
   | 'servico_fortinet'
+  | 'servico_certificado'
   | 'suporte_cliente'
   | 'fim_form'
   | 'fim_email'
   | 'fim_pagina'
   | 'fim_certificado'
   | 'fim_pentest'
-  | 'fim_fortinet'
   | 'fim_pentest_continuo'
+  | 'fim_analise_vuln'
+  | 'fim_fortinet'
+  | 'fim_oci'
+  | 'fim_azure'
+  | 'fim_aws'
+  | 'fim_finops'
+  | 'fim_backup'
+  | 'fim_backup_m365'
+  | 'fim_dr'
+  | 'fim_ai'
+  | 'fim_suporte'
 
 interface Option { label: string; next: Step; userText?: string }
 
@@ -37,19 +50,37 @@ const FLOW: Record<Step, { msg: string; options?: Option[]; cta?: { label: strin
   diagnostico_area: {
     msg: 'Ótimo! Qual é a principal preocupação da sua empresa hoje?',
     options: [
-      { label: 'Backup e recuperação de dados', next: 'fim_form', userText: 'Backup e recuperação' },
+      { label: 'Backup e recuperação de dados', next: 'servico_backup', userText: 'Backup e recuperação' },
       { label: 'Pentest ou segurança ofensiva', next: 'servico_pentest', userText: 'Pentest e segurança ofensiva' },
-      { label: 'Cloud e redução de custos', next: 'fim_form', userText: 'Cloud e custos' },
+      { label: 'Cloud e redução de custos', next: 'servico_cloud', userText: 'Cloud e custos' },
       { label: 'Firewall, rede ou Fortinet', next: 'servico_fortinet', userText: 'Firewall e Fortinet' },
     ],
   },
   servico_qual: {
     msg: 'Sobre qual área você tem dúvidas?',
     options: [
-      { label: 'Cloud (OCI / Azure / AWS)', next: 'servico_acao', userText: 'Cloud Computing' },
-      { label: 'Backup e Continuidade', next: 'servico_acao', userText: 'Backup e Continuidade' },
+      { label: 'Cloud (OCI / Azure / AWS / FinOps)', next: 'servico_cloud', userText: 'Cloud Computing' },
+      { label: 'Backup, DR e Continuidade', next: 'servico_backup', userText: 'Backup e Continuidade' },
       { label: 'Segurança (pentest, Fortinet, hardening)', next: 'servico_seguranca', userText: 'Segurança' },
-      { label: 'Certificado Digital eCPF / eCNPJ', next: 'servico_certificado', userText: 'Certificado Digital' },
+      { label: 'Certificados / IA / Outros', next: 'servico_outros', userText: 'Certificados e outros' },
+    ],
+  },
+  servico_cloud: {
+    msg: 'Qual plataforma cloud te interessa?',
+    options: [
+      { label: 'Oracle Cloud (OCI)', next: 'fim_oci', userText: 'Oracle Cloud OCI' },
+      { label: 'Microsoft Azure', next: 'fim_azure', userText: 'Microsoft Azure' },
+      { label: 'Amazon Web Services (AWS)', next: 'fim_aws', userText: 'AWS' },
+      { label: 'FinOps — reduzir custos cloud', next: 'fim_finops', userText: 'FinOps e redução de custos' },
+    ],
+  },
+  servico_backup: {
+    msg: 'Qual área de backup e continuidade você precisa?',
+    options: [
+      { label: 'Backup Corporativo (servidores)', next: 'fim_backup', userText: 'Backup Corporativo' },
+      { label: 'Backup Microsoft 365', next: 'fim_backup_m365', userText: 'Backup Microsoft 365' },
+      { label: 'Disaster Recovery', next: 'fim_dr', userText: 'Disaster Recovery' },
+      { label: 'Falar com especialista', next: 'fim_form', userText: 'Falar com especialista' },
     ],
   },
   servico_seguranca: {
@@ -57,15 +88,25 @@ const FLOW: Record<Step, { msg: string; options?: Option[]; cta?: { label: strin
     options: [
       { label: 'Pentest e segurança ofensiva', next: 'servico_pentest', userText: 'Pentest e segurança ofensiva' },
       { label: 'Fortinet / Firewall & SD-WAN', next: 'servico_fortinet', userText: 'Fortinet e Firewall' },
+      { label: 'Análise de vulnerabilidades', next: 'fim_analise_vuln', userText: 'Análise de vulnerabilidades' },
       { label: 'Hardening e resiliência cibernética', next: 'servico_acao', userText: 'Hardening e resiliência' },
-      { label: 'Análise de vulnerabilidades', next: 'servico_pentest', userText: 'Análise de vulnerabilidades' },
+    ],
+  },
+  servico_outros: {
+    msg: 'O que você precisa?',
+    options: [
+      { label: 'Certificado Digital eCPF / eCNPJ', next: 'servico_certificado', userText: 'Certificado Digital' },
+      { label: 'AI Readiness Assessment', next: 'fim_ai', userText: 'AI Readiness Assessment' },
+      { label: 'Suporte Gerenciado (MSP)', next: 'fim_suporte', userText: 'Suporte Gerenciado' },
+      { label: 'Falar com especialista', next: 'fim_form', userText: 'Falar com especialista' },
     ],
   },
   servico_pentest: {
-    msg: 'Realizamos pentest em web, mobile, APIs e infraestrutura com metodologia red team — e pentest contínuo com dashboard 24/7. Quer ver os detalhes ou falar com um especialista?',
+    msg: 'Realizamos pentest em web, mobile, APIs e infraestrutura com metodologia red team — e pentest contínuo com dashboard 24/7. O que prefere ver?',
     options: [
-      { label: 'Ver página de pentest', next: 'fim_pentest', userText: 'Quero ver a página de pentest' },
-      { label: 'Ver pentest contínuo', next: 'fim_pentest_continuo', userText: 'Quero ver o pentest contínuo' },
+      { label: 'Pentest (engajamento pontual)', next: 'fim_pentest', userText: 'Ver página de pentest' },
+      { label: 'Pentest Contínuo (dashboard 24/7)', next: 'fim_pentest_continuo', userText: 'Ver pentest contínuo' },
+      { label: 'Análise de vulnerabilidades', next: 'fim_analise_vuln', userText: 'Ver análise de vulnerabilidades' },
       { label: 'Falar com especialista', next: 'fim_form', userText: 'Falar com especialista' },
     ],
   },
@@ -124,6 +165,46 @@ const FLOW: Record<Step, { msg: string; options?: Option[]; cta?: { label: strin
   fim_fortinet: {
     msg: 'Na página Fortinet você encontra FortiGate NGFW, SD-WAN, FortiManager, FortiAnalyzer, Security Fabric e nossos cases de implantação em filiais e ambientes industriais.',
     cta: { label: 'Ver Fortinet Security Fabric', href: '/servicos/fortinet' },
+  },
+  fim_analise_vuln: {
+    msg: 'Scan recorrente com validação manual, CVSS 3.1 e plano de remediação priorizado. Sem falsos positivos — só o que realmente precisa de ação.',
+    cta: { label: 'Ver Análise de Vulnerabilidades', href: '/servicos/analise-vulnerabilidades' },
+  },
+  fim_oci: {
+    msg: 'Somos especialistas certificados Oracle Cloud Infrastructure — migração, gestão e otimização de ambientes OCI para workloads críticos.',
+    cta: { label: 'Ver Oracle Cloud (OCI)', href: '/servicos/oracle-cloud-oci' },
+  },
+  fim_azure: {
+    msg: 'Arquitetura, migração e gestão de ambientes Microsoft Azure — com foco em performance, segurança e controle de custos.',
+    cta: { label: 'Ver Microsoft Azure', href: '/servicos/microsoft-azure' },
+  },
+  fim_aws: {
+    msg: 'Infraestrutura, segurança e otimização de custos na AWS — EC2, RDS, S3, Lambda e arquiteturas multi-conta.',
+    cta: { label: 'Ver Amazon Web Services', href: '/servicos/aws' },
+  },
+  fim_finops: {
+    msg: 'FinOps em 30 dias: auditoria de recursos, rightsizing, reservas e budget alerts. Reduzimos fatura cloud sem sacrificar performance.',
+    cta: { label: 'Ver FinOps', href: '/servicos/finops' },
+  },
+  fim_backup: {
+    msg: 'Backup corporativo com RPO e RTO definidos, testados e garantidos em contrato. Imutabilidade, off-site e retenção conforme regulatório.',
+    cta: { label: 'Ver Backup Corporativo', href: '/servicos/backup-corporativo' },
+  },
+  fim_backup_m365: {
+    msg: 'Backup completo do seu tenant Microsoft 365 — Exchange, SharePoint, OneDrive e Teams — com retenção de longo prazo e restauração granular.',
+    cta: { label: 'Ver Backup Microsoft 365', href: '/servicos/backup-microsoft-365' },
+  },
+  fim_dr: {
+    msg: 'Disaster Recovery com RTO em minutos. Ambiente de contingência testado, documentado e pronto para ativar quando necessário.',
+    cta: { label: 'Ver Disaster Recovery', href: '/servicos/disaster-recovery' },
+  },
+  fim_ai: {
+    msg: 'Avaliamos a maturidade da sua empresa para adoção de IA: riscos, LGPD, gaps de dados e roadmap de implementação segura.',
+    cta: { label: 'Ver AI Readiness Assessment', href: '/servicos/ai-readiness-assessment' },
+  },
+  fim_suporte: {
+    msg: 'Suporte gerenciado com SLA garantido — monitoramento proativo, resolução de incidentes e equipe especializada como extensão do seu time de TI.',
+    cta: { label: 'Ver Suporte Gerenciado', href: '/servicos/suporte-gerenciado' },
   },
 }
 
