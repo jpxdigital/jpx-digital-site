@@ -10,6 +10,7 @@ import { Nav } from '@/components/layout/Nav'
 import { Footer } from '@/components/layout/Footer'
 import { ContactForm } from '@/components/sections/ContactForm'
 import { FadeIn } from '@/components/ui/FadeIn'
+import { HelenaAvatar } from '@/components/ui/HelenaAvatar'
 import { MotionProvider } from '@/components/providers/MotionProvider'
 
 export const metadata: Metadata = {
@@ -401,8 +402,8 @@ export default function Home() {
               <FadeIn>
                 <div className="bg-gray-950 rounded-2xl p-8 border border-white/5">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
-                      <span className="text-secondary text-xs font-bold">IA</span>
+                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center overflow-hidden">
+                      <HelenaAvatar size={32} />
                     </div>
                     <div>
                       <p className="text-white text-sm font-semibold">Helena</p>
