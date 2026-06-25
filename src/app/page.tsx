@@ -353,29 +353,28 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── Helena IA Gratuita ────────────────────────────── */}
+        {/* ── IA Free ───────────────────────────────────────── */}
         <section className="py-24 lg:py-32 bg-white" aria-labelledby="helena-title">
           <div className="container-page">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <FadeIn direction="left">
                 <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-success/10 border border-success/20 text-success text-xs font-semibold tracking-wide mb-6">
                   <span className="w-1.5 h-1.5 rounded-full bg-success shrink-0" />
-                  100% gratuito · Sem cartão de crédito
+                  Gratuito · Sem cadastro obrigatório
                 </div>
                 <h2 id="helena-title" className="type-h2 text-gray-900 mb-4">
-                  Não precisa de consultoria?{' '}
-                  <span className="text-primary">A Helena resolve na hora.</span>
+                  Conheça a Helena —{' '}
+                  <span className="text-primary">assistente de TI gratuita para todos.</span>
                 </h2>
                 <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                  A Helena é a assistente de TI com IA da JPX Digital — gratuita, disponível 24h e criada para qualquer pessoa que tenha um problema de informática, sem precisar contratar nada.
+                  A Helena é a mascote da JPX IA Free: uma assistente criada pela JPX Digital para ajudar equipes de TI e gestores a tirar dúvidas, analisar cenários e tomar decisões — sem custo, sem cadastro obrigatório.
                 </p>
                 <ul className="space-y-3 mb-8">
                   {[
-                    'Computador lento, tela azul, impressora sem funcionar',
-                    'Erro no certificado digital, PJe, e-CAC ou nota fiscal',
-                    'Wi-Fi caindo, configuração de e-mail, antivírus',
-                    'Windows, MAC e Linux — suporte para todos os sistemas',
-                    'Resposta em segundos, 24h por dia, sem fila de espera',
+                    'Tire dúvidas sobre cloud, backup, segurança e infraestrutura',
+                    'Analise riscos e cenários de disaster recovery',
+                    'Obtenha orientações sobre normas e conformidade',
+                    'Disponível 24 horas, 7 dias por semana',
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-3 text-gray-600 text-sm">
                       <CheckCircle2 className="w-4 h-4 text-success shrink-0 mt-0.5" />
@@ -383,19 +382,14 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <a
-                    href="https://helena.jpxdigital.com.br"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-primary text-white font-semibold rounded-xl hover:bg-primary-hover transition-colors text-[0.9375rem]"
-                  >
-                    Usar a Helena gratuitamente <ArrowRight className="w-4 h-4" />
-                  </a>
-                </div>
-                <p className="text-xs text-gray-400 mt-4">
-                  Sem cartão de crédito · Sem prazo · Cadastro em menos de 1 minuto
-                </p>
+                <a
+                  href="https://helena.jpxdigital.com.br"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary text-white font-semibold rounded-xl hover:bg-primary-hover transition-colors text-[0.9375rem]"
+                >
+                  Acessar JPX IA Free <ArrowRight className="w-4 h-4" />
+                </a>
               </FadeIn>
 
               <FadeIn>
@@ -406,18 +400,18 @@ export default function Home() {
                     </div>
                     <div>
                       <p className="text-white text-sm font-semibold">Helena</p>
-                      <p className="text-white/40 text-xs">Assistente de TI · JPX Digital</p>
+                      <p className="text-white/40 text-xs">JPX IA Free · Assistente de TI</p>
                     </div>
                     <span className="ml-auto inline-flex items-center gap-1.5 text-xs text-success">
                       <span className="w-1.5 h-1.5 rounded-full bg-success animate-pulse" />
-                      Online agora
+                      Online
                     </span>
                   </div>
                   <div className="space-y-4">
                     {[
-                      { role: 'user', msg: 'Meu computador está muito lento desde ontem, trava quando abro qualquer programa.' },
-                      { role: 'bot', msg: 'Vamos resolver! Isso geralmente tem conserto rápido. Primeiro passo: pressione Ctrl + Shift + Esc para abrir o Gerenciador de Tarefas. Na aba "Processos", veja se algum programa está usando mais de 80% da CPU ou memória. Me diz o que aparece lá!' },
-                      { role: 'user', msg: 'Tem um processo chamado "Antimalware Service Executable" usando 90% da CPU.' },
+                      { role: 'user', msg: 'Qual a diferença entre RTO e RPO no disaster recovery?' },
+                      { role: 'bot', msg: 'RTO (Recovery Time Objective) é o tempo máximo aceitável para restaurar os sistemas após uma falha. RPO (Recovery Point Objective) é a quantidade máxima de dados que você pode perder — medida em tempo. Exemplo: RPO de 1 hora significa que você pode perder no máximo 1 hora de dados.' },
+                      { role: 'user', msg: 'Como definir esses valores para uma empresa de saúde?' },
                     ].map((m, i) => (
                       <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                         <div className={`max-w-[85%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${
