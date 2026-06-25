@@ -368,7 +368,7 @@ export default function Home() {
                       Conheça a Helena — IA de suporte para pequenos empresários e pessoas físicas.
                     </p>
                     <p className="text-gray-500 text-sm mt-1">
-                      Criada pela JPX Digital com 4 IAs integradas. Cadastro gratuito, sem cartão de crédito.
+                      Criada pela JPX Digital com 4 IAs integradas. 100% gratuito para pessoas físicas, estudantes e profissionais liberais.
                     </p>
                   </div>
                 </div>
