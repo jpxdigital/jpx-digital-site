@@ -18,6 +18,424 @@ export interface BlogSection {
 
 export const posts: BlogPost[] = [
   {
+    slug: 'custo-indisponibilidade-uma-hora-empresa',
+    title: 'Quanto custa uma hora de indisponibilidade para a sua empresa?',
+    description: 'Poucas perguntas revelam tanto sobre a maturidade de um ambiente de TI quanto essa. Entenda como calcular o impacto financeiro real da indisponibilidade, o que RTO e RPO têm a ver com esse número — e por que empresas maduras transformam essa resposta em política de investimento.',
+    publishedAt: '2026-06-26',
+    category: 'Continuidade Operacional',
+    readingTime: 9,
+    keywords: ['custo indisponibilidade TI', 'RTO RPO empresas', 'impacto financeiro indisponibilidade', 'continuidade operacional', 'disaster recovery custo'],
+    sections: [
+      {
+        type: 'paragraph',
+        content: 'A pergunta parece simples. Na prática, a maioria dos gestores de TI não consegue respondê-la com precisão — e isso, por si só, já revela um problema estrutural.',
+      },
+      {
+        type: 'paragraph',
+        content: 'Não saber quanto custa uma hora de indisponibilidade é o mesmo que não saber qual é o risco real que a empresa está correndo. Sem esse número, orçamentos de TI são aprovados por intuição, não por análise de risco. Investimentos em continuidade operacional são postergados indefinidamente. E quando o incidente acontece — ransomware, falha de hardware, queda de link, erro humano — a empresa descobre o custo da forma mais cara possível.',
+      },
+      {
+        type: 'h2',
+        content: 'O custo direto: o que a paralisação custa por hora',
+      },
+      {
+        type: 'paragraph',
+        content: 'O impacto financeiro de uma hora de indisponibilidade varia muito por setor, porte e criticidade dos sistemas afetados. Mas a estrutura do custo é sempre a mesma.',
+      },
+      {
+        type: 'list',
+        items: [
+          'Receita não gerada: transações que não aconteceram, pedidos não processados, atendimentos não realizados',
+          'Produtividade perdida: colaboradores parados aguardando os sistemas voltarem — custo real de folha por hora multiplicado pela equipe afetada',
+          'Custo de recuperação: horas de TI, contratação de suporte externo emergencial, eventual retrabalho de dados',
+          'Penalidades contratuais: SLAs com clientes que não foram cumpridos — multas, créditos, revisões de contrato',
+          'Custo regulatório: setores como saúde, financeiro e jurídico têm obrigações de disponibilidade que, se descumpridas, geram autuações',
+        ],
+      },
+      {
+        type: 'paragraph',
+        content: 'Para uma indústria com linha de produção parada, o custo por hora pode ser calculado com precisão: custo fixo de produção por hora mais o valor da produção não realizada. Para um hospital com prontuários inacessíveis, o custo inclui o risco de decisão clínica sem informação completa — algo que vai muito além do financeiro. Para um escritório de contabilidade no período de declaração fiscal, uma hora pode significar perda de clientes.',
+      },
+      {
+        type: 'h2',
+        content: 'O custo invisível: o que não aparece na conta imediata',
+      },
+      {
+        type: 'paragraph',
+        content: 'O custo direto é o mais fácil de calcular — e o mais enganoso, porque subestima o impacto real. Os custos indiretos são maiores e se manifestam ao longo de semanas ou meses após o incidente.',
+      },
+      {
+        type: 'list',
+        items: [
+          'Dano à reputação: clientes que experienciaram a falha e comunicaram isso a outros — o custo de aquisição de um novo cliente é sempre maior que o de reter um existente',
+          'Perda de confiança interna: colaboradores que percebem que a empresa não está preparada — impacto em moral e eventual turnover',
+          'Custo de auditoria: incidentes graves exigem investigação formal, que consome tempo da liderança e, frequentemente, consultoria externa',
+          'Oportunidades perdidas: propostas, negociações e decisões que precisavam de informação que estava nos sistemas paralisados',
+          'Impacto em seguros: sinistros repetidos podem encarecer apólices de seguro cibernético ou mesmo inviabilizá-las',
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        content: 'Estudos do setor de TI corporativo indicam que o custo total de um incidente de indisponibilidade — somando direto e indireto — costuma ser de 3 a 5 vezes o custo direto imediato. Empresas que calculam apenas o custo direto subestimam sistematicamente o risco.',
+      },
+      {
+        type: 'h2',
+        content: 'RTO e RPO — o problema traduzido em números mensuráveis',
+      },
+      {
+        type: 'paragraph',
+        content: 'RTO (Recovery Time Objective) é o tempo máximo que a empresa pode operar sem um determinado sistema antes que o impacto se torne inaceitável. RPO (Recovery Point Objective) é a quantidade máxima de dados que pode ser perdida — medida em tempo — antes que o impacto seja inaceitável.',
+      },
+      {
+        type: 'paragraph',
+        content: 'Esses dois números são, essencialmente, a tolerância ao risco da empresa traduzida em parâmetros técnicos. RTO de 4 horas significa que a empresa aceita ficar até 4 horas sem aquele sistema. RPO de 1 hora significa que pode perder até 1 hora de dados. Se esses números não estão definidos para cada sistema crítico, a empresa não tem parâmetros para avaliar se seu ambiente de DR está adequado — nem para justificar investimento em melhoria.',
+      },
+      {
+        type: 'callout',
+        variant: 'info',
+        content: 'Um plano de Disaster Recovery sem RTO e RPO definidos é uma hipótese, não um plano. O RTO e o RPO são os critérios de sucesso do plano — sem eles, não há como saber se o plano é adequado antes de um incidente real.',
+      },
+      {
+        type: 'h2',
+        content: 'Como empresas maduras respondem a essa pergunta',
+      },
+      {
+        type: 'paragraph',
+        content: 'Empresas com maturidade em continuidade operacional não respondem "não sei" a essa pergunta — e não respondem com um número vago. Elas respondem com uma tabela: cada sistema crítico, seu RTO, seu RPO, o custo estimado por hora de indisponibilidade e o investimento atual em proteção.',
+      },
+      {
+        type: 'paragraph',
+        content: 'Esse processo se chama Business Impact Analysis (BIA) — e é o ponto de partida de qualquer plano de continuidade operacional sério. O BIA não é um exercício técnico: é uma decisão de negócio. É a diretoria definindo, formalmente, qual é a tolerância ao risco da empresa.',
+      },
+      {
+        type: 'list',
+        items: [
+          'Mapeiam quais sistemas são críticos para a operação — e quais são apenas importantes',
+          'Quantificam o custo por hora de indisponibilidade de cada sistema crítico',
+          'Definem RTO e RPO baseados nesse custo, não em conveniência técnica',
+          'Investem em infraestrutura de DR proporcional ao risco — sem superdimensionar sistemas de baixa criticidade',
+          'Testam o plano periodicamente e medem o RTO real, não o estimado',
+          'Revisam os números anualmente ou quando o negócio muda significativamente',
+        ],
+      },
+      {
+        type: 'h2',
+        content: 'Como a JPX Digital aborda esse cenário',
+      },
+      {
+        type: 'paragraph',
+        content: 'Todo Assessment Executivo da JPX começa pelo Business Impact Analysis. Antes de recomendar qualquer solução técnica, mapeamos os sistemas críticos, quantificamos o impacto financeiro de cada hora de indisponibilidade e definimos os RTO e RPO que fazem sentido para o negócio — não os que são tecnicamente mais fáceis de alcançar.',
+      },
+      {
+        type: 'paragraph',
+        content: 'O resultado é um relatório que a diretoria consegue ler e usar para tomar decisões de investimento. Não uma lista de problemas técnicos, mas uma análise de risco com impacto financeiro quantificado e roadmap de evolução priorizado.',
+      },
+      {
+        type: 'h2',
+        content: 'Conclusão',
+      },
+      {
+        type: 'paragraph',
+        content: 'Se você não consegue responder com precisão quanto custa uma hora de indisponibilidade na sua empresa — por sistema, com RTO e RPO definidos —, você não tem visibilidade real do risco que está correndo. Esse não é um problema técnico. É um problema de governança.',
+      },
+      {
+        type: 'paragraph',
+        content: 'O bom investimento em continuidade operacional começa pela resposta honesta a essa pergunta. O Assessment Executivo é o caminho para obtê-la.',
+      },
+    ],
+  },
+  {
+    slug: 'seu-backup-realmente-funciona',
+    title: 'Seu backup realmente funciona ou apenas gera uma falsa sensação de segurança?',
+    description: 'A maioria das empresas tem backup. Poucas têm backup que funciona quando precisam. Entenda a diferença entre "backup realizado" e "backup recuperável", como testar corretamente e o que uma arquitetura de backup madura precisa ter.',
+    publishedAt: '2026-06-19',
+    category: 'Backup & Continuidade',
+    readingTime: 8,
+    keywords: ['backup corporativo funciona', 'teste de restore backup', 'arquitetura backup 3-2-1', 'backup imutável empresa', 'backup recuperável'],
+    sections: [
+      {
+        type: 'paragraph',
+        content: 'A maioria das empresas tem backup. Isso é um fato — e não é nenhum conforto. Porque ter backup e ter backup que funciona quando você mais precisa são coisas completamente diferentes.',
+      },
+      {
+        type: 'paragraph',
+        content: 'A diferença entre as duas situações só fica evidente em um momento: quando você precisa restaurar. E esse é, invariavelmente, o pior momento possível para descobrir que o processo falhou.',
+      },
+      {
+        type: 'h2',
+        content: 'A ilusão do backup: por que "está rodando" não é suficiente',
+      },
+      {
+        type: 'paragraph',
+        content: 'Um job de backup que executa sem erro não garante que os dados sejam recuperáveis. Essa distinção é central — e frequentemente ignorada.',
+      },
+      {
+        type: 'list',
+        items: [
+          'Jobs que completam com "warnings" ignorados: arquivos em uso, permissões inconsistentes, dados parcialmente capturados',
+          'Backup de arquivos abertos sem agente de aplicação: banco de dados copiado enquanto em uso resulta em backup corrompido ou inconsistente',
+          'Mídia de backup degradada: fitas ou discos que acumulam erros silenciosamente ao longo do tempo — descobertos apenas no restore',
+          'Backup armazenado na mesma rede do primário: um ataque de ransomware que compromete os servidores alcança o backup na sequência',
+          'Procedimento de restore que ninguém testou: o processo existe no papel, mas quando executado sob pressão, revela dependências não documentadas',
+          'Retenção insuficiente: ransomware com incubação longa compromete os dados semanas antes de ser detectado — backups de curto prazo não cobrem o período limpo',
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        content: 'Backups nunca testados são a forma mais cara de falsa segurança em TI. O custo de um restore de teste mensal é medido em horas de trabalho. O custo de descobrir que o backup não funciona durante um incidente é medido em dias de paralisação — e às vezes em dados irrecuperáveis.',
+      },
+      {
+        type: 'h2',
+        content: 'Arquitetura 3-2-1: o padrão que toda empresa crítica deveria seguir',
+      },
+      {
+        type: 'paragraph',
+        content: 'A regra 3-2-1 é simples na formulação e exigente na execução. Três cópias dos dados: o dado original mais duas cópias de backup. Dois tipos diferentes de mídia ou armazenamento: evita que uma falha de tipo único comprometa todas as cópias. Uma cópia em local diferente: fisicamente separada — outra cidade, outro datacenter, cloud — imune a desastres locais.',
+      },
+      {
+        type: 'paragraph',
+        content: 'Para ambientes modernos, especialmente os expostos ao risco de ransomware, a regra evoluiu para 3-2-1-1-0: a cópia adicional é imutável (não pode ser alterada ou deletada por nenhum processo ou usuário durante o período de retenção), e o zero representa zero erros verificados nos backups — testados regularmente.',
+      },
+      {
+        type: 'h2',
+        content: 'Backup imutável: a proteção que o ransomware não consegue desfazer',
+      },
+      {
+        type: 'paragraph',
+        content: 'Ransomware moderno não criptografa apenas os dados primários. Ele busca ativamente os backups conectados à rede e os compromete também — antes de ativar a criptografia nos dados principais. Isso é uma das razões pelas quais empresas que "tinham backup" ainda precisam pagar resgates.',
+      },
+      {
+        type: 'paragraph',
+        content: 'Backup imutável resolve esse problema. Uma vez gravado, o dado não pode ser modificado, sobrescrito ou deletado durante o período de retenção definido — nem por um administrador, nem por um processo automatizado, nem por um ransomware com credenciais de admin comprometidas. A imutabilidade é garantida em nível de armazenamento, não de permissão.',
+      },
+      {
+        type: 'h2',
+        content: 'Como testar backup de forma estruturada',
+      },
+      {
+        type: 'paragraph',
+        content: 'Testar backup não é executar o job e verificar se completou sem erro. Teste real é restaurar dados e verificar se são utilizáveis. Existem três níveis de teste que empresas maduras realizam sistematicamente.',
+      },
+      {
+        type: 'list',
+        items: [
+          'Teste de restore granular (mensal): restaurar um conjunto aleatório de arquivos ou registros e verificar integridade — leva minutos e detecta falhas silenciosas antes que se acumulem',
+          'Teste de restore completo de sistema (trimestral): restaurar um servidor ou aplicação inteira em ambiente isolado e verificar se opera corretamente — valida o processo completo sem afetar produção',
+          'Simulação de DR completa (anual): simular um cenário de desastre real e medir o tempo efetivo de recuperação — revela diferenças entre o RTO estimado e o RTO real',
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        content: 'Cada teste deve gerar um relatório documentado: o que foi testado, quando, por quem, qual o resultado e qual o tempo de restore medido. Esse relatório é evidência de maturidade para auditorias, seguros e requisitos regulatórios.',
+      },
+      {
+        type: 'h2',
+        content: 'Como empresas maduras gerenciam backup',
+      },
+      {
+        type: 'list',
+        items: [
+          'Dashboard de status diário: cada job tem status visível — sucesso, aviso ou falha — com alertas automáticos para qualquer desvio',
+          'Retenção definida por criticidade: dados críticos com retenção de 30, 90 e 365 dias; dados operacionais com política adequada ao contexto regulatório',
+          'Agentes de aplicação para sistemas críticos: backup consistente de bancos de dados, Exchange e aplicações ERP — não apenas cópia de arquivo',
+          'Criptografia em repouso e em trânsito: dados de backup criptografados com AES-256 — protege contra acesso não autorizado mesmo se a mídia for comprometida',
+          'Relatório mensal revisado por gestão: backup não é responsabilidade exclusiva do analista de TI — gestão precisa ter visibilidade',
+        ],
+      },
+      {
+        type: 'h2',
+        content: 'Como a JPX Digital aborda esse cenário',
+      },
+      {
+        type: 'paragraph',
+        content: 'O Backup Readiness Assessment da JPX começa por onde o problema costuma estar oculto: verificamos não apenas se o backup está rodando, mas se os dados são recuperáveis. Fazemos restore de teste antes de qualquer projeto de modernização — e documentamos o resultado.',
+      },
+      {
+        type: 'paragraph',
+        content: 'Quando implementamos uma solução de backup, ela só é considerada concluída depois que o restore completo do ambiente é executado e validado. O que não foi testado não pode ser chamado de backup — apenas de esperança documentada.',
+      },
+      {
+        type: 'h2',
+        content: 'Conclusão',
+      },
+      {
+        type: 'paragraph',
+        content: 'O momento em que você descobre que seu backup não funciona é o pior momento possível para descobrir isso: durante um incidente, sob pressão, com a operação parada e o board esperando uma previsão de retomada.',
+      },
+      {
+        type: 'paragraph',
+        content: 'A pergunta "seu backup funciona?" tem uma única resposta válida: "sim, e aqui está o relatório do último restore de teste". Qualquer outra resposta é uma suposição.',
+      },
+    ],
+  },
+  {
+    slug: 'cinco-riscos-invisiveis-infraestrutura-empresas-medias',
+    title: 'Os cinco riscos invisíveis que colocam a infraestrutura de empresas médias em perigo',
+    description: 'Os incidentes de TI que paralisam empresas raramente são surpresa total. Em retrospecto, os sinais estavam lá — invisíveis para quem estava ocupado demais para olhar. Conheça os cinco riscos estruturais mais comuns em ambientes de médio porte e por que eles só aparecem quando causam dano.',
+    publishedAt: '2026-06-12',
+    category: 'Continuidade Operacional',
+    readingTime: 10,
+    keywords: ['riscos infraestrutura TI', 'riscos invisíveis TI empresa', 'governança TI médias empresas', 'assessment TI riscos', 'infraestrutura crítica vulnerabilidades'],
+    sections: [
+      {
+        type: 'paragraph',
+        content: 'Os incidentes de TI que paralisam operações raramente são surpresa total. Em retrospecto — depois que o servidor falhou, depois que o backup não restaurou, depois que o ataque aconteceu — os sinais estavam lá. Enterrados na rotina operacional, normalizados pela ausência de consequências imediatas.',
+      },
+      {
+        type: 'paragraph',
+        content: 'O problema específico das empresas de médio porte é que elas têm infraestrutura complexa o suficiente para acumular risco — mas frequentemente carecem da estrutura de governança para identificá-lo sistematicamente. O resultado é uma categoria de risco que raramente aparece em relatórios: o risco invisível.',
+      },
+      {
+        type: 'h2',
+        content: 'Risco 1 — Ausência de documentação técnica atualizada',
+      },
+      {
+        type: 'paragraph',
+        content: 'Toda empresa tem aquela pessoa que "sabe como funciona o sistema". O problema não é ela existir — é quando ela é a única fonte de conhecimento sobre a infraestrutura crítica.',
+      },
+      {
+        type: 'paragraph',
+        content: 'Quando essa pessoa tira férias, adoece ou sai da empresa, o que acontece? A resposta mais comum é: a equipe improvisa, gasta horas reconstruindo o entendimento do ambiente e, em situações de incidente, toma decisões sem o contexto necessário. Documentação não é burocracia — é seguro de continuidade operacional.',
+      },
+      {
+        type: 'list',
+        items: [
+          'Diagramas de rede desatualizados — ninguém sabe exatamente o que está conectado a quê',
+          'Senhas de sistemas críticos conhecidas apenas por uma pessoa, sem cofre de credenciais',
+          'Procedimentos de backup e restore não documentados — dependentes de memória individual',
+          'Configurações de firewall e VPN que ninguém documenta quando muda',
+          'Contratos de suporte e licenciamento sem inventário centralizado',
+        ],
+      },
+      {
+        type: 'h2',
+        content: 'Risco 2 — Contas privilegiadas sem governança',
+      },
+      {
+        type: 'paragraph',
+        content: 'Conta de administrador compartilhada entre três analistas. Senha do servidor que "todo mundo sabe" e nunca é rotacionada. Ex-funcionário que saiu há seis meses e ainda tem acesso ativo ao VPN. Fornecedor externo com credencial de admin que foi criada para um projeto pontual dois anos atrás.',
+      },
+      {
+        type: 'paragraph',
+        content: 'Contas privilegiadas sem governança são o vetor de ataque mais explorado em incidentes corporativos — e o mais difícil de detectar, porque o acesso parece legítimo. Um atacante que obtém credencial de admin válida não precisa de exploit sofisticado: ele simplesmente usa o sistema como se fosse o usuário legítimo.',
+      },
+      {
+        type: 'list',
+        items: [
+          'Princípio do menor privilégio: cada usuário e sistema tem acesso apenas ao que precisa para sua função',
+          'Cofre de credenciais privilegiadas (PAM): senhas rotacionadas automaticamente, acesso auditado e rastreável',
+          'Revisão periódica de acessos: ex-funcionários e fornecedores inativos removidos sistematicamente',
+          'MFA obrigatório para todos os acessos privilegiados, especialmente remotos',
+          'Log de uso de contas privilegiadas: quem acessou o quê, quando e de onde',
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        content: 'Segundo dados do setor de segurança, mais de 80% dos incidentes bem-sucedidos envolvem uso de credenciais legítimas comprometidas. Atacar uma senha forte é difícil. Roubar uma senha de alguém que não usa MFA e tem acesso irrestrito é muito mais simples.',
+      },
+      {
+        type: 'h2',
+        content: 'Risco 3 — Backups nunca testados',
+      },
+      {
+        type: 'paragraph',
+        content: 'O job de backup executa toda noite. O relatório mostra "completed successfully". A equipe de TI tem a sensação de que os dados estão protegidos.',
+      },
+      {
+        type: 'paragraph',
+        content: 'Essa sensação pode ser completamente equivocada. Backup que não passou por restore de teste não pode ser chamado de backup — é apenas uma cópia cuja utilidade ainda não foi verificada. Backups corrompidos, bancos de dados capturados em estado inconsistente, mídias com setores defeituosos, retenção insuficiente para cobrir o período de incubação de um ransomware — todos esses problemas são silenciosos e só aparecem no momento mais crítico.',
+      },
+      {
+        type: 'paragraph',
+        content: 'A solução é simples: restore de teste mensal, documentado, com relatório revisado por gestão. O que não é testado não é garantia.',
+      },
+      {
+        type: 'h2',
+        content: 'Risco 4 — Ausência de plano de recuperação testado',
+      },
+      {
+        type: 'paragraph',
+        content: 'Backup adequado é necessário, mas não suficiente. Ter os dados disponíveis para restauração é metade do problema. A outra metade é saber exatamente o que fazer com eles — em que ordem, em qual infraestrutura, com quais dependências — quando a operação está parada e a pressão é máxima.',
+      },
+      {
+        type: 'paragraph',
+        content: 'Plano de recuperação não é um documento guardado em pasta compartilhada. É um procedimento que a equipe conhece, praticou e sabe executar sob estresse. Inclui mais do que passos técnicos: quem aciona o plano, quem tem autoridade para tomar decisões, como a empresa opera durante a recuperação, como os clientes são comunicados.',
+      },
+      {
+        type: 'list',
+        items: [
+          'Runbooks de failover documentados por sistema crítico — passo a passo, com responsáveis definidos',
+          'Plano de operação degradada: como a empresa funciona nas horas em que os sistemas estão sendo restaurados',
+          'Plano de comunicação de crise: quem fala com quem, o que dizer e quando',
+          'Tabletop exercise semestral: reunião de simulação com equipes de TI e operação — sem pressão de incidente real, mas com os mesmos questionamentos',
+          'RTO medido em simulação — não estimado em teoria',
+        ],
+      },
+      {
+        type: 'h2',
+        content: 'Risco 5 — Ambientes legados sem monitoramento',
+      },
+      {
+        type: 'paragraph',
+        content: 'Todo ambiente corporativo tem sistemas que "sempre funcionaram" e, por isso, recebem zero atenção. Servidores com Windows Server 2008 sem patches. Aplicações rodando em versões de software sem suporte. Equipamentos de rede com firmware de cinco anos atrás. Switches e firewalls que ninguém toca porque "está funcionando".',
+      },
+      {
+        type: 'paragraph',
+        content: 'Esses sistemas são os mais vulneráveis — não porque alguém os atacou, mas porque ninguém os monitorou. Vulnerabilidades conhecidas acumulam sem correção. Capacidade de disco esgota sem alerta. Falhas de hardware se anunciam em logs que ninguém lê. Quando o sistema finalmente para, a causa costuma ser um problema que existia há meses.',
+      },
+      {
+        type: 'list',
+        items: [
+          'Inventário completo do ambiente: tudo que está em produção precisa estar no radar — especialmente o que parece invisível',
+          'Monitoramento de saúde de hardware: disco, memória, temperatura, falhas de redundância',
+          'Alertas de fim de suporte: sistemas com OS ou aplicação sem suporte têm prazo para migração',
+          'Patch management estruturado: inclusive para sistemas "que não podem ser atualizados" — que precisam de compensações de segurança',
+          'Revisão de logs de sistemas críticos: não necessariamente real-time, mas sistematicamente',
+        ],
+      },
+      {
+        type: 'h2',
+        content: 'Por que esses riscos permanecem invisíveis',
+      },
+      {
+        type: 'paragraph',
+        content: 'Esses cinco riscos têm uma característica em comum: eles não geram alertas. Não aparecem em dashboards. Não interrompem a operação. Não provocam reclamações de usuário. Eles simplesmente existem — silenciosamente — até que um evento externo os aciona.',
+      },
+      {
+        type: 'paragraph',
+        content: 'É por isso que equipes internas, por mais competentes que sejam, frequentemente não os identificam. A rotina operacional não cria espaço para o olhar externo e sistemático que esses riscos exigem.',
+      },
+      {
+        type: 'h2',
+        content: 'Como a JPX Digital aborda esse cenário',
+      },
+      {
+        type: 'paragraph',
+        content: 'O Assessment Executivo da JPX é estruturado exatamente para tornar visível o que a rotina operacional esconde. Não é uma auditoria de conformidade nem uma verificação de checklist genérico: é um mapeamento técnico do ambiente real — o que existe de fato, não o que está documentado — com análise de risco por sistema crítico.',
+      },
+      {
+        type: 'paragraph',
+        content: 'Os cinco riscos descritos neste artigo são identificados sistematicamente no assessment. O resultado é um relatório com os riscos classificados por severidade e impacto financeiro, e um roadmap com o que resolver primeiro, o que planejar a médio prazo e o que monitorar continuamente.',
+      },
+      {
+        type: 'h2',
+        content: 'Conclusão',
+      },
+      {
+        type: 'paragraph',
+        content: 'Risco invisível não é risco inexistente. É risco não quantificado, não monitorado e não gerenciado — o mais perigoso de todos, porque não provoca ação preventiva.',
+      },
+      {
+        type: 'paragraph',
+        content: 'A questão não é se esses riscos existem no seu ambiente. A questão é se você os conhece antes que eles se manifestem.',
+      },
+    ],
+  },
+  {
     slug: 'backup-microsoft-365-por-que-microsoft-nao-faz-backup',
     title: 'Backup do Microsoft 365: por que a Microsoft não protege seus dados',
     description:

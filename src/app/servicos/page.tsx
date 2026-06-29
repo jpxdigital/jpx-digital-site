@@ -103,6 +103,38 @@ export default function ServicosPage() {
           </div>
         </section>
 
+        {/* Assessment Executivo — destaque */}
+        <section className="py-14 bg-muted border-b border-border">
+          <div className="container-page">
+            <FadeIn>
+              <p className="text-xs font-semibold text-secondary uppercase tracking-widest mb-6">
+                Comece por aqui
+              </p>
+              <Link
+                href="/servicos/assessment-executivo"
+                className="group flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 bg-white border border-border rounded-2xl px-8 py-7 hover:border-secondary/40 hover:shadow-md transition-all"
+              >
+                <div className="flex items-start gap-5">
+                  <div className="shrink-0 w-12 h-12 rounded-xl bg-primary/8 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                    <Search className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h2 className="font-heading font-bold text-gray-900 text-[1.0625rem] mb-1">
+                      Assessment Executivo de TI
+                    </h2>
+                    <p className="text-gray-500 text-sm leading-relaxed max-w-xl">
+                      Diagnóstico completo do ambiente: infraestrutura, cloud, segurança, backup e continuidade operacional. Relatório executivo com mapa de riscos e roadmap priorizado. Nenhum projeto começa sem diagnóstico.
+                    </p>
+                  </div>
+                </div>
+                <span className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-semibold rounded-xl text-sm shrink-0 group-hover:bg-primary-hover transition-colors">
+                  Solicitar Assessment <ArrowRight className="w-4 h-4" />
+                </span>
+              </Link>
+            </FadeIn>
+          </div>
+        </section>
+
         {/* Services grid by category */}
         <section className="py-24 bg-white">
           <div className="container-page space-y-20">

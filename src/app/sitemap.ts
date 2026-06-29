@@ -5,6 +5,7 @@ const BASE = 'https://jpxdigital.com.br'
 const now = new Date()
 
 const servicesSlugs = [
+  'assessment-executivo',
   'cloud-computing', 'oracle-cloud-oci', 'microsoft-azure', 'aws',
   'backup-corporativo', 'disaster-recovery', 'business-continuity',
   'backup-microsoft-365', 'finops', 'virtualizacao', 'containers-kubernetes',

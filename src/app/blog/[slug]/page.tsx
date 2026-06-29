@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowLeft, Clock, Tag, ArrowRight, Info, AlertTriangle, Lightbulb } from 'lucide-react'
+import { ArrowLeft, Clock, Tag, ArrowRight } from 'lucide-react'
 import { Nav } from '@/components/layout/Nav'
 import { Footer } from '@/components/layout/Footer'
 import { ContactForm } from '@/components/sections/ContactForm'
@@ -57,15 +57,14 @@ function Section({ section }: { section: BlogSection }) {
       )
     case 'callout': {
       const variants = {
-        info:    { bg: 'bg-blue-50 border-blue-200',   icon: Info,          text: 'text-blue-800' },
-        warning: { bg: 'bg-amber-50 border-amber-200', icon: AlertTriangle, text: 'text-amber-800' },
-        tip:     { bg: 'bg-green-50 border-green-200', icon: Lightbulb,     text: 'text-green-800' },
+        info:    { bg: 'bg-blue-50 border-blue-200',   label: 'Informação', text: 'text-blue-800' },
+        warning: { bg: 'bg-amber-50 border-amber-200', label: 'Atenção',    text: 'text-amber-800' },
+        tip:     { bg: 'bg-green-50 border-green-200', label: 'Dica',       text: 'text-green-800' },
       }
       const v = variants[section.variant ?? 'info']
-      const Icon = v.icon
       return (
-        <div className={`${v.bg} border rounded-xl p-5 mb-5 flex gap-4`}>
-          <Icon className={`w-5 h-5 ${v.text} shrink-0 mt-0.5`} />
+        <div className={`${v.bg} border rounded-xl p-5 mb-5`}>
+          <span className={`text-[0.65rem] font-bold uppercase tracking-widest ${v.text} block mb-2`}>{v.label}</span>
           <p className={`${v.text} text-sm leading-relaxed`}>{section.content}</p>
         </div>
       )
@@ -102,7 +101,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <section className="hero-grid-bg py-20 lg:py-28">
           <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
             <nav className="flex items-center gap-2 text-xs text-white/45 mb-8">
-              <Link href="/blog" className="hover:text-white/70 transition-colors">Blog</Link>
+              <Link href="/blog" className="hover:text-white/70 transition-colors">Centro de Conhecimento</Link>
               <span>/</span>
               <span className="text-white/60">{post.category}</span>
             </nav>
@@ -139,13 +138,41 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                   <Section key={i} section={section} />
                 ))}
 
-                <div className="mt-12 pt-8 border-t border-border">
+                {/* Como a JPX pode ajudar */}
+                <div className="mt-14 pt-10 border-t border-border">
+                  <h2 className="font-heading text-xl font-bold text-gray-900 mb-2">Como a JPX pode ajudar</h2>
+                  <p className="text-gray-500 text-sm mb-7">Cada projeto começa com diagnóstico. Nenhuma proposta é feita sem entender o ambiente real.</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                    {([
+                      { step: '01', title: 'Assessment Executivo', desc: 'Diagnóstico completo do ambiente — riscos, lacunas e roadmap priorizado. Gratuito e sem compromisso.' },
+                      { step: '02', title: 'Projeto de Modernização', desc: 'Arquitetura desenhada para o seu workload. Sem templates genéricos, sem soluções de prateleira.' },
+                      { step: '03', title: 'Implantação', desc: 'Execução estruturada em fases. Ambiente destino validado antes do cutover. Rollback disponível em cada etapa.' },
+                      { step: '04', title: 'Operação Assistida', desc: 'Monitoramento contínuo, suporte com SLA documentado e melhoria contínua após a implantação.' },
+                    ] as const).map((item) => (
+                      <div key={item.step} className="flex gap-4 p-5 bg-muted border border-border rounded-xl">
+                        <span className="font-heading font-bold text-2xl text-primary/20 shrink-0 leading-none mt-0.5">{item.step}</span>
+                        <div>
+                          <h3 className="font-semibold text-gray-900 text-sm mb-1">{item.title}</h3>
+                          <p className="text-gray-500 text-xs leading-relaxed">{item.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <Link
+                    href="/servicos/assessment-executivo"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-secondary text-white font-semibold rounded-xl hover:bg-secondary-hover transition-colors text-sm"
+                  >
+                    Solicitar Assessment Executivo <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+
+                <div className="mt-10 pt-8 border-t border-border">
                   <Link
                     href="/blog"
                     className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-primary transition-colors"
                   >
                     <ArrowLeft className="w-4 h-4" />
-                    Voltar para o blog
+                    Voltar para o Centro de Conhecimento
                   </Link>
                 </div>
               </article>
@@ -161,7 +188,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                     Assessment gratuito, sem compromisso. Retorno em até 1 dia útil.
                   </p>
                   <Link
-                    href="/contato"
+                    href="/servicos/assessment-executivo"
                     className="flex items-center justify-center gap-2 px-5 py-3 bg-white text-primary font-semibold rounded-xl text-sm hover:bg-white/90 transition-colors"
                   >
                     Solicitar Assessment <ArrowRight className="w-4 h-4" />

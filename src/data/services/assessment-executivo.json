@@ -1,0 +1,116 @@
+{
+  "slug": "assessment-executivo",
+  "category": "Diagnóstico Executivo",
+  "heroHeadline": "Assessment Executivo — Diagnóstico Completo do Ambiente de TI da Sua Empresa.",
+  "heroSub": "Antes de qualquer projeto, contrato ou investimento: entenda onde estão os riscos reais, quais sistemas são críticos e o que precisa ser resolvido primeiro.",
+  "ctaLabel": "Solicitar Assessment Executivo",
+  "problem": {
+    "headline": "A maioria das empresas não sabe exatamente qual é o estado real do seu ambiente de TI.",
+    "body": [
+      "Infraestrutura legada acumulada ao longo de anos, backups nunca testados, contratos de cloud sem revisão, sistemas críticos sem plano de continuidade — e uma equipe de TI que resolve incidente por incidente, sem visibilidade do quadro completo.",
+      "Quando a diretoria pergunta 'qual é o risco de TI para o negócio?', a resposta honesta raramente existe. O que existe é uma percepção — não um diagnóstico.",
+      "O Assessment Executivo da JPX Digital é o ponto de partida correto: um levantamento técnico independente que transforma percepção em certeza. Nenhum projeto começa sem diagnóstico."
+    ]
+  },
+  "assessment": {
+    "name": "Assessment Executivo JPX",
+    "body": "Conduzimos um levantamento técnico completo do seu ambiente — infraestrutura, cloud, segurança, backup, continuidade operacional e maturidade de processos. O resultado é um relatório executivo com os riscos identificados, classificados por severidade e impacto para o negócio, e um roadmap de evolução priorizado.",
+    "checklist": [
+      "Inventário e avaliação da infraestrutura atual (on-premise, cloud e híbrida)",
+      "Análise de risco por sistema crítico — impacto financeiro e operacional de falhas",
+      "Avaliação de backup, Disaster Recovery e continuidade operacional",
+      "Revisão de segurança: perímetro, acesso, vulnerabilidades e conformidade",
+      "Maturidade de processos de TI e governança",
+      "Roadmap executivo com prioridades e estimativas de investimento"
+    ]
+  },
+  "process": {
+    "title": "Como conduzimos o Assessment Executivo",
+    "steps": [
+      {
+        "title": "Entrevistas com stakeholders",
+        "desc": "Conversamos com o responsável de TI, diretores e, quando necessário, com líderes de área — para entender dependências de negócio que não aparecem em documentação técnica."
+      },
+      {
+        "title": "Levantamento técnico do ambiente",
+        "desc": "Inventário completo de servidores, cloud, rede, storage, backups, licenças, contratos e sistemas em produção. Mapeamos o que existe de fato, não o que está documentado."
+      },
+      {
+        "title": "Análise de risco e impacto",
+        "desc": "Classificamos cada risco identificado por probabilidade e impacto operacional e financeiro para o negócio. Vulnerabilidades técnicas ganham contexto de negócio — o que uma falha aqui realmente custa."
+      },
+      {
+        "title": "Roadmap executivo",
+        "desc": "Consolidamos os achados em um plano de ação priorizado: o que resolver imediatamente, o que planejar a médio prazo e o que monitorar. Com estimativas de investimento e prazo para cada item."
+      }
+    ]
+  },
+  "benefits": [
+    {
+      "title": "Decisão baseada em dados",
+      "desc": "A diretoria passa a ter visibilidade real dos riscos de TI — não percepção. Orçamentos e prioridades são justificados por diagnóstico, não por urgência."
+    },
+    {
+      "title": "Riscos identificados antes de virarem incidentes",
+      "desc": "Falhas de backup, sistemas sem redundância, acessos indevidos — identificados antes que causem impacto na operação."
+    },
+    {
+      "title": "Roadmap independente de fornecedor",
+      "desc": "O Assessment não está vinculado à venda de nenhum produto ou serviço específico. A recomendação é o que faz sentido para o negócio."
+    },
+    {
+      "title": "Base para qualquer projeto futuro",
+      "desc": "Todo projeto de cloud, segurança, DR ou modernização executado após o assessment parte de um diagnóstico documentado — sem surpresas no meio do caminho."
+    }
+  ],
+  "deliverables": [
+    "Relatório executivo com mapa de riscos classificado por severidade",
+    "Inventário completo do ambiente de TI",
+    "Business Impact Analysis (BIA) dos sistemas críticos",
+    "Análise de lacunas em backup, DR e continuidade operacional",
+    "Relatório de maturidade de segurança",
+    "Roadmap de evolução com prioridades e estimativas de investimento",
+    "Apresentação executiva para diretoria"
+  ],
+  "differentials": [
+    {
+      "title": "Diagnóstico independente",
+      "desc": "Não há conflito de interesse: o Assessment não é pré-venda de um produto específico. Recomendamos o que é certo para o ambiente — não o que tem melhor margem."
+    },
+    {
+      "title": "Visão executiva e técnica integradas",
+      "desc": "O relatório fala duas línguas: técnico o suficiente para a equipe de TI executar, executivo o suficiente para a diretoria aprovar investimento."
+    },
+    {
+      "title": "Metodologia estruturada em todos os domínios",
+      "desc": "Cobrimos infraestrutura, cloud, segurança, backup, continuidade e processos — não apenas a área de maior visibilidade no momento."
+    },
+    {
+      "title": "Responsabilidade de ponta a ponta",
+      "desc": "Você fala com quem conduziu o assessment durante todo o projeto. Sem repasse para equipes de suporte após a venda."
+    }
+  ],
+  "faqs": [
+    {
+      "question": "O Assessment Executivo é gratuito?",
+      "answer": "O assessment inicial de diagnóstico é gratuito e sem compromisso. Para ambientes maiores ou com escopo estendido (múltiplas unidades, auditoria completa de segurança, compliance regulatório), existe uma versão aprofundada com proposta específica."
+    },
+    {
+      "question": "Qual é o prazo para concluir o assessment?",
+      "answer": "Para empresas de médio porte (50 a 300 colaboradores), o assessment completo é concluído em 5 a 10 dias úteis — desde as entrevistas iniciais até a apresentação do relatório final para a diretoria."
+    },
+    {
+      "question": "Preciso contratar algum serviço após o assessment?",
+      "answer": "Não. O relatório e o roadmap são seus — independentemente de qualquer contratação posterior. Se os projetos recomendados forem executados pela JPX Digital, o assessment serve como base técnica. Se forem executados internamente ou por outra empresa, o relatório ainda é válido."
+    },
+    {
+      "question": "O que diferencia o Assessment Executivo de uma auditoria técnica comum?",
+      "answer": "O Assessment Executivo combina levantamento técnico com análise de impacto para o negócio. Não entregamos apenas uma lista de problemas técnicos — entregamos o que cada problema significa em termos de risco operacional, financeiro e regulatório, e o que priorizar."
+    },
+    {
+      "question": "Minha empresa tem equipe de TI interna. O assessment ainda faz sentido?",
+      "answer": "Sim — e especialmente nesses casos. Equipes internas frequentemente têm pontos cegos: sistemas que 'sempre funcionaram', processos nunca documentados e riscos que nunca viraram incidente. Um olhar externo independente identifica o que a rotina torna invisível."
+    }
+  ],
+  "schemas": []
+}
