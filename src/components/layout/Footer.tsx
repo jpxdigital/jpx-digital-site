@@ -23,7 +23,7 @@ const segments = [
 const company = [
   { href: '/sobre', label: 'Sobre a JPX Digital' },
   { href: '/cases', label: 'Cases de Sucesso' },
-  { href: '/blog', label: 'Blog' },
+  { href: '/blog', label: 'Centro de Conhecimento' },
   { href: '/contato', label: 'Contato' },
 ]
 

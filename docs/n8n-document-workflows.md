@@ -1,18 +1,31 @@
-# Workflows n8n — Geração de Documentos JPX Digital
+# Workflows n8n — JPX Digital
 
-Documentação completa dos 5 workflows de geração automática de PDFs, integração HubSpot e notificações.
+Documentação dos workflows ativos: 1 de captura de leads, 1 de agendamento Cal.com, 1 router HubSpot e 5 de geração automática de PDFs.
+
+**n8n:** https://n8n.jpxdigital.com.br (v2.23.4) · **DB:** PostgreSQL 16
 
 ---
 
 ## Visão geral
 
-Cada workflow é acionado por um webhook HTTP (POST), busca dados do HubSpot, monta um payload de template, chama o PDF Service, e notifica via Telegram. O workflow de Proposta Comercial adicionalmente atualiza o deal no HubSpot e envia o PDF por e-mail.
+O HubSpot envia **todos** os eventos de `dealstage` para um único webhook router. O router despacha internamente para o workflow correto via HTTP (localhost). Cada workflow também pode ser acionado manualmente via curl.
 
 ```
-HubSpot / chamada manual
+HubSpot (dealstage change)
         │
         ▼
-  n8n (webhook)
+  /webhook/hubspot-deals  ← URL configurada no HubSpot Private App
+  (HubSpot — Deal Stage Router)   ID: fPRIQp8WawTEZQ9V
+        │
+        ├── propertyValue = 1385066797 ──► /webhook/gerar-proposta   (Proposta Solicitada)
+        ├── propertyValue = closedwon  ──► /webhook/gerar-sow        (Fechado/Ganho)
+        │
+        │   ── Stages futuros (requer criação no pipeline HubSpot) ──
+        ├── propertyValue = <stage-assessment>   ──► /webhook/gerar-checklist-assessment
+        ├── propertyValue = <stage-implantacao>  ──► /webhook/gerar-checklist-implantacao
+        └── propertyValue = <stage-onboarding>   ──► /webhook/gerar-onboarding-kit
+
+  n8n (webhook de cada workflow)
         │
    Filtrar / validar
         │
@@ -52,9 +65,129 @@ HubSpot / chamada manual
 | Problema | Causa | Solução aplicada |
 |---|---|---|
 | `contentType: json` envia `{"":""}` | Bug n8n httpRequest v4 | Usar `form-urlencoded` com campo `payload` |
+| Telegram 400 "can't parse entities" | URLs OCI têm underscores — Telegram tenta parsear como Markdown | `additionalFields.parse_mode: ''` no nó Telegram |
 | Telegram "invalid syntax" | Emojis em expressões `={{ }}` | Texto sem emojis no campo `text` |
 | `$env.TELEGRAM_CHAT_ID` não resolve | Variável não propagada no runner | Hardcode: `8384975992` |
 | JS Task Runner: token expirado em 30s | TTL padrão muito curto | `N8N_RUNNERS_GRANT_TOKEN_TTL=120` no docker-compose |
+
+---
+
+## Banco de dados — PostgreSQL
+
+Migrado de SQLite para PostgreSQL 16 em 2026-06-22.
+
+- Container: `n8n-postgres` · Banco: `n8n` · User: `n8n`
+- Volume: `n8n_pg_data` (persistente)
+
+### Atenção ao migrar ou restaurar
+
+Após migrar dados para PostgreSQL, dois campos podem ficar NULL e impedir o registro de webhooks:
+
+```sql
+-- 1. Preencher activeVersionId (pode ficar NULL após migração)
+UPDATE workflow_entity
+SET "activeVersionId" = "versionId"
+WHERE active = true AND "activeVersionId" IS NULL;
+
+-- 2. Popular workflow_published_version (n8n 2.x exige versão publicada)
+INSERT INTO workflow_published_version ("workflowId", "publishedVersionId", "createdAt", "updatedAt")
+SELECT id, "versionId", NOW(), NOW()
+FROM workflow_entity
+WHERE active = true
+ON CONFLICT ("workflowId") DO UPDATE
+  SET "publishedVersionId" = EXCLUDED."publishedVersionId",
+      "updatedAt" = NOW();
+```
+
+Após executar os SQLs, reiniciar o n8n. No boot, o log deve mostrar:
+```
+Finished building workflow dependency index. Processed 0 draft workflows, 6 published workflows.
+Activated workflow "..." (ID: ...)
+```
+
+Se ainda mostrar `0 published workflows`, verificar se `workflow_history` contém os `versionId` referenciados.
+
+---
+
+## Router — HubSpot — Deal Stage Router
+
+**ID:** `fPRIQp8WawTEZQ9V`
+**Webhook:** `POST /webhook/hubspot-deals`
+**Trigger:** HubSpot Private App — assinatura `deal.propertyChange` → `dealstage`
+
+### Função
+
+Ponto de entrada único para todos os eventos de mudança de stage no HubSpot. Evita configurar múltiplos webhooks no HubSpot (que só aceita uma URL por Private App). O router lê `body[0].propertyValue` e faz um POST interno para o webhook do workflow correto via `http://localhost:5678/webhook/<path>`.
+
+### Stages ativos
+
+| Stage HubSpot | ID / valor | Workflow acionado |
+|---|---|---|
+| Proposta Solicitada | `1385066797` | `gerar-proposta` |
+| Fechado/Ganho | `closedwon` | `gerar-sow` |
+
+Qualquer outro stage é ignorado silenciosamente (sem erro).
+
+### Como adicionar um novo stage
+
+1. **Criar o stage no HubSpot** — Pipeline → Editar → Adicionar estágio (ex: "Em Assessment")
+2. **Copiar o ID do stage** — visível na URL ou via API: `GET /crm/v3/pipelines/deals`
+3. **Adicionar IF + HTTP node no router** no n8n:
+   - IF: `$json.body[0].propertyValue === '<id-do-stage>'`
+   - HTTP POST: `http://localhost:5678/webhook/gerar-checklist-assessment`
+4. Salvar e o router já passa a despachar o novo stage
+
+### Stages planejados (sem stage HubSpot criado ainda)
+
+| Fase | Workflow alvo | Status |
+|---|---|---|
+| Em Assessment | `gerar-checklist-assessment` | 🔵 aguarda stage no HubSpot |
+| Em Implantação | `gerar-checklist-implantacao` | 🔵 aguarda stage no HubSpot |
+| Em Onboarding | `gerar-onboarding-kit` | 🔵 aguarda stage no HubSpot |
+
+> Enquanto os stages não existem no pipeline, esses workflows continuam sendo acionados manualmente via curl (ver seção "Como acionar manualmente").
+
+### Payload recebido (formato HubSpot)
+
+```json
+[{
+  "objectId": "61407805236",
+  "propertyName": "dealstage",
+  "propertyValue": "closedwon",
+  "appId": 51571768
+}]
+```
+
+O router extrai `body[0].propertyValue` para roteamento e encaminha o array original para o sub-workflow.
+
+---
+
+## 0. Boas-vindas — Lead JPX Digital
+
+**ID:** `wEQaaMyFdumbc94E`
+**Webhook produção:** `POST /webhook/jpx-lead`
+**Trigger:** `/api/leads` do site Next.js (fire-and-forget)
+
+### Payload esperado
+
+```json
+{
+  "name": "João Silva",
+  "email": "joao@empresa.com",
+  "phone": "11999999999",
+  "interest": "monitoramento",
+  "message": "Quero saber mais sobre o serviço"
+}
+```
+
+### Nós (4)
+
+| # | Nome | Tipo | Descrição |
+|---|---|---|---|
+| 1 | Webhook | Webhook | `POST /webhook/jpx-lead` |
+| 2 | Montar E-mail | Set | Monta variáveis `name`, `email`, `phone`, `interest`, `message` para uso nos nós seguintes |
+| 3 | Zoho SMTP — Boas-vindas | E-mail | Envia e-mail de boas-vindas ao lead via `jp@jpxdigital.com.br` |
+| 4 | Telegram — Notificação interna | Telegram | Chat `8384975992` — notifica novo lead com dados preenchidos |
 
 ---
 
@@ -67,16 +200,27 @@ HubSpot / chamada manual
 
 ### Trigger
 
-Chamado pelo HubSpot Workflow quando um deal muda para o estágio **"Proposta Solicitada"** (ID: `1385066797`).
+Disparado automaticamente pelo **HubSpot Private App Webhook** quando um deal muda para o estágio **"Proposta Solicitada"** (ID: `1385066797`).
 
-Payload esperado:
+- HubSpot Private App ID: `51571768`
+- Assinatura: `deal.propertyChange` → propriedade `dealstage`
+- URL do webhook: `https://n8n.jpxdigital.com.br/webhook/gerar-proposta`
+
+O HubSpot envia um array — o workflow lê `body[0].objectId` e `body[0].propertyValue`.
+
+Payload recebido:
 ```json
-{
+[{
   "objectId": "61407805236",
   "propertyName": "dealstage",
-  "propertyValue": "1385066797"
-}
+  "propertyValue": "1385066797",
+  "appId": 51571768
+}]
 ```
+
+**Requisitos do deal para o workflow funcionar:**
+- Ter um contato associado (associação v4 HubSpot)
+- Propriedade `service_slug` preenchida
 
 ### Nós (13)
 
@@ -311,9 +455,70 @@ curl -X POST https://n8n.jpxdigital.com.br/webhook/gerar-onboarding-kit \
 
 ---
 
+## Próximo: ZapSign — Assinatura Digital do SOW
+
+**Status:** 🔵 Aguardando token da API (conta ainda não criada — 2026-06-24)
+
+### Contexto
+
+Após o SOW ser gerado e carregado no OCI, o cliente ainda precisa assinar manualmente. O ZapSign automatiza isso: recebe a URL do PDF, cria o documento para assinatura e envia o link por e-mail ao cliente sem intervenção humana.
+
+### O que criar na conta ZapSign
+
+1. Acessar **zapsign.com.br** → criar conta
+2. Dashboard → **Integrações** → **API** → copiar o **Token de API**
+
+### Modificação no workflow `dy8FELtqgO7g99pP` (JPX — Gerar SOW)
+
+Inserir **3 novos nós** entre "Gerar PDF" e "Telegram":
+
+```
+Gerar PDF — pdf.jpxdigital.com.br
+  │
+  ▼
+[NOVO] ZapSign — Criar documento
+  POST https://api.zapsign.com.br/api/v1/docs/
+  Body:
+  {
+    "name": "SOW — <empresa>",
+    "url_pdf": "<url OCI do PDF>",
+    "signers": [{ "name": "<nome contato>", "email": "<email contato>" }],
+    "send_automatic_email": true,
+    "lang": "pt-br"
+  }
+  Retorna: { doc_token, signers[0].link }
+  │
+  ▼
+[NOVO] HubSpot — Atualizar deal com link ZapSign
+  PATCH /crm/v3/objects/deals/<dealId>
+  Body: { "properties": { "sow_zapsign_link": "<link>" } }
+  (requer propriedade custom criada no HubSpot)
+  │
+  ▼
+Telegram — Notificação interna  ← atualizar texto para incluir link ZapSign
+```
+
+### Propriedade custom necessária no HubSpot
+
+Criar em HubSpot → Configurações → Propriedades → Deals:
+- **Nome interno:** `sow_zapsign_link`
+- **Tipo:** Texto de linha única
+- **Rótulo:** SOW — Link de Assinatura (ZapSign)
+
+### Credencial n8n a criar
+
+Após ter o token, criar em n8n → Credentials → Header Auth:
+- **Name:** `ZapSign API`
+- **Name (header):** `Authorization`
+- **Value:** `Bearer <TOKEN>`
+
+---
+
 ## Pendências
 
-- [ ] **HubSpot Workflow nativo** — configurar automação para disparar `gerar-proposta` automaticamente quando deal muda de estágio (requer scope `automation` no PAT, ou setup manual no portal)
-- [ ] Configurar automações HubSpot para SOW, checklists e kit (quando a jornada do cliente estiver mapeada no CRM)
+- [x] **HubSpot trigger para `gerar-proposta`** — ✅ configurado e testado end-to-end (2026-06-22)
+- [x] **HubSpot trigger para `gerar-sow`** — ✅ via router `/webhook/hubspot-deals`, dispara em `closedwon`
+- [ ] **ZapSign — assinatura digital SOW** — criar conta em zapsign.com.br → obter token → implementar (ver seção acima)
+- [ ] **Stages Assessment / Implantação / Onboarding no HubSpot** — criar stages no pipeline → adicionar IF+HTTP no router → automação completa (ver seção Router)
 - [ ] Limpar deal de teste `61407805236` e contato `230102103635` do HubSpot
 - [ ] Remover endpoint `/echo` e debug logs do PDF service (`/srv/pdf-service/server.js`)

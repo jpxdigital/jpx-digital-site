@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import React from 'react'
 import Link from 'next/link'
 import {
-  ArrowRight, CheckCircle2, AlertTriangle, Server,
+  ArrowRight, CheckCircle2, AlertTriangle,
   Database, RefreshCw, Shield, TrendingDown, Cloud,
   Headphones, Building2, Heart, Factory, Scale, ShieldCheck, BrainCircuit,
 } from 'lucide-react'
@@ -124,7 +124,7 @@ export default function Home() {
                 <FadeIn delay={0.12}>
                   <div className="flex flex-col sm:flex-row gap-3 mb-14">
                     <Link
-                      href="/contato"
+                      href="/servicos/assessment-executivo"
                       className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-secondary text-white font-semibold rounded-xl hover:bg-secondary-hover transition-colors text-[0.9375rem]"
                     >
                       Quero um diagnóstico gratuito
@@ -350,38 +350,6 @@ export default function Home() {
                 )
               })}
             </div>
-          </div>
-        </section>
-
-        {/* ── Helena ────────────────────────────────────────── */}
-        <section className="py-16 bg-white border-t border-gray-100">
-          <div className="container-page">
-            <FadeIn>
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-6 bg-primary/4 border border-primary/10 rounded-2xl px-8 py-7">
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-success/10 border border-success/20 text-success text-[0.7rem] font-semibold tracking-wide shrink-0">
-                    <span className="w-1.5 h-1.5 rounded-full bg-success" />
-                    Gratuito
-                  </div>
-                  <div>
-                    <p className="font-heading font-bold text-gray-900 text-[1.0625rem] leading-snug">
-                      Conheça a Helena — IA de suporte para pequenos empresários e pessoas físicas.
-                    </p>
-                    <p className="text-gray-500 text-sm mt-1">
-                      Criada pela JPX Digital com 4 IAs integradas. 100% gratuito para pessoas físicas, estudantes e profissionais liberais.
-                    </p>
-                  </div>
-                </div>
-                <a
-                  href="https://helena.jpxdigital.com.br"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-semibold rounded-xl hover:bg-primary-hover transition-colors text-sm shrink-0"
-                >
-                  Cadastrar grátis <ArrowRight className="w-4 h-4" />
-                </a>
-              </div>
-            </FadeIn>
           </div>
         </section>
 

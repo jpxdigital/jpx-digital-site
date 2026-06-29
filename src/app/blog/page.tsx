@@ -8,9 +8,9 @@ import { FadeIn } from '@/components/ui/FadeIn'
 import { posts } from '@/lib/blog'
 
 export const metadata: Metadata = {
-  title: 'Blog — Infraestrutura, Cloud e Segurança Corporativa',
+  title: 'Centro de Conhecimento — Infraestrutura, Cloud e Continuidade Operacional',
   description:
-    'Artigos técnicos sobre cloud computing, backup corporativo, disaster recovery, segurança de TI e FinOps. Conteúdo prático para quem decide sobre infraestrutura.',
+    'Biblioteca técnica para CIOs, diretores e gestores de TI. Artigos executivos, guias técnicos e checklists sobre cloud, disaster recovery, backup corporativo e resiliência cibernética.',
   alternates: { canonical: 'https://jpxdigital.com.br/blog' },
 }
 
@@ -31,12 +31,12 @@ export default function BlogPage() {
         <section className="hero-grid-bg py-24 lg:py-32">
           <div className="container-page">
             <FadeIn>
-              <p className="text-xs font-semibold text-secondary uppercase tracking-widest mb-4">Blog</p>
+              <p className="text-xs font-semibold text-secondary uppercase tracking-widest mb-4">Centro de Conhecimento</p>
               <h1 className="type-display text-white mb-6 max-w-2xl">
-                Conteúdo técnico para quem decide sobre infraestrutura.
+                Conteúdo de autoridade para quem decide sobre infraestrutura crítica.
               </h1>
               <p className="text-white/65 text-xl leading-relaxed max-w-xl">
-                Sem viés de venda. Artigos sobre o que realmente importa em cloud, backup, segurança e continuidade operacional.
+                Artigos executivos, guias técnicos e checklists. Sem viés de venda — só o que um CIO ou diretor precisa saber antes de tomar uma decisão de TI.
               </p>
             </FadeIn>
           </div>
