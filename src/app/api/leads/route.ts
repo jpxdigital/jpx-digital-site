@@ -193,13 +193,82 @@ async function handlePost(req: NextRequest) {
         {
           method: 'PUT',
           headers: authHeaders,
-          body: JSON.stringify([{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 3 }]),
+          body: JSON.stringify([{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 4 }]),
         }
       )
     }
   }
 
-  // 4. Disparar n8n via webhook interno (fire-and-forget)
+  // 3b. Criar ou vincular empresa no HubSpot
+  let companyId: string | undefined
+  if (company?.trim()) {
+    const csRes = await fetch('https://api.hubapi.com/crm/v3/objects/companies/search', {
+      method: 'POST',
+      headers: authHeaders,
+      body: JSON.stringify({
+        filterGroups: [{ filters: [{ propertyName: 'name', operator: 'EQ', value: company.trim() }] }],
+        properties: ['name'],
+        limit: 1,
+      }),
+    })
+    const csData = await csRes.json()
+    if (csData.results?.length) {
+      companyId = csData.results[0].id
+    } else {
+      const ccRes = await fetch('https://api.hubapi.com/crm/v3/objects/companies', {
+        method: 'POST',
+        headers: authHeaders,
+        body: JSON.stringify({ properties: { name: company.trim() } }),
+      })
+      if (ccRes.ok) companyId = (await ccRes.json()).id
+    }
+    if (companyId) {
+      if (contactId) {
+        fetch(`https://api.hubapi.com/crm/v4/objects/contacts/${contactId}/associations/companies/${companyId}`, {
+          method: 'PUT', headers: authHeaders,
+          body: JSON.stringify([{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 1 }]),
+        }).catch(() => {})
+      }
+      if (dealId) {
+        fetch(`https://api.hubapi.com/crm/v4/objects/deals/${dealId}/associations/companies/${companyId}`, {
+          method: 'PUT', headers: authHeaders,
+          body: JSON.stringify([{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 5 }]),
+        }).catch(() => {})
+      }
+    }
+  }
+
+  // 4. Criar tarefa "Qualificar Lead" (fire-and-forget, prazo 48h)
+  if (dealId) {
+    fetch('https://api.hubapi.com/engagements/v1/engagements', {
+      method: 'POST',
+      headers: authHeaders,
+      body: JSON.stringify({
+        engagement: { active: true, type: 'TASK', timestamp: Date.now() + 2 * 24 * 60 * 60 * 1000 },
+        associations: {
+          dealIds: [Number(dealId)],
+          contactIds: contactId ? [Number(contactId)] : [],
+          companyIds: companyId ? [Number(companyId)] : [],
+          ownerIds: [],
+          ticketIds: [],
+        },
+        metadata: {
+          subject: `Qualificar Lead: ${name.trim()}`,
+          body: [
+            'Verificar aderência ao ICP da JPX antes de agendar o Discovery.',
+            interest ? `Interesse declarado: ${interest}` : '',
+            message?.trim() ? `Mensagem: ${message.trim()}` : '',
+          ].filter(Boolean).join('\n'),
+          status: 'NOT_STARTED',
+          taskType: 'TODO',
+          priority: 'HIGH',
+          forObjectType: 'DEAL',
+        },
+      }),
+    }).catch(() => {})
+  }
+
+  // 5. Disparar n8n via webhook interno (fire-and-forget)
   // O n8n nunca é chamado diretamente pelo frontend — passa sempre por aqui
   if (N8N_WEBHOOK_URL) {
     const headers: Record<string, string> = { 'Content-Type': 'application/json' }
