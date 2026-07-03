@@ -410,7 +410,7 @@
         "options": {
           "timeout": 15000
         },
-        "jsonBody": "={\n  \"chat_id\": \"{{ $vars.JAS_TELEGRAM_CHAT_ID }}\",\n  \"parse_mode\": \"HTML\",\n  \"text\": \"🔔 <b>Novo lead — JAS</b>\\n\\n<b>Nome:</b> {{ $('Extrair e Normalizar').item.json.push_name }}\\n<b>Telefone:</b> {{ $('Extrair e Normalizar').item.json.phone }}\\n<b>Primeira mensagem:</b> {{ $('Extrair e Normalizar').item.json.text }}\\n\\n<b>Correlation ID:</b> {{ $('Criar Sessão').item.json.correlation_id }}\\n<b>Status:</b> Boas-vindas enviadas — aguardando resposta ao menu\"\n}",
+        "jsonBody": "={\n  \"chat_id\": \"{{ $vars.JAS_TELEGRAM_CHAT_ID }}\",\n  \"parse_mode\": \"HTML\",\n  \"text\": \"🔔 <b>Novo lead — JAS</b>\\n\\n<b>Nome:</b> {{ $('Extrair e Normalizar').item.json.push_name }}\\n<b>Telefone:</b> {{ $('Extrair e Normalizar').item.json.phone }}\\n<b>Primeira mensagem:</b> {{ $('Extrair e Normalizar').item.json.text }}\\n\\n<b>Correlation ID:</b> {{ $('Resolver Sessão').item.json.correlation_id }}\\n<b>Status:</b> Boas-vindas enviadas — aguardando resposta ao menu\"\n}",
         "sendBody": true,
         "specifyBody": "json"
       },
@@ -425,7 +425,7 @@
         300
       ],
       "parameters": {
-        "query": "INSERT INTO jas_events (correlation_id, session_id, event_type, payload) VALUES ('{{ $('Criar Sessão').item.json.correlation_id }}', '{{ $('Criar Sessão').item.json.session_id }}'::uuid, 'MESSAGE_RECEIVED', '{\"phone\": \"{{ $('Extrair e Normalizar').item.json.phone }}\", \"text\": \"{{ $('Extrair e Normalizar').item.json.text }}\", \"message_id\": \"{{ $('Extrair e Normalizar').item.json.message_id }}\"}'); INSERT INTO jas_events (correlation_id, session_id, event_type, payload) VALUES ('{{ $('Criar Sessão').item.json.correlation_id }}', '{{ $('Criar Sessão').item.json.session_id }}'::uuid, 'LEVEL_0_EXECUTED', '{\"action\": \"welcome_sent\"}');",
+        "query": "INSERT INTO jas_events (correlation_id, session_id, event_type, payload) VALUES ('{{ $('Resolver Sessão').item.json.correlation_id }}', '{{ $('Resolver Sessão').item.json.session_id }}'::uuid, 'MESSAGE_RECEIVED', '{\"phone\": \"{{ $('Extrair e Normalizar').item.json.phone }}\", \"text\": \"{{ $('Extrair e Normalizar').item.json.text }}\", \"message_id\": \"{{ $('Extrair e Normalizar').item.json.message_id }}\"}'); INSERT INTO jas_events (correlation_id, session_id, event_type, payload) VALUES ('{{ $('Resolver Sessão').item.json.correlation_id }}', '{{ $('Resolver Sessão').item.json.session_id }}'::uuid, 'LEVEL_0_EXECUTED', '{\"action\": \"welcome_sent\"}');",
         "options": {},
         "operation": "executeQuery"
       },
@@ -447,19 +447,152 @@
       ],
       "parameters": {},
       "typeVersion": 1
+    },
+    {
+      "id": "a1b2c3d4-0001-0001-0001-000000000019",
+      "name": "Resolver Sessão",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        1760,
+        140
+      ],
+      "parameters": {
+        "jsCode": "// Normaliza dados da sessão independente do caminho executado\nlet correlation_id, session_id, estado, contexto;\ntry {\n  const s = $('Criar Sessão').item.json;\n  correlation_id = s.correlation_id;\n  session_id     = s.session_id;\n  estado         = s.estado;\n  contexto       = s.contexto;\n} catch(e) {\n  const s = $('Buscar Sessão').item.json;\n  correlation_id = s.correlation_id;\n  session_id     = s.session_id;\n  estado         = s.estado;\n  contexto       = s.contexto;\n}\nreturn [{ json: { correlation_id, session_id, estado, contexto } }];"
+      },
+      "typeVersion": 2
     }
   ],
   "connections": {
-    "Webhook Evolution API": {
+    "Contato novo?": {
       "main": [
         [
           {
-            "node": "Respond 200 OK",
+            "node": "Enviar Boas-vindas",
             "type": "main",
             "index": 0
-          },
+          }
+        ],
+        [
           {
-            "node": "É mensagem válida?",
+            "node": "Notificar João — Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Criar Sessão": {
+      "main": [
+        [
+          {
+            "node": "Resolver Sessão",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sessão nova?": {
+      "main": [
+        [
+          {
+            "node": "Criar Sessão",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Resolver Sessão",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar Sessão": {
+      "main": [
+        [
+          {
+            "node": "Sessão nova?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Registrar Dedup": {
+      "main": [
+        [
+          {
+            "node": "Buscar Sessão",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Checar Duplicata": {
+      "main": [
+        [
+          {
+            "node": "É mensagem nova?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Resolver Sessão": {
+      "main": [
+        [
+          {
+            "node": "Buscar Contato HubSpot",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "É mensagem nova?": {
+      "main": [
+        [
+          {
+            "node": "Registrar Dedup",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Criar Deal HubSpot": {
+      "main": [
+        [
+          {
+            "node": "Notificar João — Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar Boas-vindas": {
+      "main": [
+        [
+          {
+            "node": "Criar Contato HubSpot",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extrair e Normalizar": {
+      "main": [
+        [
+          {
+            "node": "Checar Duplicata",
             "type": "main",
             "index": 0
           }
@@ -484,131 +617,6 @@
         ]
       ]
     },
-    "Extrair e Normalizar": {
-      "main": [
-        [
-          {
-            "node": "Checar Duplicata",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Checar Duplicata": {
-      "main": [
-        [
-          {
-            "node": "É mensagem nova?",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "É mensagem nova?": {
-      "main": [
-        [
-          {
-            "node": "Registrar Dedup",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        []
-      ]
-    },
-    "Registrar Dedup": {
-      "main": [
-        [
-          {
-            "node": "Buscar Sessão",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Buscar Sessão": {
-      "main": [
-        [
-          {
-            "node": "Sessão nova?",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Sessão nova?": {
-      "main": [
-        [
-          {
-            "node": "Criar Sessão",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Buscar Contato HubSpot",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Criar Sessão": {
-      "main": [
-        [
-          {
-            "node": "Buscar Contato HubSpot",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Buscar Contato HubSpot": {
-      "main": [
-        [
-          {
-            "node": "Contato novo?",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Contato novo?": {
-      "main": [
-        [
-          {
-            "node": "Enviar Boas-vindas",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Notificar João — Telegram",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Enviar Boas-vindas": {
-      "main": [
-        [
-          {
-            "node": "Criar Contato HubSpot",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Criar Contato HubSpot": {
       "main": [
         [
@@ -620,11 +628,27 @@
         ]
       ]
     },
-    "Criar Deal HubSpot": {
+    "Webhook Evolution API": {
       "main": [
         [
           {
-            "node": "Notificar João — Telegram",
+            "node": "Respond 200 OK",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "É mensagem válida?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar Contato HubSpot": {
+      "main": [
+        [
+          {
+            "node": "Contato novo?",
             "type": "main",
             "index": 0
           }
