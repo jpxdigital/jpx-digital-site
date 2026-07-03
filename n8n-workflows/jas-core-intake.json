@@ -460,6 +460,37 @@
         "jsCode": "// Normaliza dados da sessão independente do caminho executado\nlet correlation_id, session_id, estado, contexto;\ntry {\n  const s = $('Criar Sessão').item.json;\n  correlation_id = s.correlation_id;\n  session_id     = s.session_id;\n  estado         = s.estado;\n  contexto       = s.contexto;\n} catch(e) {\n  const s = $('Buscar Sessão').item.json;\n  correlation_id = s.correlation_id;\n  session_id     = s.session_id;\n  estado         = s.estado;\n  contexto       = s.contexto;\n}\nreturn [{ json: { correlation_id, session_id, estado, contexto } }];"
       },
       "typeVersion": 2
+    },
+    {
+      "id": "a1b2c3d4-0001-0001-0001-000000000020",
+      "name": "É do proprietário?",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        820,
+        360
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "owner-phone-check",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              },
+              "leftValue": "={{ $json.phone_raw }}",
+              "rightValue": "={{ $vars.JAS_OWNER_PHONE }}"
+            }
+          ]
+        }
+      },
+      "typeVersion": 2
     }
   ],
   "connections": {
@@ -590,6 +621,24 @@
     },
     "Extrair e Normalizar": {
       "main": [
+        [
+          {
+            "node": "É do proprietário?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "É do proprietário?": {
+      "main": [
+        [
+          {
+            "node": "Ignorar",
+            "type": "main",
+            "index": 0
+          }
+        ],
         [
           {
             "node": "Checar Duplicata",
