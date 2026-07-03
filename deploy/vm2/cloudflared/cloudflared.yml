@@ -1,0 +1,8 @@
+ingress:
+  - hostname: n8n.jpxdigital.com.br
+    service: http://n8n:5678
+  - hostname: evo.jpxdigital.com.br
+    service: http://evolution:8080
+  - hostname: jas.jpxdigital.com.br
+    service: http://jas-bridge:3001
+  - service: http_status:404

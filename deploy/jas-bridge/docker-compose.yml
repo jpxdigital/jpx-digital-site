@@ -1,0 +1,29 @@
+services:
+  jas-bridge:
+    image: node:20-alpine
+    container_name: jas-bridge
+    restart: unless-stopped
+    networks:
+      - n8n_n8n_net
+    volumes:
+      - jas_bridge_auth:/data/auth
+      - ./jas-bridge.js:/app/jas-bridge.js:ro
+      - ./package.json:/app/package.json:ro
+    working_dir: /app
+    environment:
+      - N8N_URL=http://n8n:5678
+      - AUTH_DIR=/data/auth
+      - NODE_TLS_REJECT_UNAUTHORIZED=0
+    command: sh -c "apk add --no-cache git python3 make g++ && npm install --production && node jas-bridge.js"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3001/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+networks:
+  n8n_n8n_net:
+    external: true
+
+volumes:
+  jas_bridge_auth:

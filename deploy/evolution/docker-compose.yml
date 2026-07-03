@@ -1,0 +1,72 @@
+services:
+  evolution_api:
+    image: atendai/evolution-api:v2.2.3
+    container_name: evolution
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8080:8080"
+    networks:
+      - evolution_default
+      - n8n_n8n_net
+    environment:
+      - SERVER_URL=https://evo.jpxdigital.com.br
+      - AUTHENTICATION_API_KEY=${EVO_API_KEY}
+      - AUTHENTICATION_EXPOSE_IN_FETCH_INSTANCES=true
+      - DATABASE_ENABLED=true
+      - DATABASE_PROVIDER=postgresql
+      - DATABASE_CONNECTION_URI=postgresql://evolution:${EVO_DB_PASSWORD}@evolution_db:5432/evolution
+      - DATABASE_SAVE_DATA_INSTANCE=true
+      - DATABASE_SAVE_DATA_NEW_MESSAGE=true
+      - DATABASE_SAVE_MESSAGE_UPDATE=true
+      - DATABASE_SAVE_DATA_CONTACTS=true
+      - DATABASE_SAVE_DATA_CHATS=true
+      - DATABASE_SAVE_DATA_LABELS=true
+      - DATABASE_SAVE_DATA_HISTORIC=true
+      - LANGUAGE=pt-BR
+      - TZ=America/Sao_Paulo
+      - LOG_LEVEL=DEBUG
+      - LOG_COLOR=true
+      - NODE_TLS_REJECT_UNAUTHORIZED=0
+      - DEL_INSTANCE=false
+      - QRCODE_LIMIT=30
+      - QRCODE_COLOR=#0078D4
+      - WEBSOCKET_ENABLED=true
+      - CHATWOOT_ENABLED=false
+      - OPENAI_ENABLED=false
+      - DIFY_ENABLED=false
+      - CACHE_REDIS_ENABLED=false
+      - CACHE_LOCAL_ENABLED=true
+    depends_on:
+      evolution_db:
+        condition: service_healthy
+    volumes:
+      - evolution_instances:/evolution/instances
+
+  evolution_db:
+    image: postgres:16-alpine
+    container_name: evolution_db
+    restart: unless-stopped
+    networks:
+      - evolution_default
+      - n8n_n8n_net
+    environment:
+      - POSTGRES_DB=evolution
+      - POSTGRES_USER=evolution
+      - POSTGRES_PASSWORD=${EVO_DB_PASSWORD}
+    volumes:
+      - evolution_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U evolution -d evolution"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  evolution_default:
+    driver: bridge
+  n8n_n8n_net:
+    external: true
+
+volumes:
+  evolution_instances:
+  evolution_pg_data:

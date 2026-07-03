@@ -1,114 +1,98 @@
 services:
-  nginx:
-    image: nginx:1.27-alpine
-    container_name: jpx_n8n_nginx
+  postgres:
+    image: postgres:16-alpine
+    container_name: n8n-postgres
     restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      - /etc/letsencrypt:/etc/letsencrypt:ro
-    depends_on:
-      - n8n
     networks:
-      - frontend
-    deploy:
-      resources:
-        limits:
-          memory: 64m
+      - n8n_net
+    environment:
+      - POSTGRES_USER=n8n
+      - POSTGRES_PASSWORD=${N8N_DB_PASSWORD}
+      - POSTGRES_DB=n8n
+    volumes:
+      - n8n_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U n8n"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
   n8n:
     image: n8nio/n8n:latest
-    container_name: jpx_n8n
+    container_name: n8n
     restart: unless-stopped
-    environment:
-      DB_TYPE: postgresdb
-      DB_POSTGRESDB_HOST: postgres
-      DB_POSTGRESDB_PORT: 5432
-      DB_POSTGRESDB_DATABASE: ${POSTGRES_DB:-n8n}
-      DB_POSTGRESDB_USER: ${POSTGRES_USER:-n8n}
-      DB_POSTGRESDB_PASSWORD: ${POSTGRES_PASSWORD}
-      N8N_BASIC_AUTH_ACTIVE: "true"
-      N8N_BASIC_AUTH_USER: ${N8N_BASIC_AUTH_USER}
-      N8N_BASIC_AUTH_PASSWORD: ${N8N_BASIC_AUTH_PASSWORD}
-      N8N_HOST: ${N8N_HOST:-n8n.jpxdigital.com.br}
-      N8N_PORT: 5678
-      N8N_PROTOCOL: https
-      WEBHOOK_URL: https://${N8N_HOST:-n8n.jpxdigital.com.br}/
-      EXECUTIONS_DATA_PRUNE: "true"
-      EXECUTIONS_DATA_MAX_AGE: 168
-      N8N_INTERNAL_SECRET: ${N8N_INTERNAL_SECRET}
-      # Limitar memória interna do n8n
-      NODE_OPTIONS: "--max-old-space-size=300"
-    expose:
-      - "5678"
-    volumes:
-      - n8n_data:/home/node/.n8n
+    ports:
+      - "127.0.0.1:5678:5678"
+    networks:
+      - n8n_net
     depends_on:
       postgres:
         condition: service_healthy
-    networks:
-      - frontend
-      - automation
-    deploy:
-      resources:
-        limits:
-          memory: 350m
-
-  postgres:
-    image: postgres:16-alpine
-    container_name: jpx_postgres
-    restart: unless-stopped
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-n8n}
-      POSTGRES_USER: ${POSTGRES_USER:-n8n}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      # Tuning para 1 GB RAM total na VM
-      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
-    command: >
-      postgres
-      -c shared_buffers=128MB
-      -c effective_cache_size=256MB
-      -c work_mem=4MB
-      -c maintenance_work_mem=32MB
-      -c max_connections=20
+      - N8N_HOST=n8n.jpxdigital.com.br
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=https
+      - WEBHOOK_URL=https://n8n.jpxdigital.com.br/
+      - GENERIC_TIMEZONE=America/Sao_Paulo
+      - TZ=America/Sao_Paulo
+      - N8N_EMAIL_MODE=smtp
+      - N8N_SMTP_HOST=smtp.zoho.com
+      - N8N_SMTP_PORT=587
+      - N8N_SMTP_USER=jp@jpxdigital.com.br
+      - N8N_SMTP_PASS=${N8N_SMTP_PASS}
+      - N8N_SMTP_SENDER=jp@jpxdigital.com.br
+      - N8N_SMTP_SSL=false
+      - NODE_FUNCTION_ALLOW_BUILTIN=*
+      - NODE_FUNCTION_ALLOW_EXTERNAL=*
+      - N8N_RUNNERS_GRANT_TOKEN_TTL=300
+      - N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY}
+      - DB_TYPE=postgresdb
+      - DB_POSTGRESDB_HOST=postgres
+      - DB_POSTGRESDB_PORT=5432
+      - DB_POSTGRESDB_DATABASE=n8n
+      - DB_POSTGRESDB_USER=n8n
+      - DB_POSTGRESDB_PASSWORD=${N8N_DB_PASSWORD}
+      - DB_POSTGRESDB_CONNECTION_TIMEOUT=30000
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-    expose:
-      - "5432"
-    networks:
-      - automation
+      - n8n_data:/home/node/.n8n
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-n8n} -d ${POSTGRES_DB:-n8n}"]
+      test: ["CMD-SHELL", "wget -qO- http://localhost:5678/healthz || exit 1"]
       interval: 10s
       timeout: 5s
-      retries: 5
-    deploy:
-      resources:
-        limits:
-          memory: 200m
+      retries: 10
+      start_period: 30s
 
-  # Watchtower — auto-update n8n às 4h
-  watchtower:
-    image: containrrr/watchtower:latest
-    container_name: jpx_watchtower
+  n8n-activator:
+    image: curlimages/curl:latest
+    container_name: n8n-activator
     restart: unless-stopped
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    command: --schedule "0 4 * * *" --cleanup jpx_n8n
     networks:
-      - automation
-    deploy:
-      resources:
-        limits:
-          memory: 32m
+      - n8n_net
+    depends_on:
+      n8n:
+        condition: service_healthy
+    volumes:
+      - ./activate-workflows.sh:/activate-workflows.sh:ro
+    entrypoint: ["sh", "/activate-workflows.sh"]
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared
+    restart: unless-stopped
+    networks:
+      - n8n_net
+    command: tunnel --no-autoupdate --config /etc/cloudflared/config.yml run
+    environment:
+      TUNNEL_TOKEN: ${TUNNEL_TOKEN}
+    volumes:
+      - ./cloudflared.yml:/etc/cloudflared/config.yml:ro
+    depends_on:
+      - n8n
+
+networks:
+  n8n_net:
+    driver: bridge
 
 volumes:
   n8n_data:
-  postgres_data:
-
-networks:
-  frontend:
-  automation:
-    internal: true
+  n8n_pg_data:
