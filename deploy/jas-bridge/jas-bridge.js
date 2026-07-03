@@ -76,7 +76,7 @@ async function start() {
   const { version } = await fetchLatestWaWebVersion().catch(() => ({ version: [2,3000,1042609398] }));
   console.log('[bridge] WA version:', version);
 
-  const sock = makeWASocket({
+  const sock = sockRef = makeWASocket({
     version, auth: state, printQRInTerminal: false,
     logger: { level:'silent', info:()=>{}, warn:()=>{}, error:console.error, debug:()=>{}, trace:()=>{}, child:()=>({level:'silent',info:()=>{},warn:()=>{},error:console.error,debug:()=>{},trace:()=>{}}) }
   });
@@ -113,6 +113,8 @@ async function start() {
   });
 }
 
+let sockRef = null;
+
 http.createServer((req, res) => {
   if (req.url === '/' || req.url === '/index.html') {
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
@@ -123,6 +125,27 @@ http.createServer((req, res) => {
   } else if (req.url === '/health') {
     res.writeHead(isConnected ? 200 : 503, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ connected: isConnected }));
+  } else if (req.url === '/send' && req.method === 'POST') {
+    let body = '';
+    req.on('data', d => { body += d; });
+    req.on('end', async () => {
+      try {
+        const { number, text } = JSON.parse(body);
+        if (!sockRef || !isConnected) {
+          res.writeHead(503, { 'Content-Type': 'application/json' });
+          return res.end(JSON.stringify({ error: 'WhatsApp not connected' }));
+        }
+        const jid = number.replace(/\D/g, '') + '@s.whatsapp.net';
+        await sockRef.sendMessage(jid, { text });
+        console.log('[bridge] Mensagem enviada para', jid);
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ ok: true }));
+      } catch (e) {
+        console.error('[bridge /send]', e.message);
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: e.message }));
+      }
+    });
   } else {
     res.writeHead(404); res.end('{}');
   }
