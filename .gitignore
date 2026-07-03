@@ -28,3 +28,8 @@ deploy/pdf-service/.env
 
 # n8n workflows com credenciais embutidas
 n8n-workflows/*.credentials.json
+
+# Documentação interna — não entra no repo
+docs/
+deploy/evolution/.env
+deploy/jas-bridge/.env

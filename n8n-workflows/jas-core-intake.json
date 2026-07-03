@@ -1,0 +1,652 @@
+{
+  "id": "jas-core-intake-v1-0",
+  "name": "jas_core_intake_webhook",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "jas-intake",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000001",
+      "name": "Webhook Evolution API",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        300
+      ],
+      "webhookId": "jas-intake-webhook"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "OK",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000002",
+      "name": "Respond 200 OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        220,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "cond-event",
+              "leftValue": "={{ $json.body.event }}",
+              "rightValue": "messages.upsert",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000003",
+      "name": "É mensagem válida?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        220,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const payload = $input.first().json;\nconst _raw = payload.body || payload;\nconst data = _raw.data;\n\nif (!data || !data.key || !data.message) {\n  return [];\n}\n\nconst remoteJid = data.key.remoteJid || '';\nconst isGroup = remoteJid.includes('@g.us');\nif (isGroup) return [];\n\nconst phoneRaw = remoteJid.replace('@s.whatsapp.net', '');\nconst phone = '+' + phoneRaw;\n\nconst messageType = data.messageType || '';\nlet text = '';\nif (messageType === 'conversation') {\n  text = data.message.conversation || '';\n} else if (messageType === 'extendedTextMessage') {\n  text = data.message?.extendedTextMessage?.text || '';\n} else {\n  return [];\n}\n\nif (!text.trim()) return [];\n\nreturn [{\n  json: {\n    phone,\n    phone_raw: phoneRaw,\n    text: text.trim(),\n    push_name: data.pushName || 'Visitante',\n    message_id: data.key.id,\n    message_type: messageType,\n    timestamp: new Date().toISOString(),\n    instance: payload.instance || ''\n  }\n}];"
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000004",
+      "name": "Extrair e Normalizar",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT COUNT(*)::int as is_dup FROM jas_message_dedup WHERE message_id = '{{$json.message_id}}'",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000005",
+      "name": "Checar Duplicata",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        660,
+        300
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "e5c4827d-4bd0-4a1c-9504-a4a145d93167",
+          "name": "JAS PostgreSQL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "cond-dedup",
+              "leftValue": "={{$json.is_dup}}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000006",
+      "name": "É mensagem nova?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        880,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO jas_message_dedup (message_id) VALUES ('{{ $('Extrair e Normalizar').item.json.message_id }}') ON CONFLICT DO NOTHING",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000007",
+      "name": "Registrar Dedup",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        1100,
+        180
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "e5c4827d-4bd0-4a1c-9504-a4a145d93167",
+          "name": "JAS PostgreSQL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT session_id, correlation_id, estado, contexto FROM jas_sessions WHERE telefone = '{{ $('Extrair e Normalizar').item.json.phone }}' AND human_takeover = FALSE ORDER BY criado_em DESC LIMIT 1",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000008",
+      "name": "Buscar Sessão",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        1100,
+        360
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "e5c4827d-4bd0-4a1c-9504-a4a145d93167",
+          "name": "JAS PostgreSQL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "cond-session",
+              "leftValue": "={{ $json.session_id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "isEmpty",
+                "name": "filter.operator.isEmpty"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000009",
+      "name": "Sessão nova?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1320,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO jas_sessions (correlation_id, telefone, estado, push_name, ultima_interacao, workflow_atual) VALUES (jas_generate_correlation_id(), '{{ $('Extrair e Normalizar').item.json.phone }}', 'NEW', '{{ $('Extrair e Normalizar').item.json.push_name }}', NOW(), 'jas_core_level0_welcome') RETURNING session_id, correlation_id",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000010",
+      "name": "Criar Sessão",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        1540,
+        220
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "e5c4827d-4bd0-4a1c-9504-a4a145d93167",
+          "name": "JAS PostgreSQL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.hubapi.com/crm/v3/objects/contacts/search",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $vars.JAS_HUBSPOT_TOKEN }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"filterGroups\": [{\n    \"filters\": [{\n      \"propertyName\": \"phone\",\n      \"operator\": \"EQ\",\n      \"value\": \"{{ $('Extrair e Normalizar').item.json.phone }}\"\n    }]\n  }],\n  \"properties\": [\"firstname\", \"lastname\", \"email\", \"phone\", \"company\", \"hs_object_id\"]\n}",
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000011",
+      "name": "Buscar Contato HubSpot",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1760,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "cond-hubspot",
+              "leftValue": "={{ $json.total }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000012",
+      "name": "Contato novo?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1980,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.JAS_EVOLUTION_URL }}/message/sendText/{{ $vars.JAS_EVOLUTION_INSTANCE }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $vars.JAS_EVOLUTION_API_KEY }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"number\": \"{{ $('Extrair e Normalizar').item.json.phone_raw }}\",\n  \"text\": \"Olá! Seja bem-vindo à JPX Digital Tecnologia.\\n\\nSomos uma consultoria boutique especializada em Cloud, Resiliência Cibernética, Continuidade Operacional e Infraestrutura Crítica.\\n\\nPara direcionarmos seu atendimento, escolha uma opção:\\n\\n1️⃣ Assessment Executivo\\n2️⃣ Cloud e Modernização\\n3️⃣ Backup e Disaster Recovery\\n4️⃣ FinOps\\n5️⃣ Segurança e Resiliência\\n6️⃣ Falar com um especialista\"\n}",
+        "options": {
+          "timeout": 20000
+        }
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000013",
+      "name": "Enviar Boas-vindas",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2200,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.hubapi.com/crm/v3/objects/contacts",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $vars.JAS_HUBSPOT_TOKEN }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"properties\": {\n    \"firstname\": \"{{ $('Extrair e Normalizar').item.json.push_name }}\",\n    \"phone\": \"{{ $('Extrair e Normalizar').item.json.phone }}\",\n    \"hs_lead_status\": \"NEW\",\n    \"lead_source\": \"WhatsApp JAS\"\n  }\n}",
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000014",
+      "name": "Criar Contato HubSpot",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2420,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.hubapi.com/crm/v3/objects/deals",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $vars.JAS_HUBSPOT_TOKEN }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"properties\": {\n    \"dealname\": \"{{ $('Extrair e Normalizar').item.json.push_name }} — WhatsApp JAS\",\n    \"pipeline\": \"{{ $vars.JAS_HUBSPOT_PIPELINE_ID }}\",\n    \"dealstage\": \"{{ $vars.JAS_HUBSPOT_STAGE_NEW }}\",\n    \"hs_lead_source\": \"WhatsApp\"\n  },\n  \"associations\": [{\n    \"to\": {\"id\": \"{{ $json.id }}\"},\n    \"types\": [{\"associationCategory\": \"HUBSPOT_DEFINED\", \"associationTypeId\": 3}]\n  }]\n}",
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000015",
+      "name": "Criar Deal HubSpot",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2640,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.telegram.org/bot{{ $vars.JAS_TELEGRAM_BOT_TOKEN }}/sendMessage",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"chat_id\": \"{{ $vars.JAS_TELEGRAM_CHAT_ID }}\",\n  \"parse_mode\": \"HTML\",\n  \"text\": \"🔔 <b>Novo lead — JAS</b>\\n\\n<b>Nome:</b> {{ $('Extrair e Normalizar').item.json.push_name }}\\n<b>Telefone:</b> {{ $('Extrair e Normalizar').item.json.phone }}\\n<b>Primeira mensagem:</b> {{ $('Extrair e Normalizar').item.json.text }}\\n\\n<b>Correlation ID:</b> {{ $('Criar Sessão').item.json.correlation_id }}\\n<b>Status:</b> Boas-vindas enviadas — aguardando resposta ao menu\"\n}",
+        "options": {
+          "timeout": 15000
+        }
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000016",
+      "name": "Notificar João — Telegram",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2860,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO jas_events (correlation_id, session_id, event_type, payload) VALUES ('{{ $('Criar Sessão').item.json.correlation_id }}', '{{ $('Criar Sessão').item.json.session_id }}'::uuid, 'MESSAGE_RECEIVED', '{\"phone\": \"{{ $('Extrair e Normalizar').item.json.phone }}\", \"text\": \"{{ $('Extrair e Normalizar').item.json.text }}\", \"message_id\": \"{{ $('Extrair e Normalizar').item.json.message_id }}\"}'); INSERT INTO jas_events (correlation_id, session_id, event_type, payload) VALUES ('{{ $('Criar Sessão').item.json.correlation_id }}', '{{ $('Criar Sessão').item.json.session_id }}'::uuid, 'LEVEL_0_EXECUTED', '{\"action\": \"welcome_sent\"}');",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000017",
+      "name": "Log Eventos",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        3080,
+        300
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "e5c4827d-4bd0-4a1c-9504-a4a145d93167",
+          "name": "JAS PostgreSQL"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "a1b2c3d4-0001-0001-0001-000000000018",
+      "name": "Ignorar",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        440,
+        520
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Evolution API": {
+      "main": [
+        [
+          {
+            "node": "Respond 200 OK",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "É mensagem válida?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "É mensagem válida?": {
+      "main": [
+        [
+          {
+            "node": "Extrair e Normalizar",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ignorar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extrair e Normalizar": {
+      "main": [
+        [
+          {
+            "node": "Checar Duplicata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Checar Duplicata": {
+      "main": [
+        [
+          {
+            "node": "É mensagem nova?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "É mensagem nova?": {
+      "main": [
+        [
+          {
+            "node": "Registrar Dedup",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Registrar Dedup": {
+      "main": [
+        [
+          {
+            "node": "Buscar Sessão",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar Sessão": {
+      "main": [
+        [
+          {
+            "node": "Sessão nova?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sessão nova?": {
+      "main": [
+        [
+          {
+            "node": "Criar Sessão",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Buscar Contato HubSpot",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Criar Sessão": {
+      "main": [
+        [
+          {
+            "node": "Buscar Contato HubSpot",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar Contato HubSpot": {
+      "main": [
+        [
+          {
+            "node": "Contato novo?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Contato novo?": {
+      "main": [
+        [
+          {
+            "node": "Enviar Boas-vindas",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Notificar João — Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar Boas-vindas": {
+      "main": [
+        [
+          {
+            "node": "Criar Contato HubSpot",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Criar Contato HubSpot": {
+      "main": [
+        [
+          {
+            "node": "Criar Deal HubSpot",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Criar Deal HubSpot": {
+      "main": [
+        [
+          {
+            "node": "Notificar João — Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notificar João — Telegram": {
+      "main": [
+        [
+          {
+            "node": "Log Eventos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "pinData": null
+}
