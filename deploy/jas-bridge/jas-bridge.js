@@ -16,19 +16,22 @@ let currentQR = null;
 let isConnected = false;
 
 // Contas WhatsApp Business recentes usam LID (Linked Identity) em vez do número real.
-// O Baileys emite contacts.upsert com o mapeamento lid → jid real, que populamos aqui.
-// Sem esse mapa, o remoteJid chegaria como "156560416366649@lid" no n8n — ilegível como telefone.
+// contacts.upsert/update populam o mapa lid → jid quando o Baileys sincroniza o contato.
+// Fallback: converte @lid → @s.whatsapp.net, que o WhatsApp aceita para envio/recebimento.
+// O número real só fica disponível após o Baileys receber o contacts.upsert desse contato.
 const lidMap = new Map();
 
 function resolveJid(jid) {
   if (!jid || !jid.endsWith('@lid')) return jid;
   const resolved = lidMap.get(jid);
   if (resolved) {
-    console.log('[bridge] LID→JID:', jid, '→', resolved);
+    console.log('[bridge] LID→JID (map):', jid, '→', resolved);
     return resolved;
   }
-  console.warn('[bridge] LID não resolvido:', jid);
-  return jid;
+  // Fallback: @lid → @s.whatsapp.net funciona para envio; n8n extrai só os dígitos
+  const fallback = jid.replace('@lid', '@s.whatsapp.net');
+  console.warn('[bridge] LID sem mapeamento, fallback:', jid, '→', fallback);
+  return fallback;
 }
 
 function postToN8N(payload) {
@@ -102,6 +105,12 @@ async function start() {
 
   sock.ev.on('contacts.upsert', (contacts) => {
     for (const c of contacts) {
+      if (c.id && c.lid) lidMap.set(c.lid, c.id);
+    }
+  });
+
+  sock.ev.on('contacts.update', (updates) => {
+    for (const c of updates) {
       if (c.id && c.lid) lidMap.set(c.lid, c.id);
     }
   });
