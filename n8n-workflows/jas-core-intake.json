@@ -523,6 +523,152 @@
         }
       },
       "typeVersion": 2
+    },
+    {
+      "id": "intake-estado-check",
+      "name": "Verificar Estado",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        1500,
+        300
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "check-new",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              },
+              "leftValue": "={{ $json.estado }}",
+              "rightValue": "NEW"
+            }
+          ]
+        }
+      },
+      "typeVersion": 2
+    },
+    {
+      "id": "intake-processar-estado",
+      "name": "Processar Estado",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        1500,
+        500
+      ],
+      "parameters": {
+        "jsCode": "const session = $('Resolver Sessão').item.json;\nconst norm    = $('Extrair e Normalizar').item.json;\nconst phone_raw = norm.phone_raw;\nconst rawText   = (norm.text || '').trim();\nconst text      = rawText.toLowerCase();\nconst estado    = session.estado || 'MENU';\nconst pushName  = norm.push_name || 'visitante';\nconst sessionId = session.session_id;\n\nconst calUrl = $vars.JAS_CALCOM_LINK_ASSESSMENT || 'https://cal.com/jpxdigital';\nconst MENU_MSG = 'Para direcionarmos seu atendimento, escolha uma opção:\\n\\n1️⃣ Assessment Executivo\\n2️⃣ Cloud e Modernização\\n3️⃣ Backup e Disaster Recovery\\n4️⃣ FinOps\\n5️⃣ Segurança e Resiliência\\n6️⃣ Falar com um especialista';\n\nlet resposta = '';\nlet novoEstado = estado;\nlet contextoObj = {};\nlet notificarDono = false;\n\nif (estado === 'MENU') {\n  const match1 = /^1$|assessment/i.test(text);\n  const match2 = /^2$|cloud|moderni/i.test(text);\n  const match3 = /^3$|backup|disaster|recovery/i.test(text);\n  const match4 = /^4$|finops|fin ops|custo|cloud cost/i.test(text);\n  const match5 = /^5$|seguran|resili|cibern/i.test(text);\n  const match6 = /^6$|especialista|falar|humano/i.test(text);\n\n  if (match6) {\n    resposta = 'Entendido, ' + pushName + '! 👤 Vou notificar o João Martins agora.\\n\\nEle entrará em contato pessoalmente em breve. Aguarde!';\n    novoEstado = 'HUMAN_TAKEOVER';\n    contextoObj = { servico: 'Especialista' };\n    notificarDono = true;\n  } else {\n    const servicoMap = [\n      [match1, 'Assessment Executivo'],\n      [match2, 'Cloud e Modernização'],\n      [match3, 'Backup e Disaster Recovery'],\n      [match4, 'FinOps'],\n      [match5, 'Segurança e Resiliência']\n    ];\n    const found = servicoMap.find(function(s){ return s[0]; });\n    if (found) {\n      const servico = found[1];\n      resposta = 'Ótima escolha! Você selecionou *' + servico + '*. ✅\\n\\nO João Martins oferece um *Assessment Executivo gratuito* de 30 minutos — ele analisa seu cenário e já apresenta recomendações práticas.\\n\\nGostaria de agendar agora? Responda *sim* para receber o link. 📅';\n      novoEstado = 'AGENDAMENTO';\n      contextoObj = { servico: servico };\n    } else {\n      resposta = 'Desculpe, não entendi sua escolha. 😊\\n\\n' + MENU_MSG;\n    }\n  }\n\n} else if (estado === 'AGENDAMENTO') {\n  if (/^s$|^sim$|^quero$|^ok$|^yes$|^claro$|^pode$|^vamos$|^bora$/.test(text)) {\n    resposta = 'Perfeito! Aqui está o link para escolher o horário:\\n\\n👉 ' + calUrl + '\\n\\nO João está aguardando você! 😊';\n    novoEstado = 'LINK_ENVIADO';\n  } else if (/^n$|^nao$|^não$|^no$/.test(text)) {\n    resposta = 'Sem problema! Quando quiser agendar, é só responder *sim* aqui. 😊';\n  } else {\n    resposta = 'Para agendar seu Assessment gratuito, responda *sim*.\\nCaso prefira não agendar agora, responda *não*. 📅';\n  }\n\n} else if (estado === 'LINK_ENVIADO') {\n  resposta = 'Obrigado pelo contato, ' + pushName + '! 😊 O João aguarda você no horário escolhido.\\n\\nQualquer dúvida antes da reunião, é só falar aqui!';\n\n} else if (estado === 'HUMAN_TAKEOVER') {\n  resposta = 'Olá, ' + pushName + '! O João Martins foi notificado e entrará em contato em breve. 🤝\\n\\nAgradecemos sua paciência!';\n\n} else {\n  resposta = '';\n}\n\nconst resposta_safe = resposta ? JSON.stringify(resposta).slice(1, -1) : '';\nconst contexto_str  = JSON.stringify(contextoObj);\n\nreturn [{ json: {\n  phone_raw,\n  session_id:     sessionId,\n  estado_atual:   estado,\n  novo_estado:    novoEstado,\n  contexto_str,\n  resposta,\n  resposta_safe,\n  enviar:         resposta !== '',\n  notificar_dono: notificarDono\n}}];"
+      },
+      "typeVersion": 2
+    },
+    {
+      "id": "intake-tem-resposta",
+      "name": "Tem resposta?",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        1720,
+        500
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "check-enviar",
+              "operator": {
+                "type": "boolean",
+                "operation": "true"
+              },
+              "leftValue": "={{ $json.enviar }}"
+            }
+          ]
+        }
+      },
+      "typeVersion": 2
+    },
+    {
+      "id": "intake-responder-lead",
+      "name": "Responder Lead",
+      "type": "n8n-nodes-base.httpRequest",
+      "onError": "continueRegularOutput",
+      "position": [
+        1940,
+        400
+      ],
+      "parameters": {
+        "url": "={{ $vars.JAS_EVOLUTION_URL }}/send",
+        "method": "POST",
+        "options": {
+          "timeout": 20000
+        },
+        "jsonBody": "={\n  \"number\": \"{{ $json.phone_raw }}\",\n  \"text\": \"{{ $json.resposta_safe }}\"\n}",
+        "sendBody": true,
+        "sendHeaders": true,
+        "specifyBody": "json",
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $vars.JAS_EVOLUTION_API_KEY }}"
+            }
+          ]
+        }
+      },
+      "typeVersion": 4.1
+    },
+    {
+      "id": "intake-atualizar-sessao",
+      "name": "Atualizar Sessão",
+      "type": "n8n-nodes-base.postgres",
+      "onError": "continueRegularOutput",
+      "position": [
+        1940,
+        600
+      ],
+      "parameters": {
+        "query": "UPDATE jas_sessions SET estado = '{{ $('Processar Estado').item.json.novo_estado }}', contexto = contexto || '{{ $('Processar Estado').item.json.contexto_str }}'::jsonb, ultima_interacao = NOW(), atualizado_em = NOW() WHERE session_id = '{{ $('Processar Estado').item.json.session_id }}'",
+        "options": {},
+        "operation": "executeQuery"
+      },
+      "credentials": {
+        "postgres": {
+          "id": "e5c4827d-4bd0-4a1c-9504-a4a145d93167",
+          "name": "JAS PostgreSQL"
+        }
+      },
+      "typeVersion": 2.5
+    },
+    {
+      "id": "intake-atualizar-menu",
+      "name": "Atualizar Estado MENU",
+      "type": "n8n-nodes-base.postgres",
+      "onError": "continueRegularOutput",
+      "position": [
+        2800,
+        300
+      ],
+      "parameters": {
+        "query": "UPDATE jas_sessions SET estado = 'MENU', ultima_interacao = NOW(), atualizado_em = NOW() WHERE session_id = '{{ $('Resolver Sessão').item.json.session_id }}'",
+        "options": {},
+        "operation": "executeQuery"
+      },
+      "credentials": {
+        "postgres": {
+          "id": "e5c4827d-4bd0-4a1c-9504-a4a145d93167",
+          "name": "JAS PostgreSQL"
+        }
+      },
+      "typeVersion": 2.5
     }
   ],
   "connections": {
@@ -573,11 +719,40 @@
         ]
       ]
     },
+    "Tem resposta?": {
+      "main": [
+        [
+          {
+            "node": "Responder Lead",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Atualizar Sessão",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Buscar Sessão": {
       "main": [
         [
           {
             "node": "Sessão nova?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Responder Lead": {
+      "main": [
+        [
+          {
+            "node": "Atualizar Sessão",
             "type": "main",
             "index": 0
           }
@@ -606,11 +781,40 @@
         ]
       ]
     },
+    "Processar Estado": {
+      "main": [
+        [
+          {
+            "node": "Tem resposta?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Resolver Sessão": {
       "main": [
         [
           {
+            "node": "Verificar Estado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verificar Estado": {
+      "main": [
+        [
+          {
             "node": "Buscar Contato HubSpot",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Processar Estado",
             "type": "main",
             "index": 0
           }
@@ -716,6 +920,17 @@
         ]
       ]
     },
+    "Atualizar Estado MENU": {
+      "main": [
+        [
+          {
+            "node": "Log Eventos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Criar Contato HubSpot": {
       "main": [
         [
@@ -758,7 +973,7 @@
       "main": [
         [
           {
-            "node": "Log Eventos",
+            "node": "Atualizar Estado MENU",
             "type": "main",
             "index": 0
           }
@@ -782,7 +997,7 @@
   },
   "parentFolderId": null,
   "isArchived": false,
-  "versionCounter": 19,
+  "versionCounter": 20,
   "description": null,
   "activeVersionId": "100c878e-dd8a-40b9-9fa2-27448d3392e7",
   "nodeGroups": []
