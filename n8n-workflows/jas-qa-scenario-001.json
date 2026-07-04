@@ -14,8 +14,9 @@
         "rule": {
           "interval": [
             {
-              "field": "hours",
-              "triggerAtHour": 3
+              "field": "days",
+              "triggerAtHour": 3,
+              "triggerAtMinute": 0
             }
           ]
         }
@@ -561,7 +562,7 @@
   "meta": null,
   "parentFolderId": null,
   "isArchived": false,
-  "versionCounter": 8,
+  "versionCounter": 9,
   "description": null,
   "activeVersionId": "0ad49342-3d5d-4d92-9f13-0a70cd7fd852",
   "nodeGroups": []
