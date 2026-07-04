@@ -1,5 +1,6 @@
 {
   "name": "JAS QA — Cenário 001 Novo Lead",
+  "active": true,
   "nodes": [
     {
       "id": "qa001-n01",
@@ -39,7 +40,7 @@
       "name": "Simular Mensagem",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        440,
+        1540,
         300
       ],
       "parameters": {
@@ -72,7 +73,7 @@
       "name": "Aguardar Processamento",
       "type": "n8n-nodes-base.code",
       "position": [
-        660,
+        1760,
         300
       ],
       "parameters": {
@@ -85,7 +86,7 @@
       "name": "Verificar DB",
       "type": "n8n-nodes-base.postgres",
       "position": [
-        880,
+        1980,
         300
       ],
       "parameters": {
@@ -106,7 +107,7 @@
       "name": "Verificar Contato HubSpot",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        1100,
+        2200,
         300
       ],
       "parameters": {
@@ -139,7 +140,7 @@
       "name": "Verificar Deal HubSpot",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        1320,
+        2420,
         300
       ],
       "parameters": {
@@ -172,7 +173,7 @@
       "name": "Calcular Resultado",
       "type": "n8n-nodes-base.code",
       "position": [
-        1540,
+        2640,
         300
       ],
       "parameters": {
@@ -186,7 +187,7 @@
       "type": "n8n-nodes-base.postgres",
       "onError": "continueRegularOutput",
       "position": [
-        1760,
+        2860,
         300
       ],
       "parameters": {
@@ -203,65 +204,11 @@
       "typeVersion": 2.5
     },
     {
-      "id": "qa001-n10",
-      "name": "Limpeza HubSpot Contato",
-      "type": "n8n-nodes-base.httpRequest",
-      "onError": "continueRegularOutput",
-      "position": [
-        1980,
-        300
-      ],
-      "parameters": {
-        "url": "=https://api.hubapi.com/crm/v3/objects/contacts/{{ $('Calcular Resultado').item.json.contact_id }}",
-        "method": "DELETE",
-        "options": {
-          "timeout": 15000
-        },
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Authorization",
-              "value": "=Bearer {{ $vars.JAS_HUBSPOT_TOKEN }}"
-            }
-          ]
-        }
-      },
-      "typeVersion": 4.1
-    },
-    {
-      "id": "qa001-n11",
-      "name": "Limpeza HubSpot Deal",
-      "type": "n8n-nodes-base.httpRequest",
-      "onError": "continueRegularOutput",
-      "position": [
-        2200,
-        300
-      ],
-      "parameters": {
-        "url": "=https://api.hubapi.com/crm/v3/objects/deals/{{ $('Calcular Resultado').item.json.deal_id }}",
-        "method": "DELETE",
-        "options": {
-          "timeout": 15000
-        },
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Authorization",
-              "value": "=Bearer {{ $vars.JAS_HUBSPOT_TOKEN }}"
-            }
-          ]
-        }
-      },
-      "typeVersion": 4.1
-    },
-    {
       "id": "qa001-n12",
       "name": "Enviar Telegram",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        2420,
+        3520,
         300
       ],
       "parameters": {
@@ -292,14 +239,154 @@
         "responseMode": "lastNode"
       },
       "typeVersion": 2
+    },
+    {
+      "id": "qa001-smoke-db",
+      "name": "Smoke DB",
+      "type": "n8n-nodes-base.postgres",
+      "onError": "continueRegularOutput",
+      "position": [
+        440,
+        300
+      ],
+      "parameters": {
+        "query": "SELECT 1 as ok",
+        "options": {},
+        "operation": "executeQuery"
+      },
+      "credentials": {
+        "postgres": {
+          "id": "e5c4827d-4bd0-4a1c-9504-a4a145d93167",
+          "name": "JAS PostgreSQL"
+        }
+      },
+      "typeVersion": 2.5
+    },
+    {
+      "id": "qa001-smoke-hs",
+      "name": "Smoke HubSpot",
+      "type": "n8n-nodes-base.httpRequest",
+      "onError": "continueRegularOutput",
+      "position": [
+        660,
+        300
+      ],
+      "parameters": {
+        "url": "https://api.hubapi.com/crm/v3/owners?limit=1",
+        "method": "GET",
+        "options": {
+          "timeout": 10000
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $vars.JAS_HUBSPOT_TOKEN }}"
+            }
+          ]
+        }
+      },
+      "typeVersion": 4.1
+    },
+    {
+      "id": "qa001-smoke-tg",
+      "name": "Smoke Telegram",
+      "type": "n8n-nodes-base.httpRequest",
+      "onError": "continueRegularOutput",
+      "position": [
+        880,
+        300
+      ],
+      "parameters": {
+        "url": "=https://api.telegram.org/bot{{ $vars.JAS_TELEGRAM_BOT_TOKEN }}/getMe",
+        "method": "GET",
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "typeVersion": 4.1
+    },
+    {
+      "id": "qa001-smoke-eval",
+      "name": "Avaliar Smoke",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        1100,
+        300
+      ],
+      "parameters": {
+        "jsCode": "let failures = [];\nlet details = {};\n\ntry {\n  const db = $('Smoke DB').item.json;\n  details.db = (db.ok === 1 || db.ok === '1') ? 'OK' : 'FAIL';\n  if (details.db !== 'OK') failures.push('PostgreSQL');\n} catch(e) { failures.push('PostgreSQL'); details.db = 'ERROR'; }\n\ntry {\n  const hs = $('Smoke HubSpot').item.json;\n  details.hubspot = (hs.results !== undefined) ? 'OK' : 'FAIL';\n  if (details.hubspot !== 'OK') failures.push('HubSpot');\n} catch(e) { failures.push('HubSpot'); details.hubspot = 'ERROR'; }\n\ntry {\n  const tg = $('Smoke Telegram').item.json;\n  details.telegram = (tg.ok === true) ? 'OK' : 'FAIL';\n  if (details.telegram !== 'OK') failures.push('Telegram');\n} catch(e) { failures.push('Telegram'); details.telegram = 'ERROR'; }\n\nconst smoke_pass = failures.length === 0;\nconst definir = $('Definir Teste').item.json;\n\nconst abort_msg = failures.length > 0\n  ? ('QA ABORTADO\\nServicos indisponiveis: ' + failures.join(', '))\n  : 'OK';\nconst abort_msg_safe = JSON.stringify(abort_msg).slice(1, -1);\n\nreturn [{ json: { ...definir, smoke_pass, smoke_failures: failures, smoke_details: details, abort_msg_safe } }];"
+      },
+      "typeVersion": 2
+    },
+    {
+      "id": "qa001-smoke-if",
+      "name": "Smoke passou?",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        1320,
+        300
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "smoke-pass-check",
+              "operator": {
+                "type": "boolean",
+                "operation": "true"
+              },
+              "leftValue": "={{ $json.smoke_pass }}"
+            }
+          ]
+        }
+      },
+      "typeVersion": 2
+    },
+    {
+      "id": "qa001-smoke-abort",
+      "name": "Abortar QA",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1540,
+        480
+      ],
+      "parameters": {
+        "url": "=https://api.telegram.org/bot{{ $vars.JAS_TELEGRAM_BOT_TOKEN }}/sendMessage",
+        "method": "POST",
+        "options": {
+          "timeout": 15000
+        },
+        "jsonBody": "={\n  \"chat_id\": \"{{ $vars.JAS_TELEGRAM_CHAT_ID }}\",\n  \"parse_mode\": \"HTML\",\n  \"text\": \"{{ $json.abort_msg_safe }}\"\n}",
+        "sendBody": true,
+        "specifyBody": "json"
+      },
+      "typeVersion": 4.1
     }
   ],
   "connections": {
+    "Smoke DB": {
+      "main": [
+        [
+          {
+            "node": "Smoke HubSpot",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Limpeza DB": {
       "main": [
         [
           {
-            "node": "Limpeza HubSpot Contato",
+            "node": "Enviar Telegram",
             "type": "main",
             "index": 0
           }
@@ -317,11 +404,62 @@
         ]
       ]
     },
+    "Avaliar Smoke": {
+      "main": [
+        [
+          {
+            "node": "Smoke passou?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Definir Teste": {
       "main": [
         [
           {
+            "node": "Smoke DB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Smoke HubSpot": {
+      "main": [
+        [
+          {
+            "node": "Smoke Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Smoke passou?": {
+      "main": [
+        [
+          {
             "node": "Simular Mensagem",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Abortar QA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Smoke Telegram": {
+      "main": [
+        [
+          {
+            "node": "Avaliar Smoke",
             "type": "main",
             "index": 0
           }
@@ -361,17 +499,6 @@
         ]
       ]
     },
-    "Limpeza HubSpot Deal": {
-      "main": [
-        [
-          {
-            "node": "Enviar Telegram",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Aguardar Processamento": {
       "main": [
         [
@@ -405,17 +532,6 @@
         ]
       ]
     },
-    "Limpeza HubSpot Contato": {
-      "main": [
-        [
-          {
-            "node": "Limpeza HubSpot Deal",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Verificar Contato HubSpot": {
       "main": [
         [
@@ -428,6 +544,8 @@
       ]
     }
   },
+  "createdAt": "2026-07-04T15:23:56.079+00:00",
+  "updatedAt": "2026-07-04T15:23:56.079+00:00",
   "settings": {
     "executionOrder": "v1"
   },
@@ -436,5 +554,15 @@
       "recurrenceRules": []
     }
   },
-  "pinData": null
+  "pinData": null,
+  "versionId": "0ad49342-3d5d-4d92-9f13-0a70cd7fd852",
+  "triggerCount": 2,
+  "id": "jas-qa-scenario-001",
+  "meta": null,
+  "parentFolderId": null,
+  "isArchived": false,
+  "versionCounter": 8,
+  "description": null,
+  "activeVersionId": "0ad49342-3d5d-4d92-9f13-0a70cd7fd852",
+  "nodeGroups": []
 }
