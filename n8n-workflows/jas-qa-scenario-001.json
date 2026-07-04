@@ -1,0 +1,440 @@
+{
+  "name": "JAS QA — Cenário 001 Novo Lead",
+  "nodes": [
+    {
+      "id": "qa001-n01",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [
+        0,
+        300
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "triggerAtHour": 3
+            }
+          ]
+        }
+      },
+      "typeVersion": 1.2
+    },
+    {
+      "id": "qa001-n02",
+      "name": "Definir Teste",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        220,
+        300
+      ],
+      "parameters": {
+        "jsCode": "const ts = Date.now();\nreturn [{ json: {\n  test_phone: '+5500000000001',\n  test_phone_raw: '5500000000001',\n  scenario_id: 'QA-001',\n  started_at: new Date().toISOString(),\n  test_msg_id: 'QA001_' + ts\n}}];"
+      },
+      "typeVersion": 2
+    },
+    {
+      "id": "qa001-n03",
+      "name": "Simular Mensagem",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        440,
+        300
+      ],
+      "parameters": {
+        "url": "http://n8n:5678/webhook/jas-intake",
+        "method": "POST",
+        "options": {
+          "timeout": 30000
+        },
+        "jsonBody": "={\n  \"event\": \"messages.upsert\",\n  \"instance\": \"jpx-jas\",\n  \"data\": {\n    \"key\": {\n      \"remoteJid\": \"5500000000001@s.whatsapp.net\",\n      \"fromMe\": false,\n      \"id\": \"{{ $('Definir Teste').item.json.test_msg_id }}\"\n    },\n    \"message\": {\"conversation\": \"Assessment Executivo\"},\n    \"messageType\": \"conversation\",\n    \"pushName\": \"JAS QA Bot\",\n    \"messageTimestamp\": 1720000000\n  }\n}",
+        "sendBody": true,
+        "sendHeaders": true,
+        "specifyBody": "json",
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "x-jas-secret",
+              "value": "={{ $vars.JAS_WEBHOOK_SECRET }}"
+            }
+          ]
+        }
+      },
+      "typeVersion": 4.1
+    },
+    {
+      "id": "qa001-n04",
+      "name": "Aguardar Processamento",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        660,
+        300
+      ],
+      "parameters": {
+        "jsCode": "await new Promise(function(r){setTimeout(r,12000)});\nreturn $input.all();"
+      },
+      "typeVersion": 2
+    },
+    {
+      "id": "qa001-n05",
+      "name": "Verificar DB",
+      "type": "n8n-nodes-base.postgres",
+      "position": [
+        880,
+        300
+      ],
+      "parameters": {
+        "query": "SELECT (SELECT COUNT(*)::int FROM jas_sessions WHERE telefone = '+5500000000001') as session_ok, (SELECT COUNT(*)::int FROM jas_events WHERE session_id IN (SELECT session_id FROM jas_sessions WHERE telefone = '+5500000000001')) as events_count, (SELECT COUNT(*)::int FROM jas_message_dedup WHERE message_id = '{{ $('Definir Teste').item.json.test_msg_id }}') as dedup_ok",
+        "options": {},
+        "operation": "executeQuery"
+      },
+      "credentials": {
+        "postgres": {
+          "id": "e5c4827d-4bd0-4a1c-9504-a4a145d93167",
+          "name": "JAS PostgreSQL"
+        }
+      },
+      "typeVersion": 2.5
+    },
+    {
+      "id": "qa001-n06",
+      "name": "Verificar Contato HubSpot",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1100,
+        300
+      ],
+      "parameters": {
+        "url": "https://api.hubapi.com/crm/v3/objects/contacts/search",
+        "method": "POST",
+        "options": {
+          "timeout": 30000
+        },
+        "jsonBody": "{\"filterGroups\": [{\"filters\": [{\"propertyName\": \"phone\", \"operator\": \"EQ\", \"value\": \"+5500000000001\"}]}], \"properties\": [\"firstname\", \"phone\", \"hs_object_id\"]}",
+        "sendBody": true,
+        "sendHeaders": true,
+        "specifyBody": "json",
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $vars.JAS_HUBSPOT_TOKEN }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        }
+      },
+      "typeVersion": 4.1
+    },
+    {
+      "id": "qa001-n07",
+      "name": "Verificar Deal HubSpot",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1320,
+        300
+      ],
+      "parameters": {
+        "url": "https://api.hubapi.com/crm/v3/objects/deals/search",
+        "method": "POST",
+        "options": {
+          "timeout": 30000
+        },
+        "jsonBody": "{\"filterGroups\": [{\"filters\": [{\"propertyName\": \"dealname\", \"operator\": \"EQ\", \"value\": \"JAS QA Bot \\u2014 WhatsApp JAS\"}]}], \"properties\": [\"dealname\", \"dealstage\"]}",
+        "sendBody": true,
+        "sendHeaders": true,
+        "specifyBody": "json",
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $vars.JAS_HUBSPOT_TOKEN }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        }
+      },
+      "typeVersion": 4.1
+    },
+    {
+      "id": "qa001-n08",
+      "name": "Calcular Resultado",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        1540,
+        300
+      ],
+      "parameters": {
+        "jsCode": "const definir=$('Definir Teste').item.json;\nconst db=$('Verificar DB').item.json;\nconst hsContact=$('Verificar Contato HubSpot').item.json;\nconst hsDeal=$('Verificar Deal HubSpot').item.json;\nconst started=new Date(definir.started_at);\nconst elapsed=((Date.now()-started.getTime())/1000).toFixed(1);\nconst contact_id=((hsContact.results||[])[0]||{}).id||null;\nconst deal_id=((hsDeal.results||[])[0]||{}).id||null;\nconst checks=[\n  ['Sessao criada (DB)',(db.session_ok||0)>=1],\n  ['Eventos registrados (min 2)',(db.events_count||0)>=2],\n  ['Mensagem dedupada (DB)',(db.dedup_ok||0)>=1],\n  ['Contato HubSpot criado',(hsContact.total||0)>=1],\n  ['Deal HubSpot criado',(hsDeal.total||0)>=1],\n];\nconst passed=checks.filter(function(c){return c[1];}).length;\nconst failed=checks.length-passed;\nconst ok=failed===0;\nconst lines=[];\nlines.push('<b>JAS-QA</b> Cenario 001');\nlines.push('<b>STATUS: '+(ok?'PASS ✅':'FAIL ❌')+'</b> Tempo: '+elapsed+'s ('+passed+'/'+checks.length+')');\nfor(var i=0;i<checks.length;i++){\n  lines.push((checks[i][1]?'☑':'☒')+' '+checks[i][0]);\n}\nif(failed>0){lines.push('⚠️ Verificar execucoes n8n');}\nconst report_tg=lines.join('\\n');\nconst report_safe=JSON.stringify(report_tg).slice(1,-1);\nreturn [{json:{report:report_tg,report_safe:report_safe,status:ok?'PASS':'FAIL',passed:passed,failed:failed,elapsed:elapsed,contact_id:contact_id,deal_id:deal_id}}];"
+      },
+      "typeVersion": 2
+    },
+    {
+      "id": "qa001-n09",
+      "name": "Limpeza DB",
+      "type": "n8n-nodes-base.postgres",
+      "onError": "continueRegularOutput",
+      "position": [
+        1760,
+        300
+      ],
+      "parameters": {
+        "query": "DELETE FROM jas_events WHERE session_id IN (SELECT session_id FROM jas_sessions WHERE telefone = '+5500000000001'); DELETE FROM jas_sessions WHERE telefone = '+5500000000001'; DELETE FROM jas_message_dedup WHERE message_id LIKE 'QA001_%';",
+        "options": {},
+        "operation": "executeQuery"
+      },
+      "credentials": {
+        "postgres": {
+          "id": "e5c4827d-4bd0-4a1c-9504-a4a145d93167",
+          "name": "JAS PostgreSQL"
+        }
+      },
+      "typeVersion": 2.5
+    },
+    {
+      "id": "qa001-n10",
+      "name": "Limpeza HubSpot Contato",
+      "type": "n8n-nodes-base.httpRequest",
+      "onError": "continueRegularOutput",
+      "position": [
+        1980,
+        300
+      ],
+      "parameters": {
+        "url": "=https://api.hubapi.com/crm/v3/objects/contacts/{{ $('Calcular Resultado').item.json.contact_id }}",
+        "method": "DELETE",
+        "options": {
+          "timeout": 15000
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $vars.JAS_HUBSPOT_TOKEN }}"
+            }
+          ]
+        }
+      },
+      "typeVersion": 4.1
+    },
+    {
+      "id": "qa001-n11",
+      "name": "Limpeza HubSpot Deal",
+      "type": "n8n-nodes-base.httpRequest",
+      "onError": "continueRegularOutput",
+      "position": [
+        2200,
+        300
+      ],
+      "parameters": {
+        "url": "=https://api.hubapi.com/crm/v3/objects/deals/{{ $('Calcular Resultado').item.json.deal_id }}",
+        "method": "DELETE",
+        "options": {
+          "timeout": 15000
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $vars.JAS_HUBSPOT_TOKEN }}"
+            }
+          ]
+        }
+      },
+      "typeVersion": 4.1
+    },
+    {
+      "id": "qa001-n12",
+      "name": "Enviar Telegram",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        2420,
+        300
+      ],
+      "parameters": {
+        "url": "=https://api.telegram.org/bot{{ $vars.JAS_TELEGRAM_BOT_TOKEN }}/sendMessage",
+        "method": "POST",
+        "options": {
+          "timeout": 15000
+        },
+        "jsonBody": "={\n  \"chat_id\": \"{{ $vars.JAS_TELEGRAM_CHAT_ID }}\",\n  \"parse_mode\": \"HTML\",\n  \"text\": \"{{ $('Calcular Resultado').item.json.report_safe }}\"\n}",
+        "sendBody": true,
+        "specifyBody": "json"
+      },
+      "typeVersion": 4.1
+    },
+    {
+      "id": "qa001-n00",
+      "name": "Webhook Manual Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        0,
+        500
+      ],
+      "webhookId": "qa001-manual-webhook",
+      "parameters": {
+        "path": "jas-qa-run",
+        "options": {},
+        "httpMethod": "POST",
+        "responseMode": "lastNode"
+      },
+      "typeVersion": 2
+    }
+  ],
+  "connections": {
+    "Limpeza DB": {
+      "main": [
+        [
+          {
+            "node": "Limpeza HubSpot Contato",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verificar DB": {
+      "main": [
+        [
+          {
+            "node": "Verificar Contato HubSpot",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Definir Teste": {
+      "main": [
+        [
+          {
+            "node": "Simular Mensagem",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Definir Teste",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simular Mensagem": {
+      "main": [
+        [
+          {
+            "node": "Aguardar Processamento",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calcular Resultado": {
+      "main": [
+        [
+          {
+            "node": "Limpeza DB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limpeza HubSpot Deal": {
+      "main": [
+        [
+          {
+            "node": "Enviar Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aguardar Processamento": {
+      "main": [
+        [
+          {
+            "node": "Verificar DB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verificar Deal HubSpot": {
+      "main": [
+        [
+          {
+            "node": "Calcular Resultado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Definir Teste",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limpeza HubSpot Contato": {
+      "main": [
+        [
+          {
+            "node": "Limpeza HubSpot Deal",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verificar Contato HubSpot": {
+      "main": [
+        [
+          {
+            "node": "Verificar Deal HubSpot",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "pinData": null
+}
