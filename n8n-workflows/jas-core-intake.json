@@ -1,5 +1,6 @@
 {
   "name": "jas_core_intake_webhook",
+  "active": true,
   "nodes": [
     {
       "id": "a1b2c3d4-0001-0001-0001-000000000001",
@@ -77,7 +78,7 @@
         300
       ],
       "parameters": {
-        "jsCode": "const payload = $input.first().json;\nconst _raw = payload.body || payload;\nconst data = _raw.data;\n\nif (!data || !data.key || !data.message) {\n  return [];\n}\n\nconst remoteJid = data.key.remoteJid || '';\nconst isGroup = remoteJid.includes('@g.us');\nif (isGroup) return [];\n\nconst phoneRaw = remoteJid.replace('@s.whatsapp.net', '');\nconst phone = '+' + phoneRaw;\n\nconst messageType = data.messageType || '';\nlet text = '';\nif (messageType === 'conversation') {\n  text = data.message.conversation || '';\n} else if (messageType === 'extendedTextMessage') {\n  text = data.message?.extendedTextMessage?.text || '';\n} else {\n  return [];\n}\n\nif (!text.trim()) return [];\n\nreturn [{\n  json: {\n    phone,\n    phone_raw: phoneRaw,\n    text: text.trim(),\n    push_name: data.pushName || 'Visitante',\n    message_id: data.key.id,\n    message_type: messageType,\n    timestamp: new Date().toISOString(),\n    instance: payload.instance || ''\n  }\n}];"
+        "jsCode": "const payload = $input.first().json;\nconst _raw = payload.body || payload;\nconst data = _raw.data;\n\nif (!data || !data.key || !data.message) {\n  return [];\n}\n\nconst remoteJid = data.key.remoteJid || '';\nconst isGroup = remoteJid.includes('@g.us');\nif (isGroup) return [];\n\nconst phoneRaw = remoteJid.replace('@s.whatsapp.net', '').replace('@lid', '');\nconst phone = '+' + phoneRaw;\n\nconst messageType = data.messageType || '';\nlet text = '';\nif (messageType === 'conversation') {\n  text = data.message.conversation || '';\n} else if (messageType === 'extendedTextMessage') {\n  text = data.message?.extendedTextMessage?.text || '';\n} else {\n  return [];\n}\n\nif (!text.trim()) return [];\n\nreturn [{\n  json: {\n    phone,\n    phone_raw: phoneRaw,\n    text: text.trim(),\n    push_name: data.pushName || 'Visitante',\n    message_id: data.key.id,\n    message_type: messageType,\n    timestamp: new Date().toISOString(),\n    instance: payload.instance || ''\n  }\n}];"
       },
       "typeVersion": 2
     },
@@ -765,9 +766,24 @@
       ]
     }
   },
+  "createdAt": "2026-07-03T13:16:24.786+00:00",
+  "updatedAt": "2026-07-03T13:17:43.678+00:00",
   "settings": {
     "executionOrder": "v1"
   },
   "staticData": null,
-  "pinData": null
+  "pinData": null,
+  "versionId": "100c878e-dd8a-40b9-9fa2-27448d3392e7",
+  "triggerCount": 1,
+  "id": "jas-core-intake-v1-0",
+  "meta": {
+    "templateCredsSetupCompleted": false,
+    "instanceId": "jas"
+  },
+  "parentFolderId": null,
+  "isArchived": false,
+  "versionCounter": 19,
+  "description": null,
+  "activeVersionId": "100c878e-dd8a-40b9-9fa2-27448d3392e7",
+  "nodeGroups": []
 }
