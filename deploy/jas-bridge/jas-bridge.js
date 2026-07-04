@@ -15,6 +15,22 @@ if (!fs.existsSync(AUTH_DIR)) fs.mkdirSync(AUTH_DIR, { recursive: true });
 let currentQR = null;
 let isConnected = false;
 
+// Contas WhatsApp Business recentes usam LID (Linked Identity) em vez do número real.
+// O Baileys emite contacts.upsert com o mapeamento lid → jid real, que populamos aqui.
+// Sem esse mapa, o remoteJid chegaria como "156560416366649@lid" no n8n — ilegível como telefone.
+const lidMap = new Map();
+
+function resolveJid(jid) {
+  if (!jid || !jid.endsWith('@lid')) return jid;
+  const resolved = lidMap.get(jid);
+  if (resolved) {
+    console.log('[bridge] LID→JID:', jid, '→', resolved);
+    return resolved;
+  }
+  console.warn('[bridge] LID não resolvido:', jid);
+  return jid;
+}
+
 function postToN8N(payload) {
   const body = JSON.stringify(payload);
   const opts = {
@@ -83,6 +99,13 @@ async function start() {
   });
 
   sock.ev.on('creds.update', saveCreds);
+
+  sock.ev.on('contacts.upsert', (contacts) => {
+    for (const c of contacts) {
+      if (c.id && c.lid) lidMap.set(c.lid, c.id);
+    }
+  });
+
   sock.ev.on('connection.update', ({ qr, connection, lastDisconnect }) => {
     if (qr) { currentQR = qr; console.log('[bridge] QR gerado'); }
     if (connection === 'open') { isConnected = true; currentQR = null; console.log('[bridge] Conectado!'); }
@@ -99,15 +122,18 @@ async function start() {
     for (const msg of messages) {
       if (msg.key.fromMe) continue;
       const msgType = msg.message ? Object.keys(msg.message)[0] : 'unknown';
+      const remoteJid = msg.key.remoteJid;
+      const resolvedJid = resolveJid(remoteJid);
       postToN8N({
         event: 'messages.upsert',
         instance: INSTANCE,
         data: {
-          key: msg.key,
+          key: { ...msg.key, remoteJid: resolvedJid },
           message: msg.message || {},
           messageType: msgType,
           pushName: msg.pushName || '',
-          messageTimestamp: msg.messageTimestamp
+          messageTimestamp: msg.messageTimestamp,
+          ...(resolvedJid !== remoteJid && { originalJid: remoteJid })
         }
       });
     }
