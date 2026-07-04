@@ -491,6 +491,37 @@
         }
       },
       "typeVersion": 2
+    },
+    {
+      "id": "a1b2c3d4-0001-0001-0001-000000000021",
+      "name": "Autenticar request",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        220,
+        300
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "leftValue": "",
+            "caseSensitive": false,
+            "typeValidation": "strict"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "webhook-secret-check",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              },
+              "leftValue": "={{ $json.headers['x-jas-secret'] }}",
+              "rightValue": "={{ $vars.JAS_WEBHOOK_SECRET }}"
+            }
+          ]
+        }
+      },
+      "typeVersion": 2
     }
   ],
   "connections": {
@@ -597,6 +628,24 @@
         []
       ]
     },
+    "Autenticar request": {
+      "main": [
+        [
+          {
+            "node": "É mensagem válida?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ignorar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Criar Deal HubSpot": {
       "main": [
         [
@@ -686,7 +735,7 @@
             "index": 0
           },
           {
-            "node": "É mensagem válida?",
+            "node": "Autenticar request",
             "type": "main",
             "index": 0
           }
@@ -719,5 +768,6 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "staticData": null
+  "staticData": null,
+  "pinData": null
 }
