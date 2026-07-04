@@ -13,7 +13,7 @@ services:
     environment:
       - N8N_URL=http://n8n:5678
       - AUTH_DIR=/data/auth
-      - NODE_TLS_REJECT_UNAUTHORIZED=0
+      - JAS_WEBHOOK_SECRET=${JAS_WEBHOOK_SECRET}
     command: sh -c "apk add --no-cache git python3 make g++ && npm install --production && node jas-bridge.js"
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://localhost:3001/health"]

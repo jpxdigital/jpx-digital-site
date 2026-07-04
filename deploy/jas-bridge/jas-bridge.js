@@ -6,6 +6,7 @@ const fs = require('fs');
 const AUTH_DIR = process.env.AUTH_DIR || '/data/auth';
 const N8N_URL = process.env.N8N_URL || 'http://n8n:5678';
 const WEBHOOK_PATH = '/webhook/jas-intake';
+const WEBHOOK_SECRET = process.env.JAS_WEBHOOK_SECRET || '';
 const PORT = 3001;
 const INSTANCE = 'jpx-jas';
 
@@ -19,7 +20,7 @@ function postToN8N(payload) {
   const opts = {
     hostname: 'n8n', port: 5678, path: WEBHOOK_PATH,
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) }
+    headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body), 'x-jas-secret': WEBHOOK_SECRET }
   };
   const req = http.request(opts, r => { r.resume(); console.log('[n8n]', r.statusCode); });
   req.on('error', e => console.error('[n8n erro]', e.message));

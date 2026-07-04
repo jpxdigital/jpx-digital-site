@@ -6,6 +6,7 @@ dist/
 # Variáveis de ambiente e segredos — NUNCA commitar
 .env
 .env.*
+!.env.example
 .env.local
 .env.deploy
 KEYS.md
