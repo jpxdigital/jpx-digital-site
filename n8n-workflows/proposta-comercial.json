@@ -1,0 +1,421 @@
+{
+  "id": "83e497fe-12ce-45e1-b571-ccb60e8e435b",
+  "name": "JPX — Gerar Proposta Comercial",
+  "nodes": [
+    {
+      "id": "32c43ed5-fbcb-4d88-b8c6-0fc112c59524",
+      "name": "HubSpot — Deal: Proposta Solicitada",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "jpx-gerar-proposta-v1",
+      "parameters": {
+        "path": "gerar-proposta",
+        "httpMethod": "POST",
+        "responseData": "firstEntryJson",
+        "responseMode": "onReceived"
+      },
+      "typeVersion": 2
+    },
+    {
+      "id": "a926313c-9712-407c-8d55-ec294faf5f09",
+      "name": "Filtrar — estágio Proposta Solicitada",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        200,
+        0
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "filter-proposta-solicitada",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              },
+              "leftValue": "={{ $json.body[0].propertyValue }}",
+              "rightValue": "1385066797"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "717f8c06-aa15-4912-95ae-6e7cfe064a3e",
+      "name": "HubSpot — Buscar deal completo",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        400,
+        0
+      ],
+      "parameters": {
+        "url": "={{ 'https://api.hubapi.com/crm/v3/objects/deals/' + $('HubSpot — Deal: Proposta Solicitada').item.json.body[0].objectId + '?properties=dealname,service_slug,description,dealstage,amount' }}",
+        "method": "GET",
+        "options": {},
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth"
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "0tBBhPLXQvbcqoya",
+          "name": "HubSpot PAT Bearer"
+        }
+      },
+      "typeVersion": 4
+    },
+    {
+      "id": "c69e3b2a-7d79-453f-a170-5acb727652f6",
+      "name": "HubSpot — Buscar contato do deal",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        400,
+        160
+      ],
+      "parameters": {
+        "url": "={{ 'https://api.hubapi.com/crm/v4/objects/deals/' + $('HubSpot — Buscar deal completo').item.json.id + '/associations/contacts' }}",
+        "method": "GET",
+        "options": {},
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth"
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "0tBBhPLXQvbcqoya",
+          "name": "HubSpot PAT Bearer"
+        }
+      },
+      "typeVersion": 4
+    },
+    {
+      "id": "03d24205-f469-4b7f-9de9-e8145fadd523",
+      "name": "HubSpot — Dados do contato",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        600,
+        160
+      ],
+      "parameters": {
+        "url": "={{ 'https://api.hubapi.com/crm/v3/objects/contacts/' + $json.results[0].toObjectId + '?properties=firstname,lastname,email,company,phone' }}",
+        "method": "GET",
+        "options": {},
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth"
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "0tBBhPLXQvbcqoya",
+          "name": "HubSpot PAT Bearer"
+        }
+      },
+      "typeVersion": 4
+    },
+    {
+      "id": "61fadfa7-4fac-4dd7-bade-27f04f28a052",
+      "name": "Ler JSON do serviço",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        600,
+        0
+      ],
+      "parameters": {
+        "url": "=https://jpxdigital.com.br/api/services/{{ $('HubSpot — Buscar deal completo').item.json.properties.service_slug }}",
+        "method": "GET",
+        "options": {}
+      }
+    },
+    {
+      "id": "b4d5d45d-729f-4052-95d7-b361a35a565a",
+      "name": "Parse JSON do serviço",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        800,
+        0
+      ],
+      "parameters": {
+        "values": {
+          "object": [
+            {
+              "name": "service",
+              "value": "={{ $json }}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "2ab5c30b-6e30-42d3-96cf-363cef4e091b",
+      "name": "Adicionar num aos steps",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        800,
+        160
+      ],
+      "parameters": {
+        "jsCode": "const items = $input.all();\nreturn items.map(item => {\n  const service = JSON.parse(JSON.stringify(item.json));\n  if (service.process && Array.isArray(service.process.steps)) {\n    service.process.steps = service.process.steps.map((s, i) => Object.assign({}, s, { num: i + 1 }));\n  }\n  return { json: { service: service } };\n});"
+      },
+      "typeVersion": 2
+    },
+    {
+      "id": "3e2f8df0-6bed-4525-82d5-df9caadd0c43",
+      "name": "Montar payload do template",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        1000,
+        0
+      ],
+      "parameters": {
+        "jsCode": "const contact = $('HubSpot — Dados do contato').item.json;\nconst deal = $('HubSpot — Buscar deal completo').item.json;\nconst service = $('Adicionar num aos steps').item.json.service;\n\nconst now = new Date();\nconst fmt = (d) => d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });\nconst company = (contact.properties && contact.properties.company) || '';\nconst slug = (deal.properties && deal.properties.service_slug) || '';\nconst proposalNum = 'JPX-' + now.getFullYear() + '-' + String(deal.id).slice(-3).padStart(3, '0');\nconst outputPath = 'propostas/' + now.toISOString().slice(0, 7) + '/'\n  + company.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '-' + slug + '.pdf';\n\nreturn [{\n  json: {\n    template: 'proposta',\n    data: {\n      client: {\n        name: (contact.properties && contact.properties.firstname) || '',\n        contact: ((contact.properties && contact.properties.firstname) || '') + ' ' + ((contact.properties && contact.properties.lastname) || ''),\n        company: company,\n        cnpj: null,\n        email: (contact.properties && contact.properties.email) || '',\n        segment: (deal.properties && deal.properties.segment) || ''\n      },\n      service: service,\n      meta: {\n        date: fmt(now),\n        proposalNumber: proposalNum,\n        validUntil: fmt(new Date(now.getTime() + 30*24*60*60*1000)),\n        outputPath: outputPath\n      }\n    }\n  }\n}];\n"
+      },
+      "typeVersion": 2
+    },
+    {
+      "id": "55383ea2-c31c-4758-83d0-e951c53764c9",
+      "name": "Gerar PDF — pdf.jpxdigital.com.br",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1200,
+        0
+      ],
+      "parameters": {
+        "url": "https://pdf.jpxdigital.com.br/generate-upload",
+        "method": "POST",
+        "options": {
+          "timeout": 90000
+        },
+        "sendBody": true,
+        "contentType": "form-urlencoded",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "payload",
+              "value": "={{ JSON.stringify($('Montar payload do template').item.json) }}"
+            }
+          ]
+        }
+      },
+      "typeVersion": 4
+    },
+    {
+      "id": "1a83992a-eb1a-476e-934f-44f8a1e625f6",
+      "name": "HubSpot — Atualizar deal",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1800,
+        0
+      ],
+      "parameters": {
+        "url": "={{ 'https://api.hubapi.com/crm/v3/objects/deals/' + $('HubSpot — Buscar deal completo').item.json.id }}",
+        "method": "PATCH",
+        "options": {},
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "keypair",
+        "authentication": "genericCredentialType",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "properties",
+              "value": "={{ {proposal_pdf_url: $('Gerar PDF — pdf.jpxdigital.com.br').item.json.url, proposal_sent_date: $now.toISO(), dealstage: '1385078826'} }}"
+            }
+          ]
+        },
+        "genericAuthType": "httpHeaderAuth"
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "0tBBhPLXQvbcqoya",
+          "name": "HubSpot PAT Bearer"
+        }
+      },
+      "typeVersion": 4
+    },
+    {
+      "id": "90342e5e-2281-4f80-b9db-1f9dc7fc01db",
+      "name": "Zoho SMTP — Enviar proposta ao cliente",
+      "type": "n8n-nodes-base.emailSend",
+      "position": [
+        2000,
+        0
+      ],
+      "webhookId": "d2c78e2f-0448-416a-b035-b490ce36f883",
+      "parameters": {
+        "message": "={{ '<p>Olá, ' + $('HubSpot — Dados do contato').item.json.properties.firstname + '.</p><p>Preparamos sua proposta comercial personalizada.</p><p><a href=\"' + $('Gerar PDF — pdf.jpxdigital.com.br').item.json.url + '\" style=\"background:#0078D4;color:#fff;padding:12px 24px;border-radius:6px;text-decoration:none;font-weight:bold;\">📄 Acessar Proposta</a></p><p><small>Link válido por 7 dias. Proposta ' + $('Gerar PDF — pdf.jpxdigital.com.br').item.json.proposalNumber + '.</small></p><p>Qualquer dúvida, responda este email.<br>Equipe JPX Digital</p>' }}",
+        "subject": "={{ 'Proposta JPX Digital — ' + $('HubSpot — Dados do contato').item.json.properties.firstname }}",
+        "toEmail": "={{ $('HubSpot — Dados do contato').item.json.properties.email }}",
+        "emailType": "html",
+        "fromEmail": "contato@jpxdigital.com.br"
+      },
+      "credentials": {
+        "smtp": {
+          "id": "hEzP8XDq6BtBfKXR",
+          "name": "Zoho SMTP"
+        }
+      }
+    },
+    {
+      "id": "e133a393-d294-4d4e-8292-7e308f272b56",
+      "name": "Telegram — Notificação interna",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        2000,
+        160
+      ],
+      "webhookId": "29d6af58-7960-405f-ab8a-1d145dc22c28",
+      "parameters": {
+        "text": "={{ 'Proposta gerada!\\n\\nCliente: ' + $('HubSpot — Dados do contato').item.json.properties.firstname + ' ' + $('HubSpot — Dados do contato').item.json.properties.lastname + '\\nEmpresa: ' + ($('HubSpot — Dados do contato').item.json.properties.company || '-') + '\\nProposta: ' + $('Gerar PDF — pdf.jpxdigital.com.br').item.json.proposalNumber + '\\nE-mail enviado ao cliente.' }}",
+        "chatId": "8384975992",
+        "additionalFields": {
+          "parse_mode": ""
+        }
+      },
+      "credentials": {
+        "telegramApi": {
+          "id": "GhT4VtdGZs9ElIrA",
+          "name": "Telegram JPX Bot"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "HubSpot — Deal: Proposta Solicitada": {
+      "main": [
+        [
+          {
+            "node": "Filtrar — estágio Proposta Solicitada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filtrar — estágio Proposta Solicitada": {
+      "main": [
+        [
+          {
+            "node": "HubSpot — Buscar deal completo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HubSpot — Buscar deal completo": {
+      "main": [
+        [
+          {
+            "node": "HubSpot — Buscar contato do deal",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HubSpot — Buscar contato do deal": {
+      "main": [
+        [
+          {
+            "node": "HubSpot — Dados do contato",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HubSpot — Dados do contato": {
+      "main": [
+        [
+          {
+            "node": "Ler JSON do serviço",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ler JSON do serviço": {
+      "main": [
+        [
+          {
+            "node": "Parse JSON do serviço",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse JSON do serviço": {
+      "main": [
+        [
+          {
+            "node": "Adicionar num aos steps",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Adicionar num aos steps": {
+      "main": [
+        [
+          {
+            "node": "Montar payload do template",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Montar payload do template": {
+      "main": [
+        [
+          {
+            "node": "Gerar PDF — pdf.jpxdigital.com.br",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gerar PDF — pdf.jpxdigital.com.br": {
+      "main": [
+        [
+          {
+            "node": "HubSpot — Atualizar deal",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HubSpot — Atualizar deal": {
+      "main": [
+        [
+          {
+            "node": "Zoho SMTP — Enviar proposta ao cliente",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Telegram — Notificação interna",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null
+}
