@@ -669,6 +669,56 @@
         }
       },
       "typeVersion": 2.5
+    },
+    {
+      "id": "intake-is-human-takeover",
+      "name": "É HUMAN_TAKEOVER?",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        2160,
+        500
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "check-notificar",
+              "operator": {
+                "type": "boolean",
+                "operation": "true"
+              },
+              "leftValue": "={{ $('Processar Estado').item.json.notificar_dono }}"
+            }
+          ]
+        }
+      },
+      "typeVersion": 2
+    },
+    {
+      "id": "intake-telegram-human-takeover",
+      "name": "Notificar João — HUMAN_TAKEOVER",
+      "type": "n8n-nodes-base.httpRequest",
+      "onError": "continueRegularOutput",
+      "position": [
+        2380,
+        400
+      ],
+      "parameters": {
+        "url": "=https://api.telegram.org/bot{{ $vars.JAS_TELEGRAM_BOT_TOKEN }}/sendMessage",
+        "method": "POST",
+        "options": {
+          "timeout": 10000
+        },
+        "jsonBody": "={\n  \"chat_id\": \"{{ $vars.JAS_TELEGRAM_CHAT_ID }}\",\n  \"text\": \"🚨 *Lead solicitou atendimento humano!*\\n\\n👤 *Nome:* {{ $('Processar Estado').item.json.push_name }}\\n📱 *Telefone:* +{{ $('Processar Estado').item.json.phone_raw }}\\n💼 *Interesse:* {{ $('Processar Estado').item.json.contexto_str }}\\n\\nAcesse o HubSpot e entre em contato pessoalmente.\",\n  \"parse_mode\": \"Markdown\"\n}",
+        "sendBody": true,
+        "specifyBody": "json"
+      },
+      "typeVersion": 4.1
     }
   ],
   "connections": {
@@ -821,6 +871,17 @@
         ]
       ]
     },
+    "Atualizar Sessão": {
+      "main": [
+        [
+          {
+            "node": "É HUMAN_TAKEOVER?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "É mensagem nova?": {
       "main": [
         [
@@ -871,6 +932,18 @@
             "index": 0
           }
         ]
+      ]
+    },
+    "É HUMAN_TAKEOVER?": {
+      "main": [
+        [
+          {
+            "node": "Notificar João — HUMAN_TAKEOVER",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
       ]
     },
     "Extrair e Normalizar": {
@@ -997,7 +1070,7 @@
   },
   "parentFolderId": null,
   "isArchived": false,
-  "versionCounter": 20,
+  "versionCounter": 21,
   "description": null,
   "activeVersionId": "100c878e-dd8a-40b9-9fa2-27448d3392e7",
   "nodeGroups": []
