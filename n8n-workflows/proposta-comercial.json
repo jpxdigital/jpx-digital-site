@@ -257,8 +257,8 @@
       },
       "credentials": {
         "smtp": {
-          "id": "hEzP8XDq6BtBfKXR",
-          "name": "Zoho SMTP"
+          "id": "WgJQhvWq8zsqFbSW",
+          "name": "Resend SMTP"
         }
       }
     },
