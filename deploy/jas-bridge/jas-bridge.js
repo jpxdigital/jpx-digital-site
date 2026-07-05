@@ -17,9 +17,9 @@ let isConnected = false;
 
 // Contas WhatsApp Business recentes usam LID (Linked Identity) em vez do número real.
 // contacts.upsert/update populam o mapa lid → jid quando o Baileys sincroniza o contato.
-// Fallback: converte @lid → @s.whatsapp.net, que o WhatsApp aceita para envio/recebimento.
-// O número real só fica disponível após o Baileys receber o contacts.upsert desse contato.
-const lidMap = new Map();
+// lidSenders guarda digits → @lid JID original para usar no /send de volta ao remetente.
+const lidMap = new Map();     // lid@lid → phone@s.whatsapp.net (contacts.upsert)
+const lidSenders = new Map(); // digits  → jid original (@lid ou @s.whatsapp.net)
 
 function resolveJid(jid) {
   if (!jid || !jid.endsWith('@lid')) return jid;
@@ -132,6 +132,8 @@ async function start() {
       if (msg.key.fromMe) continue;
       const msgType = msg.message ? Object.keys(msg.message)[0] : 'unknown';
       const remoteJid = msg.key.remoteJid;
+      const digits = remoteJid.replace(/@.*/, '');
+      lidSenders.set(digits, remoteJid);
       const resolvedJid = resolveJid(remoteJid);
       postToN8N({
         event: 'messages.upsert',
@@ -171,9 +173,10 @@ http.createServer((req, res) => {
           res.writeHead(503, { 'Content-Type': 'application/json' });
           return res.end(JSON.stringify({ error: 'WhatsApp not connected' }));
         }
-        const jid = number.replace(/\D/g, '') + '@s.whatsapp.net';
+        const digits = number.replace(/\D/g, '');
+        const jid = lidSenders.get(digits) || (digits + '@s.whatsapp.net');
         await sockRef.sendMessage(jid, { text });
-        console.log('[bridge] Mensagem enviada para', jid);
+        console.log('[bridge] Mensagem enviada para', jid, lidSenders.has(digits) ? '(LID map)' : '(fallback)');
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ ok: true }));
       } catch (e) {
