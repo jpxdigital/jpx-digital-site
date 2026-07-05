@@ -720,6 +720,22 @@
         "specifyBody": "json"
       },
       "typeVersion": 4.1
+    },
+    {
+      "id": "384eb791-79f6-4f57-8cd0-c6e041ede5ae",
+      "name": "Aguardar 2s",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2090,
+        240
+      ],
+      "webhookId": "6147dde3-98cf-4475-8919-982b91470526",
+      "parameters": {
+        "resume": "timeInterval",
+        "amount": 2,
+        "unit": "seconds"
+      }
     }
   ],
   "connections": {
@@ -727,7 +743,7 @@
       "main": [
         [
           {
-            "node": "Enviar Boas-vindas",
+            "node": "Aguardar 2s",
             "type": "main",
             "index": 0
           }
@@ -1047,6 +1063,17 @@
         [
           {
             "node": "Atualizar Estado MENU",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aguardar 2s": {
+      "main": [
+        [
+          {
+            "node": "Enviar Boas-vindas",
             "type": "main",
             "index": 0
           }
