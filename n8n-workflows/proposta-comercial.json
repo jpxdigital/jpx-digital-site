@@ -253,7 +253,7 @@
         "subject": "={{ 'Proposta JPX Digital — ' + $('HubSpot — Dados do contato').item.json.properties.firstname }}",
         "toEmail": "={{ $('HubSpot — Dados do contato').item.json.properties.email }}",
         "emailType": "html",
-        "fromEmail": "contato@jpxdigital.com.br"
+        "fromEmail": "comercial@jpxdigital.com.br"
       },
       "credentials": {
         "smtp": {
