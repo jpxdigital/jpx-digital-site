@@ -220,7 +220,7 @@
         220
       ],
       "parameters": {
-        "query": "INSERT INTO jas_sessions (correlation_id, telefone, estado, push_name, ultima_interacao, workflow_atual) VALUES (jas_generate_correlation_id(), '{{ $('Extrair e Normalizar').item.json.phone }}', 'NEW', '{{ $('Extrair e Normalizar').item.json.push_name }}', NOW(), 'jas_core_level0_welcome') RETURNING session_id, correlation_id",
+        "query": "INSERT INTO jas_sessions (correlation_id, telefone, estado, push_name, ultima_interacao, workflow_atual) VALUES (jas_generate_correlation_id(), '{{ $('Extrair e Normalizar').item.json.phone }}', 'NEW', '{{ $('Extrair e Normalizar').item.json.push_name }}', NOW(), 'jas_core_level0_welcome') RETURNING session_id, correlation_id, estado, contexto",
         "options": {},
         "operation": "executeQuery"
       },
