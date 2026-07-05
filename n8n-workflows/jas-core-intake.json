@@ -687,12 +687,13 @@
           "combinator": "and",
           "conditions": [
             {
-              "id": "check-notificar",
+              "id": "check-human-takeover",
               "operator": {
-                "type": "boolean",
-                "operation": "true"
+                "type": "string",
+                "operation": "equals"
               },
-              "leftValue": "={{ $('Processar Estado').item.json.notificar_dono }}"
+              "leftValue": "={{ $json.novo_estado }}",
+              "rightValue": "HUMAN_TAKEOVER"
             }
           ]
         }
@@ -838,6 +839,11 @@
             "node": "Tem resposta?",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "É HUMAN_TAKEOVER?",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -873,13 +879,7 @@
     },
     "Atualizar Sessão": {
       "main": [
-        [
-          {
-            "node": "É HUMAN_TAKEOVER?",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "É mensagem nova?": {
@@ -1070,7 +1070,7 @@
   },
   "parentFolderId": null,
   "isArchived": false,
-  "versionCounter": 21,
+  "versionCounter": 23,
   "description": null,
   "activeVersionId": "100c878e-dd8a-40b9-9fa2-27448d3392e7",
   "nodeGroups": []
