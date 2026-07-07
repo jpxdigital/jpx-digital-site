@@ -563,7 +563,7 @@
         500
       ],
       "parameters": {
-        "jsCode": "const session = $('Resolver Sessão').item.json;\nconst norm    = $('Extrair e Normalizar').item.json;\nconst phone_raw = norm.phone_raw;\nconst rawText   = (norm.text || '').trim();\nconst text      = rawText.toLowerCase();\nconst estado    = session.estado || 'MENU';\nconst pushName  = norm.push_name || 'visitante';\nconst sessionId = session.session_id;\n\nconst calUrl = $vars.JAS_CALCOM_LINK_ASSESSMENT || 'https://cal.com/jpxdigital';\nconst MENU_MSG = 'Selecione o tema de interesse:\\n\\n1  Assessment Executivo\\n2  Cloud e Modernização\\n3  Backup e Disaster Recovery\\n4  FinOps\\n5  Segurança e Resiliência\\n6  Não encontrei a opção que preciso';\n\nlet resposta = '';\nlet novoEstado = estado;\nlet contextoObj = {};\nlet notificarDono = false;\n\nif (estado === 'MENU') {\n  const match1 = /^1$|assessment/i.test(text);\n  const match2 = /^2$|cloud|moderni/i.test(text);\n  const match3 = /^3$|backup|disaster|recovery/i.test(text);\n  const match4 = /^4$|finops|fin ops|custo|cloud cost/i.test(text);\n  const match5 = /^5$|seguran|resili|cibern/i.test(text);\n  const match6 = /^6$/.test(text);\n\n  if (match6) {\n    resposta = '*JPX DIGITAL*\\n\\nPerfeito.\\n\\nPara que possamos direcionar sua solicitação corretamente, descreva em poucas palavras qual é sua necessidade. Um de nossos consultores dará continuidade ao atendimento com base nas informações fornecidas.';\n    novoEstado = 'DESCOBERTA';\n    contextoObj = { servico: 'Descoberta' };\n    notificarDono = false;\n  } else {\n    const servicoMap = [\n      [match1, 'Assessment Executivo'],\n      [match2, 'Cloud e Modernização'],\n      [match3, 'Backup e Disaster Recovery'],\n      [match4, 'FinOps'],\n      [match5, 'Segurança e Resiliência']\n    ];\n    const found = servicoMap.find(function(s){ return s[0]; });\n    if (found) {\n      const servico = found[1];\n      resposta = '*JPX DIGITAL*\\n\\n*' + servico + '* selecionado.\\n\\nUm de nossos consultores conduz um Assessment Executivo gratuito de 30 minutos — diagnóstico real, sem proposta genérica.\\n\\nGostaria de agendar agora? Responda *sim* para receber o link';\n      novoEstado = 'AGENDAMENTO';\n      contextoObj = { servico: servico };\n    } else {\n      resposta = '*JPX DIGITAL*\\n\\nNão reconheci sua escolha.\\n\\nSelecione o tema:\\n\\n' + MENU_MSG;\n    }\n  }\n\n} else if (estado === 'AGENDAMENTO') {\n  if (/^s$|^sim$|^quero$|^ok$|^yes$|^claro$|^pode$|^vamos$|^bora$/.test(text)) {\n    resposta = '*JPX DIGITAL*\\n\\nLink para agendamento:\\n\\n' + calUrl + '\\n\\nNosso consultor aguarda você.';\n    novoEstado = 'LINK_ENVIADO';\n  } else if (/^n$|^nao$|^não$|^no$/.test(text)) {\n    resposta = '*JPX DIGITAL*\\n\\nSem problema. Quando quiser agendar, responda *sim*';\n  } else {\n    resposta = '*JPX DIGITAL*\\n\\nPara agendar, responda *sim*.\\nCaso prefira não agendar agora, responda *não*';\n  }\n\n} else if (estado === 'DESCOBERTA') {\n  novoEstado = 'HUMAN_TAKEOVER';\n  notificarDono = true;\n  contextoObj = { servico: 'Descoberta', necessidade: rawText };\n  resposta = '*JPX DIGITAL*\\n\\nObrigado. Um de nossos consultores receberá suas informações e entrará em contato em breve.';\n\n} else if (estado === 'LINK_ENVIADO') {\n  resposta = '*JPX DIGITAL*\\n\\n' + pushName + ', nosso consultor aguarda você no horário escolhido.\\n\\nQualquer dúvida antes da reunião, escreva aqui';\n\n} else if (estado === 'HUMAN_TAKEOVER') {\n  resposta = '*JPX DIGITAL*\\n\\nUm de nossos consultores está ciente do seu contato e entrará em breve.\\n\\nObrigado pela paciência';\n\n} else {\n  resposta = '';\n}\n\nconst resposta_safe = resposta ? JSON.stringify(resposta).slice(1, -1) : '';\nconst contexto_str  = JSON.stringify(contextoObj);\n\nconst contexto_label = contextoObj.necessidade ? 'Descoberta: ' + contextoObj.necessidade : (contextoObj.servico || '');\n\nreturn [{ json: {\n  push_name: pushName,\n  contexto_label,\n  phone_raw,\n  session_id:     sessionId,\n  estado_atual:   estado,\n  novo_estado:    novoEstado,\n  contexto_str,\n  resposta,\n  resposta_safe,\n  enviar:         resposta !== '',\n  notificar_dono: notificarDono\n}}];"
+        "jsCode": "const session = $('Resolver Sessão').item.json;\nconst norm    = $('Extrair e Normalizar').item.json;\nconst phone_raw = norm.phone_raw;\nconst rawText   = (norm.text || '').trim();\nconst text      = rawText.toLowerCase();\nconst estado    = session.estado || 'MENU';\nconst pushName  = norm.push_name || 'visitante';\nconst sessionId = session.session_id;\nconst normPhone = norm.phone;\n\nconst calUrl = $vars.JAS_CALCOM_LINK_ASSESSMENT || 'https://cal.com/jpxdigital';\nconst MENU_MSG = 'Selecione o tema de interesse:\\n\\n1  Assessment Executivo\\n2  Cloud e Modernização\\n3  Backup e Disaster Recovery\\n4  FinOps\\n5  Segurança e Resiliência\\n6  Não encontrei a opção que preciso';\n\nlet resposta = '';\nlet novoEstado = estado;\nlet contextoObj = {};\nlet notificarDono = false;\nlet atualizarHubspot = false;\nlet hsPrimeiro = '';\nlet hsUltimo = '';\nlet hsEmpresa = '';\n\nif (estado === 'MENU') {\n  const match1 = /^1$|assessment/i.test(text);\n  const match2 = /^2$|cloud|moderni/i.test(text);\n  const match3 = /^3$|backup|disaster|recovery/i.test(text);\n  const match4 = /^4$|finops|fin ops|custo|cloud cost/i.test(text);\n  const match5 = /^5$|seguran|resili|cibern/i.test(text);\n  const match6 = /^6$/.test(text);\n\n  if (match6) {\n    resposta = '*JPX DIGITAL*\\n\\nPerfeito.\\n\\nPara que possamos direcionar sua solicitação corretamente, descreva em poucas palavras qual é sua necessidade. Um de nossos consultores dará continuidade ao atendimento com base nas informações fornecidas.';\n    novoEstado = 'DESCOBERTA';\n    contextoObj = { servico: 'Descoberta' };\n    notificarDono = false;\n  } else {\n    const servicoMap = [\n      [match1, 'Assessment Executivo'],\n      [match2, 'Cloud e Modernização'],\n      [match3, 'Backup e Disaster Recovery'],\n      [match4, 'FinOps'],\n      [match5, 'Segurança e Resiliência']\n    ];\n    const found = servicoMap.find(function(s){ return s[0]; });\n    if (found) {\n      const servico = found[1];\n      resposta = '*JPX DIGITAL*\\n\\n*' + servico + '* selecionado.\\n\\nPara personalizar o atendimento, qual seu *nome completo*?';\n      novoEstado = 'COLETANDO_NOME';\n      contextoObj = { servico: servico };\n    } else {\n      resposta = '*JPX DIGITAL*\\n\\nNão reconheci sua escolha.\\n\\nSelecione o tema:\\n\\n' + MENU_MSG;\n    }\n  }\n\n} else if (estado === 'COLETANDO_NOME') {\n  contextoObj = { nome_completo: rawText };\n  resposta = '*JPX DIGITAL*\\n\\nE qual a *empresa*?';\n  novoEstado = 'COLETANDO_EMPRESA';\n\n} else if (estado === 'COLETANDO_EMPRESA') {\n  const ctxAtual = JSON.parse(session.contexto || '{}');\n  const nomeCompleto = ctxAtual.nome_completo || pushName;\n  const partes = nomeCompleto.trim().split(/\\s+/);\n  hsPrimeiro = partes[0] || nomeCompleto;\n  hsUltimo   = partes.slice(1).join(' ');\n  hsEmpresa  = rawText;\n\n  contextoObj = { empresa: rawText };\n  atualizarHubspot = true;\n  novoEstado = 'LINK_ENVIADO';\n  resposta = '*JPX DIGITAL*\\n\\nObrigado, ' + hsPrimeiro + '.\\n\\nSegue o link para agendar seu Assessment Executivo — 30 minutos, sem custo:\\n\\n' + calUrl + '\\n\\nNosso consultor aguarda você.';\n\n} else if (estado === 'AGENDAMENTO') {\n  if (/^s$|^sim$|^quero$|^ok$|^yes$|^claro$|^pode$|^vamos$|^bora$/.test(text)) {\n    resposta = '*JPX DIGITAL*\\n\\nLink para agendamento:\\n\\n' + calUrl + '\\n\\nNosso consultor aguarda você.';\n    novoEstado = 'LINK_ENVIADO';\n  } else if (/^n$|^nao$|^não$|^no$/.test(text)) {\n    resposta = '*JPX DIGITAL*\\n\\nSem problema. Quando quiser agendar, responda *sim*';\n  } else {\n    resposta = '*JPX DIGITAL*\\n\\nPara agendar, responda *sim*.\\nCaso prefira não agendar agora, responda *não*';\n  }\n\n} else if (estado === 'DESCOBERTA') {\n  novoEstado = 'HUMAN_TAKEOVER';\n  notificarDono = true;\n  contextoObj = { servico: 'Descoberta', necessidade: rawText };\n  resposta = '*JPX DIGITAL*\\n\\nObrigado. Um de nossos consultores receberá suas informações e entrará em contato em breve.';\n\n} else if (estado === 'LINK_ENVIADO') {\n  resposta = '*JPX DIGITAL*\\n\\n' + pushName + ', nosso consultor aguarda você no horário escolhido.\\n\\nQualquer dúvida antes da reunião, escreva aqui';\n\n} else if (estado === 'HUMAN_TAKEOVER') {\n  resposta = '*JPX DIGITAL*\\n\\nUm de nossos consultores está ciente do seu contato e entrará em breve.\\n\\nObrigado pela paciência';\n\n} else {\n  resposta = '';\n}\n\nconst resposta_safe = resposta ? JSON.stringify(resposta).slice(1, -1) : '';\nconst contexto_str  = JSON.stringify(contextoObj);\n\nconst contexto_label = contextoObj.necessidade ? 'Descoberta: ' + contextoObj.necessidade : (contextoObj.servico || '');\n\nreturn [{ json: {\n  push_name:         pushName,\n  contexto_label,\n  phone_raw,\n  norm_phone:        normPhone,\n  session_id:        sessionId,\n  estado_atual:      estado,\n  novo_estado:       novoEstado,\n  contexto_str,\n  resposta,\n  resposta_safe,\n  enviar:            resposta !== '',\n  notificar_dono:    notificarDono,\n  atualizar_hubspot: atualizarHubspot,\n  hs_firstname:      hsPrimeiro,\n  hs_lastname:       hsUltimo,\n  hs_empresa:        hsEmpresa\n}}];"
       },
       "typeVersion": 2
     },
@@ -736,6 +736,101 @@
         "amount": 2,
         "unit": "seconds"
       }
+    },
+    {
+      "id": "jas-atualizar-hs-check",
+      "name": "Atualizar HS?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        2380,
+        680
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "check-atualizar-hs",
+              "operator": {
+                "type": "boolean",
+                "operation": "true"
+              },
+              "leftValue": "={{ $json.atualizar_hubspot }}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jas-buscar-hs-atualizar",
+      "name": "Buscar HS p/ Atualizar",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2600,
+        680
+      ],
+      "parameters": {
+        "url": "=https://api.hubapi.com/crm/v3/objects/contacts/search",
+        "method": "POST",
+        "options": {
+          "timeout": 30000
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"filterGroups\":[{\"filters\":[{\"propertyName\":\"phone\",\"operator\":\"EQ\",\"value\":\"{{ $json.norm_phone }}\"}]}],\"properties\":[\"hs_object_id\"]}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $vars.JAS_HUBSPOT_TOKEN }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jas-atualizar-contato-hs",
+      "name": "Atualizar Contato HubSpot",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2820,
+        680
+      ],
+      "parameters": {
+        "url": "={{ 'https://api.hubapi.com/crm/v3/objects/contacts/' + $json.results[0].id }}",
+        "method": "PATCH",
+        "options": {
+          "timeout": 30000
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"properties\": {\n    \"firstname\": \"{{ $('Processar Estado').item.json.hs_firstname }}\",\n    \"lastname\": \"{{ $('Processar Estado').item.json.hs_lastname }}\",\n    \"company\": \"{{ $('Processar Estado').item.json.hs_empresa }}\"\n  }\n}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $vars.JAS_HUBSPOT_TOKEN }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        }
+      }
     }
   ],
   "connections": {
@@ -858,6 +953,11 @@
           },
           {
             "node": "É HUMAN_TAKEOVER?",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Atualizar HS?",
             "type": "main",
             "index": 0
           }
@@ -1074,6 +1174,29 @@
         [
           {
             "node": "Enviar Boas-vindas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Atualizar HS?": {
+      "main": [
+        [
+          {
+            "node": "Buscar HS p/ Atualizar",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Buscar HS p/ Atualizar": {
+      "main": [
+        [
+          {
+            "node": "Atualizar Contato HubSpot",
             "type": "main",
             "index": 0
           }
