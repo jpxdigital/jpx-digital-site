@@ -40,11 +40,11 @@ jobs:
             # Aguardar container inicializar
             sleep 5
 
-            # Health check — aguarda até 30s (6x5s)
+            # Health check — aguarda processo HTTP subir (200=conectado, 503=reconectando WA)
             for i in $(seq 1 6); do
               STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:3001/health)
-              if [ "$STATUS" = "200" ]; then
-                echo "✓ jas-bridge saudável (HTTP $STATUS)"
+              if [ "$STATUS" = "200" ] || [ "$STATUS" = "503" ]; then
+                echo "✓ jas-bridge respondendo (HTTP $STATUS)"
                 exit 0
               fi
               echo "Aguardando... ($i/6) — HTTP $STATUS"
