@@ -133,6 +133,9 @@ async function start() {
       const msgType = msg.message ? Object.keys(msg.message)[0] : 'unknown';
       const remoteJid = msg.key.remoteJid;
       const digits = remoteJid.replace(/@.*/, '');
+      if (remoteJid.endsWith('@lid')) {
+        console.log('[bridge] MSG COMPLETO @lid:', JSON.stringify(msg, null, 2));
+      }
       lidSenders.set(digits, remoteJid);
       const resolvedJid = resolveJid(remoteJid);
       postToN8N({
