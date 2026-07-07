@@ -28,10 +28,9 @@ function resolveJid(jid) {
     console.log('[bridge] LID→JID (map):', jid, '→', resolved);
     return resolved;
   }
-  // Fallback: @lid → @s.whatsapp.net funciona para envio; n8n extrai só os dígitos
-  const fallback = jid.replace('@lid', '@s.whatsapp.net');
-  console.warn('[bridge] LID sem mapeamento, fallback:', jid, '→', fallback);
-  return fallback;
+  // Manter @lid original — o LID não é número de telefone, não converter para @s.whatsapp.net
+  console.log('[bridge] LID sem mapeamento, mantendo @lid:', jid);
+  return jid;
 }
 
 function postToN8N(payload) {
@@ -175,13 +174,12 @@ http.createServer((req, res) => {
         }
         const digits = number.replace(/\D/g, '');
 
-        // @lid é como o chip 2 enxerga o contato (privacidade WA Business), não como o WA roteia.
-        // Sempre preferir @s.whatsapp.net para garantia de entrega; @lid causa descarte silencioso
-        // na primeira mensagem. Retry seguindo JAS-STD-001 §4: 2 tentativas, 1s → 3s.
+        // Para contatos @lid: lidSenders guarda o JID original (@lid) — usar primeiro.
+        // Baileys roteia respostas pelo @lid corretamente; @s.whatsapp.net do LID é JID falso.
+        // Retry seguindo JAS-STD-001 §4: 2 tentativas, 1s → 3s.
+        const lidJid   = lidSenders.get(digits); // @lid original se disponível
         const phoneJid = digits + '@s.whatsapp.net';
-        const lidJid   = lidSenders.get(digits); // pode ser @lid ou @s.whatsapp.net
-        const attempts = [phoneJid];
-        if (lidJid && lidJid !== phoneJid) attempts.push(lidJid);
+        const attempts = lidJid ? [lidJid, phoneJid] : [phoneJid];
         const delays   = [0, 1000, 3000];
 
         let sent = false;
