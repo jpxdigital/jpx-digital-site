@@ -37,17 +37,14 @@ jobs:
             cd ~/jas-bridge
             docker compose restart jas-bridge
 
-            # Aguardar container inicializar
-            sleep 5
-
-            # Health check — aguarda processo HTTP subir (200=conectado, 503=reconectando WA)
+            # Aguardar container inicializar (porta 3001 não publicada no host — usar docker exec)
             for i in $(seq 1 6); do
-              STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:3001/health)
-              if [ "$STATUS" = "200" ] || [ "$STATUS" = "503" ]; then
-                echo "✓ jas-bridge respondendo (HTTP $STATUS)"
+              STATUS=$(docker exec jas-bridge wget -qO- http://localhost:3001/health 2>/dev/null | grep -c "connected" || echo "0")
+              if [ "$STATUS" != "0" ]; then
+                echo "✓ jas-bridge respondendo"
                 exit 0
               fi
-              echo "Aguardando... ($i/6) — HTTP $STATUS"
+              echo "Aguardando... ($i/6)"
               sleep 5
             done
 
