@@ -133,9 +133,6 @@ async function start() {
       const msgType = msg.message ? Object.keys(msg.message)[0] : 'unknown';
       const remoteJid = msg.key.remoteJid;
       const digits = remoteJid.replace(/@.*/, '');
-      if (remoteJid.endsWith('@lid')) {
-        console.log('[bridge] MSG COMPLETO @lid:', JSON.stringify(msg, null, 2));
-      }
       lidSenders.set(digits, remoteJid);
       const resolvedJid = resolveJid(remoteJid);
       postToN8N({
@@ -177,9 +174,31 @@ http.createServer((req, res) => {
           return res.end(JSON.stringify({ error: 'WhatsApp not connected' }));
         }
         const digits = number.replace(/\D/g, '');
-        const jid = lidSenders.get(digits) || (digits + '@s.whatsapp.net');
-        await sockRef.sendMessage(jid, { text });
-        console.log('[bridge] Mensagem enviada para', jid, lidSenders.has(digits) ? '(LID map)' : '(fallback)');
+
+        // @lid é como o chip 2 enxerga o contato (privacidade WA Business), não como o WA roteia.
+        // Sempre preferir @s.whatsapp.net para garantia de entrega; @lid causa descarte silencioso
+        // na primeira mensagem. Retry seguindo JAS-STD-001 §4: 2 tentativas, 1s → 3s.
+        const phoneJid = digits + '@s.whatsapp.net';
+        const lidJid   = lidSenders.get(digits); // pode ser @lid ou @s.whatsapp.net
+        const attempts = [phoneJid];
+        if (lidJid && lidJid !== phoneJid) attempts.push(lidJid);
+        const delays   = [0, 1000, 3000];
+
+        let sent = false;
+        let lastError = null;
+        for (let i = 0; i < attempts.length && !sent; i++) {
+          if (delays[i]) await new Promise(r => setTimeout(r, delays[i]));
+          try {
+            await sockRef.sendMessage(attempts[i], { text });
+            console.log(`[bridge] Mensagem enviada para ${attempts[i]} (tentativa ${i + 1})`);
+            sent = true;
+          } catch (e) {
+            console.warn(`[bridge /send] Tentativa ${i + 1} falhou (${attempts[i]}):`, e.message);
+            lastError = e;
+          }
+        }
+
+        if (!sent) throw lastError;
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ ok: true }));
       } catch (e) {
