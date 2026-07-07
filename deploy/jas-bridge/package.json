@@ -1,6 +1,6 @@
 {
   "name": "jas-bridge",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "dependencies": {
     "baileys": "6.7.18"
   }
