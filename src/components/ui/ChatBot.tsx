@@ -18,6 +18,8 @@ type Step =
   | 'servico_certificado'
   | 'suporte_cliente'
   | 'fim_form'
+  | 'fim_agendar'
+  | 'fim_whatsapp'
   | 'fim_email'
   | 'fim_pagina'
   | 'fim_certificado'
@@ -139,8 +141,19 @@ const FLOW: Record<Step, { msg: string; options?: Option[]; cta?: { label: strin
     ],
   },
   fim_form: {
-    msg: 'Perfeito! Preencha o formulário de contato e um especialista retornará em até 1 dia útil.',
-    cta: { label: 'Abrir formulário de contato', href: '/contato' },
+    msg: 'Como prefere dar o próximo passo?',
+    options: [
+      { label: 'Agendar reunião — 30 min', next: 'fim_agendar', userText: 'Quero agendar uma reunião' },
+      { label: 'Falar pelo WhatsApp', next: 'fim_whatsapp', userText: 'Prefiro pelo WhatsApp' },
+    ],
+  },
+  fim_agendar: {
+    msg: 'Escolha o melhor horário — 30 minutos, sem custo. Nossa agenda está disponível abaixo.',
+    cta: { label: 'Agendar conversa →', href: 'https://outlook.office.com/bookwithme/user/66cb66d8a4f04443ac6724f4dee2dc37@jpxdigital.com.br/meetingtype/AOK95PFdhEOl1ANn8yVfrA2?anonymous&ismsaljsauthenabled&ep=mlink' },
+  },
+  fim_whatsapp: {
+    msg: 'Nosso WhatsApp responde em instantes — canal direto com nossa equipe.',
+    cta: { label: 'Abrir WhatsApp →', href: 'https://wa.me/5518981890607' },
   },
   fim_email: {
     msg: 'Para suporte, entre em contato pelo e-mail jp@jpxdigital.com.br informando o problema e seu ambiente. Retornamos em até 4 horas.',
