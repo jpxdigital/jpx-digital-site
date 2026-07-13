@@ -831,6 +831,39 @@
           ]
         }
       }
+    },
+    {
+      "id": "a1b2c3d4-0001-0001-0001-000000000034",
+      "name": "Enviar BV Retorno",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        2420,
+        440
+      ],
+      "parameters": {
+        "url": "={{ $vars.JAS_EVOLUTION_URL }}/send",
+        "method": "POST",
+        "options": {
+          "timeout": 20000
+        },
+        "jsonBody": "={\n  \"number\": \"{{ $('Extrair e Normalizar').item.json.phone_raw }}\",\n  \"text\": \"*JPX DIGITAL*\\n_Consultoria de Infraestrutura Crítica_\\n\\nBem-vindo.\\n\\nSelecione o tema de interesse:\\n\\n1  Assessment Executivo\\n_Diagnóstico real da sua infraestrutura_\\n\\n2  Cloud e Modernização\\n_Migração, otimização e modernização_\\n\\n3  Backup e Disaster Recovery\\n_Proteção, recuperação e continuidade_\\n\\n4  FinOps\\n_Redução de custos em nuvem_\\n\\n5  Segurança e Resiliência\\n_Proteção cibernética e gestão de riscos_\\n\\n6  Não encontrei a opção que preciso\"\n}",
+        "sendBody": true,
+        "sendHeaders": true,
+        "specifyBody": "json",
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $vars.JAS_EVOLUTION_API_KEY }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        }
+      },
+      "typeVersion": 4.1
     }
   ],
   "connections": {
@@ -845,7 +878,7 @@
         ],
         [
           {
-            "node": "Notificar João — Telegram",
+            "node": "Enviar BV Retorno",
             "type": "main",
             "index": 0
           }
@@ -1197,6 +1230,17 @@
         [
           {
             "node": "Atualizar Contato HubSpot",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar BV Retorno": {
+      "main": [
+        [
+          {
+            "node": "Notificar João — Telegram",
             "type": "main",
             "index": 0
           }
