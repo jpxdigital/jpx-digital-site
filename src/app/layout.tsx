@@ -67,7 +67,7 @@ const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': ['Organization', 'LocalBusiness'],
   name: 'JPX Digital',
-  alternateName: 'Zerofill Tecnologia',
+  alternateName: 'JPX Digital Tecnologia',
   url: 'https://jpxdigital.com.br',
   logo: 'https://jpxdigital.com.br/logo.png',
   description:

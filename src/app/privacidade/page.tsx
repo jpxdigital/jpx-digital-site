@@ -5,7 +5,7 @@ import { Footer } from '@/components/layout/Footer'
 
 export const metadata: Metadata = {
   title: 'Política de Privacidade',
-  description: 'Política de Privacidade da JPX Digital / Zerofill Tecnologia LTDA. Como coletamos, usamos e protegemos seus dados pessoais conforme a LGPD.',
+  description: 'Política de Privacidade da JPX Digital / JPX Digital Tecnologia LTDA. Como coletamos, usamos e protegemos seus dados pessoais conforme a LGPD.',
   alternates: { canonical: 'https://jpxdigital.com.br/privacidade' },
   robots: { index: false },
 }
@@ -29,7 +29,7 @@ export default function PrivacidadePage() {
             <section>
               <h2 className="font-heading text-lg font-bold text-gray-900 mb-3">1. Controlador dos Dados</h2>
               <p className="text-gray-700">
-                <strong>Zerofill Tecnologia LTDA</strong>, inscrita no CNPJ 47.782.852/0001-08, com sede no Brasil, doravante denominada <strong>JPX Digital</strong>, é a controladora dos dados pessoais tratados neste site.
+                <strong>JPX Digital Tecnologia LTDA</strong>, inscrita no CNPJ 57.454.973/0001-18, com sede no Brasil, doravante denominada <strong>JPX Digital</strong>, é a controladora dos dados pessoais tratados neste site.
               </p>
               <p className="text-gray-700 mt-3">
                 Para exercer seus direitos ou entrar em contato sobre privacidade: <a href="mailto:privacidade@jpxdigital.com.br" className="text-blue-600 hover:underline">privacidade@jpxdigital.com.br</a>
