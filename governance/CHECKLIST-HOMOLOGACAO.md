@@ -5,7 +5,8 @@
 **Responsável:** João Martins
 
 Legenda de prioridade: 🔴 P0 Bloqueador · 🟠 P1 Alta · 🟡 P2 Média · 🟢 P3 Baixa
-Legenda de status: ✅ OK · ❌ FALHA · ⏭️ PULADO (justificar)
+Legenda de resultado: ✅ OK · ❌ FALHA · ⏭️ PULADO (justificar)
+Coluna Evidência: screenshot / URL / log / "n8n exec #NNN" — o que comprova o resultado
 
 > **Critério de aprovação por fase:**
 > - H1 Técnica: zero P0 com falha
@@ -22,7 +23,7 @@ Data de execução: ___________ Resultado: [ ] APROVADO [ ] REPROVADO
 
 ## H1.1 — Site
 
-| # | Teste | Como testar | Critério de aceite | P | Status | Obs |
+| # | Teste | Como testar | Critério de aceite | P | Resultado | Evidência |
 |---|---|---|---|---|---|---|
 | 001 | Home carrega | https://jpxdigital.com.br | Página exibe sem erro JS | 🟠 | | |
 | 002 | HTTPS redirect | http://jpxdigital.com.br | Redireciona para HTTPS | 🔴 | | |
@@ -39,7 +40,7 @@ Data de execução: ___________ Resultado: [ ] APROVADO [ ] REPROVADO
 
 ## H1.2 — Microsoft 365 / Exchange
 
-| # | Teste | Como testar | Critério de aceite | P | Status | Obs |
+| # | Teste | Como testar | Critério de aceite | P | Resultado | Evidência |
 |---|---|---|---|---|---|---|
 | 013 | Receber e-mail | Enviar para jp@jpxdigital.com.br | E-mail chega no Outlook | 🔴 | | |
 | 014 | Alias contato@ | Enviar para contato@jpxdigital.com.br | Chega em joao@ | 🔴 | | |
@@ -51,7 +52,7 @@ Data de execução: ___________ Resultado: [ ] APROVADO [ ] REPROVADO
 
 ## H1.3 — Microsoft Bookings
 
-| # | Teste | Como testar | Critério de aceite | P | Status | Obs |
+| # | Teste | Como testar | Critério de aceite | P | Resultado | Evidência |
 |---|---|---|---|---|---|---|
 | 020 | Link abre | Clicar no link da assinatura | Página de agendamento carrega | 🔴 | | |
 | 021 | Horários corretos | Ver calendário | Seg–Qui disponível, Sex–Dom bloqueados | 🔴 | | |
@@ -61,7 +62,7 @@ Data de execução: ___________ Resultado: [ ] APROVADO [ ] REPROVADO
 
 ## H1.4 — HubSpot CRM
 
-| # | Teste | Como testar | Critério de aceite | P | Status | Obs |
+| # | Teste | Como testar | Critério de aceite | P | Resultado | Evidência |
 |---|---|---|---|---|---|---|
 | 025 | Pipeline visível | HubSpot → Negócios | Pipeline JPX com 8 estágios | 🔴 | | |
 | 026 | Propriedades Deal | Abrir um deal | Grupo "Dados Comerciais JPX" com 12 propriedades | 🟠 | | |
@@ -71,7 +72,7 @@ Data de execução: ___________ Resultado: [ ] APROVADO [ ] REPROVADO
 
 ## H1.5 — n8n e Workflows
 
-| # | Teste | Como testar | Critério de aceite | P | Status | Obs |
+| # | Teste | Como testar | Critério de aceite | P | Resultado | Evidência |
 |---|---|---|---|---|---|---|
 | 030 | n8n acessível | n8n.jpxdigital.com.br | Painel carrega e login funciona | 🔴 | | |
 | 031 | WF-001 JAS Core ativo | Lista de workflows | jas-core-intake-v1-0 = "Active" | 🔴 | | |
@@ -83,7 +84,7 @@ Data de execução: ___________ Resultado: [ ] APROVADO [ ] REPROVADO
 
 ## H1.6 — PDF Service
 
-| # | Teste | Como testar | Critério de aceite | P | Status | Obs |
+| # | Teste | Como testar | Critério de aceite | P | Resultado | Evidência |
 |---|---|---|---|---|---|---|
 | 037 | Health check | https://pdf.jpxdigital.com.br/health | Retorna 200 | 🟠 | | |
 | 038 | Gerar proposta | Executar WF-004 via n8n | PDF gerado com logo e dados corretos | 🟠 | | |
@@ -91,7 +92,7 @@ Data de execução: ___________ Resultado: [ ] APROVADO [ ] REPROVADO
 
 ## H1.7 — Monitoramento
 
-| # | Teste | Como testar | Critério de aceite | P | Status | Obs |
+| # | Teste | Como testar | Critério de aceite | P | Resultado | Evidência |
 |---|---|---|---|---|---|---|
 | 040 | Grafana acessível | SSH tunnel → http://localhost:3001 | Dashboard carrega | 🟡 | | |
 | 041 | Prometheus targets | Grafana → Explore → targets | 4 VMs com status UP | 🟡 | | |
@@ -99,7 +100,7 @@ Data de execução: ___________ Resultado: [ ] APROVADO [ ] REPROVADO
 
 ## H1.8 — Segurança
 
-| # | Teste | Como testar | Critério de aceite | P | Status | Obs |
+| # | Teste | Como testar | Critério de aceite | P | Resultado | Evidência |
 |---|---|---|---|---|---|---|
 | 043 | Cloudflare WAF | Cloudflare → Security → WAF | Regras ativas | 🟠 | | |
 | 044 | Rate limiting | 10+ POSTs rápidos para /api/leads | 429 após limite | 🟡 | | |
@@ -118,7 +119,7 @@ Data de execução: ___________ Resultado: [ ] APROVADO [ ] REPROVADO
 
 ## H2.1 — Formulário Site → HubSpot
 
-| # | Teste | Como testar | Critério de aceite | P | Status | Obs |
+| # | Teste | Como testar | Critério de aceite | P | Resultado | Evidência |
 |---|---|---|---|---|---|---|
 | 047 | Formulário renderiza | /contato | Campos visíveis e funcionais | 🟠 | | |
 | 048 | Validação obrigatórios | Submeter vazio | Erro nos campos, não envia | 🟠 | | |
@@ -130,7 +131,7 @@ Data de execução: ___________ Resultado: [ ] APROVADO [ ] REPROVADO
 
 ## H2.2 — Helena Chatbot
 
-| # | Teste | Como testar | Critério de aceite | P | Status | Obs |
+| # | Teste | Como testar | Critério de aceite | P | Resultado | Evidência |
 |---|---|---|---|---|---|---|
 | 054 | Helena abre | Clicar no ícone no site | Janela abre com boas-vindas | 🟠 | | |
 | 055 | Navegar em serviço | Selecionar "Backup Corporativo" | Resposta relevante exibida | 🟡 | | |
@@ -142,7 +143,7 @@ Data de execução: ___________ Resultado: [ ] APROVADO [ ] REPROVADO
 
 > Testar com número pessoal (+55 18 9 3085-2246)
 
-| # | Teste | Como testar | Critério de aceite | P | Status | Obs |
+| # | Teste | Como testar | Critério de aceite | P | Resultado | Evidência |
 |---|---|---|---|---|---|---|
 | 059 | Boas-vindas | Enviar "Oi" para chip 2 | Receber *JPX DIGITAL* + menu em até 10s | 🔴 | | |
 | 060 | Menu com 6 opções | Ver mensagem | 6 opções numeradas com descrição em itálico | 🔴 | | |
@@ -159,7 +160,7 @@ Data de execução: ___________ Resultado: [ ] APROVADO [ ] REPROVADO
 
 ## H2.4 — Geração de Documentos
 
-| # | Teste | Como testar | Critério de aceite | P | Status | Obs |
+| # | Teste | Como testar | Critério de aceite | P | Resultado | Evidência |
 |---|---|---|---|---|---|---|
 | 071 | Proposta via n8n | Executar WF-004/005 com dados de teste | PDF com logo, nome do cliente e serviço corretos | 🟠 | | |
 | 072 | SOW via n8n | Executar WF-010 | PDF gerado sem erro | 🟠 | | |
@@ -168,7 +169,7 @@ Data de execução: ___________ Resultado: [ ] APROVADO [ ] REPROVADO
 
 ## H2.5 — Identidade e Integridade
 
-| # | Teste | Como testar | Critério de aceite | P | Status | Obs |
+| # | Teste | Como testar | Critério de aceite | P | Resultado | Evidência |
 |---|---|---|---|---|---|---|
 | 075 | Logo e-mail | https://jpxdigital.com.br/jpx-logo-email.png | Imagem carrega | 🟠 | | |
 | 076 | Assinatura HTML | https://jpxdigital.com.br/assinatura-joao.html | Layout correto: logo, contatos, botão Bookings | 🟠 | | |

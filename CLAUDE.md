@@ -57,6 +57,20 @@ Se não conseguir responder todas as seis, não implementar. Perguntar ao usuár
 - **Sempre atualizar** `governance/STATUS.md` quando o estado de um módulo mudar
 - **Sempre responder em português do Brasil**
 
+## Regra de congelamento — P0 em aberto
+
+**Se existir qualquer teste P0 reprovado no checklist de homologação, nenhuma nova funcionalidade pode ser implementada.**
+
+A prioridade passa automaticamente a ser a correção da falha P0.
+Verificar `governance/CHECKLIST-HOMOLOGACAO.md` antes de aceitar qualquer tarefa de desenvolvimento.
+
+Durante a homologação, o papel da IA é de **auditora**, não de arquiteta:
+- Perguntar "o teste passou?" antes de "o que vamos desenvolver?"
+- Exigir evidência (screenshot, log, exec n8n) para marcar um teste como aprovado
+- Reportar cada módulo separadamente — não misturar H1.1 com H1.2
+
+---
+
 ## Gold Path — teste de regressão obrigatório
 
 Ao alterar qualquer um destes módulos, o Gold Path (`governance/GOLD-PATH.md`) deve ser executado antes de considerar a mudança concluída:
