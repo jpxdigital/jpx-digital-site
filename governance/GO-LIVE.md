@@ -55,6 +55,24 @@ Abrir este documento no dia da liberação para prospecção.
 
 ---
 
+## KPIs obrigatórios
+
+Medir antes de assinar o GO-LIVE. Todos os P0 devem estar dentro da meta.
+
+| Indicador | Meta | Como medir | P | Resultado | Status |
+|---|---|---|---|---|---|
+| Disponibilidade do site | ≥ 99,9% | Grafana / Cloudflare Analytics (últimos 7 dias) | 🔴 | | |
+| Tempo de resposta formulário | < 3 s | DevTools → Network → POST /api/leads | 🔴 | | |
+| Contato criado no HubSpot | < 10 s | Timestamp submissão vs. timestamp criação no HubSpot | 🔴 | | |
+| Deal criado no HubSpot | < 10 s | Junto com o contato | 🔴 | | |
+| Entrega boas-vindas WhatsApp (JAS) | < 15 s | Cronometrar da mensagem enviada à resposta recebida | 🔴 | | |
+| Confirmação do Bookings (e-mail) | < 30 s | Timestamp agendamento vs. timestamp e-mail | 🟠 | | |
+| Geração de proposta PDF | < 60 s | Tempo de execução do WF-004 no n8n | 🟠 | | |
+| Falhas P0 no Gold Path | 0 | GOLD-PATH.md executado | 🔴 | | |
+| Execuções com erro no n8n (últimas 24h) | 0 nos workflows críticos | n8n → Execuções → filtrar por erro | 🔴 | | |
+
+---
+
 ## Decisão
 
 ```
