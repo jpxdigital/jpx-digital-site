@@ -5,6 +5,24 @@ Formato: `[DATA] Módulo — Descrição (commit ou referência)`
 
 ---
 
+## 2026-07-14
+
+- `[GOVERNANÇA]` CHECKLIST-HOMOLOGACAO.md: 78 testes H1+H2, colunas P/Evidência/Ação, prioridades P0–P3
+- `[GOVERNANÇA]` GOLD-PATH.md: 26 steps Lead → Cliente — regressão obrigatória pré-GO-LIVE
+- `[GOVERNANÇA]` GO-LIVE.md: checklist + 9 KPIs com metas (uptime, latência, e2e)
+- `[GOVERNANÇA]` HOMOLOGATION-REPORT.md: template de laudo formal
+- `[GOVERNANÇA]` ROLLBACK.md: 7 cenários com passos e contingência
+- `[GOVERNANÇA]` OPERATIONS.md: rotinas de abertura/encerramento, incidentes P0–P3, recuperação
+- `[GOVERNANÇA]` CLAUDE.md criado na raiz: 6 perguntas obrigatórias + regra P0 + ciclo de release
+- `[GOVERNANÇA]` SPRINT.md reordenado: Fase 1 Homologação antes de LinkedIn/Econodata
+- `[HOMOLOGAÇÃO]` H1.1 Site: 12/12 APROVADO — falha P2 Schema.org corrigida (commit `4ed0c37`)
+- `[HOMOLOGAÇÃO]` H1.2 M365: INTERROMPIDA — P0 016 (envio bloqueado 550 5.7.708 AS(8562))
+- `[HOMOLOGAÇÃO]` H1.2 013/014/015: PASS — todos os aliases recebem e-mail
+- `[HOMOLOGAÇÃO]` H1.2 017: PASS — DNS completo e correto (MX/SPF/DKIM/DMARC)
+- `[HOMOLOGAÇÃO]` H1.2 018: PASS — assinatura instalada no Outlook
+- `[JMS]` JMS-COM-009 criado: padrão de experiência do cliente (SLAs, fluxos, régua de cuidado)
+- `[HOMOLOGAÇÃO]` Pasta `homologacao/2026-07-13/` criada com README e subpastas de evidências
+
 ## 2026-07-13
 
 - `[GOVERNANÇA]` Criada pasta `governance/` com STATUS, ROADMAP, SPRINT, CHANGELOG, RELEASES, SYSTEM_MAP, WORKFLOW_REGISTRY
