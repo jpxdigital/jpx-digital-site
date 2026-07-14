@@ -3,267 +3,219 @@
 
 **Objetivo:** validar que todos os sistemas funcionam ponta a ponta antes da prospecção ativa.
 **Responsável:** João Martins
-**Data de execução:** ___________
-**Resultado final:** [ ] APROVADO  [ ] REPROVADO
 
+Legenda de prioridade: 🔴 P0 Bloqueador · 🟠 P1 Alta · 🟡 P2 Média · 🟢 P3 Baixa
 Legenda de status: ✅ OK · ❌ FALHA · ⏭️ PULADO (justificar)
 
----
-
-## MÓDULO 1 — Site (jpxdigital.com.br)
-
-### 1.1 Carregamento e navegação
-
-| # | Teste | Como testar | Critério de aceite | Status | Obs |
-|---|---|---|---|---|---|
-| 001 | Home carrega | Acessar https://jpxdigital.com.br | Página exibe sem erro, logo visível | | |
-| 002 | HTTPS redirect | Acessar http://jpxdigital.com.br | Redireciona para HTTPS automaticamente | | |
-| 003 | Nav funciona | Clicar em cada item do menu | Todos os links navegam sem 404 | | |
-| 004 | Footer — razão social | Ver rodapé | "JPX Digital Tecnologia LTDA · CNPJ: 57.454.973/0001-18" | | |
-| 005 | Favicon exibe | Abrir qualquer página | Ícone JPX navy aparece na aba do browser | | |
-| 006 | Página /sobre | Acessar /sobre | Carrega com conteúdo e sem erro JS | | |
-| 007 | Página /contato | Acessar /contato | Formulário visível e campos funcionando | | |
-| 008 | Página /cases | Acessar /cases | Carrega com conteúdo | | |
-| 009 | Blog / Centro de Conhecimento | Acessar /blog | Lista de artigos carrega | | |
-| 010 | Artigo do blog | Clicar em um artigo | Abre sem erro, conteúdo legível | | |
-| 011 | Página /privacidade | Acessar /privacidade | Exibe "JPX Digital Tecnologia LTDA" e CNPJ correto | | |
-| 012 | Página /admin | Acessar /admin | Carrega (acesso interno) | | |
-
-### 1.2 Serviços e segmentos
-
-| # | Teste | Como testar | Critério de aceite | Status | Obs |
-|---|---|---|---|---|---|
-| 013 | Hub de serviços | Acessar /servicos | Lista todos os serviços sem erro | | |
-| 014 | Página de serviço — Assessment | Acessar /servicos/assessment-executivo | Carrega com conteúdo completo | | |
-| 015 | Página de serviço — Backup | Acessar /servicos/backup-corporativo | Carrega com conteúdo completo | | |
-| 016 | Página de serviço — DR | Acessar /servicos/disaster-recovery | Carrega com conteúdo completo | | |
-| 017 | Hub de segmentos | Acessar /segmentos | Lista todos os segmentos | | |
-| 018 | Segmento — Hospitais | Acessar /segmentos/hospitais-clinicas | Carrega com conteúdo completo | | |
-| 019 | CTA hero | Na home, clicar no botão principal | Navega para /servicos/assessment-executivo | | |
-
-### 1.3 SEO e metadados
-
-| # | Teste | Como testar | Critério de aceite | Status | Obs |
-|---|---|---|---|---|---|
-| 020 | Sitemap | Acessar /sitemap.xml | XML válido com URLs do site | | |
-| 021 | Robots.txt | Acessar /robots.txt | /admin e /api bloqueados | | |
-| 022 | Meta description home | View Source ou DevTools → head | meta description presente e relevante | | |
-| 023 | Open Graph | DevTools → head | og:title e og:image presentes | | |
-| 024 | Schema.org | DevTools → procurar `application/ld+json` | JSON-LD com Organization e CNPJ correto | | |
-| 025 | Health check API | Acessar /api/health | Retorna 200 com status ok | | |
+> **Critério de aprovação por fase:**
+> - H1 Técnica: zero P0 com falha
+> - H2 Comercial: Gold Path executado sem falha (ver `GOLD-PATH.md`)
 
 ---
 
-## MÓDULO 2 — Formulário de Contato e API de Leads
+# H1 — HOMOLOGAÇÃO TÉCNICA
 
-| # | Teste | Como testar | Critério de aceite | Status | Obs |
-|---|---|---|---|---|---|
-| 026 | Formulário renderiza | Acessar /contato | Campos Nome, E-mail, Empresa, Mensagem visíveis | | |
-| 027 | Validação obrigatórios | Submeter vazio | Erro nos campos obrigatórios, não envia | | |
-| 028 | Validação e-mail inválido | Digitar "teste@" e submeter | Erro de e-mail inválido | | |
-| 029 | Submissão válida | Preencher todos os campos com dados reais e submeter | Mensagem de sucesso exibida na tela | | |
-| 030 | Lead no HubSpot | Após 030, acessar HubSpot → Contatos | Contato criado com nome e e-mail corretos | | |
-| 031 | Deal no HubSpot | Após 030, acessar HubSpot → Negócios | Deal criado e associado ao contato | | |
-| 032 | Notificação Telegram | Após 030, verificar Telegram | Mensagem de novo lead recebida no @jpxdigital_bot | | |
-| 033 | E-mail boas-vindas | Após 030, verificar caixa do e-mail usado no teste | E-mail de boas-vindas recebido (remetente: comercial@jpxdigital.com.br) | | |
+*Infraestrutura e integrações. Executar antes da H2.*
+Data de execução: ___________ Resultado: [ ] APROVADO [ ] REPROVADO
 
 ---
 
-## MÓDULO 3 — Helena (Chatbot)
+## H1.1 — Site
 
-| # | Teste | Como testar | Critério de aceite | Status | Obs |
-|---|---|---|---|---|---|
-| 034 | Ícone aparece | Acessar o site | Ícone da Helena no canto inferior direito | | |
-| 035 | Abre ao clicar | Clicar no ícone | Janela do chat abre com boas-vindas | | |
-| 036 | Navegar em serviço | Selecionar "Backup Corporativo" | Resposta sobre backup exibida | | |
-| 037 | Fluxo especialista | Selecionar "Falar com especialista" | Duas opções aparecem: Bookings e WhatsApp | | |
-| 038 | CTA Bookings | Clicar em "Agendar reunião" | Abre link do Microsoft Bookings | | |
-| 039 | CTA WhatsApp | Clicar em "Falar pelo WhatsApp" | Abre wa.me/5518981890607 | | |
-| 040 | Fechar chat | Clicar no X | Janela fecha, ícone permanece | | |
+| # | Teste | Como testar | Critério de aceite | P | Status | Obs |
+|---|---|---|---|---|---|---|
+| 001 | Home carrega | https://jpxdigital.com.br | Página exibe sem erro JS | 🟠 | | |
+| 002 | HTTPS redirect | http://jpxdigital.com.br | Redireciona para HTTPS | 🔴 | | |
+| 003 | SSL válido | Cadeado no browser | Verde, vence 2026-09-17 | 🔴 | | |
+| 004 | Nav completa | Clicar em cada item | Todos os links sem 404 | 🟠 | | |
+| 005 | Favicon | Qualquer página | Ícone JPX navy na aba | 🟢 | | |
+| 006 | Health check | /api/health | Retorna 200 | 🟠 | | |
+| 007 | Sitemap | /sitemap.xml | XML válido com URLs | 🟡 | | |
+| 008 | Robots.txt | /robots.txt | /admin e /api bloqueados | 🟡 | | |
+| 009 | Schema.org | DevTools → `application/ld+json` | CNPJ 57.454.973/0001-18 | 🟡 | | |
+| 010 | Footer legal | Rodapé do site | "JPX Digital Tecnologia LTDA · CNPJ: 57.454.973/0001-18" | 🔴 | | |
+| 011 | Privacidade | /privacidade | Razão social e CNPJ corretos | 🟡 | | |
+| 012 | Sala-cofre desativada | /servicos/sala-cofre | 404 ou não aparece no hub | 🟢 | | |
 
----
+## H1.2 — Microsoft 365 / Exchange
 
-## MÓDULO 4 — JAS (WhatsApp)
+| # | Teste | Como testar | Critério de aceite | P | Status | Obs |
+|---|---|---|---|---|---|---|
+| 013 | Receber e-mail | Enviar para jp@jpxdigital.com.br | E-mail chega no Outlook | 🔴 | | |
+| 014 | Alias contato@ | Enviar para contato@jpxdigital.com.br | Chega em joao@ | 🔴 | | |
+| 015 | Alias comercial@ | Enviar para comercial@jpxdigital.com.br | Chega em joao@ | 🔴 | | |
+| 016 | Envio com jp@ | Novo e-mail → remetente jp@ | Sai com endereço correto | 🟠 | | |
+| 017 | SPF/DKIM/DMARC | Enviar para Gmail → ver headers | SPF pass · DKIM pass · DMARC pass | 🔴 | | |
+| 018 | Assinatura no Outlook | Novo e-mail | Logo, contatos e botão Bookings aparecem | 🟠 | | |
+| 019 | Teams acessível | Abrir Teams | Login com joao@ sem erro | 🟠 | | |
 
-> Testar pelo número pessoal (+55 18 9 3085-2246) enviando para o chip 2 (+55 18 98189-0607)
+## H1.3 — Microsoft Bookings
 
-| # | Teste | Como testar | Critério de aceite | Status | Obs |
-|---|---|---|---|---|---|
-| 041 | Boas-vindas | Enviar "Oi" para o chip 2 | Receber mensagem com *JPX DIGITAL* e menu em até 10s | | |
-| 042 | Menu exibido | Ver mensagem de boas-vindas | 6 opções numeradas com descrição em itálico | | |
-| 043 | Opção 1 — Assessment | Responder "1" | Pergunta nome completo | | |
-| 044 | Coleta nome | Digitar nome completo | Pergunta empresa | | |
-| 045 | Coleta empresa | Digitar empresa | Envia link do Bookings com texto "*Assessment Executivo*" | | |
-| 046 | Link Bookings | Ver mensagem do link | URL do Bookings presente na mensagem | | |
-| 047 | HubSpot — contato | Após 046, verificar HubSpot | Contato com nome e empresa criado/atualizado | | |
-| 048 | HubSpot — deal | Após 046, verificar HubSpot | Deal criado com serviço "Assessment Executivo" | | |
-| 049 | Telegram | Após 046, verificar Telegram | Notificação com nome, empresa e serviço | | |
-| 050 | Opção 2 — Backup | Nova sessão (aguardar 1h ou usar outro número): responder "2" ao menu | Mensagem menciona "*Backup Corporativo*" no link | | |
-| 051 | Opção 6 — HUMAN_TAKEOVER | Responder "6" ao menu | Pergunta sobre a necessidade | | |
-| 052 | HUMAN_TAKEOVER — Telegram | Descrever a necessidade | Telegram recebe alerta de HUMAN_TAKEOVER | | |
-| 053 | Dedup — mensagem duplicada | Enviar a mesma mensagem duas vezes em 30s | Segunda mensagem não gera nova resposta | | |
-| 054 | Sessão persistente | Responder ao fluxo em duas etapas com 2 min de intervalo | Estado da sessão mantido (não reinicia do zero) | | |
+| # | Teste | Como testar | Critério de aceite | P | Status | Obs |
+|---|---|---|---|---|---|---|
+| 020 | Link abre | Clicar no link da assinatura | Página de agendamento carrega | 🔴 | | |
+| 021 | Horários corretos | Ver calendário | Seg–Qui disponível, Sex–Dom bloqueados | 🔴 | | |
+| 022 | Agendamento funciona | Selecionar slot e preencher dados | Confirmação exibida | 🔴 | | |
+| 023 | E-mail de confirmação | Após 022, verificar e-mail do teste | E-mail de confirmação recebido | 🟠 | | |
+| 024 | Evento no Outlook | Após 022, verificar joao@ | Evento criado no calendário | 🟠 | | |
 
----
+## H1.4 — HubSpot CRM
 
-## MÓDULO 5 — Microsoft Bookings
+| # | Teste | Como testar | Critério de aceite | P | Status | Obs |
+|---|---|---|---|---|---|---|
+| 025 | Pipeline visível | HubSpot → Negócios | Pipeline JPX com 8 estágios | 🔴 | | |
+| 026 | Propriedades Deal | Abrir um deal | Grupo "Dados Comerciais JPX" com 12 propriedades | 🟠 | | |
+| 027 | Propriedades Contato | Abrir um contato | Grupo "Perfil de Decisão JPX" com 3 propriedades | 🟡 | | |
+| 028 | Propriedades Company | Abrir uma empresa | Grupo "Perfil Técnico JPX" com 11 propriedades | 🟡 | | |
+| 029 | Token válido | Verificar logs n8n | Sem erros 401/403 nas últimas 24h | 🔴 | | |
 
-| # | Teste | Como testar | Critério de aceite | Status | Obs |
-|---|---|---|---|---|---|
-| 055 | Link abre | Clicar no link do Bookings (da assinatura ou JAS) | Página de agendamento carrega | | |
-| 056 | Horários disponíveis | Ver calendário no Bookings | Seg–Qui com slots disponíveis, Sex–Dom bloqueados | | |
-| 057 | Agendar reunião | Selecionar um slot e preencher dados | Confirmação exibida na tela | | |
-| 058 | E-mail confirmação | Após 057, verificar e-mail do endereço usado | E-mail de confirmação recebido | | |
-| 059 | Evento no Outlook | Após 057, verificar joao@jpxdigital.com.br | Evento criado no calendário | | |
+## H1.5 — n8n e Workflows
 
----
+| # | Teste | Como testar | Critério de aceite | P | Status | Obs |
+|---|---|---|---|---|---|---|
+| 030 | n8n acessível | n8n.jpxdigital.com.br | Painel carrega e login funciona | 🔴 | | |
+| 031 | WF-001 JAS Core ativo | Lista de workflows | jas-core-intake-v1-0 = "Active" | 🔴 | | |
+| 032 | WF-002 JAS QA ativo | Lista de workflows | jas-qa-scenario-001 = "Active" | 🔴 | | |
+| 033 | WF-006 Boas-vindas ativo | Lista de workflows | boas-vindas-lead = "Active" | 🟠 | | |
+| 034 | WF-008 Cal.com ativo | Lista de workflows | cal-booking = "Active" | 🟠 | | |
+| 035 | WF-009 Deal Router ativo | Lista de workflows | hubspot-deals = "Active" | 🟠 | | |
+| 036 | JAS QA Smoke Test | POST /webhook/jas-qa-run | PASS: PostgreSQL, HubSpot, Telegram OK | 🔴 | | |
 
-## MÓDULO 6 — n8n e Workflows
+## H1.6 — PDF Service
 
-> Acessar n8n.jpxdigital.com.br
+| # | Teste | Como testar | Critério de aceite | P | Status | Obs |
+|---|---|---|---|---|---|---|
+| 037 | Health check | https://pdf.jpxdigital.com.br/health | Retorna 200 | 🟠 | | |
+| 038 | Gerar proposta | Executar WF-004 via n8n | PDF gerado com logo e dados corretos | 🟠 | | |
+| 039 | PDF no OCI Storage | Após 038, verificar bucket jpx-documentos | Arquivo em propostas/{ano-mes}/ | 🟡 | | |
 
-| # | Teste | Como testar | Critério de aceite | Status | Obs |
-|---|---|---|---|---|---|
-| 060 | n8n acessível | Abrir n8n.jpxdigital.com.br | Painel carrega, login funciona | | |
-| 061 | WF-001 ativo | Ver lista de workflows | jas-core-intake-v1-0 com status "Active" | | |
-| 062 | WF-002 ativo | Ver lista de workflows | jas-qa-scenario-001 com status "Active" | | |
-| 063 | WF-006 ativo | Ver lista de workflows | boas-vindas-lead com status "Active" | | |
-| 064 | WF-008 ativo | Ver lista de workflows | cal-booking com status "Active" | | |
-| 065 | WF-009 ativo | Ver lista de workflows | hubspot-deals com status "Active" | | |
-| 066 | Gerar proposta | Executar WF-004/005 com dados de teste | PDF gerado sem erro | | |
-| 067 | Gerar SOW | Executar WF-010 com dados de teste | PDF gerado sem erro | | |
-| 068 | Gerar checklist assessment | Executar WF-011 | PDF gerado sem erro | | |
-| 069 | JAS QA — smoke test | Executar WF-002 via webhook POST /webhook/jas-qa-run | PASS em todos os 3 checks (PostgreSQL, HubSpot, Telegram) | | |
+## H1.7 — Monitoramento
 
----
+| # | Teste | Como testar | Critério de aceite | P | Status | Obs |
+|---|---|---|---|---|---|---|
+| 040 | Grafana acessível | SSH tunnel → http://localhost:3001 | Dashboard carrega | 🟡 | | |
+| 041 | Prometheus targets | Grafana → Explore → targets | 4 VMs com status UP | 🟡 | | |
+| 042 | Loki recebe logs | Grafana → Explore → Loki | Logs das VMs chegando | 🟡 | | |
 
-## MÓDULO 7 — HubSpot CRM
+## H1.8 — Segurança
 
-| # | Teste | Como testar | Critério de aceite | Status | Obs |
-|---|---|---|---|---|---|
-| 070 | Pipeline visível | HubSpot → Vendas → Negócios | Pipeline JPX com 8 estágios visível | | |
-| 071 | Propriedades de Deal | Abrir um deal → ver todas as propriedades | Grupo "Dados Comerciais JPX" com 12 propriedades | | |
-| 072 | Propriedades de Contato | Abrir um contato | Grupo "Perfil de Decisão JPX" com 3 propriedades | | |
-| 073 | Propriedades de Company | Abrir uma empresa | Grupo "Perfil Técnico JPX" com 11 propriedades | | |
-| 074 | Token válido | Verificar se automações n8n estão funcionando | Nenhum erro 401/403 nos logs do n8n | | |
-
----
-
-## MÓDULO 8 — PDF Service
-
-| # | Teste | Como testar | Critério de aceite | Status | Obs |
-|---|---|---|---|---|---|
-| 075 | Health check | Acessar https://pdf.jpxdigital.com.br/health | Retorna 200 com status ok | | |
-| 076 | Proposta gerada | Executar geração via n8n ou curl | PDF com logo JPX e dados corretos | | |
-| 077 | PDF no OCI Storage | Após geração, verificar bucket jpx-documentos | Arquivo salvo na pasta correta (propostas/{ano-mes}/) | | |
+| # | Teste | Como testar | Critério de aceite | P | Status | Obs |
+|---|---|---|---|---|---|---|
+| 043 | Cloudflare WAF | Cloudflare → Security → WAF | Regras ativas | 🟠 | | |
+| 044 | Rate limiting | 10+ POSTs rápidos para /api/leads | 429 após limite | 🟡 | | |
+| 045 | KEYS.md não exposto | https://jpxdigital.com.br/KEYS.md | 404 | 🔴 | | |
+| 046 | Turnstile ativo | Inspecionar formulário /contato | Campo Turnstile presente | 🟠 | | |
 
 ---
 
-## MÓDULO 9 — Microsoft 365 / Exchange
+# H2 — HOMOLOGAÇÃO COMERCIAL
 
-| # | Teste | Como testar | Critério de aceite | Status | Obs |
-|---|---|---|---|---|---|
-| 078 | Recebimento e-mail | Enviar e-mail para jp@jpxdigital.com.br | E-mail recebido na caixa do Outlook | | |
-| 079 | Alias contato@ | Enviar para contato@jpxdigital.com.br | E-mail recebido em joao@jpxdigital.com.br | | |
-| 080 | Alias comercial@ | Enviar para comercial@jpxdigital.com.br | E-mail recebido | | |
-| 081 | Envio com alias | No Outlook, enviar como jp@jpxdigital.com.br | E-mail sai com remetente correto | | |
-| 082 | Assinatura instalada | Criar novo e-mail no Outlook | Assinatura HTML aparece com logo, contatos e botão Bookings | | |
-| 083 | Teams funcional | Abrir Microsoft Teams | Acessa sem erro, conta joao@jpxdigital.com.br | | |
-| 084 | SPF/DKIM/DMARC | Enviar e-mail para Gmail pessoal e ver headers | SPF pass, DKIM pass, DMARC pass | | |
+*Fluxo de ponta a ponta. Executar após H1 aprovada.*
+*Ver também `GOLD-PATH.md` para o teste integrado completo.*
+Data de execução: ___________ Resultado: [ ] APROVADO [ ] REPROVADO
 
 ---
 
-## MÓDULO 10 — Monitoramento
+## H2.1 — Formulário Site → HubSpot
 
-| # | Teste | Como testar | Critério de aceite | Status | Obs |
-|---|---|---|---|---|---|
-| 085 | Grafana acessível | `ssh -L 3001:localhost:3001 -i ~/.ssh/oci-ashburn ubuntu@141.148.50.123` → http://localhost:3001 | Dashboard carrega | | |
-| 086 | Prometheus targets | Grafana → Explore → Prometheus → targets | 4 VMs com status UP | | |
-| 087 | Loki logs | Grafana → Explore → Loki | Logs das VMs chegando | | |
-| 088 | SSL válido | Verificar https://jpxdigital.com.br | Cadeado verde, certificado válido (vence 2026-09-17) | | |
+| # | Teste | Como testar | Critério de aceite | P | Status | Obs |
+|---|---|---|---|---|---|---|
+| 047 | Formulário renderiza | /contato | Campos visíveis e funcionais | 🟠 | | |
+| 048 | Validação obrigatórios | Submeter vazio | Erro nos campos, não envia | 🟠 | | |
+| 049 | Submissão válida | Preencher e submeter com dados reais | Mensagem de sucesso | 🔴 | | |
+| 050 | Lead no HubSpot | Após 049 → HubSpot → Contatos | Contato criado com nome e e-mail | 🔴 | | |
+| 051 | Deal no HubSpot | Após 049 → HubSpot → Negócios | Deal criado e associado ao contato | 🔴 | | |
+| 052 | Notificação Telegram | Após 049 → Telegram | Mensagem de novo lead recebida | 🔴 | | |
+| 053 | E-mail boas-vindas | Após 049 → caixa do e-mail de teste | E-mail de boas-vindas recebido via Resend | 🟠 | | |
 
----
+## H2.2 — Helena Chatbot
 
-## MÓDULO 11 — CI/CD e Deploy
+| # | Teste | Como testar | Critério de aceite | P | Status | Obs |
+|---|---|---|---|---|---|---|
+| 054 | Helena abre | Clicar no ícone no site | Janela abre com boas-vindas | 🟠 | | |
+| 055 | Navegar em serviço | Selecionar "Backup Corporativo" | Resposta relevante exibida | 🟡 | | |
+| 056 | CTA especialista | Selecionar "Falar com especialista" | Duas opções: Bookings e WhatsApp | 🔴 | | |
+| 057 | CTA Bookings | Clicar em "Agendar reunião" | Abre link do Bookings | 🔴 | | |
+| 058 | CTA WhatsApp | Clicar em "Falar pelo WhatsApp" | Abre wa.me/5518981890607 | 🔴 | | |
 
-| # | Teste | Como testar | Critério de aceite | Status | Obs |
-|---|---|---|---|---|---|
-| 089 | GitHub Actions | Fazer push em branch de teste → PR → merge | Workflow deploy.yml executa sem erro | | |
-| 090 | Container atualizado | Após deploy, acessar o site | Versão nova em produção | | |
-| 091 | Rollback | Se necessário: reverter commit e fazer push | Deploy anterior sobe automaticamente | | |
+## H2.3 — JAS WhatsApp (chip 2: +55 18 98189-0607)
 
----
+> Testar com número pessoal (+55 18 9 3085-2246)
 
-## MÓDULO 12 — Segurança
+| # | Teste | Como testar | Critério de aceite | P | Status | Obs |
+|---|---|---|---|---|---|---|
+| 059 | Boas-vindas | Enviar "Oi" para chip 2 | Receber *JPX DIGITAL* + menu em até 10s | 🔴 | | |
+| 060 | Menu com 6 opções | Ver mensagem | 6 opções numeradas com descrição em itálico | 🔴 | | |
+| 061 | Opção 1 → nome | Responder "1" | Pergunta nome completo | 🔴 | | |
+| 062 | Coleta nome | Digitar nome | Pergunta empresa | 🔴 | | |
+| 063 | Coleta empresa | Digitar empresa | Envia link com "*Assessment Executivo*" | 🔴 | | |
+| 064 | Link Bookings correto | Ver mensagem | URL do Bookings presente e correto | 🔴 | | |
+| 065 | HubSpot — contato | Verificar HubSpot | Contato com nome e empresa criado/atualizado | 🔴 | | |
+| 066 | HubSpot — deal | Verificar HubSpot | Deal com serviço "Assessment Executivo" | 🔴 | | |
+| 067 | Telegram notificação | Verificar Telegram | Notificação com nome, empresa e serviço | 🔴 | | |
+| 068 | Opção diferente → link correto | Usar outro número, responder "3" (FinOps) | Mensagem menciona "*FinOps*" | 🟠 | | |
+| 069 | Opção 6 → HUMAN_TAKEOVER | Responder "6", descrever necessidade | Telegram recebe alerta de HUMAN_TAKEOVER | 🔴 | | |
+| 070 | Dedup | Enviar mesma mensagem 2x em 30s | Segunda sem resposta duplicada | 🟠 | | |
 
-| # | Teste | Como testar | Critério de aceite | Status | Obs |
-|---|---|---|---|---|---|
-| 092 | Cloudflare WAF ativo | Acessar Cloudflare → Security → WAF | Regras ativas, sem bypass | | |
-| 093 | Admin não indexado | Verificar /robots.txt | /admin bloqueado para crawlers | | |
-| 094 | Rate limiting leads | Enviar 10+ requests rápidos para /api/leads | Request bloqueado após limite (429) | | |
-| 095 | KEYS.md não exposto | Acessar https://jpxdigital.com.br/KEYS.md | 404 ou bloqueado | | |
-| 096 | Turnstile ativo | Inspecionar formulário /contato | Campo Turnstile presente antes do submit | | |
+## H2.4 — Geração de Documentos
 
----
+| # | Teste | Como testar | Critério de aceite | P | Status | Obs |
+|---|---|---|---|---|---|---|
+| 071 | Proposta via n8n | Executar WF-004/005 com dados de teste | PDF com logo, nome do cliente e serviço corretos | 🟠 | | |
+| 072 | SOW via n8n | Executar WF-010 | PDF gerado sem erro | 🟠 | | |
+| 073 | Checklist Assessment | Executar WF-011 | PDF gerado | 🟡 | | |
+| 074 | Kit Onboarding | Executar WF-013 | PDF gerado | 🟡 | | |
 
-## MÓDULO 13 — Identidade Visual
+## H2.5 — Identidade e Integridade
 
-| # | Teste | Como testar | Critério de aceite | Status | Obs |
-|---|---|---|---|---|---|
-| 097 | Logo e-mail | Acessar https://jpxdigital.com.br/jpx-logo-email.png | Imagem carrega corretamente | | |
-| 098 | Assinatura HTML | Abrir https://jpxdigital.com.br/assinatura-joao.html | Layout correto: logo, contatos, botão Bookings | | |
-| 099 | Favicon mobile | Acessar o site no celular | Ícone JPX navy aparece ao adicionar à tela inicial | | |
-
----
-
-## MÓDULO 14 — Integridade dos dados
-
-| # | Teste | Como testar | Critério de aceite | Status | Obs |
-|---|---|---|---|---|---|
-| 100 | CNPJ correto no site | Inspecionar footer e /privacidade | CNPJ 57.454.973/0001-18 em todos os lugares | | |
-| 101 | Razão social correta | Inspecionar footer e /privacidade | "JPX Digital Tecnologia LTDA" em todos os lugares | | |
-| 102 | WhatsApp chip 2 | Verificar links wa.me no site e JAS | Todos apontam para 5518981890607 | | |
-| 103 | Link Bookings consistente | Verificar Helena, assinatura e JAS | Todos usam o mesmo link do Bookings | | |
+| # | Teste | Como testar | Critério de aceite | P | Status | Obs |
+|---|---|---|---|---|---|---|
+| 075 | Logo e-mail | https://jpxdigital.com.br/jpx-logo-email.png | Imagem carrega | 🟠 | | |
+| 076 | Assinatura HTML | https://jpxdigital.com.br/assinatura-joao.html | Layout correto: logo, contatos, botão Bookings | 🟠 | | |
+| 077 | WhatsApp links consistentes | Site + JAS + Assinatura | Todos apontam para 5518981890607 | 🔴 | | |
+| 078 | Bookings links consistentes | Helena + Assinatura + JAS | Todos usam o mesmo link | 🔴 | | |
 
 ---
 
 ## Resumo de execução
 
-| Módulo | Total | OK | Falha | Pulado |
-|---|---|---|---|---|
-| 1 — Site | 25 | | | |
-| 2 — Leads | 8 | | | |
-| 3 — Helena | 7 | | | |
-| 4 — JAS | 14 | | | |
-| 5 — Bookings | 5 | | | |
-| 6 — n8n | 10 | | | |
-| 7 — HubSpot | 5 | | | |
-| 8 — PDF Service | 3 | | | |
-| 9 — M365 | 7 | | | |
-| 10 — Monitoramento | 4 | | | |
-| 11 — CI/CD | 3 | | | |
-| 12 — Segurança | 5 | | | |
-| 13 — Identidade | 3 | | | |
-| 14 — Integridade | 4 | | | |
-| **TOTAL** | **103** | | | |
+### H1 — Técnica (46 testes)
+
+| Módulo | P0 🔴 | P1 🟠 | P2 🟡 | P3 🟢 | OK | Falha |
+|---|---|---|---|---|---|---|
+| Site | 3 | 3 | 4 | 2 | | |
+| M365 / Exchange | 4 | 3 | 0 | 0 | | |
+| Bookings | 3 | 2 | 0 | 0 | | |
+| HubSpot | 2 | 2 | 2 | 0 | | |
+| n8n | 4 | 3 | 0 | 0 | | |
+| PDF Service | 0 | 2 | 1 | 0 | | |
+| Monitoramento | 0 | 0 | 3 | 0 | | |
+| Segurança | 1 | 2 | 1 | 0 | | |
+| **Total H1** | **17** | **17** | **11** | **2** | | |
+
+### H2 — Comercial (32 testes)
+
+| Módulo | P0 🔴 | P1 🟠 | P2 🟡 | P3 🟢 | OK | Falha |
+|---|---|---|---|---|---|---|
+| Formulário → HubSpot | 4 | 3 | 0 | 0 | | |
+| Helena | 3 | 1 | 1 | 0 | | |
+| JAS WhatsApp | 10 | 2 | 0 | 0 | | |
+| Geração Docs | 0 | 2 | 2 | 0 | | |
+| Identidade | 2 | 2 | 0 | 0 | | |
+| **Total H2** | **19** | **10** | **3** | **0** | | |
 
 ---
 
 ## Falhas encontradas
 
-| # do teste | Descrição da falha | Severidade | Responsável | Resolvido em |
-|---|---|---|---|---|
-| | | | | |
-
-**Severidade:** 🔴 Bloqueador · 🟡 Importante · ⚪ Cosmético
+| # | Fase | Descrição | P | Ação | Resolvido |
+|---|---|---|---|---|---|
+| | | | | | |
 
 ---
 
-## Aprovação
+## Decisão de aprovação
 
-A plataforma está aprovada para prospecção ativa quando:
-- Zero falhas 🔴 Bloqueador
-- Falhas 🟡 Importantes documentadas com plano de resolução
-- Módulos 1, 2, 4, 5, 9 todos OK (críticos para o fluxo comercial)
-
-Assinatura: _________________________ Data: ___________
+**H1 aprovada quando:** zero P0 com falha
+**H2 aprovada quando:** Gold Path executado 100% (ver `GOLD-PATH.md`)
+**Liberado para prospecção quando:** H1 ✅ + H2 ✅ + HOMOLOGATION-REPORT.md assinado
