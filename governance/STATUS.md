@@ -1,7 +1,24 @@
 # STATUS — JPX Digital Platform
 
 **Fonte oficial de estado do projeto.**
-Última atualização: 2026-07-13
+Última atualização: 2026-07-14
+
+---
+
+## Homologação H1 — Progresso
+
+| Módulo | Status | Falhas P0 | Falhas P2 |
+|---|---|---|---|
+| H1.1 Site | ✅ APROVADO | 0 | 1 (Schema.org — corrigido) |
+| H1.2 Microsoft 365 | ⬜ Pendente | — | — |
+| H1.3 Microsoft Bookings | ⬜ Pendente | — | — |
+| H1.4 HubSpot | ⬜ Pendente | — | — |
+| H1.5 n8n e Workflows | ⬜ Pendente | — | — |
+| H1.6 PDF Service | ⬜ Pendente | — | — |
+| H1.7 Monitoramento | ⬜ Pendente | — | — |
+| H1.8 Segurança | ⬜ Pendente | — | — |
+
+**Progresso H1: 1/8 módulos (12%) — H2 e Gold Path aguardando**
 
 ---
 

@@ -67,12 +67,14 @@ const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': ['Organization', 'LocalBusiness'],
   name: 'JPX Digital',
+  legalName: 'JPX Digital Tecnologia LTDA',
   alternateName: 'JPX Digital Tecnologia',
+  taxID: '57.454.973/0001-18',
   url: 'https://jpxdigital.com.br',
-  logo: 'https://jpxdigital.com.br/logo.png',
+  logo: 'https://jpxdigital.com.br/jpx-logo-email.png',
   description:
     'Consultoria especializada em cloud computing, backup corporativo, disaster recovery e resiliência cibernética.',
-  email: 'jp@jpxdigital.com.br',
+  email: 'contato@jpxdigital.com.br',
   telephone: '+55-18-93085-2246',
   address: {
     '@type': 'PostalAddress',
