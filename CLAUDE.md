@@ -57,6 +57,32 @@ Se não conseguir responder todas as seis, não implementar. Perguntar ao usuár
 - **Sempre atualizar** `governance/STATUS.md` quando o estado de um módulo mudar
 - **Sempre responder em português do Brasil**
 
+## Gold Path — teste de regressão obrigatório
+
+Ao alterar qualquer um destes módulos, o Gold Path (`governance/GOLD-PATH.md`) deve ser executado antes de considerar a mudança concluída:
+
+| Módulo | Gold Path obrigatório? |
+|---|---|
+| JAS (jas-bridge, WF-001) | ✅ Sim |
+| n8n (qualquer workflow crítico) | ✅ Sim |
+| HubSpot (pipeline, propriedades, token) | ✅ Sim |
+| Microsoft Bookings | ✅ Sim |
+| Microsoft Teams | ✅ Sim |
+| Site (formulário, ChatBot Helena) | ✅ Sim |
+| PDF Service | 🟡 Recomendado |
+| Identidade visual | ❌ Não necessário |
+
+Avisar o usuário quando uma mudança exigir Gold Path antes de encerrar a tarefa.
+
+## Ciclo de release
+
+Toda mudança em produção segue este ciclo:
+1. Registrar no `governance/CHANGELOG.md`
+2. Implementar
+3. Executar Gold Path (se módulo crítico)
+4. Atualizar `governance/HOMOLOGATION-REPORT.md`
+5. Publicar nova entrada em `governance/RELEASES.md`
+
 ---
 
 ## Deploy

@@ -60,6 +60,15 @@ Objetivo: validar que todos os sistemas funcionam de ponta a ponta antes da prim
 
 ---
 
+## v1.5.0 — Baseline de produção (após homologação)
+
+Após a aprovação do GO-LIVE, congelar a plataforma como **JPX Platform v1.5.0**.
+A partir daí toda mudança segue o ciclo: CHANGELOG → implementar → Gold Path → Homologation Report → RELEASES.
+
+Essa versão será a referência para qualquer rollback e o ponto de partida oficial da operação comercial.
+
+---
+
 ## Regra de priorização
 
 1. Nada entra em produção sem critério de aceite definido
