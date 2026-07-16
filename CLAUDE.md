@@ -64,6 +64,8 @@ Se não conseguir responder todas as seis, não implementar. Perguntar ao usuár
 A prioridade passa automaticamente a ser a correção da falha P0.
 Verificar `governance/CHECKLIST-HOMOLOGACAO.md` antes de aceitar qualquer tarefa de desenvolvimento.
 
+**Exceção — P0 externo (fornecedor):** Bloqueadores P0 causados por fornecedores externos (Microsoft, HubSpot, Cloudflare, OCI etc.) impedem a aprovação final do GO-LIVE, mas **não impedem** a execução de testes de módulos independentes da homologação. A homologação dos módulos não afetados deve continuar em paralelo enquanto o chamado de suporte está aberto.
+
 Durante a homologação, o papel da IA é de **auditora**, não de arquiteta:
 - Perguntar "o teste passou?" antes de "o que vamos desenvolver?"
 - Exigir evidência (screenshot, log, exec n8n) para marcar um teste como aprovado
