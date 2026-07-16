@@ -66,29 +66,29 @@ Data de execução: ___________ Resultado: [ ] APROVADO [ ] REPROVADO
 
 | # | Teste | Como testar | Critério de aceite | P | Resultado | Evidência | Ação |
 |---|---|---|---|---|---|---|---|
-| 025 | Pipeline visível | HubSpot → Negócios | Pipeline JPX com 8 estágios | 🔴 | | |
-| 026 | Propriedades Deal | Abrir um deal | Grupo "Dados Comerciais JPX" com 12 propriedades | 🟠 | | |
-| 027 | Propriedades Contato | Abrir um contato | Grupo "Perfil de Decisão JPX" com 3 propriedades | 🟡 | | |
-| 028 | Propriedades Company | Abrir uma empresa | Grupo "Perfil Técnico JPX" com 11 propriedades | 🟡 | | |
-| 029 | Token válido | Verificar logs n8n | Sem erros 401/403 nas últimas 24h | 🔴 | | |
+| 025 | Pipeline visível | HubSpot → Negócios | Pipeline JPX com 9 fases | 🔴 | ✅ | Screenshot 2026-07-16: Pipeline JPX, 9 fases confirmadas |
+| 026 | Propriedades Deal | Abrir um deal | Grupo "Dados Comerciais JPX" com 12 propriedades | 🟠 | ❌ | Grupo existe mas vazio — propriedades visíveis no deal estão em outro grupo. Ação: mapear e mover as 12 propriedades para o grupo correto |
+| 027 | Propriedades Contato | Abrir um contato | Grupo "Perfil de Decisão JPX" com 3 propriedades | 🟡 | ❌ | Grupo existe mas vazio. Mesma causa do 026 — propriedades não associadas ao grupo correto |
+| 028 | Propriedades Company | Abrir uma empresa | Grupo "Perfil Técnico JPX" com 11 propriedades | 🟡 | ❌ | Grupo existe mas vazio. Mesma causa dos testes 026 e 027 |
+| 029 | Token válido | Verificar logs n8n | Sem erros 401/403 nas últimas 24h | 🔴 | ✅ | n8n overview: 0 failed executions, 0% failure rate — 2026-07-16 |
 
 ## H1.5 — n8n e Workflows
 
 | # | Teste | Como testar | Critério de aceite | P | Resultado | Evidência | Ação |
 |---|---|---|---|---|---|---|---|
-| 030 | n8n acessível | n8n.jpxdigital.com.br | Painel carrega e login funciona | 🔴 | | |
-| 031 | WF-001 JAS Core ativo | Lista de workflows | jas-core-intake-v1-0 = "Active" | 🔴 | | |
-| 032 | WF-002 JAS QA ativo | Lista de workflows | jas-qa-scenario-001 = "Active" | 🔴 | | |
-| 033 | WF-006 Boas-vindas ativo | Lista de workflows | boas-vindas-lead = "Active" | 🟠 | | |
-| 034 | WF-008 Cal.com ativo | Lista de workflows | cal-booking = "Active" | 🟠 | | |
-| 035 | WF-009 Deal Router ativo | Lista de workflows | hubspot-deals = "Active" | 🟠 | | |
-| 036 | JAS QA Smoke Test | POST /webhook/jas-qa-run | PASS: PostgreSQL, HubSpot, Telegram OK | 🔴 | | |
+| 030 | n8n acessível | n8n.jpxdigital.com.br | Painel carrega e login funciona | 🔴 | ✅ | Login realizado em 2026-07-16 |
+| 031 | WF-001 JAS Core ativo | Lista de workflows | jas-core-intake-v1-0 = "Active" | 🔴 | ✅ | jas_core_intake_webhook = Published |
+| 032 | WF-002 JAS QA ativo | Lista de workflows | jas-qa-scenario-001 = "Active" | 🔴 | ✅ | JAS QA Cenário 001 e 002 = Published |
+| 033 | WF-006 Boas-vindas ativo | Lista de workflows | boas-vindas-lead = "Active" | 🟠 | ✅ | Boas-vindas — Lead JPX Digital = Published |
+| 034 | WF-008 Cal.com ativo | Lista de workflows | cal-booking = "Active" | 🟠 | ✅ | Cal.com — Booking Created = Published |
+| 035 | WF-009 Deal Router ativo | Lista de workflows | hubspot-deals = "Active" | 🟠 | ✅ | HubSpot — Deal Stage Router = Published |
+| 036 | JAS QA Smoke Test | POST /webhook/jas-qa-run | PASS: PostgreSQL, HubSpot, Telegram OK | 🔴 | ✅ | Executado via Schedule Trigger em 2026-07-16 — Succeeded |
 
 ## H1.6 — PDF Service
 
 | # | Teste | Como testar | Critério de aceite | P | Resultado | Evidência | Ação |
 |---|---|---|---|---|---|---|---|
-| 037 | Health check | https://pdf.jpxdigital.com.br/health | Retorna 200 | 🟠 | | |
+| 037 | Health check | https://pdf.jpxdigital.com.br/health | Retorna 200 | 🟠 | ✅ | curl retornou {"status":"ok"} — 2026-07-16 |
 | 038 | Gerar proposta | Executar WF-004 via n8n | PDF gerado com logo e dados corretos | 🟠 | | |
 | 039 | PDF no OCI Storage | Após 038, verificar bucket jpx-documentos | Arquivo em propostas/{ano-mes}/ | 🟡 | | |
 
