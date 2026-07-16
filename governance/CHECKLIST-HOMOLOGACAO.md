@@ -11,6 +11,8 @@ Coluna Evidência: screenshot / URL / log / "n8n exec #NNN" — o que comprova o
 > **Critério de aprovação por fase:**
 > - H1 Técnica: zero P0 com falha
 > - H2 Comercial: Gold Path executado sem falha (ver `GOLD-PATH.md`)
+>
+> **Regra operacional — P0 externo:** Bloqueadores P0 causados por fornecedores externos (Microsoft, HubSpot, Cloudflare etc.) impedem a aprovação final do GO-LIVE, mas não impedem a execução de testes de módulos independentes. A homologação dos módulos não afetados deve continuar em paralelo enquanto o chamado de suporte está aberto.
 
 ---
 
