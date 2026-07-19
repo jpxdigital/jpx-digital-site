@@ -56,11 +56,11 @@ Data de execução: ___________ Resultado: [ ] APROVADO [ ] REPROVADO
 
 | # | Teste | Como testar | Critério de aceite | P | Resultado | Evidência | Ação |
 |---|---|---|---|---|---|---|---|
-| 020 | Link abre | Clicar no link da assinatura | Página de agendamento carrega | 🔴 | | |
-| 021 | Horários corretos | Ver calendário | Seg–Qui disponível, Sex–Dom bloqueados | 🔴 | | |
-| 022 | Agendamento funciona | Selecionar slot e preencher dados | Confirmação exibida | 🔴 | | |
-| 023 | E-mail de confirmação | Após 022, verificar e-mail do teste | E-mail de confirmação recebido | 🟠 | | |
-| 024 | Evento no Outlook | Após 022, verificar joao@ | Evento criado no calendário | 🟠 | | |
+| 020 | Link abre | Clicar no link da assinatura | Página de agendamento carrega | 🔴 | ✅ | Link da assinatura abre página de agendamento — 2026-07-19 | |
+| 021 | Horários corretos | Ver calendário | Seg–Qui disponível, Sex–Dom bloqueados | 🔴 | ✅ | Calendário correto, fuso ajustado para UTC-03:00 Brasília — 2026-07-19 | |
+| 022 | Agendamento funciona | Selecionar slot e preencher dados | Confirmação exibida | 🔴 | ✅ | Agendamento realizado em aba anônima, confirmação exibida — 2026-07-19 | |
+| 023 | E-mail de confirmação | Após 022, verificar e-mail do teste | E-mail de confirmação recebido | 🟠 | ✅ | E-mail recebido em zfilltecnologia@gmail.com — 2026-07-19 | |
+| 024 | Evento no Outlook | Após 022, verificar joao@ | Evento criado no calendário | 🟠 | ✅ | Evento criado no calendário jp@jpxdigital.com.br — 2026-07-19 | |
 
 ## H1.4 — HubSpot CRM
 
