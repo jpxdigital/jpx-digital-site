@@ -5,6 +5,11 @@ Formato: `[DATA] Módulo — Descrição (commit ou referência)`
 
 ---
 
+## 2026-07-19
+
+- `[M365]` H1.2.016: P0 resolvido — envio externo jp@jpxdigital.com.br funcionando (erro 550 5.7.708 não reproduz)
+- `[M365]` 10 aliases convertidos para Shared Mailboxes com Full Access + Send As + Forwarding → jp@ (assessment, comercial, contato, contratos, financeiro, onboarding, operacoes, privacidade, projetos, relatorios)
+
 ## 2026-07-14
 
 - `[GOVERNANÇA]` CHECKLIST-HOMOLOGACAO.md: 78 testes H1+H2, colunas P/Evidência/Ação, prioridades P0–P3
