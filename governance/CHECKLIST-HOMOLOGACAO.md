@@ -44,13 +44,13 @@ Data de execução: ___________ Resultado: [ ] APROVADO [ ] REPROVADO
 
 | # | Teste | Como testar | Critério de aceite | P | Resultado | Evidência | Ação |
 |---|---|---|---|---|---|---|---|
-| 013 | Receber e-mail | Enviar para jp@jpxdigital.com.br | E-mail chega no Outlook | 🔴 | | |
-| 014 | Alias contato@ | Enviar para contato@jpxdigital.com.br | Chega em joao@ | 🔴 | | |
-| 015 | Alias comercial@ | Enviar para comercial@jpxdigital.com.br | Chega em joao@ | 🔴 | | |
-| 016 | Envio com jp@ | Novo e-mail → remetente jp@ | Sai com endereço correto | 🟠 | | |
-| 017 | SPF/DKIM/DMARC | Enviar para Gmail → ver headers | SPF pass · DKIM pass · DMARC pass | 🔴 | | |
-| 018 | Assinatura no Outlook | Novo e-mail | Logo, contatos e botão Bookings aparecem | 🟠 | | |
-| 019 | Teams acessível | Abrir Teams | Login com joao@ sem erro | 🟠 | | |
+| 013 | Receber e-mail | Enviar para jp@jpxdigital.com.br | E-mail chega no Outlook | 🔴 | ✅ | Recebido em jp@jpxdigital.com.br — 2026-07-14 | |
+| 014 | Alias contato@ | Enviar para contato@jpxdigital.com.br | Chega em joao@ | 🔴 | ✅ | contato@ redirecionado para joao@ — 2026-07-14 | |
+| 015 | Alias comercial@ | Enviar para comercial@jpxdigital.com.br | Chega em joao@ | 🔴 | ✅ | comercial@ redirecionado para joao@ — 2026-07-14 | |
+| 016 | Envio com jp@ | Novo e-mail → remetente jp@ | Sai com endereço correto | 🟠 | ✅ | Enviado jp@→zfilltecnologia@gmail.com, resposta recebida — 2026-07-19. P0 anterior (550 5.7.708) resolvido | |
+| 017 | SPF/DKIM/DMARC | Enviar para Gmail → ver headers | SPF pass · DKIM pass · DMARC pass | 🔴 | ✅ | MX, SPF, DKIM (selector1+2), DMARC p=reject — todos corretos — 2026-07-14 | |
+| 018 | Assinatura no Outlook | Novo e-mail | Logo, contatos e botão Bookings aparecem | 🟠 | ✅ | Assinatura instalada manualmente no Outlook — 2026-07-14 | |
+| 019 | Teams acessível | Abrir Teams | Login com joao@ sem erro | 🟠 | | | |
 
 ## H1.3 — Microsoft Bookings
 
