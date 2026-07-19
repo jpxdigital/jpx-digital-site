@@ -10,7 +10,7 @@
 | Módulo | Status | Falhas P0 | Falhas P2 |
 |---|---|---|---|
 | H1.1 Site | ✅ APROVADO | 0 | 1 (Schema.org — corrigido) |
-| H1.2 Microsoft 365 | 🟠 6/7 | 0 — P0 resolvido (016 ✅ 2026-07-19) | 0 |
+| H1.2 Microsoft 365 | ✅ APROVADO | 0 | 0 |
 | H1.3 Microsoft Bookings | ⬜ Pendente | — | — |
 | H1.4 HubSpot | ⬜ Pendente | — | — |
 | H1.5 n8n e Workflows | ⬜ Pendente | — | — |
@@ -18,7 +18,7 @@
 | H1.7 Monitoramento | ⬜ Pendente | — | — |
 | H1.8 Segurança | ⬜ Pendente | — | — |
 
-**Progresso H1: H1.1 ✅ H1.2 🟠 (6/7, aguarda 019 Teams) H1.5 ✅ — P0 Exchange resolvido**
+**Progresso H1: H1.1 ✅ H1.2 ✅ H1.5 ✅ — H1.3, H1.4 (parcial), H1.6, H1.7, H1.8 pendentes**
 **Última atualização:** 2026-07-19
 
 ---

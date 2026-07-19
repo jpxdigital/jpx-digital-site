@@ -50,7 +50,7 @@ Data de execução: ___________ Resultado: [ ] APROVADO [ ] REPROVADO
 | 016 | Envio com jp@ | Novo e-mail → remetente jp@ | Sai com endereço correto | 🟠 | ✅ | Enviado jp@→zfilltecnologia@gmail.com, resposta recebida — 2026-07-19. P0 anterior (550 5.7.708) resolvido | |
 | 017 | SPF/DKIM/DMARC | Enviar para Gmail → ver headers | SPF pass · DKIM pass · DMARC pass | 🔴 | ✅ | MX, SPF, DKIM (selector1+2), DMARC p=reject — todos corretos — 2026-07-14 | |
 | 018 | Assinatura no Outlook | Novo e-mail | Logo, contatos e botão Bookings aparecem | 🟠 | ✅ | Assinatura instalada manualmente no Outlook — 2026-07-14 | |
-| 019 | Teams acessível | Abrir Teams | Login com joao@ sem erro | 🟠 | | | |
+| 019 | Teams acessível | Abrir Teams | Login com joao@ sem erro | 🟠 | ✅ | Teams aberto com jp@jpxdigital.com.br — 2026-07-19 | |
 
 ## H1.3 — Microsoft Bookings
 
