@@ -12,7 +12,7 @@
 | H1.1 Site | ✅ APROVADO | 0 | 1 (Schema.org — corrigido) |
 | H1.2 Microsoft 365 | ✅ APROVADO | 0 | 0 |
 | H1.3 Microsoft Bookings | ✅ APROVADO | 0 | 0 |
-| H1.4 HubSpot | ⬜ Pendente | — | — |
+| H1.4 HubSpot | ✅ APROVADO | 0 | 0 |
 | H1.5 n8n e Workflows | ⬜ Pendente | — | — |
 | H1.6 PDF Service | ⬜ Pendente | — | — |
 | H1.7 Monitoramento | ⬜ Pendente | — | — |

@@ -66,11 +66,11 @@ Data de execução: ___________ Resultado: [ ] APROVADO [ ] REPROVADO
 
 | # | Teste | Como testar | Critério de aceite | P | Resultado | Evidência | Ação |
 |---|---|---|---|---|---|---|---|
-| 025 | Pipeline visível | HubSpot → Negócios | Pipeline JPX com 9 fases | 🔴 | ✅ | Screenshot 2026-07-16: Pipeline JPX, 9 fases confirmadas |
-| 026 | Propriedades Deal | Abrir um deal | Grupo "Dados Comerciais JPX" com 12 propriedades | 🟠 | ❌ | Grupo existe mas vazio — propriedades visíveis no deal estão em outro grupo. Ação: mapear e mover as 12 propriedades para o grupo correto |
-| 027 | Propriedades Contato | Abrir um contato | Grupo "Perfil de Decisão JPX" com 3 propriedades | 🟡 | ❌ | Grupo existe mas vazio. Mesma causa do 026 — propriedades não associadas ao grupo correto |
-| 028 | Propriedades Company | Abrir uma empresa | Grupo "Perfil Técnico JPX" com 11 propriedades | 🟡 | ❌ | Grupo existe mas vazio. Mesma causa dos testes 026 e 027 |
-| 029 | Token válido | Verificar logs n8n | Sem erros 401/403 nas últimas 24h | 🔴 | ✅ | n8n overview: 0 failed executions, 0% failure rate — 2026-07-16 |
+| 025 | Pipeline visível | HubSpot → Negócios | Pipeline JPX com 9 fases | 🔴 | ✅ | Screenshot 2026-07-16: Pipeline JPX, 9 fases confirmadas | |
+| 026 | Propriedades Deal | Abrir um deal | Grupo "Dados Comerciais JPX" com 12 propriedades | 🟠 | ✅ | Cartão "Dados Comerciais JPX" com 11 props adicionado ao layout de Negócio — 2026-07-19 | |
+| 027 | Propriedades Contato | Abrir um contato | Grupo "Perfil de Decisão JPX" com 3 propriedades | 🟡 | ✅ | Cartão "Perfil de Decisão JPX" visível no registro de Contato — 2026-07-19 | |
+| 028 | Propriedades Company | Abrir uma empresa | Grupo "Perfil Técnico JPX" com 11 propriedades | 🟡 | ✅ | Cartão "Perfil Técnico JPX" visível no registro de Empresa — 2026-07-19 | |
+| 029 | Token válido | Verificar logs n8n | Sem erros 401/403 nas últimas 24h | 🔴 | ✅ | n8n overview: 0 failed executions, 0% failure rate — 2026-07-16 | |
 
 ## H1.5 — n8n e Workflows
 
