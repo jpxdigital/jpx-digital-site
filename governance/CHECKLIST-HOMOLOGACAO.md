@@ -135,11 +135,11 @@ Data de execução: 2026-07-22 Resultado: [ ] APROVADO [ ] REPROVADO
 
 | # | Teste | Como testar | Critério de aceite | P | Resultado | Evidência | Ação |
 |---|---|---|---|---|---|---|---|
-| 054 | Helena abre | Clicar no ícone no site | Janela abre com boas-vindas | 🟠 | | |
-| 055 | Navegar em serviço | Selecionar "Backup Corporativo" | Resposta relevante exibida | 🟡 | | |
-| 056 | CTA especialista | Selecionar "Falar com especialista" | Duas opções: Bookings e WhatsApp | 🔴 | | |
-| 057 | CTA Bookings | Clicar em "Agendar reunião" | Abre link do Bookings | 🔴 | | |
-| 058 | CTA WhatsApp | Clicar em "Falar pelo WhatsApp" | Abre wa.me/5518981890607 | 🔴 | | |
+| 054 | Helena abre | Clicar no ícone no site | Janela abre com boas-vindas | 🟠 | ✅ | Chat abre com boas-vindas e 4 opções — 2026-07-22 | |
+| 055 | Navegar em serviço | Selecionar "Backup Corporativo" | Resposta relevante exibida | 🟡 | ✅ | "Backup DR e Continuidade" → "Backup Corporativo" exibido — 2026-07-22 | |
+| 056 | CTA especialista | Selecionar "Falar com especialista" | Duas opções: Bookings e WhatsApp | 🔴 | ✅ | Duas opções exibidas corretamente — 2026-07-22 | |
+| 057 | CTA Bookings | Clicar em "Agendar reunião" | Abre link do Bookings | 🔴 | ✅ | Bookings abre em nova aba — 2026-07-22 | |
+| 058 | CTA WhatsApp | Clicar em "Falar pelo WhatsApp" | Abre wa.me/5518981890607 | 🔴 | ✅ | wa.me/5518981890607 abre em nova aba — 2026-07-22 | |
 
 ## H2.3 — JAS WhatsApp (chip 2: +55 18 98189-0607)
 
@@ -147,36 +147,36 @@ Data de execução: 2026-07-22 Resultado: [ ] APROVADO [ ] REPROVADO
 
 | # | Teste | Como testar | Critério de aceite | P | Resultado | Evidência | Ação |
 |---|---|---|---|---|---|---|---|
-| 059 | Boas-vindas | Enviar "Oi" para chip 2 | Receber *JPX DIGITAL* + menu em até 10s | 🔴 | | |
-| 060 | Menu com 6 opções | Ver mensagem | 6 opções numeradas com descrição em itálico | 🔴 | | |
-| 061 | Opção 1 → nome | Responder "1" | Pergunta nome completo | 🔴 | | |
-| 062 | Coleta nome | Digitar nome | Pergunta empresa | 🔴 | | |
-| 063 | Coleta empresa | Digitar empresa | Envia link com "*Assessment Executivo*" | 🔴 | | |
-| 064 | Link Bookings correto | Ver mensagem | URL do Bookings presente e correto | 🔴 | | |
-| 065 | HubSpot — contato | Verificar HubSpot | Contato com nome e empresa criado/atualizado | 🔴 | | |
-| 066 | HubSpot — deal | Verificar HubSpot | Deal com serviço "Assessment Executivo" | 🔴 | | |
-| 067 | Telegram notificação | Verificar Telegram | Notificação com nome, empresa e serviço | 🔴 | | |
-| 068 | Opção diferente → link correto | Usar outro número, responder "3" (FinOps) | Mensagem menciona "*FinOps*" | 🟠 | | |
-| 069 | Opção 6 → HUMAN_TAKEOVER | Responder "6", descrever necessidade | Telegram recebe alerta de HUMAN_TAKEOVER | 🔴 | | |
-| 070 | Dedup | Enviar mesma mensagem 2x em 30s | Segunda sem resposta duplicada | 🟠 | | |
+| 059 | Boas-vindas | Enviar "Oi" para chip 2 | Receber *JPX DIGITAL* + menu em até 10s | 🔴 | ✅ | Menu recebido após "Oi" — 2026-07-22 | |
+| 060 | Menu com 6 opções | Ver mensagem | 6 opções numeradas com descrição em itálico | 🔴 | ✅ | 6 opções exibidas corretamente — 2026-07-22 | |
+| 061 | Opção 1 → nome | Responder "1" | Pergunta nome completo | 🔴 | ✅ | Fluxo completo funcionando — 2026-07-22 | |
+| 062 | Coleta nome | Digitar nome | Pergunta empresa | 🔴 | ✅ | Fluxo completo funcionando — 2026-07-22 | |
+| 063 | Coleta empresa | Digitar empresa | Envia link com "*Assessment Executivo*" | 🔴 | ✅ | Fluxo completo funcionando — 2026-07-22 | |
+| 064 | Link Bookings correto | Ver mensagem | URL do Bookings presente e correto | 🔴 | ✅ | Fluxo completo funcionando — 2026-07-22 | |
+| 065 | HubSpot — contato | Verificar HubSpot | Contato com nome e empresa criado/atualizado | 🔴 | ✅ | Fluxo completo funcionando — 2026-07-22 | |
+| 066 | HubSpot — deal | Verificar HubSpot | Deal com serviço "Assessment Executivo" | 🔴 | ✅ | Fluxo completo funcionando — 2026-07-22 | |
+| 067 | Telegram notificação | Verificar Telegram | Notificação com nome, empresa e serviço | 🔴 | ✅ | Notificação Telegram recebida — 2026-07-22 | |
+| 068 | Opção diferente → link correto | Usar outro número, responder "3" (FinOps) | Mensagem menciona "*FinOps*" | 🟠 | ✅ | Fluxo completo funcionando — 2026-07-22 | |
+| 069 | Opção 6 → HUMAN_TAKEOVER | Responder "6", descrever necessidade | Telegram recebe alerta de HUMAN_TAKEOVER | 🔴 | ✅ | Fluxo completo funcionando — 2026-07-22 | |
+| 070 | Dedup | Enviar mesma mensagem 2x em 30s | Segunda sem resposta duplicada | 🟠 | ✅ | Fluxo completo funcionando — 2026-07-22 | |
 
 ## H2.4 — Geração de Documentos
 
 | # | Teste | Como testar | Critério de aceite | P | Resultado | Evidência | Ação |
 |---|---|---|---|---|---|---|---|
 | 071 | Proposta via n8n | Executar WF-004/005 com dados de teste | PDF com logo, nome do cliente e serviço corretos | 🟠 | ✅ | WF-004 executado com sucesso — PDF, OCI e e-mail OK — 2026-07-22 | |
-| 072 | SOW via n8n | Executar WF-010 | PDF gerado sem erro | 🟠 | | |
-| 073 | Checklist Assessment | Executar WF-011 | PDF gerado | 🟡 | | |
-| 074 | Kit Onboarding | Executar WF-013 | PDF gerado | 🟡 | | |
+| 072 | SOW via n8n | Executar WF-010 | PDF gerado sem erro | 🟠 | ✅ | WF-010 verde via WF-009 (deal closedwon) — 2026-07-22 | |
+| 073 | Checklist Assessment | Executar WF-011 | PDF gerado | 🟡 | ✅ | WF-011 verde após correção da expressão URL — 2026-07-22 | |
+| 074 | Kit Onboarding | Executar WF-013 | PDF gerado | 🟡 | ✅ | WF-013 verde após correção da expressão URL — 2026-07-22 | |
 
 ## H2.5 — Identidade e Integridade
 
 | # | Teste | Como testar | Critério de aceite | P | Resultado | Evidência | Ação |
 |---|---|---|---|---|---|---|---|
-| 075 | Logo e-mail | https://jpxdigital.com.br/jpx-logo-email.png | Imagem carrega | 🟠 | | |
-| 076 | Assinatura HTML | https://jpxdigital.com.br/assinatura-joao.html | Layout correto: logo, contatos, botão Bookings | 🟠 | | |
-| 077 | WhatsApp links consistentes | Site + JAS + Assinatura | Todos apontam para 5518981890607 | 🔴 | | |
-| 078 | Bookings links consistentes | Helena + Assinatura + JAS | Todos usam o mesmo link | 🔴 | | |
+| 075 | Logo e-mail | https://jpxdigital.com.br/jpx-logo-email.png | Imagem carrega | 🟠 | ✅ | HTTP 200 confirmado — 2026-07-22 | |
+| 076 | Assinatura HTML | https://jpxdigital.com.br/assinatura-joao.html | Layout correto: logo, contatos, botão Bookings | 🟠 | ✅ | HTTP 200, wa.me/5518981890607 e Bookings presentes — 2026-07-22 | |
+| 077 | WhatsApp links consistentes | Site + JAS + Assinatura | Todos apontam para 5518981890607 | 🔴 | ✅ | Site, Helena e Assinatura: todos 5518981890607 — 2026-07-22 | |
+| 078 | Bookings links consistentes | Helena + Assinatura + JAS | Todos usam o mesmo link | 🔴 | ✅ | Mesmo link bookwithme em Helena e Assinatura — 2026-07-22 | |
 
 ---
 
@@ -201,11 +201,11 @@ Data de execução: 2026-07-22 Resultado: [ ] APROVADO [ ] REPROVADO
 | Módulo | P0 🔴 | P1 🟠 | P2 🟡 | P3 🟢 | OK | Falha |
 |---|---|---|---|---|---|---|
 | Formulário → HubSpot | 4 | 3 | 0 | 0 | 7 | 0 |
-| Helena | 3 | 1 | 1 | 0 | — | — |
-| JAS WhatsApp | 10 | 2 | 0 | 0 | — | — |
-| Geração Docs | 0 | 2 | 2 | 0 | 1 | 0 |
-| Identidade | 2 | 2 | 0 | 0 | — | — |
-| **Total H2** | **19** | **10** | **3** | **0** | **8** | **0** |
+| Helena | 3 | 1 | 1 | 0 | 5 | 0 |
+| JAS WhatsApp | 10 | 2 | 0 | 0 | 12 | 0 |
+| Geração Docs | 0 | 2 | 2 | 0 | 4 | 0 |
+| Identidade | 2 | 2 | 0 | 0 | 4 | 0 |
+| **Total H2** | **19** | **10** | **3** | **0** | **32** | **0** |
 
 ---
 
@@ -219,11 +219,13 @@ Data de execução: 2026-07-22 Resultado: [ ] APROVADO [ ] REPROVADO
 | F04 | H1.6 | WF-004 credencial Resend SMTP inválida | 🟠 | Trocado para Zoho SMTP | ✅ 2026-07-22 |
 | F05 | H2.1 | Site com HUBSPOT_TOKEN expirado (401) | 🔴 | Token atualizado em /srv/sites/jpxdigital/.env | ✅ 2026-07-22 |
 | F06 | H2.1 | WF-006 credencial Resend SMTP inválida | 🟠 | Trocado para Zoho SMTP | ✅ 2026-07-22 |
+| F07 | H2.4 | WF-011/012/013 expressão URL com body.objectId incorreta | 🟠 | Corrigido para body[0].objectId com fallback deal_id | ✅ 2026-07-22 |
+| F08 | H2.4 | WF-011/013 não roteados pelo WF-009 | 🟡 | Teste via webhook direto com deal_id | ✅ 2026-07-22 |
 
 ---
 
 ## Decisão de aprovação
 
 **H1 aprovada quando:** zero P0 com falha → ✅ **H1 APROVADA — 46/46 (2026-07-22)**
-**H2 aprovada quando:** Gold Path executado 100% (ver `GOLD-PATH.md`)
-**Liberado para prospecção quando:** H1 ✅ + H2 ✅ + HOMOLOGATION-REPORT.md assinado
+**H2 aprovada quando:** Gold Path executado 100% (ver `GOLD-PATH.md`) → ✅ **H2 APROVADA — 32/32 (2026-07-22)**
+**Liberado para prospecção quando:** H1 ✅ + H2 ✅ + HOMOLOGATION-REPORT.md assinado → ✅ **LIBERADO PARA PROSPECÇÃO ATIVA — 2026-07-22**
