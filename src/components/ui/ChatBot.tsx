@@ -407,6 +407,9 @@ export function ChatBot() {
                 <Link
                   href={current.cta.href}
                   onClick={() => setOpen(false)}
+                  {...(current.cta.href.startsWith('http') || current.cta.href.startsWith('mailto')
+                    ? { target: '_blank', rel: 'noopener noreferrer' }
+                    : {})}
                   className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-primary text-white font-semibold rounded-xl hover:bg-primary-hover transition-colors text-sm"
                 >
                   <Send className="w-3.5 h-3.5" />
