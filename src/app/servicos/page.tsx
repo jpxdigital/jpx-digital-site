@@ -35,7 +35,7 @@ const allServices = [
       { href: '/servicos/disaster-recovery', icon: RefreshCw, title: 'Disaster Recovery', desc: 'Retome operações em minutos após qualquer falha.' },
       { href: '/servicos/business-continuity', icon: Shield, title: 'Business Continuity', desc: 'Plano de continuidade operacional para seu negócio.' },
       { href: '/servicos/backup-microsoft-365', icon: Database, title: 'Backup — Microsoft 365', desc: 'Backup completo de e-mail, SharePoint, Teams e OneDrive.' },
-      { href: '/servicos/acronis', icon: Shield, title: 'Acronis Cyber Protect', desc: 'Backup e proteção cibernética integrados.' },
+      { href: '/servicos/acronis', icon: Shield, title: 'Acronis Cyber Protect', desc: 'Backup, EDR, antivírus, filtragem de URL e patch management em um único agente.' },
       { href: '/servicos/resiliencia-cibernetica', icon: Lock, title: 'Resiliência Cibernética', desc: 'Hardening, SIEM e resposta a incidentes.' },
     ],
   },
