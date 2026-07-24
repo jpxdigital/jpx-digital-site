@@ -34,3 +34,14 @@ n8n-workflows/*.credentials.json
 docs/
 deploy/evolution/.env
 deploy/jas-bridge/.env
+
+# Relatórios de auditoria de clientes — nunca commitar
+Relatorio_Auditoria_*.docx
+Relatorio_Auditoria_*.pdf
+Relatorio_Auditoria_*.html
+
+# Scripts operacionais de provisionamento — rodar localmente, não commitar
+deploy/scripts/retry-a1flex.sh
+
+# Backups locais do n8n
+.n8n-backup-*/
