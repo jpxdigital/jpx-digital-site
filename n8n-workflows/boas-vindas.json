@@ -34,7 +34,7 @@
           "parameters": [
             {
               "name": "Authorization",
-              "value": "Bearer RESEND_API_KEY_REMOVIDO"
+              "value": "Bearer SUBSTITUIR_PELA_NOVA_RESEND_API_KEY"
             }
           ]
         },
