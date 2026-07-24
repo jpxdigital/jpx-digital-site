@@ -5,6 +5,16 @@ Formato: `[DATA] Módulo — Descrição (commit ou referência)`
 
 ---
 
+## 2026-07-23
+
+- `[GOVERNANÇA]` STATUS.md: GO-LIVE renomeado para "GO-LIVE técnico" — distinção entre plataforma homologada e operação comercial iniciada
+- `[GOVERNANÇA]` STATUS.md: seção "Indicadores da Plataforma" adicionada (VMs, workflows, serviços, testes, release)
+- `[GOVERNANÇA]` STATUS.md: seção "Fase 2 — Próxima Missão" adicionada
+- `[GOVERNANÇA]` STATUS.md: n8n descritivo ("plataforma operacional homologada") em vez de percentual
+- `[GOVERNANÇA]` STATUS.md: Microsoft Bookings com detalhamento do que foi homologado
+- `[GOVERNANÇA]` SPRINT.md: Fase 1 encerrada formalmente (2026-07-22); Fase 2 aberta como sprint ativo
+- `[GOVERNANÇA]` PLAYBOOK-COMERCIAL.md criado: discurso comercial, ICP, Score JPX, fluxo de Assessment, objeções, templates, SLAs, HubSpot e métricas
+
 ## 2026-07-19
 
 - `[M365]` H1.2.016: P0 resolvido — envio externo jp@jpxdigital.com.br funcionando (erro 550 5.7.708 não reproduz)
