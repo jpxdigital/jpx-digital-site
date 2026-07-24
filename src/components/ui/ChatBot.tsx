@@ -34,7 +34,6 @@ type Step =
   | 'fim_backup'
   | 'fim_backup_m365'
   | 'fim_dr'
-  | 'fim_ai'
   | 'fim_suporte'
 
 interface Option { label: string; next: Step; userText?: string }
@@ -98,13 +97,12 @@ const FLOW: Record<Step, { msg: string; options?: Option[]; cta?: { label: strin
     msg: 'O que você precisa?',
     options: [
       { label: 'Certificado Digital eCPF / eCNPJ', next: 'servico_certificado', userText: 'Certificado Digital' },
-      { label: 'AI Readiness Assessment', next: 'fim_ai', userText: 'AI Readiness Assessment' },
       { label: 'Suporte Gerenciado (MSP)', next: 'fim_suporte', userText: 'Suporte Gerenciado' },
       { label: 'Falar com especialista', next: 'fim_form', userText: 'Falar com especialista' },
     ],
   },
   servico_pentest: {
-    msg: 'Realizamos pentest em web, mobile, APIs e infraestrutura com metodologia red team — e pentest contínuo com dashboard 24/7. O que prefere ver?',
+    msg: 'Realizamos pentest em web, APIs e infraestrutura com metodologia red team — e pentest contínuo com entrega de findings em tempo real. O que prefere ver?',
     options: [
       { label: 'Pentest (engajamento pontual)', next: 'fim_pentest', userText: 'Ver página de pentest' },
       { label: 'Pentest Contínuo (dashboard 24/7)', next: 'fim_pentest_continuo', userText: 'Ver pentest contínuo' },
@@ -210,10 +208,6 @@ const FLOW: Record<Step, { msg: string; options?: Option[]; cta?: { label: strin
   fim_dr: {
     msg: 'Disaster Recovery com RTO em minutos. Ambiente de contingência testado, documentado e pronto para ativar quando necessário.',
     cta: { label: 'Ver Disaster Recovery', href: '/servicos/disaster-recovery' },
-  },
-  fim_ai: {
-    msg: 'Avaliamos a maturidade da sua empresa para adoção de IA: riscos, LGPD, gaps de dados e roadmap de implementação segura.',
-    cta: { label: 'Ver AI Readiness Assessment', href: '/servicos/ai-readiness-assessment' },
   },
   fim_suporte: {
     msg: 'Suporte gerenciado com SLA garantido — monitoramento proativo, resolução de incidentes e equipe especializada como extensão do seu time de TI.',
