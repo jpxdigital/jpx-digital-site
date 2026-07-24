@@ -3,7 +3,7 @@ import Link from 'next/link'
 import {
   Cloud, Database, RefreshCw, Shield, TrendingDown, Headphones,
   Server, Cpu, Network, Lock, Monitor, Box, Flame, Award,
-  ArrowRight, ShieldCheck, BrainCircuit, Target, Activity, Search,
+  ArrowRight, ShieldCheck, Target, Activity, Search,
 } from 'lucide-react'
 import { Nav } from '@/components/layout/Nav'
 import { Footer } from '@/components/layout/Footer'
@@ -71,12 +71,6 @@ const allServices = [
       { href: '/servicos/pentest-continuo', icon: Activity, title: 'Pentest Contínuo', desc: 'Achados em tempo real, dashboard 24/7 e correções antes do relatório final. A evolução do pentest tradicional.' },
       { href: '/servicos/pentest', icon: Target, title: 'Pentest', desc: 'Teste de intrusão completo simulando ataques reais em web, mobile, APIs e infraestrutura. PoC documentado por achado.' },
       { href: '/servicos/analise-vulnerabilidades', icon: Search, title: 'Análise de Vulnerabilidades', desc: 'Scan recorrente com validação manual, CVSS 3.1 e plano de remediação priorizado. Sem falsos positivos.' },
-    ],
-  },
-  {
-    category: 'IA Corporativa',
-    items: [
-      { href: '/servicos/ai-readiness-assessment', icon: BrainCircuit, title: 'AI Readiness Assessment', desc: 'Avaliação de maturidade, riscos, LGPD e roadmap para adoção segura de IA.' },
     ],
   },
 ]

@@ -9,7 +9,6 @@ const services = [
 
   { href: '/servicos/resiliencia-cibernetica', label: 'Resiliência Cibernética' },
   { href: '/servicos/suporte-gerenciado', label: 'Suporte Gerenciado' },
-  { href: '/servicos/ai-readiness-assessment', label: 'AI Readiness Assessment' },
 ]
 
 const segments = [
