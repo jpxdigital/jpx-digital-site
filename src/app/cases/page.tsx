@@ -129,7 +129,7 @@ const cases = [
   {
     icon: ShieldCheck,
     segment: 'Compliance',
-    label: 'Compliance LGPD/ANPD — Sistemas Legados com Dados Sensíveis',
+    label: 'Adequação Técnica à LGPD — Sistemas Legados com Dados Sensíveis',
     challenge: 'Empresa com obrigações LGPD precisava comprovar adequação técnica de sistemas legados que armazenavam dados pessoais sensíveis. Análise de conformidade técnica combinada com pentest de infraestrutura para geração de evidências para a ANPD.',
     solution: 'Análise de conformidade técnica (LGPD) integrada com pentest de infraestrutura nos sistemas legados. Identificamos vulnerabilidades em sistemas sem suporte ativo que processavam dados pessoais protegidos. Plano de remediação priorizado entregue com prazo de 30 dias para os achados críticos.',
     results: [

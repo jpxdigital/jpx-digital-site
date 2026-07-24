@@ -7,7 +7,7 @@ const BASE = 'https://jpxdigital.com.br'
 
 export const metadata: Metadata = {
   title: 'Backup Microsoft 365 — E-mail, Teams e SharePoint',
-  description: 'Backup independente do Microsoft 365: e-mails, Teams, SharePoint e OneDrive. Restore granular em minutos. Conformidade LGPD. A Microsoft não faz isso por você.',
+  description: 'Backup independente do Microsoft 365: e-mails, Teams, SharePoint e OneDrive. Restore granular em minutos. Controles técnicos para adequação à LGPD. A Microsoft não faz isso por você.',
   keywords: ['backup microsoft 365', 'backup office 365', 'backup M365', 'backup teams sharepoint', 'backup exchange online'],
   openGraph: {
     title: 'Backup Microsoft 365 | JPX Digital',
@@ -23,7 +23,7 @@ export default function Page() {
     schemas: [
       serviceSchema(
         'Backup Microsoft 365',
-        'Backup independente do Microsoft 365 cobrindo Exchange, SharePoint, Teams e OneDrive. Restore granular e conformidade LGPD.',
+        'Backup independente do Microsoft 365 cobrindo Exchange, SharePoint, Teams e OneDrive. Restore granular e controles técnicos para adequação à LGPD.',
         'Data Backup Service'
       ),
       breadcrumbSchema([

@@ -801,7 +801,7 @@ export const posts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'A JPX Digital tem experiência em infraestrutura para o setor de saúde, incluindo alinhamento com os requisitos do CFM e da LGPD. O assessment inicial é gratuito.',
+        content: 'A JPX Digital tem experiência em infraestrutura para o setor de saúde, incluindo a implementação dos controles técnicos exigidos pelo CFM e pela LGPD. O assessment inicial é gratuito.',
       },
     ],
   },
@@ -1406,7 +1406,7 @@ export const posts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        content: 'A JPX Digital tem experiência específica em adequação LGPD para escritórios de advocacia no interior de São Paulo, incluindo a implementação das medidas técnicas exigidas. O diagnóstico inicial é gratuito.',
+        content: 'A JPX Digital tem experiência na implementação dos controles técnicos para adequação à LGPD em escritórios de advocacia no interior de São Paulo. O diagnóstico inicial é gratuito.',
       },
     ],
   },

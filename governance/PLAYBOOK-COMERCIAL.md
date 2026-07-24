@@ -323,6 +323,55 @@ O JAS (JPX AI System) é o agente de WhatsApp que faz o primeiro atendimento.
 
 ---
 
+## 11. LGPD — Como tratar o tema durante a venda
+
+### A distinção fundamental
+
+A JPX Digital entrega **controles técnicos para adequação à LGPD** — não consultoria jurídica.
+
+| O que a JPX entrega | O que a JPX NÃO entrega |
+|---|---|
+| Backup com criptografia e retenção adequada | Elaboração de Política de Privacidade |
+| Controle de acesso por perfil e auditoria de logs | DPA (Data Processing Agreement) com operadores |
+| Segmentação de rede para isolamento de dados pessoais | RIPD (Relatório de Impacto à Proteção de Dados) |
+| Hardening de servidores que processam dados pessoais | Gestão de consentimento de titulares |
+| Mapeamento técnico de sistemas que armazenam dados | Respostas a solicitações de titulares à ANPD |
+| Testes de vulnerabilidade em sistemas com dados pessoais | DPO (Encarregado de Proteção de Dados) |
+| Evidências técnicas para auditorias (logs, relatórios) | Interpretação jurídica da lei |
+
+### Como responder quando o cliente menciona LGPD
+
+**Cliente diz:** "Precisamos nos adequar à LGPD."
+
+**Resposta:** "A adequação tem duas frentes: a jurídica e a técnica. A parte jurídica — políticas, contratos com fornecedores, gestão de consentimento — é com um DPO ou advogado especializado. A parte técnica é o que a JPX entrega: backup adequado, controle de acesso, auditoria de sistemas, segurança dos dados em trânsito e em repouso. Posso fazer um diagnóstico técnico do ambiente e identificar os gaps de implementação."
+
+**Cliente diz:** "Vocês fazem consultoria de LGPD?"
+
+**Resposta:** "Fazemos a parte técnica da adequação — que costuma ser onde estão os maiores gaps e os maiores riscos reais. Para a parte jurídica (DPO, políticas, contratos), trabalhamos em conjunto com escritórios especializados e posso indicar parceiros de confiança."
+
+### Parceria recomendada
+
+Buscar um DPO-as-a-service ou escritório especializado em LGPD para parceria de complementaridade:
+- JPX entrega os controles técnicos
+- Parceiro entrega o DPO e a adequação jurídica
+- Indicação mútua de clientes
+
+> **Pendente:** identificar e formalizar parceiro DPO para Fase 2.
+
+### Linguagem correta para usar em propostas e e-mails
+
+✅ "Implementação de controles técnicos para adequação à LGPD"
+✅ "Diagnóstico técnico de conformidade — mapeamento de gaps de segurança e retenção de dados"
+✅ "Evidências técnicas para auditorias ANPD"
+✅ "Backup com criptografia e retenção conforme requisitos da LGPD"
+
+❌ "Consultoria LGPD"
+❌ "Adequação LGPD completa"
+❌ "Compliance LGPD"
+❌ "Garantimos conformidade com a LGPD"
+
+---
+
 ## Histórico de versões
 
 | Versão | Data | Descrição |

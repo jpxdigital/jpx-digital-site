@@ -54,7 +54,7 @@ const especialidades = [
   'Segurança cibernética gerenciada — EDR, firewall NGFW, hardening e resposta a incidentes',
   'Suporte de TI gerenciado (MSP) — monitoramento 24/7 e helpdesk com SLA',
   'Automação de processos — n8n, integrações via API, workflows inteligentes',
-  'Compliance LGPD — adequação técnica para empresas dos setores de saúde e jurídico',
+  'Controles técnicos para adequação à LGPD — implementação das medidas exigidas nos setores de saúde e jurídico',
 ]
 
 export default function SobrePage() {
