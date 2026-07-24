@@ -7,9 +7,9 @@ import { MotionProvider } from '@/components/providers/MotionProvider'
 import { FadeIn } from '@/components/ui/FadeIn'
 
 export const metadata: Metadata = {
-  title: 'Sobre a JPX Digital | Consultoria de TI Premium',
+  title: 'Sobre a JPX Digital | Boutique de Arquitetura e Transformação de TI',
   description:
-    'A JPX Digital integra Inteligência Artificial aos seus serviços de cloud, cibersegurança e infraestrutura para aumentar produtividade, acelerar diagnósticos e automatizar processos — sempre com supervisão especializada.',
+    'A JPX Digital ajuda pequenas e médias empresas a modernizar, proteger e tornar resiliente sua infraestrutura de TI — reduzindo riscos operacionais e preparando o ambiente para crescer com segurança.',
 }
 
 const valores = [
@@ -52,7 +52,7 @@ const especialidades = [
   'Magalú Cloud e SaveInCloud — cloud nacional com suporte em português',
   'Backup corporativo e Disaster Recovery — com testes de restauração documentados',
   'Segurança cibernética gerenciada — EDR, firewall NGFW, hardening e resposta a incidentes',
-  'Suporte de TI gerenciado (MSP) — monitoramento 24/7 e helpdesk com SLA',
+  'Suporte de TI gerenciado (MSP) — monitoramento proativo e helpdesk com SLA',
   'Automação de processos — n8n, integrações via API, workflows inteligentes',
   'Controles técnicos para adequação à LGPD — implementação das medidas exigidas nos setores de saúde e jurídico',
 ]
@@ -112,10 +112,13 @@ export default function SobrePage() {
                       A JPX Digital nasceu da constatação de que empresas no interior do Brasil — hospitais, indústrias, escritórios — não tinham acesso à mesma qualidade de consultoria de TI disponível nos grandes centros.
                     </p>
                     <p>
-                      Fundada em Presidente Prudente-SP, com operação para todo o Brasil, posicionamos a JPX como a alternativa para empresas que exigem profundidade técnica real e não se contentam com atendimento genérico de balcão.
+                      Fundada em Presidente Prudente-SP, com operação para todo o Brasil, posicionamos a JPX como a alternativa para pequenas e médias empresas — de 20 a 500 colaboradores — que exigem profundidade técnica real e não se contentam com atendimento genérico de balcão.
                     </p>
                     <p>
                       Nossa abordagem é sempre a mesma: diagnóstico honesto do ambiente, arquitetura adequada ao negócio e responsabilidade compartilhada pelo resultado. Sem promessas exageradas, sem soluções de prateleira.
+                    </p>
+                    <p>
+                      Não atendemos microempresas sem infraestrutura crítica — esse mercado compete por preço e tem expectativas diferentes das soluções que construímos. Nosso foco é o segmento que precisa de arquitetura, não de suporte básico.
                     </p>
                   </div>
                 </div>
@@ -136,6 +139,67 @@ export default function SobrePage() {
                   </ul>
                 </div>
               </FadeIn>
+            </div>
+          </div>
+        </section>
+
+        {/* Segmentação por maturidade */}
+        <section className="py-20 bg-white border-b border-border">
+          <div className="container-page">
+            <FadeIn>
+              <p className="text-xs font-semibold text-secondary uppercase tracking-widest mb-4">
+                Com quem trabalhamos
+              </p>
+              <h2 className="font-heading text-3xl font-bold text-gray-900 mb-4">
+                Segmentamos por maturidade, não só por tamanho.
+              </h2>
+              <p className="text-gray-600 text-lg leading-relaxed max-w-2xl mb-12">
+                O Assessment Executivo diagnostica onde cada empresa está — e o que faz sentido construir a partir dali.
+              </p>
+            </FadeIn>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {[
+                {
+                  perfil: 'Em crescimento',
+                  faixa: '20–100 colaboradores',
+                  caracteristica: 'TI sem arquitetura definida — cresce por demanda, sem planejamento.',
+                  oferta: 'Assessment Executivo + Roadmap de evolução',
+                  color: 'border-blue-200 bg-blue-50/50',
+                  badge: 'text-blue-700 bg-blue-100',
+                },
+                {
+                  perfil: 'Estruturada',
+                  faixa: '100–500 colaboradores',
+                  caracteristica: 'TI existente, mas com lacunas em cloud, segurança ou custo.',
+                  oferta: 'Projetos de Cloud, Resiliência e FinOps',
+                  color: 'border-primary/20 bg-primary/4',
+                  badge: 'text-primary bg-primary/10',
+                },
+                {
+                  perfil: 'Operação crítica',
+                  faixa: 'Qualquer porte',
+                  caracteristica: 'Indisponibilidade gera prejuízo financeiro ou risco de vidas.',
+                  oferta: 'Continuidade, Backup, DR e Segurança cibernética',
+                  color: 'border-amber-200 bg-amber-50/50',
+                  badge: 'text-amber-700 bg-amber-100',
+                },
+              ].map((item) => (
+                <FadeIn key={item.perfil}>
+                  <div className={`border rounded-2xl p-7 h-full flex flex-col gap-4 ${item.color}`}>
+                    <div>
+                      <span className={`inline-block text-xs font-semibold px-2.5 py-1 rounded-full mb-3 ${item.badge}`}>
+                        {item.perfil}
+                      </span>
+                      <p className="text-xs text-gray-500 font-medium">{item.faixa}</p>
+                    </div>
+                    <p className="text-gray-600 text-sm leading-relaxed flex-1">{item.caracteristica}</p>
+                    <div className="pt-3 border-t border-gray-200/70">
+                      <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Oferta principal</p>
+                      <p className="text-gray-800 text-sm font-medium">{item.oferta}</p>
+                    </div>
+                  </div>
+                </FadeIn>
+              ))}
             </div>
           </div>
         </section>
