@@ -9,7 +9,7 @@ const servicesSlugs = [
   'cloud-computing', 'oracle-cloud-oci', 'microsoft-azure', 'aws',
   'backup-corporativo', 'disaster-recovery', 'business-continuity',
   'backup-microsoft-365', 'finops', 'virtualizacao', 'containers-kubernetes',
-  'firewall-vpn', 'fortinet', 'monitoramento', 'hardening', 'acronis',
+  'firewall-vpn', 'fortinet', 'monitoramento', 'hardening', 'backup-rmm',
   'resiliencia-cibernetica', 'infraestrutura', 'suporte-gerenciado',
   'migracao-de-ambientes', 'consultoria-estrategica',
   'pentest', 'analise-vulnerabilidades', 'pentest-continuo',

@@ -1,0 +1,88 @@
+{
+  "slug": "backup-rmm",
+  "category": "Continuidade & Segurança",
+  "heroHeadline": "Backup & RMM Gerenciado — Proteção de Dados, Endpoints e Infraestrutura em Um Único Serviço.",
+  "heroSub": "Backup de imagem e M365, monitoramento remoto, EDR, antivírus, filtragem de URL e gerenciamento de patches — gerenciados centralmente pela JPX Digital com Acronis ou Datto conforme o ambiente.",
+  "ctaLabel": "Solicitar Backup & RMM Assessment",
+  "problem": {
+    "headline": "Backup sem monitoramento ativo e endpoints sem patches em dia formam a combinação mais comum em incidentes de ransomware.",
+    "body": [
+      "Atacantes modernos comprometem o backup antes de criptografar os dados de produção. Uma solução de backup sem detecção ativa de ameaças é proteção incompleta — você só descobre o problema depois que os danos estão feitos.",
+      "Ao mesmo tempo, endpoints sem patch management são vetores de ataque conhecidos e exploráveis. A maioria das empresas tem backups desatualizados, endpoints sem correções de segurança e zero visibilidade de comportamento malicioso em tempo real.",
+      "A JPX Digital entrega Backup & RMM como serviço gerenciado: backup de imagem e M365, RMM (Remote Monitoring & Management), EDR, antivírus, filtragem de URL e gerenciamento de patches — em um único console centralizado, com Acronis ou Datto conforme a melhor opção para o ambiente do cliente."
+    ]
+  },
+  "assessment": {
+    "name": "Backup & RMM Readiness Assessment",
+    "body": "Mapeamos o que precisa ser protegido: servidores, VMs, endpoints e dados M365. Avaliamos o estado atual de patches, identificamos endpoints sem proteção ativa e definimos RPO e RTO para cada workload crítico. A partir do diagnóstico, recomendamos Acronis ou Datto conforme o ambiente.",
+    "checklist": [
+      "Inventário completo de sistemas a proteger (servidores, VMs, endpoints)",
+      "Definição de RPO e RTO por workload crítico",
+      "Análise de estado de patches e vulnerabilidades nos endpoints",
+      "Dimensionamento de storage de backup (local e cloud)",
+      "Mapeamento de dados M365 (Exchange, SharePoint, Teams, OneDrive)",
+      "Recomendação de plataforma: Acronis Cyber Protect ou Datto RMM + BCDR"
+    ]
+  },
+  "process": {
+    "title": "Como entregamos o serviço de Backup & RMM",
+    "steps": [
+      { "title": "Assessment e escolha da plataforma", "desc": "Mapeamos servidores, VMs, endpoints e dados M365. Avaliamos o estado de patches, identificamos gaps de proteção e recomendamos a plataforma mais adequada — Acronis Cyber Protect ou Datto RMM + BCDR — conforme o ambiente e os requisitos de RTO/RPO do cliente." },
+      { "title": "Backup e proteção de dados", "desc": "Configuramos backup de imagem de disco (bare-metal restore), backup de arquivos, proteção de dados contínua (CDC) e backup do Microsoft 365 (Exchange, SharePoint, Teams e OneDrive). Políticas por grupo de workload com retenção, frequência e destino definidos. Instant Restore disponível para servidores críticos." },
+      { "title": "RMM — monitoramento e gestão remota", "desc": "Implantamos agentes RMM em todos os endpoints e servidores: monitoramento em tempo real, alertas por threshold, inventário automático de hardware e software, acesso remoto para suporte e automação via scripting." },
+      { "title": "Segurança de endpoint", "desc": "EDR (detecção e resposta), antivírus e anti-malware com IA, filtragem e categorização de URLs e gerenciamento centralizado da proteção de endpoint. Detecção e bloqueio de ransomware antes que comprometa dados e backups." },
+      { "title": "Patch management e automação", "desc": "Gerenciamento de patches de SO e aplicativos com janelas de manutenção configuráveis. Monitoramento baseado em autoaprendizagem para detecção de anomalias e scripting automatizado para respostas padronizadas a incidentes." },
+      { "title": "Testes de restauração e gestão contínua", "desc": "Testes de restauração documentados antes do go-live (bare-metal, Instant Restore e granular). Monitoramento diário de jobs, investigação de falhas e relatório mensal de status de backup, segurança e patches." }
+    ]
+  },
+  "benefits": [
+    { "title": "Detecção ativa de ameaças (EDR)", "desc": "EDR integrado detecta ransomware e comportamentos maliciosos em tempo real e bloqueia antes que comprometam os dados — não só depois do ataque." },
+    { "title": "RTO de minutos com Instant Restore", "desc": "Servidor falhado → sistema rodando como VM em 1-5 minutos. A restauração completa acontece em segundo plano enquanto a operação está de pé." },
+    { "title": "Patches aplicados sem intervenção manual", "desc": "Gerenciamento automatizado de patches de SO e aplicativos. Vulnerabilidades conhecidas fechadas antes de serem exploradas, sem depender de janelas manuais." },
+    { "title": "Console único para tudo", "desc": "Servidores, VMs, endpoints e M365 em um único painel: backup, RMM, segurança e patches — sem consoles separados por ferramenta." }
+  ],
+  "deliverables": [
+    "Relatório de Backup & RMM Readiness Assessment",
+    "Plataforma implantada e configurada (Acronis ou Datto)",
+    "Políticas de backup por grupo de workload (servidores, VMs, endpoints, M365)",
+    "Agentes RMM implantados e monitoramento configurado",
+    "EDR e proteção de endpoint ativados",
+    "Política de filtragem de URL configurada",
+    "Gerenciamento de patches habilitado com janelas de manutenção",
+    "Relatório de testes de restauração documentados",
+    "Runbook de procedimentos de restore",
+    "Relatório mensal de status de backup, segurança e patches"
+  ],
+  "differentials": [
+    { "title": "Backup + RMM + EDR em um único serviço", "desc": "Backup, monitoramento remoto, detecção de ameaças e patch management gerenciados de forma integrada — sem silos entre ferramentas e sem lacunas de cobertura entre as camadas de proteção." },
+    { "title": "Instant Restore — RTO de minutos", "desc": "Em caso de falha de servidor, inicializamos o sistema diretamente do backup como VM em 1-5 minutos, enquanto a restauração completa acontece em segundo plano. Downtime de minutos, não horas." },
+    { "title": "Agnóstico de plataforma: Acronis ou Datto", "desc": "Recomendamos a plataforma mais adequada ao ambiente do cliente — Acronis Cyber Protect ou Datto RMM + BCDR — sem viés comercial de marca. O melhor ajuste técnico define a escolha." },
+    { "title": "Patch management integrado", "desc": "Patches de SO e aplicativos gerenciados centralmente, com janelas de manutenção configuráveis. Endpoints sem correções em dia são a principal porta de entrada de ataques — o patch management automatizado fecha essa porta." }
+  ],
+  "faqs": [
+    {
+      "question": "Qual a diferença entre Acronis e Datto? Quando vocês escolhem um ou outro?",
+      "answer": "Acronis Cyber Protect se destaca quando o cliente precisa de backup + EDR + antivírus em um único agente, especialmente para ambientes com muitos endpoints Windows e backup de M365. Datto RMM + BCDR é a escolha para ambientes onde a prioridade é continuidade de negócio com Instant Virtualization robusta e RTO mais agressivo para servidores. Avaliamos o ambiente no assessment e recomendamos com justificativa técnica."
+    },
+    {
+      "question": "O serviço substitui o antivírus e o EDR existentes?",
+      "answer": "Na maioria dos casos, sim. As plataformas que utilizamos incluem antivírus e EDR integrados — eliminando a necessidade de uma solução de segurança de endpoint separada. O assessment identifica se há sobreposição com ferramentas existentes e qual a melhor estratégia de consolidação."
+    },
+    {
+      "question": "O backup cobre o Microsoft 365?",
+      "answer": "Sim. Cobrimos Exchange Online (e-mails, contatos, calendários), SharePoint Online, OneDrive for Business e Microsoft Teams — com backup granular por item. A Microsoft garante a disponibilidade da plataforma M365, não a recuperação dos seus dados em caso de exclusão acidental, ransomware ou saída de colaborador."
+    },
+    {
+      "question": "O que é proteção de dados contínua (CDC)?",
+      "answer": "A proteção de dados contínua (Continuous Data Protection) captura todas as alterações em tempo real — não só no horário do backup agendado. Para workloads críticos como bancos de dados e servidores de arquivos, isso significa RPO próximo de zero: você recupera o estado exato antes do incidente, não o estado de horas atrás."
+    },
+    {
+      "question": "O que é Instant Restore e como funciona?",
+      "answer": "Instant Restore inicializa o backup diretamente como VM no hypervisor local (VMware ou Hyper-V) em 1-5 minutos — sem esperar a restauração completa do disco. O sistema está operacional enquanto a restauração acontece em segundo plano. É o recurso mais eficaz para minimizar downtime em incidentes de servidor."
+    },
+    {
+      "question": "Qual é o RTO típico com esse serviço?",
+      "answer": "Depende da modalidade. Restauração de arquivo individual: minutos. Instant Restore (boot do backup como VM): 1-5 minutos. Restauração completa de servidor (bare-metal): 30 minutos a 2 horas dependendo do tamanho e velocidade do link. Definimos RTO por workload no assessment e os validamos nos testes de restauração antes do go-live."
+    }
+  ]
+}

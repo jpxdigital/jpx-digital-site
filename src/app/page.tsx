@@ -68,7 +68,7 @@ const differentials = [
   'Assessment gratuito antes de qualquer proposta',
   'SLA documentado em contrato — não apenas prometido',
   'Você fala com quem executa, sem intermediários',
-  'Certificados Oracle OCI, Microsoft Azure, AWS e Acronis',
+  'Certificados Oracle OCI, Microsoft Azure, AWS',
   'Revendedor autorizado de certificados digitais ICP-Brasil',
   'Infraestrutura própria em Oracle Cloud',
   'Atendimento 100% em português, com contexto de negócio',
