@@ -49,7 +49,7 @@
   ],
   "differentials": [
     { "title": "Suporte a Oracle em VMware", "desc": "Oracle Database em VMware requer configuração específica para suporte Oracle. Nossa equipe conhece esses requisitos e implementa conforme as diretrizes Oracle." },
-    { "title": "Expertise em hiperconvergência", "desc": "VMware vSAN e Nutanix para ambientes que querem eliminar SAN dedicada e simplificar a operação. Avaliamos quando HCI é a decisão financeiramente correta." },
+    { "title": "Expertise em hiperconvergência", "desc": "VMware vSAN para ambientes que querem eliminar SAN dedicada e simplificar a operação. Avaliamos quando HCI é a decisão financeiramente correta versus manter storage dedicado." },
     { "title": "Migração sem impacto em produção", "desc": "P2V (Physical to Virtual) e V2V (Virtual to Virtual) com ferramentas profissionais e janelas de manutenção controladas. Rollback planejado para cada etapa." },
     { "title": "Visão de ciclo de vida", "desc": "Projetamos a infraestrutura considerando cloud como destino futuro. VMs bem organizadas hoje migram mais facilmente para cloud amanhã." }
   ],

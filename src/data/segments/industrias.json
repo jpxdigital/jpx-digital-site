@@ -29,7 +29,7 @@
     "steps": [
       { "title": "Mapeamento do ambiente IT e OT", "desc": "Inventariamos a infraestrutura de TI corporativa e os ativos de OT (CLPs, IHMs, supervisórios, redes de automação), mapeamos os pontos de integração existentes e identificamos riscos de segurança e disponibilidade em cada camada." },
       { "title": "Segmentação IT/OT", "desc": "Implementamos segmentação de rede entre redes corporativas e redes de automação industrial com firewall industrial, DMZ de produção e controle rigoroso dos fluxos de dados permitidos. A rede OT não tem acesso direto à internet." },
-      { "title": "Integração e confiabilidade dos dados", "desc": "Projetamos e implementamos integrações entre sistemas de automação (SCADA, MES) e sistemas corporativos (ERP, BI) com qualidade de dados validada, latência adequada e monitoramento de falhas de integração." },
+      { "title": "Integração e confiabilidade dos dados", "desc": "Mapeamos os pontos de integração entre sistemas de automação (SCADA, MES) e sistemas corporativos (ERP, BI), projetamos a arquitetura de dados e coordenamos a implementação junto ao integrador de automação e ao fornecedor do ERP — garantindo qualidade de dados validada antes de qualquer integração entrar em produção." },
       { "title": "Backup de sistemas de controle", "desc": "Configuramos backup de configurações de CLPs, programas de CLP, bancos de dados de supervisório e documentação técnica de automação — frequentemente negligenciados e impossíveis de recriar em caso de falha sem documentação." }
     ]
   },
