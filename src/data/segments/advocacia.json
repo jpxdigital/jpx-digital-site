@@ -30,7 +30,7 @@
       { "title": "Assessment de risco e conformidade", "desc": "Avaliamos o ambiente contra as obrigações da LGPD para dados de clientes, os requisitos de sigilo profissional e os riscos de segurança mais comuns em escritórios de advocacia (phishing, ransomware, acesso não autorizado). Entregamos diagnóstico com riscos priorizados." },
       { "title": "Controle de acesso e rastreabilidade", "desc": "Implementamos acesso por pasta e processo (cada advogado acessa apenas os casos em que atua), MFA em todos os sistemas, registro de auditoria de acesso a documentos e criptografia de dispositivos. Rastreabilidade completa de quem acessou o quê e quando." },
       { "title": "Backup jurídico e certificados", "desc": "Backup de documentos, e-mails, banco de dados do sistema jurídico e certificados digitais A1. Backups imutáveis off-site (à prova de ransomware), retenção compatível com as obrigações legais e testes de restauração periódicos. Gestão de vencimento de certificados." },
-      { "title": "E-mail seguro e comunicação protegida", "desc": "Microsoft 365 com proteção avançada de e-mail, DLP (prevenção de exfiltração de documentos por e-mail), e-mail criptografado para comunicação com clientes que exigem e gestão centralizada de certificados S/MIME quando aplicável." }
+      { "title": "Backup de e-mail e gestão de certificados", "desc": "Backup externo do Exchange/M365 com retenção compatível com obrigações legais — recuperação granular de e-mails e itens deletados. Gestão centralizada de certificados digitais A1: inventário, alertas antecipados de vencimento e renovação coordenada para que um certificado nunca vença no dia de uma petição de prazo fatal." }
     ]
   },
   "benefits": [
