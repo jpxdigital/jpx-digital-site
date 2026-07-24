@@ -5,6 +5,18 @@ Formato: `[DATA] Módulo — Descrição (commit ou referência)`
 
 ---
 
+## 2026-07-24
+
+- `[SITE]` Escopo M365 corrigido para somente backup — removidas promessas de instalação, configuração e venda (escritórios.json, advocacia.json)
+- `[SITE]` Serviço Acronis expandido para plataforma completa: backup, EDR, antivírus, filtragem de URL, patch management (acronis.json → backup-rmm.json)
+- `[SITE]` Marca Acronis removida do site — serviço renomeado para "Backup & RMM Gerenciado" (agnóstico: Acronis ou Datto conforme ambiente)
+- `[SITE]` Rota `/servicos/acronis` desativada → `_page.disabled`; nova rota `/servicos/backup-rmm` criada
+- `[SITE]` Posicionamento estratégico atualizado: PME 20–500 colaboradores, boutique de arquitetura e transformação
+- `[SITE]` Home: metadata + subtítulo do hero refletem o novo ICP
+- `[SITE]` Sobre: nova seção "Segmentação por maturidade" (Crescimento / Estruturada / Operação crítica)
+- `[SITE]` Sobre: texto "quem somos" com ICP explícito e exclusão de microempresas justificada
+- `[SITE]` Sobre: callout Helena gratuita para visitantes fora do perfil atendido
+
 ## 2026-07-23
 
 - `[GOVERNANÇA]` STATUS.md: GO-LIVE renomeado para "GO-LIVE técnico" — distinção entre plataforma homologada e operação comercial iniciada

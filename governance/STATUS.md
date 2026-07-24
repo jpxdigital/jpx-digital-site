@@ -45,7 +45,7 @@ A plataforma passou pela homologação completa (78/78 testes). Todos os sistema
 |---|---|
 | VMs em produção | 4 |
 | Workflows n8n ativos | 13 |
-| Serviços publicados no site | 27 |
+| Serviços publicados no site | 26 (ai-readiness e acronis desativados) |
 | Segmentos de mercado | 5 |
 | Workflows homologados | 13 |
 | Testes de homologação executados | 78 |
