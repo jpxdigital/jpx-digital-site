@@ -39,8 +39,8 @@
         "desc": "Configuramos coleta centralizada de logs, correlação de eventos (SIEM), alertas para comportamentos anômalos e dashboard de visibilidade. Você sabe o que acontece na sua infraestrutura 24/7."
       },
       {
-        "title": "Plano de resposta a incidentes e simulações",
-        "desc": "Documentamos o plano de resposta — quem faz o quê, em qual sequência, com quais ferramentas — e realizamos simulações de ataque para validar a capacidade de resposta."
+        "title": "Plano de resposta a incidentes",
+        "desc": "Documentamos o plano de resposta — quem faz o quê, em qual sequência, com quais ferramentas — e realizamos revisão estruturada do plano com os responsáveis para validar a capacidade de resposta."
       }
     ]
   },
@@ -69,7 +69,6 @@
     "Política de gestão de identidades e acessos",
     "Plano de resposta a incidentes (Runbook)",
     "Dashboard de monitoramento configurado",
-    "Relatório de simulação de ataque (tabletop)",
     "Roadmap de melhoria contínua"
   ],
   "differentials": [
@@ -86,8 +85,8 @@
       "desc": "Logs centralizados, correlação automática e alertas de comportamento anômalo. Você é avisado de um ataque em andamento — não depois que o dano está feito."
     },
     {
-      "title": "Resposta a incidentes documentada e testada",
-      "desc": "Plano de resposta com runbooks detalhados, contatos de escalação e fluxos de decisão. Testado em simulações antes de precisar em produção."
+      "title": "Resposta a incidentes documentada e revisada",
+      "desc": "Plano de resposta com runbooks detalhados, contatos de escalação e fluxos de decisão. Revisado com os responsáveis antes de ser necessário em produção."
     }
   ],
   "faqs": [
