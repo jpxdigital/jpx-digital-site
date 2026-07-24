@@ -5,6 +5,24 @@ Cada release é um marco de estabilidade — não toda mudança vira release.
 
 ---
 
+## v1.5.0 — GO-LIVE Técnico (2026-07-22)
+
+**Módulos:** Homologação, n8n, HubSpot, JAS, Site, Governança
+
+- Homologação completa: 78/78 testes aprovados, zero falhas P0
+- H1 Técnica (46/46): Site, M365, Bookings, HubSpot, n8n, PDF, Monitoramento, Segurança
+- H2 Comercial (32/32): Formulário→HubSpot, Helena, JAS WhatsApp, Geração Docs, Identidade
+- WF-011/013: expressão URL corrigida (`body[0].objectId` + fallback `body.deal_id`)
+- HubSpot: estágio "Proposta Solicitada" criado, stage IDs corrigidos em WF-004/009
+- WF-004/006: credencial trocada de Resend para Zoho SMTP
+- Helena: links externos (Bookings, WhatsApp) abrem em nova aba
+- JAS: sessão antiga limpa, número +55 18 98189-0607 validado E2E
+- Governança: Fase 1 encerrada, Fase 2 aberta, Playbook Comercial criado
+
+**Baseline congelada.** A partir desta versão toda mudança segue o ciclo: CHANGELOG → implementar → Gold Path → Homologation Report → RELEASES.
+
+---
+
 ## v1.4.0 — Governança e Identidade (2026-07-13)
 
 **Módulos:** Governança, Identidade Visual, M365, JAS, Legal
