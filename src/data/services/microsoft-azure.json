@@ -49,7 +49,7 @@
     "Relatório executivo mensal"
   ],
   "differentials": [
-    { "title": "Especialização em Azure híbrido", "desc": "Ambientes que combinam on-premise com Azure são mais complexos e mais comuns. Temos experiência com Azure Arc, ExpressRoute e Azure Stack." },
+    { "title": "Especialização em Azure híbrido", "desc": "Ambientes que combinam on-premise com Azure são mais complexos e mais comuns. Temos experiência com conectividade híbrida via VPN Gateway e ExpressRoute, integração com Active Directory local e extensão de identidade para o Azure." },
     { "title": "Licenciamento Hybrid Benefit aplicado", "desc": "Identificamos e aplicamos Azure Hybrid Benefit em todas as VMs elegíveis. Economia de até 60% nas instâncias Windows Server e SQL Server." },
     { "title": "Segurança com Entra ID e Defender", "desc": "Implementamos Conditional Access, MFA, Privileged Identity Management e Microsoft Defender for Cloud em todos os ambientes." },
     { "title": "Capacidade de DevOps e AKS", "desc": "Além de infraestrutura, implementamos pipelines de CI/CD e Kubernetes gerenciado (AKS) para equipes que precisam de agilidade." }
