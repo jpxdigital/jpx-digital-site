@@ -204,6 +204,36 @@ export default function SobrePage() {
           </div>
         </section>
 
+        {/* Helena — callout para quem não se encaixa no ICP */}
+        <section className="py-14 bg-primary/4 border-b border-primary/10">
+          <div className="container-page">
+            <FadeIn>
+              <div className="max-w-3xl mx-auto flex flex-col sm:flex-row items-start sm:items-center gap-8 bg-white border border-primary/15 rounded-2xl px-8 py-8 shadow-sm">
+                <div className="flex-1">
+                  <p className="text-xs font-semibold text-secondary uppercase tracking-widest mb-3">
+                    Sua empresa ainda não tem esse perfil?
+                  </p>
+                  <h3 className="font-heading text-xl font-bold text-gray-900 mb-3">
+                    A Helena está disponível para você — gratuitamente.
+                  </h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    A Helena é a assistente de TI com inteligência artificial da JPX Digital. Ela orienta sobre boas práticas, ajuda a identificar riscos básicos e responde dúvidas técnicas — sem custo, sem compromisso, sem precisar falar com ninguém. Uma forma de começar bem, no seu ritmo.
+                  </p>
+                </div>
+                <a
+                  href="https://helena.jpxdigital.com.br/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="shrink-0 inline-flex items-center gap-2 px-6 py-3.5 bg-primary text-white font-semibold rounded-xl hover:bg-primary-hover transition-colors text-sm whitespace-nowrap"
+                >
+                  Falar com a Helena
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
+            </FadeIn>
+          </div>
+        </section>
+
         {/* IA integrada à operação */}
         <section className="py-20 bg-white border-b border-border">
           <div className="container-page">
