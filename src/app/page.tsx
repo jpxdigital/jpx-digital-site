@@ -13,9 +13,9 @@ import { FadeIn } from '@/components/ui/FadeIn'
 import { MotionProvider } from '@/components/providers/MotionProvider'
 
 export const metadata: Metadata = {
-  title: 'Consultoria de TI, Cloud e Segurança Corporativa',
+  title: 'Consultoria de TI para Pequenas e Médias Empresas',
   description:
-    'A JPX Digital integra Inteligência Artificial aos seus serviços de cloud, cibersegurança e infraestrutura para aumentar produtividade, acelerar diagnósticos e apoiar decisões técnicas — com supervisão especializada e governança adequada.',
+    'A JPX Digital ajuda pequenas e médias empresas a modernizar, proteger e tornar resiliente sua infraestrutura de TI — reduzindo riscos operacionais e preparando o ambiente para crescer com segurança.',
 }
 
 const painCards = [
@@ -77,7 +77,7 @@ const differentials = [
 const segments: { href: string; icon: React.ElementType; title: string; desc: string; noCta?: boolean }[] = [
   { href: '/segmentos/hospitais-clinicas', icon: Heart, title: 'Hospitais & Clínicas', desc: 'LGPD, backup de prontuários por 20 anos e disponibilidade que não falha.' },
   { href: '/segmentos/industrias', icon: Factory, title: 'Indústrias', desc: 'Linha de produção contínua. Integração ERP-OT. Custo de parada calculado.' },
-  { href: '/segmentos/escritorios', icon: Building2, title: 'Escritórios Corporativos', desc: 'Microsoft 365 correto, backup de endpoints e suporte MSP com SLA.' },
+  { href: '/segmentos/escritorios', icon: Building2, title: 'Escritórios Corporativos', desc: 'Backup corporativo, segurança de endpoint e suporte gerenciado com SLA.' },
   { href: '/segmentos/advocacia', icon: Scale, title: 'Advocacia', desc: 'Sigilo profissional protegido. Backup jurídico imutável. Certificados gerenciados.' },
   { href: '/segmentos/autoridades-certificadoras', icon: ShieldCheck, title: 'Certificados Digitais ICP-Brasil', desc: 'Revendedor autorizado ACDIGITAL. Emitimos eCPF e eCNPJ nos formatos A1 e A3 para pessoas físicas e jurídicas — assinatura digital com validade jurídica plena.', noCta: true },
 ]
@@ -117,7 +117,7 @@ export default function Home() {
 
                 <FadeIn delay={0.08}>
                   <p className="text-white/60 text-[1.0625rem] leading-relaxed max-w-md mb-10">
-                    Uma crise de TI não avisa. Diagnóstico gratuito, SLA em contrato e equipe que executa — sem intermediários.
+                    Ajudamos empresas de 20 a 500 colaboradores a modernizar, proteger e tornar resiliente sua infraestrutura — diagnóstico gratuito, SLA em contrato e equipe que executa.
                   </p>
                 </FadeIn>
 
