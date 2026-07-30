@@ -269,8 +269,8 @@ async function handlePost(req: NextRequest) {
   }
 
   // 5. Disparar n8n via webhook interno (fire-and-forget)
-  // O n8n nunca é chamado diretamente pelo frontend — passa sempre por aqui
-  if (N8N_WEBHOOK_URL) {
+  // Apenas para novos contatos (contactRes.ok = 201 Created) — evita e-mail duplo em submissões repetidas
+  if (N8N_WEBHOOK_URL && contactRes.ok) {
     const headers: Record<string, string> = { 'Content-Type': 'application/json' }
     if (N8N_INTERNAL_SECRET) headers['x-internal-secret'] = N8N_INTERNAL_SECRET
     fetch(N8N_WEBHOOK_URL, {

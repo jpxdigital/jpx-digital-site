@@ -56,10 +56,10 @@ export function Footer() {
                 Formulário de contato
               </a>
               <a
-                href="tel:+5518930852246"
+                href="tel:+5518981890607"
                 className="block hover:text-white transition-colors"
               >
-                (18) 9 3085-2246
+                (18) 9 8189-0607
               </a>
             </div>
           </div>

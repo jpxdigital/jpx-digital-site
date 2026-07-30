@@ -816,7 +816,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"properties\": {\n    \"firstname\": \"{{ $('Processar Estado').item.json.hs_firstname }}\",\n    \"lastname\": \"{{ $('Processar Estado').item.json.hs_lastname }}\",\n    \"company\": \"{{ $('Processar Estado').item.json.hs_empresa }}\"\n  }\n}",
+        "jsonBody": "={\n  \"properties\": {\n    \"firstname\": \"{{ $('Atualizar HS?').item.json.hs_firstname }}\",\n    \"lastname\": \"{{ $('Atualizar HS?').item.json.hs_lastname }}\",\n    \"company\": \"{{ $('Atualizar HS?').item.json.hs_empresa }}\"\n  }\n}",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [

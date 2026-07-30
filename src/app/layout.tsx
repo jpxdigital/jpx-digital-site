@@ -75,7 +75,7 @@ const organizationSchema = {
   description:
     'Consultoria especializada em cloud computing, backup corporativo, disaster recovery e resiliência cibernética.',
   email: 'contato@jpxdigital.com.br',
-  telephone: '+55-18-93085-2246',
+  telephone: '+55-18-98189-0607',
   address: {
     '@type': 'PostalAddress',
     addressCountry: 'BR',

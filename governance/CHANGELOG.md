@@ -5,6 +5,48 @@ Formato: `[DATA] Módulo — Descrição (commit ou referência)`
 
 ---
 
+## 2026-07-31
+
+- `[SITE]` Footer.tsx e layout.tsx — número público corrigido: 93085-2246 → 98189-0607 (JAS/Helena). Número pessoal removido de todas as superfícies públicas
+- `[N8N]` WF-006 boas-vindas-lead.json — CTA e rodapé do e-mail corrigidos para número JAS (98189-0607)
+- `[N8N]` WF-007 boas-vindas.json (legado) — número corrigido por consistência
+- `[N8N]` WF-001 jas-core-intake.json — cross-reference pós fan-out corrigido: `$('Processar Estado')` → `$('Atualizar HS?')` em Atualizar Contato HubSpot
+- `[SITE]` /api/leads route.ts — e-mail de boas-vindas agora disparado apenas para novos contatos (evita duplicação em resubmissões)
+
+## 2026-07-30
+
+- `[COMERCIAL]` PLAYBOOK-COMERCIAL.md v1.1 — Modelo Comercial (referência rápida), ICP com perfil descritivo, 7 entregáveis do Assessment formalizados, incluso/excluído do contrato de R$ 2.000, regra de escopo fechado com 5 elementos obrigatórios
+- `[COMERCIAL]` PLAYBOOK-COMERCIAL.md v1.0 — Precificação definida: Assessment R$ 990, piso recorrente R$ 2.000/mês, projetos por escopo fechado, banco de horas não comercializado
+- `[COMERCIAL]` TEMPLATES-EMAIL.md criado — 7 templates institucionais prontos para uso (prospecção, follow-up, assessment, proposta, boas-vindas)
+- `[SPRINT]` Fase 2 itens #2 (Playbook) e #6 (Templates) marcados como ✅
+- `[GOVERNANÇA]` ROADMAP.md reescrito — reflete estado real (Fase 2 ativa, Fase 1 encerrada, backlog atualizado)
+- `[GOVERNANÇA]` STATUS.md atualizado — LinkedIn ✅ concluído, pipeline 10 estágios, Econodata 25 Score A (marco 10/25), P4/P5 substituídos
+- `[GOVERNANÇA]` CHANGELOG.md — 4 entradas de 2026-07-24 adicionadas retroativamente (segurança + infra)
+- `[GOVERNANÇA]` SYSTEM_MAP.md — Resend substituído por Zoho SMTP no diagrama e no inventário de serviços
+- `[GOVERNANÇA]` OPERATIONS.md — contato de suporte Resend → Zoho SMTP
+- `[GOVERNANÇA]` WORKFLOW_REGISTRY.md — WF-015 ZapSign: prioridade P5 → P3 (alinhado com FLUXO-COMERCIAL.md)
+- `[GOVERNANÇA]` PLAYBOOK-COMERCIAL.md — ICP Score JPX: "20 a 200 funcionários" → "20 a 500 colaboradores" (alinhado com posicionamento 2026-07-24)
+
+## 2026-07-26
+
+- `[GOVERNANÇA]` FLUXO-COMERCIAL.md criado — mapeamento completo LinkedIn → Cliente Ativo com todos os workflows n8n
+- `[DOCS]` fluxo-comercial-jpx.png adicionado em docs/
+- `[COMERCIAL]` LinkedIn perfil João Martins atualizado — Sobre, Headline, Experiências JPX + Zerofill
+- `[DOCS]` linkedin-joao-martins.md criado com conteúdo aprovado do perfil
+- `[COMERCIAL]` PLAYBOOK-COMERCIAL.md atualizado — Pipeline JPX alinhado com etapas reais do HubSpot (10 estágios)
+
+## 2026-07-25
+
+- `[COMERCIAL]` LinkedIn página JPX Digital Tecnologia criada e publicada — URL linkedin.com/company/jpxdigital
+- `[COMERCIAL]` Logo 300x300 e banner 1128x191 gerados e publicados na página LinkedIn
+- `[COMERCIAL]` Descrição, slogan, especialidades (12) e tradução em inglês configurados
+- `[COMERCIAL]` Primeira publicação da página no ar com hashtags institucionais
+- `[SPRINT]` Item #3 da Fase 2 concluído — LinkedIn empresa ✅
+- `[INFRA]` Next.js atualizado de 15.3.4 para 15.5.22 (CVE-2025-66478 corrigido)
+- `[INFRA]` Segundo notebook sincronizado via rsync — projeto espelhado em 192.168.18.12
+- `[INFRA]` Cron de sync horário configurado: projeto + configs Claude → notebook secundário
+- `[INFRA]` Alias jpx-sync criado em ~/.bash_aliases
+
 ## 2026-07-24
 
 - `[SITE]` Escopo M365 corrigido para somente backup — removidas promessas de instalação, configuração e venda (escritórios.json, advocacia.json)
@@ -16,6 +58,10 @@ Formato: `[DATA] Módulo — Descrição (commit ou referência)`
 - `[SITE]` Sobre: nova seção "Segmentação por maturidade" (Crescimento / Estruturada / Operação crítica)
 - `[SITE]` Sobre: texto "quem somos" com ICP explícito e exclusão de microempresas justificada
 - `[SITE]` Sobre: callout Helena gratuita para visitantes fora do perfil atendido
+- `[SEGURANÇA]` Token Cloudflare Tunnel removido do `.env.example` (commit `b7a9229`)
+- `[SEGURANÇA]` Token Resend hardcoded removido do workflow boas-vindas n8n (commit `e200bcb`)
+- `[INFRA]` `.env.example` adicionado ao repositório com estrutura de variáveis documentada (commit `17df2a1`)
+- `[INFRA]` `.gitignore` atualizado — excluindo relatórios de auditoria, backups n8n e scripts de provisionamento (commit `c569518`)
 
 ## 2026-07-23
 
