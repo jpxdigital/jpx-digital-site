@@ -163,7 +163,7 @@ const FLOW: Record<Step, { msg: string; options?: Option[]; cta?: { label: strin
   },
   fim_certificado: {
     msg: 'Na página de certificados você encontra eCPF A1/A3, eCNPJ A1/A3, comparativo de formatos e como funciona o processo remoto.',
-    cta: { label: 'Ver certificados digitais', href: '/segmentos/autoridades-certificadoras' },
+    cta: { label: 'Ver certificados digitais', href: '/servicos/certificados-digitais' },
   },
   fim_pentest: {
     msg: 'Na página de pentest você encontra nossa metodologia (OWASP, PTES, MITRE ATT&CK), escopo de cobertura e nossos cases de segurança ofensiva.',

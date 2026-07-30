@@ -79,7 +79,6 @@ const segments: { href: string; icon: React.ElementType; title: string; desc: st
   { href: '/segmentos/industrias', icon: Factory, title: 'Indústrias', desc: 'Linha de produção contínua. Integração ERP-OT. Custo de parada calculado.' },
   { href: '/segmentos/escritorios', icon: Building2, title: 'Escritórios Corporativos', desc: 'Backup corporativo, segurança de endpoint e suporte gerenciado com SLA.' },
   { href: '/segmentos/advocacia', icon: Scale, title: 'Advocacia', desc: 'Sigilo profissional protegido. Backup jurídico imutável. Certificados gerenciados.' },
-  { href: '/segmentos/autoridades-certificadoras', icon: ShieldCheck, title: 'Certificados Digitais ICP-Brasil', desc: 'Revendedor autorizado ACDIGITAL. Emitimos eCPF e eCNPJ nos formatos A1 e A3 para pessoas físicas e jurídicas — assinatura digital com validade jurídica plena.', noCta: true },
 ]
 
 export default function Home() {

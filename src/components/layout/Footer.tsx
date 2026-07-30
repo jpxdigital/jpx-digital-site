@@ -16,7 +16,6 @@ const segments = [
   { href: '/segmentos/industrias', label: 'Indústrias' },
   { href: '/segmentos/escritorios', label: 'Escritórios Corporativos' },
   { href: '/segmentos/advocacia', label: 'Advocacia' },
-  { href: '/segmentos/autoridades-certificadoras', label: 'Autoridades Certificadoras' },
 ]
 
 const company = [

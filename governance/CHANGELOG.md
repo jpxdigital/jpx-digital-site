@@ -7,6 +7,7 @@ Formato: `[DATA] Módulo — Descrição (commit ou referência)`
 
 ## 2026-07-31
 
+- `[SITE]` Segmento "Autoridades Certificadoras" ocultado do site (Footer, home, /segmentos) — página mantida no codebase; ChatBot redirecionado para /servicos/certificados-digitais
 - `[SITE]` Footer.tsx e layout.tsx — número público corrigido: 93085-2246 → 98189-0607 (JAS/Helena). Número pessoal removido de todas as superfícies públicas
 - `[N8N]` WF-006 boas-vindas-lead.json — CTA e rodapé do e-mail corrigidos para número JAS (98189-0607)
 - `[N8N]` WF-007 boas-vindas.json (legado) — número corrigido por consistência

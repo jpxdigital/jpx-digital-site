@@ -42,13 +42,6 @@ const segments = [
     desc: 'Sigilo profissional como prioridade: controle de acesso por caso, rastreabilidade completa, backup jurídico imutável, gestão de certificados digitais e proteção de dados conforme LGPD e Código de Ética da OAB.',
     pills: ['Sigilo Profissional', 'Backup Jurídico', 'LGPD', 'Certificados Digitais'],
   },
-  {
-    href: '/segmentos/autoridades-certificadoras',
-    icon: ShieldCheck,
-    title: 'Autoridades Certificadoras',
-    desc: 'Revendedor autorizado ACDIGITAL. Emitimos eCPF e eCNPJ nos formatos A1 e A3 para pessoas físicas e jurídicas — 100% remoto, com validade jurídica plena na ICP-Brasil.',
-    pills: ['eCPF A1/A3', 'eCNPJ A1/A3', 'ICP-Brasil', '100% remoto'],
-  },
 ]
 
 export default function SegmentosPage() {
