@@ -1,12 +1,47 @@
 # JPX Playbook Comercial
 
-**Versão:** 0.1 — Rascunho inicial
+**Versão:** 1.1
 **Criado:** 2026-07-23
+**Revisado:** 2026-07-30
 **Público:** João Martins (uso interno — não compartilhar com clientes)
 
 > Este documento é o guia operacional para toda a atividade comercial da JPX Digital.
 > Ele define como identificar, abordar, qualificar, propor e fechar clientes.
 > É também a fonte de verdade para evolução do JAS Sprint 2.
+
+---
+
+## Modelo Comercial JPX — Referência Rápida
+
+> Resumo para uso imediato. Detalhes completos nas seções abaixo.
+
+### O que vendemos
+
+| Serviço | Modelo | Valor |
+|---|---|---|
+| Assessment Executivo | Diagnóstico estruturado — pago | R$ 990 (abatido 100% no 1º contrato) |
+| Contrato recorrente | Gestão contínua — mensal | A partir de R$ 2.000/mês |
+| Projetos pontuais | Escopo fechado — entregável único | Conforme proposta técnica |
+
+### O que não vendemos
+
+- ❌ Banco de horas
+- ❌ Hora técnica avulsa
+- ❌ Suporte sob demanda (helpdesk reativo)
+- ❌ Outsourcing de mão de obra
+
+### Perfil de cliente que atendemos
+
+- Empresa de 50 a 500 colaboradores
+- Ambiente híbrido ou cloud (ou em transição)
+- Alta dependência de TI na operação — parada tem custo real
+- Sem arquiteto de infraestrutura dedicado internamente
+- Em fase de crescimento, modernização ou após incidente
+- Valoriza relação de parceria de longo prazo sobre preço
+
+### Como somos diferentes
+
+> Não somos uma empresa de suporte técnico. Somos arquitetos de infraestrutura, resiliência e modernização — que ficam até o problema estar resolvido, não até o contrato expirar.
 
 ---
 
@@ -43,11 +78,22 @@ Entregamos o que as empresas precisam: **clareza, confiança e continuidade oper
 
 ## 2. Perfil Ideal de Cliente (ICP)
 
+### Perfil descritivo
+
+O cliente ideal da JPX Digital é uma empresa que:
+
+- Tem **50 a 500 colaboradores** e opera com infraestrutura híbrida ou em cloud
+- Depende diretamente de TI para operar — uma hora parada tem custo mensurável
+- **Não tem arquiteto de infraestrutura dedicado** internamente (tem, no máximo, um generalista ou terceiro)
+- Está em pelo menos um destes momentos: crescimento acelerado, modernização planejada, pós-incidente, ou auditoria/compliance chegando
+- Toma decisões de TI no nível de diretoria ou gestão sênior — não terceiriza a decisão para o técnico
+- Prefere **pagar por resultado e continuidade** a pagar por hora ou por chamado
+
 ### Critérios de qualificação — Score JPX
 
 | Critério | Peso | Pontuação |
 |---|---|---|
-| **Porte** — 20 a 200 funcionários | Alto | 0–3 pts |
+| **Porte** — 20 a 500 colaboradores | Alto | 0–3 pts |
 | **Criticidade operacional** — TI afeta diretamente a operação | Alto | 0–3 pts |
 | **Urgência** — dor ativa (incidente recente, auditoria, crescimento) | Alto | 0–3 pts |
 | **Orçamento** — capacidade de investimento recorrente | Médio | 0–2 pts |
@@ -147,6 +193,20 @@ Proposta Comercial (se houver fit e interesse)
 | Gestão | Documentação, processos, fornecedores, contratos |
 | Compliance | LGPD, auditorias previstas, regulações do setor |
 
+### Entregáveis do Assessment (o que o cliente recebe por R$ 990)
+
+| # | Entregável | Formato |
+|---|---|---|
+| 1 | Entrevista técnica e executiva | Reunião 30 min (Briefing) |
+| 2 | Levantamento completo da infraestrutura | Inventário documentado |
+| 3 | Análise de riscos por área | Matriz impacto × probabilidade |
+| 4 | Avaliação de maturidade de TI | Score por domínio |
+| 5 | Priorização de melhorias (P0/P1/P2) | Lista ranqueada |
+| 6 | Roadmap executivo 12 meses | 30/90/180 dias |
+| 7 | Reunião de apresentação (60 min, decisor presente) | Teams ou presencial |
+
+**O que NÃO está incluso:** implementação, configuração, suporte técnico — isso é projeto ou contrato recorrente.
+
 ### Relatório de Assessment — estrutura
 
 1. **Sumário Executivo** (1 página — para o CEO)
@@ -226,6 +286,22 @@ Att,
 João
 ```
 
+### Template — follow-up de orçamento (5 dias sem resposta)
+
+```
+Assunto: Re: Orçamento JPX Digital — Segurança Avançada + EDR · [Empresa]
+
+Olá [Nome],
+
+Só passando para verificar se o orçamento chegou bem e se surgiu alguma dúvida sobre escopo ou condições.
+
+Se precisar de algum ajuste — prazo, forma de pagamento ou outra configuração — é só me avisar.
+
+Att,
+JPX Digital
+jp@jpxdigital.com.br · (18) 98189-0607
+```
+
 ### Template — após assessment (encaminhar relatório)
 
 ```
@@ -263,17 +339,20 @@ JPX Digital
 
 ### Pipeline JPX — estágios e o que fazer em cada um
 
-| Estágio | O que fazer |
+> Atualizado em 2026-07-26 para refletir as etapas reais configuradas no HubSpot.
+
+| Estágio (HubSpot) | O que fazer |
 |---|---|
-| **Lead Novo** | Registrar origem, Score JPX inicial, agendar qualificação |
-| **Em Qualificação** | Fazer briefing de 30 min, completar Score JPX |
+| **Lead Qualificado** | Registrar origem, Score JPX inicial, agendar qualificação |
 | **Assessment Agendado** | Confirmar data, enviar agenda prévia ao cliente |
 | **Assessment Realizado** | Upload de notas, iniciar relatório |
+| **Roadmap Executivo Apresentado** | Apresentação para o decisor realizada, aguardar decisão |
+| **Proposta Solicitada** | Cliente pediu proposta proativamente — prioridade máxima |
 | **Proposta Enviada** | Registrar proposta em anexo, agendar follow-up em 5 dias |
-| **Proposta Solicitada** | Cliente pediu proposta proativamente — prioridade |
-| **Negociação** | Registrar objeções, ajustes de escopo |
-| **Fechado — Ganho** | Assinar SOW via ZapSign, criar projeto |
-| **Fechado — Perdido** | Registrar motivo — dado para evolução do JAS |
+| **Proposta em Negociação** | Registrar objeções, ajustes de escopo |
+| **Contrato Assinado** | SOW assinado via ZapSign, criar projeto, iniciar onboarding |
+| **Perdido** | Registrar motivo — dado para evolução do JAS |
+| **Sem Fit** | Cliente fora do ICP — registrar e encerrar sem follow-up |
 
 ### Campos obrigatórios ao criar um Deal
 
@@ -323,7 +402,119 @@ O JAS (JPX AI System) é o agente de WhatsApp que faz o primeiro atendimento.
 
 ---
 
-## 11. LGPD — Como tratar o tema durante a venda
+## 11. Precificação de Referência
+
+> Valores internos de referência. Não usar como tabela pública — cada proposta é personalizada após o assessment.
+
+### Tabela resumida
+
+| Serviço | Modelo | Valor |
+|---|---|---|
+| Assessment Executivo | Pago — abatido integralmente no primeiro contrato | R$ 990 |
+| Contrato recorrente | Mensal, escopo definido | A partir de R$ 2.000/mês |
+| Projetos pontuais | Escopo fechado, proposta técnica | Conforme escopo |
+| Hora técnica avulsa | **Não comercializado** — exceção apenas | — |
+
+---
+
+### Assessment Executivo — R$ 990
+
+O Assessment Executivo é um **projeto de diagnóstico**, não uma visita comercial.
+
+- Inclui: levantamento do ambiente, mapa de riscos, roadmap 30/90/180 dias, apresentação executiva para o decisor
+- Duração: 2–4h de coleta + 1–3 dias úteis de elaboração + 60 min de apresentação
+- **Abatimento integral:** o valor de R$ 990 é 100% descontado do primeiro contrato ou projeto assinado
+- Modalidade remota (padrão) ou presencial (inclui deslocamento — acréscimo a combinar)
+
+**Como posicionar para o prospect:**
+> "O Assessment não é uma visita comercial. É um diagnóstico executivo estruturado que entrega um mapa de riscos real do seu ambiente. Caso a empresa siga conosco, o valor é integralmente descontado do projeto."
+
+---
+
+### Contratos recorrentes — a partir de R$ 2.000/mês
+
+**Piso inviolável: R$ 2.000/mês.** Nenhum contrato recorrente é aceito abaixo desse valor.
+
+#### O que está incluso no contrato recorrente
+
+O escopo exato é definido no SOW após o assessment. O contrato padrão inclui combinações dos itens abaixo — nunca tudo ao mesmo tempo, sempre definido por escrito:
+
+| Categoria | O que pode estar incluso |
+|---|---|
+| Acompanhamento | Reunião executiva mensal (60 min) + relatório de indicadores |
+| Monitoramento | Alertas proativos de infraestrutura, backup e segurança |
+| Consultoria cloud | Revisão de arquitetura, FinOps, recomendações de otimização |
+| Gestão de mudanças | Avaliação e acompanhamento de mudanças no ambiente |
+| Suporte consultivo | Análise técnica de incidentes e decisões de arquitetura |
+| Gestão de fornecedores | Interface com provedores cloud, telecom, hardware |
+
+**O que NÃO está incluso no contrato recorrente (salvo previsão expressa no SOW):**
+- Implementação ou configuração de novos sistemas
+- Resposta operacional 24/7 ou helpdesk de chamados
+- Execução de projetos (isso é escopo fechado separado)
+
+| Perfil de cliente | Faixa mensal orientativa |
+|---|---|
+| PME 50–100 colaboradores | R$ 2.000–R$ 3.500/mês |
+| PME 100–300 colaboradores | R$ 3.500–R$ 6.000/mês |
+| PME 300–500 colaboradores | R$ 6.000+/mês (escopo personalizado) |
+
+> Faixas orientativas. O valor real é definido após o assessment, com base no escopo acordado.
+
+---
+
+### Projetos pontuais — escopo fechado
+
+Todo projeto é entregue com **proposta técnica**, incluindo: escopo detalhado, cronograma, entregáveis e valor fixo.
+
+#### Regra de escopo fechado — inviolável
+
+Todo projeto JPX obedece a esta estrutura:
+
+| Elemento | Obrigatório |
+|---|---|
+| Escopo definido por escrito | ✅ Sim — o que está incluso e o que não está |
+| Prazo com datas de entrega | ✅ Sim |
+| Entregáveis com critério de aceite | ✅ Sim |
+| Aceite formal do cliente | ✅ Sim — antes do encerramento |
+| Alteração de escopo gera aditivo | ✅ Sim — sempre documentado e precificado |
+
+**Qualquer demanda fora do escopo original = novo projeto ou aditivo.** Nunca absorver escopo extra sem registro formal.
+
+| Tipo de projeto | Faixa orientativa |
+|---|---|
+| Implantação Backup & RMM | R$ 3.000–R$ 8.000 |
+| Migração cloud (ambiente pequeno) | R$ 5.000–R$ 15.000 |
+| Hardening completo (CIS Benchmarks) | R$ 4.000–R$ 10.000 |
+| Pentest + Relatório Executivo | R$ 6.000–R$ 18.000 |
+| Disaster Recovery (planejamento + implantação) | R$ 8.000–R$ 25.000 |
+
+> Valores de referência. Cada projeto é orçado individualmente após o assessment.
+
+---
+
+### Hora técnica avulsa — não faz parte da oferta
+
+A JPX Digital **não comercializa banco de horas**.
+
+- Toda demanda recorrente deve estar coberta por contrato mensal
+- Toda demanda extraordinária deve ser tratada como projeto de escopo fechado
+- Horas avulsas criam dependência de volume, dificultam planejamento e não refletem o posicionamento boutique
+
+Exceção: situações emergenciais de clientes ativos — tratadas caso a caso, sempre com registro formal.
+
+---
+
+### Quando e como falar de preço
+
+- **Nunca** mencionar valores antes do assessment — sem contexto do ambiente, qualquer número é arbitrário
+- Na apresentação do roadmap: falar em **faixas orientativas** com base no escopo identificado
+- Proposta formal: valor fixo, escopo fechado, validade de 15 dias
+- Desconto máximo sem justificativa: 10% — acima disso, registrar motivo no HubSpot antes de conceder
+
+---
+
+## 12. LGPD — Como tratar o tema durante a venda
 
 ### A distinção fundamental
 
@@ -376,4 +567,6 @@ Buscar um DPO-as-a-service ou escritório especializado em LGPD para parceria de
 
 | Versão | Data | Descrição |
 |---|---|---|
-| 0.1 | 2026-07-23 | Rascunho inicial — estrutura completa, pendente revisão por João |
+| 1.1 | 2026-07-30 | Modelo Comercial — referência rápida adicionada, ICP com perfil descritivo, entregáveis do Assessment formalizados, incluso/excluído do contrato definido, regra de escopo fechado |
+| 1.0 | 2026-07-30 | ICP atualizado (20–500), seção Precificação adicionada, aprovado para uso |
+| 0.1 | 2026-07-23 | Rascunho inicial — estrutura completa |
