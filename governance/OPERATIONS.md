@@ -162,4 +162,4 @@ O Gold Path não é só para homologação. É o teste de regressão da platafor
 | Cloudflare | dash.cloudflare.com → Help | Comunidade / tickets |
 | OCI | cloud.oracle.com → Support | 4h (Always Free) |
 | HubSpot | app.hubspot.com → Help | Chat / tickets |
-| Resend | resend.com/support | E-mail |
+| Zoho SMTP | zoho.com/mail/help/ | E-mail |

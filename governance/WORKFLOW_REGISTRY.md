@@ -49,6 +49,6 @@ Inventário oficial de todos os workflows. Toda alteração deve atualizar este 
 
 | ID | Nome | Sprint | Prioridade |
 |---|---|---|---|
-| WF-015 | ZapSign — Assinatura SOW | — | P5 |
+| WF-015 | ZapSign — Assinatura SOW | — | P3 |
 | WF-016 | JAS Score JPX | Sprint 2 | Pós-cliente |
 | WF-017 | JAS Qualificação Claude | Sprint 2 | Pós-cliente |

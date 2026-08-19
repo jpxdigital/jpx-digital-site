@@ -41,11 +41,11 @@ Critério de encerramento: 3 assessments agendados ou realizados.
 | # | Item | Responsável | Estado | Critério de aceite |
 |---|---|---|---|---|
 | 1 | Tag `v1.5.0` no git | Claude | ⏳ | Tag criada, RELEASES.md atualizado |
-| 2 | JPX Playbook Comercial | João + Claude | 🟡 Rascunho criado | Documento revisado e aprovado por João |
-| 3 | LinkedIn empresa JPX Digital | João | ⏳ | Página publicada com logo, descrição e URL jpxdigital.com.br |
-| 4 | LinkedIn perfil João Martins | João | ⏳ | Headline + Sobre + Experiência publicados |
-| 5 | HubSpot views de prospecção | João | ⏳ | Views "Novos Leads", "Em Qualificação" e "Score A" salvas |
-| 6 | Templates de e-mail institucional | João + Claude | ⏳ | 3 templates revisados (primeiro contato, follow-up, proposta) |
+| 2 | JPX Playbook Comercial | João + Claude | ✅ | Documento v1.0 revisado e aprovado — 2026-07-30 |
+| 3 | LinkedIn empresa JPX Digital | João | ✅ | Página publicada com logo, descrição e URL jpxdigital.com.br |
+| 4 | LinkedIn perfil João Martins | João | ✅ | Headline + Sobre + Experiência publicados |
+| 5 | HubSpot views de prospecção | João | 🟡 Em andamento | Views "Novos Leads", "Em Andamento" e "Propostas" — 1/3 criada |
+| 6 | Templates de e-mail institucional | João + Claude | ✅ | 7 templates criados em `governance/TEMPLATES-EMAIL.md` — 2026-07-30 |
 | 7 | Lista Econodata SP Oeste | João | ⏳ | 25 empresas Score A exportadas com CNPJ, porte, contato |
 | 8 | Primeiros 3 contatos comerciais | João | ⏳ | 3 e-mails/mensagens enviados e registrados no HubSpot |
 | 9 | Meta: 3 assessments agendados | João | ⏳ | 3 reuniões no Bookings ou confirmadas por e-mail |

@@ -1,0 +1,124 @@
+
+# Deploy na VM1 junto com o stack do site.
+# Acesso ao Grafana apenas via SSH tunnel ou VPN interna.
+# Nunca exponha as portas diretamente na internet.
+
+services:
+  prometheus:
+    image: prom/prometheus:v2.53.0
+    container_name: jpx_prometheus
+    restart: unless-stopped
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--storage.tsdb.retention.time=30d"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    expose:
+      - "9090"
+    networks:
+      - monitoring
+
+  grafana:
+    image: grafana/grafana:11.0.0
+    container_name: jpx_grafana
+    restart: unless-stopped
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD}
+      GF_SERVER_ROOT_URL: https://grafana.jpxdigital.internal
+      GF_ANALYTICS_REPORTING_ENABLED: "false"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./grafana/datasources:/etc/grafana/provisioning/datasources:ro
+    ports:
+      - "127.0.0.1:3001:3000"
+    depends_on:
+      - prometheus
+      - loki
+    networks:
+      - monitoring
+
+  # Métricas de host (CPU, RAM, disco, rede)
+  node_exporter:
+    image: prom/node-exporter:v1.8.1
+    container_name: jpx_node_exporter
+    restart: unless-stopped
+    command:
+      - "--path.rootfs=/host"
+      - "--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)"
+    volumes:
+      - /:/host:ro,rslave
+    expose:
+      - "9100"
+    networks:
+      - monitoring
+    pid: host
+
+  # Métricas de containers Docker
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.49.1
+    container_name: jpx_cadvisor
+    restart: unless-stopped
+    privileged: true
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
+      - /dev/disk:/dev/disk:ro
+    expose:
+      - "8080"
+    networks:
+      - monitoring
+
+  # Agregação de logs (Nginx + Next.js + sistema)
+  loki:
+    image: grafana/loki:3.0.0
+    container_name: jpx_loki
+    restart: unless-stopped
+    command: -config.file=/etc/loki/loki.yml
+    volumes:
+      - ./loki.yml:/etc/loki/loki.yml:ro
+      - loki_data:/loki
+    expose:
+      - "3100"
+    networks:
+      - monitoring
+
+  # Agente que envia logs ao Loki
+  promtail:
+    image: grafana/promtail:3.0.0
+    container_name: jpx_promtail
+    restart: unless-stopped
+    command: -config.file=/etc/promtail/promtail.yml
+    volumes:
+      - ./promtail.yml:/etc/promtail/promtail.yml:ro
+      - /var/log:/var/log:ro
+      - nginx_logs:/var/log/nginx:ro
+    networks:
+      - monitoring
+
+  # Exporter de métricas Nginx
+  nginx_exporter:
+    image: nginx/nginx-prometheus-exporter:1.1.0
+    container_name: jpx_nginx_exporter
+    restart: unless-stopped
+    command: -nginx.scrape-uri=http://nginx/stub_status
+    expose:
+      - "9113"
+    networks:
+      - monitoring
+
+volumes:
+  prometheus_data:
+  grafana_data:
+  loki_data:
+  nginx_logs:
+    external: true  # Compartilhado com o stack do site (vm1/docker-compose.yml)
+
+networks:
+  monitoring:
+    internal: true

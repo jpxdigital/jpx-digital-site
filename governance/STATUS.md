@@ -1,7 +1,7 @@
 # STATUS — JPX Digital Platform
 
 **Fonte oficial de estado do projeto.**
-Última atualização: 2026-07-23
+Última atualização: 2026-07-30
 
 ---
 
@@ -64,14 +64,14 @@ A plataforma passou pela homologação completa (78/78 testes). Todos os sistema
 | Infraestrutura OCI | Produção ✅ | 4 VMs ativas — migração jpx-n8n para A1.Flex pendente |
 | Microsoft 365 / Exchange | Produção ✅ | MX, SPF, DKIM, DMARC, aliases, assinatura, foto de perfil |
 | Microsoft Bookings | Produção ✅ | Página publicada, calendário sincronizado, Teams integrado, fluxo homologado |
-| HubSpot CRM | Produção ✅ | Pipeline 9 estágios, propriedades customizadas, token ativo — views e dashboards a configurar |
+| HubSpot CRM | Produção ✅ | Pipeline 10 estágios, propriedades customizadas, token ativo — views e dashboards a configurar |
 | n8n Automações | Produção ✅ | Plataforma operacional homologada. 13 workflows ativos. Estrutura preparada para expansão. |
 | PDF Service | Produção ✅ | 5 templates ativos em vm-ashburn-1 |
 | Monitoramento (Grafana) | Produção ✅ | Infraestrutura operacional — datasources Prometheus/Loki a configurar |
 | JAS Sprint 1 | Produção ✅ | WhatsApp → HubSpot → Telegram E2E validado em 2026-07-22 |
 | JAS Sprint 2 | Não iniciado | Qualificação conversacional — aguarda primeiro Assessment vendido |
 | JMS (documentação) | Aprovado ✅ | 24 documentos — base de conhecimento da operação |
-| Identidade Visual | Produção ✅ | Favicon, PWA, logo e-mail, assinatura HTML, foto M365 — LinkedIn pendente |
+| Identidade Visual | Produção ✅ | Favicon, PWA, logo e-mail, assinatura HTML, foto M365, LinkedIn empresa e perfil pessoal |
 
 ---
 
@@ -107,7 +107,7 @@ A plataforma passou pela homologação completa (78/78 testes). Todos os sistema
 
 ### HUBSPOT
 - **Estado:** Produção ✅ — 90%
-- **Pronto:** Pipeline JPX (9 estágios), propriedades customizadas, token ativo (rotacionado 2026-06-29)
+- **Pronto:** Pipeline JPX (10 estágios), propriedades customizadas, token ativo (rotacionado 2026-06-29)
 - **Pendente:** views definitivas de prospecção, dashboards de pipeline, refinamento de automações com base em uso comercial real
 
 ### N8N AUTOMAÇÕES
@@ -132,9 +132,8 @@ A plataforma passou pela homologação completa (78/78 testes). Todos os sistema
 - **Pendente:** configurar datasources no Grafana (dashboards mostram "No data")
 
 ### IDENTIDADE VISUAL
-- **Estado:** Produção ✅ — 95%
-- **Pronto:** Favicon, ícones PWA, logo e-mail, foto perfil M365, assinatura HTML
-- **Pendente:** LinkedIn empresa JPX Digital + perfil João Martins
+- **Estado:** Produção ✅ — 100%
+- **Pronto:** Favicon, ícones PWA, logo e-mail, foto perfil M365, assinatura HTML, LinkedIn empresa (2026-07-25) e perfil João Martins (2026-07-26)
 
 ---
 
@@ -144,11 +143,11 @@ O foco mudou: a plataforma já existe. O desafio agora é **validar o modelo com
 
 | Objetivo | Entrega |
 |---|---|
-| Posicionamento institucional | LinkedIn empresa + perfil João Martins |
-| Material comercial premium | Playbook Comercial (`governance/PLAYBOOK-COMERCIAL.md`) |
+| Posicionamento institucional | LinkedIn empresa ✅ + perfil João Martins ✅ |
+| Material comercial premium | Playbook Comercial (`governance/PLAYBOOK-COMERCIAL.md`) — v0.1 rascunho |
 | Processo de venda | Assessment Executivo como porta de entrada |
-| Comunicação | Templates de e-mail institucional revisados |
-| Pipeline inicial | Lista Econodata SP Oeste — 10 empresas Score A |
+| Comunicação | Templates de e-mail institucional — ⏳ pendente |
+| Pipeline inicial | Lista Econodata SP Oeste — meta: 25 Score A (marco: 10/25) |
 | Primeiros contatos | Reuniões comerciais — meta: 3 assessments em 60 dias |
 | Métricas reais | Dados para evolução do JAS Sprint 2 |
 
@@ -161,9 +160,9 @@ O foco mudou: a plataforma já existe. O desafio agora é **validar o modelo com
 | P1 | Migração jpx-n8n para A1.Flex | Infra | Alta — VM com 1 GB RAM é risco operacional |
 | P2 | Grafana datasources (Prometheus + Loki) | Monitoramento | Média |
 | P3 | WF-011/013 routing via WF-009 | n8n | Média |
-| P4 | LinkedIn empresa JPX Digital | Comercial | Fase 2 |
-| P5 | LinkedIn perfil João Martins | Comercial | Fase 2 |
-| P6 | HubSpot views definitivas e dashboards | HubSpot | Fase 2 |
+| P4 | HubSpot views definitivas e dashboards | HubSpot | Fase 2 |
+| P5 | Templates de e-mail institucional | Comercial | Fase 2 |
+| P6 | Lista Econodata SP Oeste (25 Score A) | Comercial | Fase 2 |
 | P7 | ZapSign SOW | n8n | Aguarda token API |
 | P8 | Deploy automático jas-bridge | Infra | Baixa |
 | P9 | JAS Sprint 2 | JAS | Aguarda 1º cliente |

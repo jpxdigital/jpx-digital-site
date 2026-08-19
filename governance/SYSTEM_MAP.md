@@ -24,7 +24,7 @@ API /api/leads ──────────────────► n8n (n8
 ├─► Telegram (notificação)          │
 │   (@jpxdigital_bot)               ├─► Telegram (notificação HUMAN_TAKEOVER)
 │                                   │
-└─► Resend (e-mail transacional)    └─► Resend (e-mail transacional)
+└─► Zoho SMTP (e-mail transacional) └─► Zoho SMTP (e-mail transacional)
 
 
 GERAÇÃO DE DOCUMENTOS
@@ -106,7 +106,7 @@ vm-ashburn-2 (141.148.50.123)
 | Serviço | Uso | Autenticação | Responsável |
 |---|---|---|---|
 | HubSpot | CRM | PAT token (KEYS.md) | jpx |
-| Resend | E-mail transacional | API Key (KEYS.md) | jpx |
+| Zoho SMTP | E-mail transacional | SMTP credentials (KEYS.md) | jpx |
 | Cloudflare | DNS + CDN + Tunnels | API Token (KEYS.md) | jpx |
 | Microsoft 365 | E-mail + Reuniões + Bookings | Admin Global | joao@jpxdigital.com.br |
 | Cal.com | Agendamento alternativo | OAuth M365 | joao@jpxdigital.com.br |

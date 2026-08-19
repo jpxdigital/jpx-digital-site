@@ -1,0 +1,89 @@
+{
+  "slug": "backup-corporativo",
+  "category": "Continuidade & Segurança",
+  "heroHeadline": "Backup Corporativo — RPO e RTO Definidos, Testados e Garantidos em Contrato.",
+  "heroSub": "A maioria das empresas descobre que o backup não funciona no pior momento possível: durante uma recuperação de emergência. Nós testamos antes.",
+  "ctaLabel": "Solicitar Backup Readiness Assessment",
+  "problem": {
+    "headline": "Você não precisa apenas de backups. Você precisa da certeza de que seus dados poderão ser recuperados quando a operação depender disso.",
+    "body": [
+      "Backup não é uma commodity. É uma responsabilidade. Ter um processo de backup configurado é muito diferente de ter dados realmente recuperáveis quando você precisa.",
+      "A maioria das empresas descobre o problema durante a recuperação — e não antes. Snapshots que nunca foram testados, políticas de retenção que expiraram, agentes parados silenciosamente há semanas. Isso é mais comum do que parece.",
+      "A JPX Digital projeta, implanta e valida backups corporativos com métricas claras: RPO e RTO definidos com você, documentados em contrato e testados mensalmente. Não em promessa verbal."
+    ]
+  },
+  "assessment": {
+    "name": "Backup Readiness Assessment",
+    "body": "Antes de implantar qualquer solução, avaliamos a maturidade do seu ambiente de backup. Identificamos riscos, validamos requisitos de continuidade operacional e definimos a estratégia de proteção mais adequada para o negócio.",
+    "checklist": [
+      "Levantamento dos ativos críticos e suas dependências",
+      "Avaliação do ambiente atual de backup (se existir)",
+      "Definição de RPO e RTO por criticidade de sistema",
+      "Identificação de riscos e lacunas de proteção",
+      "Proposta de arquitetura personalizada"
+    ]
+  },
+  "process": {
+    "title": "Como implementamos o backup corporativo",
+    "steps": [
+      { "title": "Mapeamento de ativos e definição de SLA", "desc": "Identificamos todos os sistemas críticos — servidores, bancos de dados, compartilhamentos de rede — e definimos RPO e RTO específicos para cada um. Nem tudo tem a mesma prioridade de recuperação." },
+      { "title": "Implantação com agente leve", "desc": "Configuramos o agente com políticas de retenção, janelas de backup, criptografia e múltiplos destinos. Impacto mínimo em produção — backups incrementais com deduplicação e verificação por hash." },
+      { "title": "Validação com restore real", "desc": "Diferente de verificar apenas a integridade do backup, fazemos restauração real em ambiente isolado. Você recebe o tempo de restore medido e confirmação de que os dados estão íntegros e utilizáveis." },
+      { "title": "Monitoramento e relatório mensal", "desc": "Monitoramos cada execução de backup, alertamos imediatamente em caso de falha e entregamos relatório mensal com status, testes de restore realizados e métricas de RPO/RTO atingidas." }
+    ]
+  },
+  "benefits": [
+    { "title": "Proteção comprovada", "desc": "Restore mensal testado e documentado. Você sabe que o backup funciona antes de precisar dele." },
+    { "title": "RPO e RTO em contrato", "desc": "Não em promessa verbal. Métricas de recuperação definidas e cobráveis." },
+    { "title": "Visibilidade executiva", "desc": "Relatórios mensais com status, testes e conformidade — para gestão e auditoria." },
+    { "title": "Cobertura completa", "desc": "On-premise, cloud (OCI, Azure, AWS), bancos de dados e file servers em uma única solução." }
+  ],
+  "deliverables": [
+    "Documento da arquitetura de backup",
+    "Inventário de ativos protegidos",
+    "Política de retenção documentada",
+    "Plano de recuperação (DRP)",
+    "Relatório de implantação",
+    "Relatório de testes de restore",
+    "Dashboard de monitoramento",
+    "Relatório executivo mensal"
+  ],
+  "differentials": [
+    { "title": "Assessment antes da implantação", "desc": "Avaliamos a maturidade do ambiente antes de propor qualquer solução. Nenhuma ferramenta é recomendada sem diagnóstico." },
+    { "title": "Projeto personalizado", "desc": "Nenhuma solução de prateleira. Cada ambiente tem sua própria arquitetura baseada nas necessidades reais do negócio." },
+    { "title": "Documentação completa", "desc": "Tudo documentado: arquitetura, políticas, procedimentos e plano de recuperação. Sua empresa não depende da nossa memória." },
+    { "title": "Testes periódicos de recuperação", "desc": "Restore mensal comprovado com relatório. Você sabe que o backup funciona antes de precisar dele." },
+    { "title": "Monitoramento proativo", "desc": "Alertas imediatos em caso de falha ou desvio. Não esperamos o incidente para agir." },
+    { "title": "Arquitetura 3-2-1 com criptografia AES-256", "desc": "3 cópias, 2 mídias diferentes, 1 offsite. Todos os dados criptografados antes da transmissão." }
+  ],
+  "supportedEnvironments": [
+    { "categoria": "Cloud Pública", "itens": ["Oracle Cloud Infrastructure (OCI)", "Microsoft Azure", "Amazon Web Services (AWS)"] },
+    { "categoria": "Virtualização", "itens": ["VMware vSphere", "Microsoft Hyper-V"] },
+    { "categoria": "Sistemas Operacionais", "itens": ["Linux (todas as distribuições)", "Windows Server"] },
+    { "categoria": "Bancos de Dados", "itens": ["Oracle Database", "Microsoft SQL Server", "PostgreSQL", "MySQL / MariaDB"] },
+    { "categoria": "Storage & File", "itens": ["File Servers", "NAS", "Compartilhamentos SMB/NFS"] },
+    { "categoria": "Containers", "itens": ["Kubernetes", "Docker (conforme arquitetura)"] }
+  ],
+  "faqs": [
+    {
+      "question": "Qual é a diferença entre backup e disaster recovery?",
+      "answer": "Backup é a cópia dos dados. Disaster Recovery é o processo completo de retomar as operações após um incidente — inclui backup, mas também infraestrutura alternativa, procedimentos de failover e testes periódicos. Um sem o outro é incompleto para ambientes críticos."
+    },
+    {
+      "question": "Com que frequência o backup é testado?",
+      "answer": "Realizamos testes de restore mensais em todos os ambientes que gerenciamos. Um backup não testado é apenas esperança. Entregamos relatório mensal com o resultado de cada restore, incluindo tempo de recuperação medido."
+    },
+    {
+      "question": "Onde os dados do backup ficam armazenados?",
+      "answer": "Implementamos estratégia 3-2-1: 3 cópias, em 2 mídias diferentes, sendo 1 cópia offsite. Normalmente usamos armazenamento local (NAS) + Object Storage em nuvem (OCI, AWS S3, Backblaze B2). Todos os dados são criptografados com AES-256 antes da transmissão."
+    },
+    {
+      "question": "O backup cobre sistemas em cloud também?",
+      "answer": "Sim. Gerenciamos backup de servidores on-premise, VMs em OCI, Azure e AWS, bancos de dados Oracle, SQL Server, MySQL e PostgreSQL, e sistemas de arquivo. O agente é leve e funciona sem impacto perceptível em produção."
+    },
+    {
+      "question": "Quanto tempo leva para restaurar dados em caso de incidente?",
+      "answer": "Depende do RPO e RTO definidos no projeto. Em ambientes que gerenciamos, trabalhamos com RTO de 1 a 4 horas para restauração completa de servidores críticos. Restauração de arquivos individuais leva minutos."
+    }
+  ]
+}
