@@ -15,40 +15,16 @@
         "path": "envio-avulso",
         "httpMethod": "POST",
         "responseData": "firstEntryJson",
-        "responseMode": "onReceived"
+        "responseMode": "onReceived",
+        "authentication": "headerAuth"
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "SUBSTITUIR_APOS_CRIAR_CREDENCIAL",
+          "name": "JPX Webhook Secret"
+        }
       },
       "typeVersion": 2
-    },
-    {
-      "id": "2b35c31d-bddf-4f5c-a288-c9998c0d3b97",
-      "name": "Validar secret",
-      "type": "n8n-nodes-base.if",
-      "position": [
-        200,
-        0
-      ],
-      "parameters": {
-        "conditions": {
-          "options": {
-            "version": 2,
-            "leftValue": "",
-            "caseSensitive": true,
-            "typeValidation": "strict"
-          },
-          "combinator": "and",
-          "conditions": [
-            {
-              "id": "check-secret",
-              "operator": {
-                "type": "string",
-                "operation": "equals"
-              },
-              "leftValue": "={{ $json.headers['x-jpx-secret'] }}",
-              "rightValue": "={{ $env.JPX_WEBHOOK_SECRET }}"
-            }
-          ]
-        }
-      }
     },
     {
       "id": "f184a469-6b5d-4079-9cc2-b57ec006f7a8",
@@ -100,17 +76,6 @@
   ],
   "connections": {
     "Webhook — Envio Avulso": {
-      "main": [
-        [
-          {
-            "node": "Validar secret",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Validar secret": {
       "main": [
         [
           {
