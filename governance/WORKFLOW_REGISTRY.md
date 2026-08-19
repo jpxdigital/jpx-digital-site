@@ -2,7 +2,7 @@
 
 Inventário oficial de todos os workflows. Toda alteração deve atualizar este registro.
 
-Última atualização: 2026-07-13
+Última atualização: 2026-08-19
 
 ---
 
@@ -24,6 +24,7 @@ Inventário oficial de todos os workflows. Toda alteração deve atualizar este 
 | WF-012 | Checklist Implantação | `/webhook/gerar-checklist-implantacao` | — (só no n8n) | Produção | — | v1.0 |
 | WF-013 | Kit Onboarding | `/webhook/gerar-onboarding-kit` | — (só no n8n) | Produção | — | v1.0 |
 | WF-014 | Follow-up Proposta 7 dias | — (schedule) | — (só no n8n) | Produção | — | v1.0 |
+| WF-018 | Envio Avulso (fornecedor/procurement) | `/webhook/envio-avulso` | `n8n-workflows/envio-avulso.json` | Rascunho | — | v0.1 |
 
 ---
 

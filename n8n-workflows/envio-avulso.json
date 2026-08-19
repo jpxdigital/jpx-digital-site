@@ -1,0 +1,140 @@
+{
+  "id": "c3667bd0-7a99-431e-89bc-d8ea6ee211d7",
+  "name": "JPX — Envio Avulso (fornecedor/procurement)",
+  "nodes": [
+    {
+      "id": "16b3d826-a009-4374-b7ae-04ade06c67c1",
+      "name": "Webhook — Envio Avulso",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "jpx-envio-avulso-v1",
+      "parameters": {
+        "path": "envio-avulso",
+        "httpMethod": "POST",
+        "responseData": "firstEntryJson",
+        "responseMode": "onReceived"
+      },
+      "typeVersion": 2
+    },
+    {
+      "id": "2b35c31d-bddf-4f5c-a288-c9998c0d3b97",
+      "name": "Validar secret",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        200,
+        0
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "check-secret",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              },
+              "leftValue": "={{ $json.headers['x-jpx-secret'] }}",
+              "rightValue": "={{ $env.JPX_WEBHOOK_SECRET }}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "f184a469-6b5d-4079-9cc2-b57ec006f7a8",
+      "name": "Resend — Enviar e-mail avulso",
+      "type": "n8n-nodes-base.emailSend",
+      "position": [
+        400,
+        0
+      ],
+      "webhookId": "d2c78e2f-0448-416a-b035-b490ce36f884",
+      "parameters": {
+        "message": "={{ $json.body.html }}",
+        "subject": "={{ $json.body.subject }}",
+        "toEmail": "={{ $json.body.to }}",
+        "ccEmail": "={{ $json.body.cc || '' }}",
+        "emailType": "html",
+        "fromEmail": "={{ $json.body.from || 'jp@jpxdigital.com.br' }}"
+      },
+      "credentials": {
+        "smtp": {
+          "id": "WgJQhvWq8zsqFbSW",
+          "name": "Resend SMTP"
+        }
+      }
+    },
+    {
+      "id": "6ab9de48-9bef-45d9-813e-209c38a861e7",
+      "name": "Telegram — Notificação interna",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        600,
+        0
+      ],
+      "webhookId": "29d6af58-7960-405f-ab8a-1d145dc22c29",
+      "parameters": {
+        "text": "={{ 'Envio avulso disparado.\\n\\nPara: ' + $('Webhook — Envio Avulso').item.json.body.to + '\\nAssunto: ' + $('Webhook — Envio Avulso').item.json.body.subject + '\\nDe: ' + ($('Webhook — Envio Avulso').item.json.body.from || 'jp@jpxdigital.com.br') }}",
+        "chatId": "8384975992",
+        "additionalFields": {
+          "parse_mode": ""
+        }
+      },
+      "credentials": {
+        "telegramApi": {
+          "id": "GhT4VtdGZs9ElIrA",
+          "name": "Telegram JPX Bot"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook — Envio Avulso": {
+      "main": [
+        [
+          {
+            "node": "Validar secret",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validar secret": {
+      "main": [
+        [
+          {
+            "node": "Resend — Enviar e-mail avulso",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Resend — Enviar e-mail avulso": {
+      "main": [
+        [
+          {
+            "node": "Telegram — Notificação interna",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null
+}
