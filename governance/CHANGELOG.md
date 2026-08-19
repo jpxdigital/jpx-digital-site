@@ -7,6 +7,7 @@ Formato: `[DATA] Módulo — Descrição (commit ou referência)`
 
 ## 2026-08-19
 
+- `[SITE]` Bug corrigido: `page.tsx` órfão em `/servicos/ai-readiness-assessment` mantinha a rota ao vivo (HTTP 200) desde 23/07, apesar de o commit `332a4e5` ter marcado o serviço como desativado (só criou `_page.disabled`, sem remover o original). Arquivo removido — rota agora retorna 404, alinhada ao Acronis
 - `[INFRA]` Notebook secundário migrado de 192.168.18.12 → 192.168.18.42 (IP novo)
 - `[INFRA]` Sync rsync aposentado — repositórios jpx-digital-site, jpx-suporte-docker e jpx-jms migrados para Git com branch dev/main
 - `[INFRA]` jpx-jms criado no GitHub (jpxdigital/jpx-jms) e inicializado nos dois notebooks

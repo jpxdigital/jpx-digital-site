@@ -1,7 +1,7 @@
 # STATUS — JPX Digital Platform
 
 **Fonte oficial de estado do projeto.**
-Última atualização: 2026-07-30
+Última atualização: 2026-08-19
 
 ---
 
@@ -81,7 +81,7 @@ A plataforma passou pela homologação completa (78/78 testes). Todos os sistema
 - **Estado:** Produção ✅
 - **URL:** https://jpxdigital.com.br
 - **Pronto:** Next.js 15, 27 serviços, 5 segmentos, SEO, Blog, API leads, Admin, Helena (chatbot), Favicon, Logo e-mail, links externos em nova aba
-- **Observação:** sala-cofre desativada (`_page.disabled`)
+- **Observação:** sala-cofre e ai-readiness-assessment desativadas (`_page.disabled`) — `page.tsx` órfão do ai-readiness (servia a página ao vivo desde 23/07 apesar de "desativada") removido em 2026-08-19
 
 ### INFRAESTRUTURA
 - **Estado:** Produção ✅ — 95%
