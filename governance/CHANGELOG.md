@@ -5,6 +5,15 @@ Formato: `[DATA] Módulo — Descrição (commit ou referência)`
 
 ---
 
+## 2026-08-19
+
+- `[INFRA]` Notebook secundário migrado de 192.168.18.12 → 192.168.18.42 (IP novo)
+- `[INFRA]` Sync rsync aposentado — repositórios jpx-digital-site, jpx-suporte-docker e jpx-jms migrados para Git com branch dev/main
+- `[INFRA]` jpx-jms criado no GitHub (jpxdigital/jpx-jms) e inicializado nos dois notebooks
+- `[INFRA]` .claude/ adicionado ao .gitignore — worktrees do Claude Code removidos do histórico
+- `[INFRA]` Aliases criados nos dois WSLs: jpx-pull, jpx-push, jpx-publish (merge dev→main dispara deploy)
+- `[GOVERNANÇA]` Fluxo de publicação definido: dev = rascunho entre máquinas; main = produção com deploy automático
+
 ## 2026-07-31
 
 - `[SITE]` Segmento "Autoridades Certificadoras" ocultado do site (Footer, home, /segmentos) — página mantida no codebase; ChatBot redirecionado para /servicos/certificados-digitais
