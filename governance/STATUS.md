@@ -167,3 +167,4 @@ O foco mudou: a plataforma já existe. O desafio agora é **validar o modelo com
 | P7 | ZapSign SOW | n8n | Aguarda token API |
 | P8 | Deploy automático jas-bridge | Infra | Baixa |
 | P9 | JAS Sprint 2 | JAS | Aguarda 1º cliente |
+| P10 | Upgrade Next.js 15→16 (postcss interno vulnerável, alta, baixo risco prático) | Site | Baixa |
