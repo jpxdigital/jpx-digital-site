@@ -1,7 +1,7 @@
 # STATUS — JPX Digital Platform
 
 **Fonte oficial de estado do projeto.**
-Última atualização: 2026-08-19
+Última atualização: 2026-09-13
 
 ---
 
@@ -60,7 +60,7 @@ A plataforma passou pela homologação completa (78/78 testes). Todos os sistema
 
 | Módulo | Estado | Descrição |
 |---|---|---|
-| Site Next.js | Produção ✅ | 27 serviços, 5 segmentos, SEO, Blog, Admin, Helena, formulário de leads |
+| Site Next.js | 🚧 Manutenção (redesign) | 27 serviços, 5 segmentos, SEO, Blog, Admin, Helena, formulário de leads — homologados, mas gateados por `/manutencao` desde 13/09 |
 | Infraestrutura OCI | Produção ✅ | 4 VMs ativas — migração jpx-n8n para A1.Flex pendente |
 | Microsoft 365 / Exchange | Produção ✅ | MX, SPF, DKIM, DMARC, aliases, assinatura, foto de perfil |
 | Microsoft Bookings | Produção ✅ | Página publicada, calendário sincronizado, Teams integrado, fluxo homologado |
@@ -78,9 +78,11 @@ A plataforma passou pela homologação completa (78/78 testes). Todos os sistema
 ## Detalhe por Módulo
 
 ### SITE
-- **Estado:** Produção ✅
-- **URL:** https://jpxdigital.com.br
-- **Pronto:** Next.js 15, 27 serviços, 5 segmentos, SEO, Blog, API leads, Admin, Helena (chatbot), Favicon, Logo e-mail, links externos em nova aba
+- **Estado:** 🚧 Manutenção — 2026-09-13
+- **URL:** https://jpxdigital.com.br (mostra `/manutencao` para o público — WhatsApp e e-mail visíveis)
+- **Motivo:** redesign em andamento. Código homologado (formulário, Helena, HubSpot, JAS) **intacto**, apenas gateado por `src/middleware.ts` (flag `MAINTENANCE_MODE` em `src/lib/maintenance.ts`). `/api/*` liberado do gate — health check do deploy não é afetado
+- **GO-LIVE técnico de 22/07 permanece válido/congelado.** Gold Path deve ser re-executado antes do relançamento
+- **Pronto (código, não exposto):** Next.js 15, 27 serviços, 5 segmentos, SEO, Blog, API leads, Admin, Helena (chatbot), Favicon, Logo e-mail, links externos em nova aba
 - **Observação:** sala-cofre e ai-readiness-assessment desativadas (`_page.disabled`) — `page.tsx` órfão do ai-readiness (servia a página ao vivo desde 23/07 apesar de "desativada") removido em 2026-08-19
 
 ### INFRAESTRUTURA

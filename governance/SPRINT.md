@@ -40,7 +40,7 @@ Critério de encerramento: 3 assessments agendados ou realizados.
 
 | # | Item | Responsável | Estado | Critério de aceite |
 |---|---|---|---|---|
-| 1 | Tag `v1.5.0` no git | Claude | ⏳ | Tag criada, RELEASES.md atualizado |
+| 1 | Tag `v1.5.0` no git | Claude | ✅ | Tag já existia no remoto (`ed79b52`, 23/07/2026) — item estava desatualizado como pendente, corrigido em 13/09 |
 | 2 | JPX Playbook Comercial | João + Claude | ✅ | Documento v1.0 revisado e aprovado — 2026-07-30 |
 | 3 | LinkedIn empresa JPX Digital | João | ✅ | Página publicada com logo, descrição e URL jpxdigital.com.br |
 | 4 | LinkedIn perfil João Martins | João | ✅ | Headline + Sobre + Experiência publicados |
@@ -49,6 +49,17 @@ Critério de encerramento: 3 assessments agendados ou realizados.
 | 7 | Lista Econodata SP Oeste | João | ⏳ | 25 empresas Score A exportadas com CNPJ, porte, contato |
 | 8 | Primeiros 3 contatos comerciais | João | ⏳ | 3 e-mails/mensagens enviados e registrados no HubSpot |
 | 9 | Meta: 3 assessments agendados | João | ⏳ | 3 reuniões no Bookings ou confirmadas por e-mail |
+
+---
+
+## Desvio de escopo registrado — 2026-09-13
+
+Decisão de negócio: site colocado em modo manutenção (`/manutencao`) para redesign,
+mesmo o `SPRINT.md` listando "novas features no site" e "refactor" como fora de escopo
+desta fase. Registrado aqui para rastreabilidade — ver `governance/CHANGELOG.md` (2026-09-13)
+e `governance/STATUS.md` (módulo Site). GO-LIVE técnico de 22/07 permanece congelado/válido;
+Gold Path a re-executar antes do relançamento. Captação de leads via WhatsApp/e-mail mantida
+na página de manutenção para não zerar o funil da Fase 2 durante o redesign.
 
 ---
 

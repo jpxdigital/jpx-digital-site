@@ -5,6 +5,13 @@ Formato: `[DATA] Módulo — Descrição (commit ou referência)`
 
 ---
 
+## 2026-09-13
+
+- `[SITE]` Modo manutenção ativado por decisão de negócio: site público substituído por página "em construção" (`/manutencao`) enquanto um redesign é feito. Implementado via `src/lib/maintenance.ts` (flag) + `src/middleware.ts` (gate com 503 + Retry-After, preserva indexação SEO) — todas as rotas homologadas (formulário, Helena, HubSpot, JAS) permanecem intactas no código, apenas inacessíveis publicamente. `/api/*` explicitamente excluído do gate para não quebrar o health check do `deploy.yml`. Página de manutenção mantém WhatsApp (98189-0607) e e-mail (jp@jpxdigital.com.br) para não interromper captação de leads durante a Fase 2
+- `[GOVERNANÇA]` GO-LIVE técnico de 2026-07-22 (H1 46/46, H2 32/32) declarado válido e congelado — não invalidado pelo modo manutenção. Gold Path deverá ser re-executado antes do site voltar ao ar com o redesign
+- `[GOVERNANÇA]` Tag `v1.5.0` confirmada já existente no remoto (`ed79b52`, 23/07/2026) — item 1 do `SPRINT.md` estava desatualizado como pendente
+- `[N8N]` WF-018 (Envio Avulso) promovido de `dev` para `main`
+
 ## 2026-08-19
 
 - `[N8N]` WF-018 criado: Envio Avulso (fornecedor/procurement) — webhook genérico para disparar e-mail via Resend SMTP (`comercial@` ou `jp@jpxdigital.com.br` configurável no payload) fora do fluxo de leads/deals. Estado: Rascunho — aguarda import manual no n8n e configuração de `JPX_WEBHOOK_SECRET`. Motivado por cotação Bitdefender/Securisoft (98 servidores ACDIGITAL)
