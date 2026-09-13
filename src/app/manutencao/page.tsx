@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { MessageCircle, Mail } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Em breve | JPX Digital',
+  title: 'Em breve',
   description: 'A JPX Digital está reconstruindo o site. Em breve, de volta com uma nova experiência.',
   robots: { index: false, follow: false },
 }
