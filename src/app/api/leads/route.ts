@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { promises as dns } from 'node:dns'
+import { createRateLimiter, getClientIp } from '@/lib/rateLimit'
 
 // Cache de domínios verificados para não fazer lookup a cada request
 const mxCache = new Map<string, { valid: boolean; expiresAt: number }>()
@@ -24,29 +25,7 @@ async function domainHasMx(domain: string): Promise<boolean> {
 }
 
 // In-memory rate limiter — upgrade para Redis na Fase 2
-const rateLimitMap = new Map<string, { count: number; resetAt: number }>()
-
-function checkRateLimit(ip: string): boolean {
-  const now = Date.now()
-  const windowMs = 60_000 // 1 min
-  const limit = 5
-  const entry = rateLimitMap.get(ip)
-  if (!entry || entry.resetAt < now) {
-    rateLimitMap.set(ip, { count: 1, resetAt: now + windowMs })
-    return true
-  }
-  if (entry.count >= limit) return false
-  entry.count++
-  return true
-}
-
-function getClientIp(req: NextRequest): string {
-  return (
-    req.headers.get('cf-connecting-ip') ??
-    req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
-    '0.0.0.0'
-  )
-}
+const checkRateLimit = createRateLimiter({ limit: 5, windowMs: 60_000 })
 
 export async function POST(req: NextRequest) {
   try {

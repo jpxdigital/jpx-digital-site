@@ -1,11 +1,29 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { timingSafeEqual } from 'node:crypto'
+import { createRateLimiter, getClientIp } from '@/lib/rateLimit'
+
+// Mesma política do /api/leads — sem isso, o x-admin-secret podia ser
+// forçado por tentativa e erro sem nenhum limite (achado da revisão de
+// segurança de 2026-09-13).
+const checkRateLimit = createRateLimiter({ limit: 5, windowMs: 60_000 })
 
 function isAuthorized(req: NextRequest): boolean {
   const secret = req.headers.get('x-admin-secret')
-  return Boolean(secret && secret === process.env.ADMIN_SECRET)
+  const expected = process.env.ADMIN_SECRET
+  if (!secret || !expected) return false
+
+  const a = Buffer.from(secret)
+  const b = Buffer.from(expected)
+  // Comparação em tempo constante — timingSafeEqual exige buffers do mesmo
+  // tamanho, então o early-return por length continua sendo o único desvio.
+  if (a.length !== b.length) return false
+  return timingSafeEqual(a, b)
 }
 
 export async function GET(req: NextRequest) {
+  if (!checkRateLimit(getClientIp(req))) {
+    return json({ error: 'Muitas tentativas. Tente novamente em 1 minuto.' }, 429)
+  }
   if (!isAuthorized(req)) return json({ error: 'Não autorizado' }, 401)
 
   const { CF_ACCOUNT_ID, CF_API_TOKEN, CF_PROJECT_NAME } = process.env
