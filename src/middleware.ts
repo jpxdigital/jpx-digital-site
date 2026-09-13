@@ -6,7 +6,11 @@ import { MAINTENANCE_MODE } from '@/lib/maintenance'
 // página de manutenção) continuam passando normalmente — health check do
 // deploy (.github/workflows/deploy.yml) depende disso para não falhar.
 export function middleware(req: NextRequest) {
-  if (!MAINTENANCE_MODE) return NextResponse.next()
+  // Em dev local (npm run dev) o modo manutenção nunca se aplica — é assim
+  // que se testa/trabalha no redesign sem precisar desligar a flag toda hora.
+  if (!MAINTENANCE_MODE || process.env.NODE_ENV !== 'production') {
+    return NextResponse.next()
+  }
 
   const { pathname } = req.nextUrl
   if (pathname === '/manutencao') return NextResponse.next()

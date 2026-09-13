@@ -52,14 +52,13 @@ Critério de encerramento: 3 assessments agendados ou realizados.
 
 ---
 
-## Desvio de escopo registrado — 2026-09-13
+## Desvio de escopo registrado — 2026-09-13 (revertido no mesmo dia)
 
 Decisão de negócio: site colocado em modo manutenção (`/manutencao`) para redesign,
 mesmo o `SPRINT.md` listando "novas features no site" e "refactor" como fora de escopo
-desta fase. Registrado aqui para rastreabilidade — ver `governance/CHANGELOG.md` (2026-09-13)
-e `governance/STATUS.md` (módulo Site). GO-LIVE técnico de 22/07 permanece congelado/válido;
-Gold Path a re-executar antes do relançamento. Captação de leads via WhatsApp/e-mail mantida
-na página de manutenção para não zerar o funil da Fase 2 durante o redesign.
+desta fase. **Revertido no mesmo dia** — nova decisão: o redesign será feito com o site
+no ar, não offline. Site voltou à Produção normal. Código do gate permanece no repo
+(desativado) para uso futuro se necessário. Ver `governance/CHANGELOG.md` (2026-09-13).
 
 ---
 

@@ -7,6 +7,7 @@ Formato: `[DATA] Módulo — Descrição (commit ou referência)`
 
 ## 2026-09-13
 
+- `[SITE]` Modo manutenção **revertido** — decisão de negócio mudou: site volta ao ar normalmente, redesign será feito com o site no ar (não mais offline). `MAINTENANCE_MODE` voltou a `false` em `src/lib/maintenance.ts`. Código do gate (`src/middleware.ts`, `/manutencao`) mantido no repo, desativado, pronto para reativar se necessário — agora com bypass automático em dev local (`NODE_ENV !== 'production'`) adicionado no meio do processo
 - `[SITE]` Modo manutenção ativado por decisão de negócio: site público substituído por página "em construção" (`/manutencao`) enquanto um redesign é feito. Implementado via `src/lib/maintenance.ts` (flag) + `src/middleware.ts` (gate com 503 + Retry-After, preserva indexação SEO) — todas as rotas homologadas (formulário, Helena, HubSpot, JAS) permanecem intactas no código, apenas inacessíveis publicamente. `/api/*` explicitamente excluído do gate para não quebrar o health check do `deploy.yml`. Página de manutenção mantém WhatsApp (98189-0607) e e-mail (jp@jpxdigital.com.br) para não interromper captação de leads durante a Fase 2
 - `[GOVERNANÇA]` GO-LIVE técnico de 2026-07-22 (H1 46/46, H2 32/32) declarado válido e congelado — não invalidado pelo modo manutenção. Gold Path deverá ser re-executado antes do site voltar ao ar com o redesign
 - `[GOVERNANÇA]` Tag `v1.5.0` confirmada já existente no remoto (`ed79b52`, 23/07/2026) — item 1 do `SPRINT.md` estava desatualizado como pendente
