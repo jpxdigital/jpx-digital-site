@@ -128,6 +128,25 @@ async function handlePost(req: NextRequest) {
     })
     const searchData = await searchRes.json()
     contactId = searchData.results?.[0]?.id
+
+    // Contato já existe (lead recorrente) — atualiza com os dados desta submissão,
+    // já que a criação (409) não grava nada. Sem isso, um lead que preenche o
+    // formulário de novo com dados diferentes fica com a info antiga pra sempre.
+    if (contactId) {
+      await fetch(`https://api.hubapi.com/crm/v3/objects/contacts/${contactId}`, {
+        method: 'PATCH',
+        headers: authHeaders,
+        body: JSON.stringify({
+          properties: {
+            firstname: nameParts[0],
+            lastname: nameParts.slice(1).join(' '),
+            phone: phone?.trim() ?? '',
+            company: company?.trim() ?? '',
+            message: message?.trim() ?? '',
+          },
+        }),
+      }).catch((err) => console.error('[leads] falha ao atualizar contato existente', err))
+    }
   } else if (contactRes.ok) {
     const data = await contactRes.json()
     contactId = data.id
