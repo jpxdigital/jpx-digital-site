@@ -168,5 +168,6 @@ O foco mudou: a plataforma já existe. O desafio agora é **validar o modelo com
 | P8 | Deploy automático jas-bridge | Infra | Baixa |
 | P9 | JAS Sprint 2 | JAS | Aguarda 1º cliente |
 | P10 | Upgrade Next.js 15→16 (postcss interno vulnerável, alta, baixo risco prático) | Site | Baixa |
-| P11 | 🔴 Condição de corrida em `jas_sessions` (WF-001) — mensagens rápidas do mesmo número geram sessões/contatos duplicados no HubSpot. Confirmado e reproduzido em 13/09 (4 mensagens → 4 duplicatas). Precisa de UNIQUE constraint + INSERT ON CONFLICT | JAS/n8n | Alta |
+| P11a | ✅ Condição de corrida em `jas_sessions` — CORRIGIDO em 13/09 (UNIQUE INDEX parcial + INSERT...ON CONFLICT). Testado com 3 requisições simultâneas: 1 sessão só, sem duplicata | JAS/n8n | Resolvido |
+| P11b | 🔴 Condição de corrida na criação de **contato HubSpot** (separada da de sessão) — "Buscar Contato HubSpot" não trava contra criação concorrente; HubSpot não impõe unicidade por telefone. Mesmo teste de 3 mensagens simultâneas gerou 3 contatos duplicados (sessão ficou correta, só o contato duplicou). Precisa de mecanismo próprio (lock antes da busca, ou aceitar limpeza periódica) | JAS/n8n | Alta |
 | P12 | `/api/leads` não atualiza nome/empresa de contato HubSpot já existente em submissão repetida (só cria deal novo) | Site | Média |
