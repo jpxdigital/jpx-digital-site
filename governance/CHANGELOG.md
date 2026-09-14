@@ -5,6 +5,11 @@ Formato: `[DATA] Módulo — Descrição (commit ou referência)`
 
 ---
 
+## 2026-09-14 (tarde, continuação — infra ashburn confirmada ao vivo)
+
+- `[INFRA]` Chave `~/.ssh/oci-ashburn` (ausente nesta sessão/máquina) recebida do usuário e testada — **resolve a inconsistência anterior**: confirmado ao vivo que vm-ashburn-1 = PDF Service (`jpx-pdf`, `jpx-pdf-cloudflared`) e vm-ashburn-2 = Monitoramento (Grafana+Prometheus+Loki+cAdvisor+node-exporter), batendo com `STATUS.md`. O arquivo `deploy/vm4-ashburn/docker-compose.yml` no repo está **desatualizado** (mostra cloudflared+pdf, não o stack de monitoramento real) — limpeza pendente, baixa prioridade
+- `[SITE]` 🆕 Achado: containers `jpx-suporte-frontend`/`jpx-suporte-api` rodando há 2 meses na VM1 (mesma VM do site) — app "Portal de Suporte" (`suporte.jpxdigital.com.br`, MySQL próprio, usa Gemini/OpenRouter/Groq/Cohere) nunca documentado em `STATUS.md`/`SYSTEM_MAP.md`. Chave Cohere adicionada ao `KEYS.md` (não estava lá)
+
 ## 2026-09-14 (tarde — automação de deploy n8n + investigação SMTP)
 
 - `[N8N]` ✅ **Automação de deploy do n8n desbloqueada.** Causa raiz do Cloudflare Access travado: a política do Service Token estava com **Ação "Allow"** em vez de **"Service Auth"** — a própria Cloudflare confirma no aviso da UI: "Para tokens de serviço, use a ação Service Auth, não Permitir. Usar Permitir... provavelmente é uma configuração incorreta." Corrigido na política `github-actions-service-auth`. Testado: `HTTP 200` na API do n8n via Service Token, antes sempre `302` (`service_token_status: false`)
