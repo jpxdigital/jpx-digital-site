@@ -42,7 +42,10 @@ jobs:
               continue
             fi
 
-            jq '{name, nodes, connections, settings: (.settings // {})}' "$FILE_PATH" > /tmp/body.json
+            # settings.binaryMode não é aceito pelo schema da API pública
+            # (rejeita com "must NOT have additional properties"), mesmo
+            # aparecendo no GET — sempre remover antes de enviar.
+            jq '{name, nodes, connections, settings: (.settings // {} | del(.binaryMode))}' "$FILE_PATH" > /tmp/body.json
 
             HTTP_CODE=$(curl -s -o /tmp/resp.json -w "%{http_code}" \
               -X PUT \

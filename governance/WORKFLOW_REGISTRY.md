@@ -13,8 +13,8 @@ Inventário oficial de todos os workflows. Toda alteração deve atualizar este 
 | WF-001 | JAS Core Intake | `/webhook/jpx-jas` | `n8n-workflows/jas-core-intake.json` | Produção | Sprint 1 | v1.4 |
 | WF-002 | JAS QA — Cenário 001 | `/webhook/jas-qa-run` | `n8n-workflows/jas-qa-scenario-001.json` | Produção | Sprint 1 | v1.0 |
 | WF-003 | JAS QA — Cenário 002 | — | `n8n-workflows/jas-qa-scenario-002.json` | Rascunho | Sprint 2 | v0.1 |
-| WF-004 | Gerar Proposta PDF | `/webhook/gerar-proposta` | `n8n-workflows/gerar-proposta.json` | Produção | — | v1.0 |
-| WF-005 | Proposta Comercial | `/webhook/gerar-proposta` | `n8n-workflows/proposta-comercial.json` | Produção | — | v1.0 |
+| WF-004 | Gerar Proposta PDF | — | — (fundido no WF-005 em 14/09 — eram o mesmo workflow no n8n, `gerar-proposta.json` era duplicata desatualizada) | Desativado | — | — |
+| WF-005 | Proposta Comercial | `/webhook/gerar-proposta` | `n8n-workflows/proposta-comercial.json` | Produção | — | v1.1 (resincronizado com o live em 14/09, deploy automático ativo) |
 | WF-006 | Boas-vindas Lead | — (trigger interno) | `n8n-workflows/boas-vindas-lead.json` | Produção | — | v1.0 |
 | WF-007 | Boas-vindas (legado) | — | `n8n-workflows/boas-vindas.json` | Legado | — | v0.9 |
 | WF-008 | Cal.com Booking | `/webhook/cal-booking` | `docs/n8n-cal-booking-workflow.json` | Produção | — | v1.0 |

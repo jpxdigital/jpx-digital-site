@@ -1,6 +1,8 @@
 {
-  "_comment": "Mapeia arquivo local -> ID real do workflow no n8n. Só inclui aqui arquivos com correspondência 1:1 confirmada e sem ambiguidade. Ver governance/WORKFLOW_REGISTRY.md para o inventário completo — casos ambíguos (gerar-proposta.json e proposta-comercial.json apontam pro mesmo ID; jas-qa-scenario-002.json tem ID divergente do live; envio-avulso.json ainda não existe no n8n; boas-vindas.json é legado sem ID) ficam de fora deste mapa até serem resolvidos. Testado e funcionando em 2026-09-14 (v2, curl em vez de urllib).",
+  "_comment": "Mapeia arquivo local -> ID real do workflow no n8n. Ver governance/WORKFLOW_REGISTRY.md para o inventário completo. Testado e funcionando em produção real em 2026-09-14 (curl). Fora deste mapa, deliberadamente: envio-avulso.json (WF-018, ainda não existe no n8n — precisa criar via POST primeiro, script só faz PUT) e boas-vindas.json (WF-007, legado, não deve ser atualizado).",
   "jas-core-intake.json": "jas-core-intake-v1-0",
   "jas-qa-scenario-001.json": "jas-qa-scenario-001",
-  "boas-vindas-lead.json": "wEQaaMyFdumbc94E"
+  "jas-qa-scenario-002.json": "jas-qa-scenario-002-v1",
+  "boas-vindas-lead.json": "wEQaaMyFdumbc94E",
+  "proposta-comercial.json": "83e497fe-12ce-45e1-b571-ccb60e8e435b"
 }
