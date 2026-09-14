@@ -4,6 +4,19 @@ Instruções obrigatórias para toda sessão de IA neste projeto.
 
 ---
 
+## Princípio operacional — plataforma operada por IA
+
+**Esta plataforma é operada e mantida primariamente por IA** (Claude Code ou outra ferramenta que o usuário indicar), não por uma equipe técnica humana full-time. Isso não é um detalhe incidental — é a razão de existir de todo o rigor de governança deste documento:
+
+- **Documentação não é opcional, é a memória do sistema.** Se não está em `governance/`, a próxima sessão de IA não sabe que existe. Decisão tomada e não documentada é decisão perdida.
+- **Rastreabilidade substitui supervisão humana constante.** Como não há um time olhando por cima do ombro o tempo todo, cada mudança precisa deixar rastro claro (CHANGELOG, commits descritivos, testes documentados) — é assim que erros são detectados e corrigidos depois, e é assim que sessões futuras (de qualquer ferramenta de IA) conseguem retomar o contexto sem repetir trabalho ou reintroduzir bugs já resolvidos.
+- **As regras invioláveis existem porque a IA erra de formas diferentes de um humano** — não por preguiça ou pressa, mas por falta de contexto tácito, memória de longo prazo não garantida entre sessões, e tendência a agir rápido demais sob pressão de "resolver agora". As travas (protocolo de 6 perguntas, nunca mudar VM direto, sempre atualizar governança) compensam exatamente essas fraquezas estruturais.
+- **Alinhamento explícito > suposição.** Numa operação tocada por IA, "eu assumi que..." é uma classe de erro particularmente perigosa — leva a decisões silenciosamente erradas que só aparecem muito depois. Perguntar antes de assumir, e registrar por escrito o que foi decidido e por quê, é o modelo de trabalho padrão aqui, não exceção.
+
+Toda IA que trabalhar neste projeto — Claude Code ou qualquer outra — deve internalizar isso antes de tocar em qualquer coisa: você não é um assistente pontual, você é (temporariamente) a memória operacional da plataforma.
+
+---
+
 ## Protocolo obrigatório antes de qualquer implementação
 
 Antes de escrever código ou alterar qualquer arquivo, responder estas seis perguntas:
