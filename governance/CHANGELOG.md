@@ -5,6 +5,11 @@ Formato: `[DATA] Módulo — Descrição (commit ou referência)`
 
 ---
 
+## 2026-09-14 (madrugada — fix da condição de corrida, parte 2)
+
+- `[N8N]` ✅ **P11b corrigido**: condição de corrida na criação de contato HubSpot. Query do nó "Criar Sessão" ajustada mais uma vez: `RETURNING ... CASE WHEN xmax = 0 THEN estado ELSE 'MENU' END AS estado ...`. Como esse nó só é executado quando o fluxo já acredita que a sessão é nova, qualquer conflito (`xmax != 0`) ali é por definição uma segunda mensagem da mesma rajada — forçar `estado = 'MENU'` nesse caso faz o nó "Verificar Estado" (que checa `estado === 'NEW'`) automaticamente parar de mandar duplicatas pro caminho de criação de contato/deal, sem precisar alterar a condição desse nó. Testado com 3 requisições simultâneas: 1 sessão + **1 contato só** no HubSpot (antes do fix: 3 contatos). WF-001 sobe pra v1.4
+- `[GOVERNANÇA]` Dados de teste limpos (1 contato + 1 deal no HubSpot, 1 sessão + 2 eventos + 3 dedups no banco JAS)
+
 ## 2026-09-14 (madrugada — fix da condição de corrida)
 
 - `[N8N]` ✅ **P11a corrigido**: condição de corrida em `jas_sessions`. Migração aplicada no banco `evolution` (container `evolution_db`): removidas as 4 duplicatas reais existentes (mesma sessão mantida por telefone, a mais recente) + criado `UNIQUE INDEX jas_sessions_telefone_active_uniq ON jas_sessions (telefone) WHERE human_takeover = false`. Nó "Criar Sessão" do WF-001 alterado para `INSERT ... ON CONFLICT (telefone) WHERE human_takeover = false DO UPDATE ... RETURNING` — atômico, sem race. **Testado com 3 requisições verdadeiramente simultâneas** (bash `&`/`wait`) do mesmo número: resultado = 1 sessão só, estado MENU correto. Sem essa mudança, o teste replicava o bug (múltiplas sessões)

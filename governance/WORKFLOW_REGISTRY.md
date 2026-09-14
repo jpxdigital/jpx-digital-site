@@ -10,7 +10,7 @@ Inventário oficial de todos os workflows. Toda alteração deve atualizar este 
 
 | ID | Nome | Webhook | Arquivo | Estado | Sprint | Versão |
 |---|---|---|---|---|---|---|
-| WF-001 | JAS Core Intake | `/webhook/jpx-jas` | `n8n-workflows/jas-core-intake.json` | Produção | Sprint 1 | v1.3 |
+| WF-001 | JAS Core Intake | `/webhook/jpx-jas` | `n8n-workflows/jas-core-intake.json` | Produção | Sprint 1 | v1.4 |
 | WF-002 | JAS QA — Cenário 001 | `/webhook/jas-qa-run` | `n8n-workflows/jas-qa-scenario-001.json` | Produção | Sprint 1 | v1.0 |
 | WF-003 | JAS QA — Cenário 002 | — | `n8n-workflows/jas-qa-scenario-002.json` | Rascunho | Sprint 2 | v0.1 |
 | WF-004 | Gerar Proposta PDF | `/webhook/gerar-proposta` | `n8n-workflows/gerar-proposta.json` | Produção | — | v1.0 |

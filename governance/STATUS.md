@@ -169,5 +169,5 @@ O foco mudou: a plataforma já existe. O desafio agora é **validar o modelo com
 | P9 | JAS Sprint 2 | JAS | Aguarda 1º cliente |
 | P10 | Upgrade Next.js 15→16 (postcss interno vulnerável, alta, baixo risco prático) | Site | Baixa |
 | P11a | ✅ Condição de corrida em `jas_sessions` — CORRIGIDO em 13/09 (UNIQUE INDEX parcial + INSERT...ON CONFLICT). Testado com 3 requisições simultâneas: 1 sessão só, sem duplicata | JAS/n8n | Resolvido |
-| P11b | 🔴 Condição de corrida na criação de **contato HubSpot** (separada da de sessão) — "Buscar Contato HubSpot" não trava contra criação concorrente; HubSpot não impõe unicidade por telefone. Mesmo teste de 3 mensagens simultâneas gerou 3 contatos duplicados (sessão ficou correta, só o contato duplicou). Precisa de mecanismo próprio (lock antes da busca, ou aceitar limpeza periódica) | JAS/n8n | Alta |
+| P11b | ✅ Condição de corrida na criação de contato HubSpot — CORRIGIDO em 14/09. Testado com 3 requisições simultâneas: 1 sessão + 1 contato só (antes: 3 contatos) | JAS/n8n | Resolvido |
 | P12 | `/api/leads` não atualiza nome/empresa de contato HubSpot já existente em submissão repetida (só cria deal novo) | Site | Média |
