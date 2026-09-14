@@ -166,6 +166,7 @@ O foco mudou: a plataforma já existe. O desafio agora é **validar o modelo com
 | P6 | Lista Econodata SP Oeste (25 Score A) | Comercial | Fase 2 |
 | P7 | ZapSign SOW | n8n | Aguarda token API |
 | P8 | Deploy automático jas-bridge | Infra | Baixa |
+| P13 | ✅ Deploy automático de workflows n8n — RESOLVIDO 14/09. `.github/workflows/deploy-n8n-workflows.yml` funcionando via API (Cloudflare Access Service Token + curl). Cobre 3 workflows por enquanto (jas-core-intake, jas-qa-scenario-001, boas-vindas-lead) — expandir mapa conforme resolver ambiguidades dos demais | n8n | Resolvido |
 | P9 | JAS Sprint 2 | JAS | Aguarda 1º cliente |
 | P10 | Upgrade Next.js 15→16 (postcss interno vulnerável, alta, baixo risco prático) | Site | Baixa |
 | P11a | ✅ Condição de corrida em `jas_sessions` — CORRIGIDO em 13/09 (UNIQUE INDEX parcial + INSERT...ON CONFLICT). Testado com 3 requisições simultâneas: 1 sessão só, sem duplicata | JAS/n8n | Resolvido |
