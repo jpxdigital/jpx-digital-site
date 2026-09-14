@@ -1,0 +1,78 @@
+name: Deploy n8n Workflows
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'n8n-workflows/*.json'
+      - '!n8n-workflows/*.credentials.json'
+
+jobs:
+  deploy:
+    name: Atualizar workflows no n8n via API
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy cada workflow mapeado
+        env:
+          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+          N8N_API_KEY: ${{ secrets.N8N_API_KEY }}
+        run: |
+          set -e
+          python3 - << 'PYEOF'
+          import json, os, sys, urllib.request
+
+          with open('n8n-workflows/.deploy-map.json') as f:
+              deploy_map = json.load(f)
+          deploy_map.pop('_comment', None)
+
+          cf_id = os.environ['CF_ACCESS_CLIENT_ID']
+          cf_secret = os.environ['CF_ACCESS_CLIENT_SECRET']
+          n8n_key = os.environ['N8N_API_KEY']
+
+          failed = []
+
+          for filename, workflow_id in deploy_map.items():
+              path = f'n8n-workflows/{filename}'
+              if not os.path.exists(path):
+                  print(f'⚠️  {filename} não encontrado, pulando')
+                  continue
+
+              with open(path) as f:
+                  wf = json.load(f)
+
+              body = {
+                  'name': wf['name'],
+                  'nodes': wf['nodes'],
+                  'connections': wf['connections'],
+                  'settings': wf.get('settings', {}),
+              }
+
+              req = urllib.request.Request(
+                  f'https://n8n.jpxdigital.com.br/api/v1/workflows/{workflow_id}',
+                  data=json.dumps(body).encode('utf-8'),
+                  method='PUT',
+                  headers={
+                      'Content-Type': 'application/json',
+                      'CF-Access-Client-Id': cf_id,
+                      'CF-Access-Client-Secret': cf_secret,
+                      'X-N8N-API-KEY': n8n_key,
+                  },
+              )
+              try:
+                  with urllib.request.urlopen(req) as resp:
+                      print(f'✓ {filename} -> {workflow_id} (HTTP {resp.status})')
+              except urllib.error.HTTPError as e:
+                  print(f'✗ {filename} -> {workflow_id} FALHOU: HTTP {e.code} — {e.read().decode()[:300]}')
+                  failed.append(filename)
+
+          if failed:
+              print(f'\n{len(failed)} workflow(s) falharam: {failed}')
+              sys.exit(1)
+          print(f'\nTodos os {len(deploy_map)} workflows mapeados foram atualizados.')
+          PYEOF
