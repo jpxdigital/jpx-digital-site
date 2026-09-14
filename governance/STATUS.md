@@ -172,3 +172,4 @@ O foco mudou: a plataforma já existe. O desafio agora é **validar o modelo com
 | P11a | ✅ Condição de corrida em `jas_sessions` — CORRIGIDO em 13/09 (UNIQUE INDEX parcial + INSERT...ON CONFLICT). Testado com 3 requisições simultâneas: 1 sessão só, sem duplicata | JAS/n8n | Resolvido |
 | P11b | ✅ Condição de corrida na criação de contato HubSpot — CORRIGIDO em 14/09. Testado com 3 requisições simultâneas: 1 sessão + 1 contato só (antes: 3 contatos) | JAS/n8n | Resolvido |
 | P12 | `/api/leads` não atualiza nome/empresa de contato HubSpot já existente em submissão repetida (só cria deal novo) | Site | Média |
+| P14 | 🆕 Portal de acesso ao Acronis com marca JPX em `suporte.jpxdigital.com.br` (domínio livre, reaproveitado — app antigo "Portal de Suporte" migrou pra `helena.jpxdigital.com.br`) — aguardando decisão de formato (página com botão vs. redirect direto) | Comercial/Infra | Fase 2 |

@@ -5,6 +5,12 @@ Formato: `[DATA] Módulo — Descrição (commit ou referência)`
 
 ---
 
+## 2026-09-14 (fim de tarde — contrato Acronis fechado + achados de domínio)
+
+- `[COMERCIAL]` 🎉 **Contrato com a Acronis fechado.** Muda o status de "sendo contratado" (registrado em 24/07) para confirmado. Planeja-se um portal de acesso com marca JPX em `suporte.jpxdigital.com.br` (P14 em `STATUS.md`) — formato ainda a decidir (página com botão vs. redirect direto)
+- `[SITE]` 🆕 **Investigação de domínios órfãos concluída.** `suporte.jpxdigital.com.br`, `helena.jpxdigital.com.br` e `ia-free.jpxdigital.com.br` são **o mesmo app** — todos os 3 vhosts nginx (em `/etc/nginx/sites-available/` na VM1, fora do docker-compose — nginx roda nativo no host, não containerizado, apesar do `deploy/vm1/docker-compose.yml` declarar um serviço `nginx`) fazem proxy idêntico pra `127.0.0.1:8080` (container `jpx-suporte-frontend`). Confirmado: é o produto "Helena" (IA de suporte técnico), `suporte`/`ia-free` são nomes de marca anteriores ao "Helena" — DNS desses dois já não resolve (só `helena.jpxdigital.com.br` está ativo no Cloudflare), mas os vhosts nginx continuam no servidor, órfãos e inofensivos. `suporte.jpxdigital.com.br` será reaproveitado pro portal do Acronis (item acima) — os containers `jpx-suporte-frontend`/`jpx-suporte-api` continuam em uso ativo (servem a Helena), não podem ser desligados
+- `[GOVERNANÇA]` Confirmado — deploy/vm1/docker-compose.yml não reflete a realidade: nginx roda como serviço nativo (systemd) na VM1, não como container. Mais um caso de drift entre repo e produção, catalogado junto com o `deploy/vm4-ashburn` já registrado antes
+
 ## 2026-09-14 (tarde, continuação — infra ashburn confirmada ao vivo)
 
 - `[INFRA]` Chave `~/.ssh/oci-ashburn` (ausente nesta sessão/máquina) recebida do usuário e testada — **resolve a inconsistência anterior**: confirmado ao vivo que vm-ashburn-1 = PDF Service (`jpx-pdf`, `jpx-pdf-cloudflared`) e vm-ashburn-2 = Monitoramento (Grafana+Prometheus+Loki+cAdvisor+node-exporter), batendo com `STATUS.md`. O arquivo `deploy/vm4-ashburn/docker-compose.yml` no repo está **desatualizado** (mostra cloudflared+pdf, não o stack de monitoramento real) — limpeza pendente, baixa prioridade
