@@ -24,55 +24,47 @@ jobs:
           N8N_API_KEY: ${{ secrets.N8N_API_KEY }}
         run: |
           set -e
-          python3 - << 'PYEOF'
-          import json, os, sys, urllib.request
 
-          with open('n8n-workflows/.deploy-map.json') as f:
-              deploy_map = json.load(f)
-          deploy_map.pop('_comment', None)
+          # Usa curl (não urllib do Python) — o urllib tem assinatura de
+          # requisição que a Cloudflare bloqueia como bot (HTTP 403,
+          # error code 1010), mesmo com o Service Token correto nos headers.
 
-          cf_id = os.environ['CF_ACCESS_CLIENT_ID']
-          cf_secret = os.environ['CF_ACCESS_CLIENT_SECRET']
-          n8n_key = os.environ['N8N_API_KEY']
+          mapfile -t ENTRIES < <(jq -r 'to_entries[] | select(.key != "_comment") | "\(.key)\t\(.value)"' n8n-workflows/.deploy-map.json)
 
-          failed = []
+          FAILED=0
+          for entry in "${ENTRIES[@]}"; do
+            FILENAME="${entry%%$'\t'*}"
+            WORKFLOW_ID="${entry#*$'\t'}"
+            FILE_PATH="n8n-workflows/$FILENAME"
 
-          for filename, workflow_id in deploy_map.items():
-              path = f'n8n-workflows/{filename}'
-              if not os.path.exists(path):
-                  print(f'⚠️  {filename} não encontrado, pulando')
-                  continue
+            if [ ! -f "$FILE_PATH" ]; then
+              echo "⚠️  $FILENAME não encontrado, pulando"
+              continue
+            fi
 
-              with open(path) as f:
-                  wf = json.load(f)
+            jq '{name, nodes, connections, settings: (.settings // {})}' "$FILE_PATH" > /tmp/body.json
 
-              body = {
-                  'name': wf['name'],
-                  'nodes': wf['nodes'],
-                  'connections': wf['connections'],
-                  'settings': wf.get('settings', {}),
-              }
+            HTTP_CODE=$(curl -s -o /tmp/resp.json -w "%{http_code}" \
+              -X PUT \
+              -H "Content-Type: application/json" \
+              -H "CF-Access-Client-Id: $CF_ACCESS_CLIENT_ID" \
+              -H "CF-Access-Client-Secret: $CF_ACCESS_CLIENT_SECRET" \
+              -H "X-N8N-API-KEY: $N8N_API_KEY" \
+              --data @/tmp/body.json \
+              "https://n8n.jpxdigital.com.br/api/v1/workflows/$WORKFLOW_ID")
 
-              req = urllib.request.Request(
-                  f'https://n8n.jpxdigital.com.br/api/v1/workflows/{workflow_id}',
-                  data=json.dumps(body).encode('utf-8'),
-                  method='PUT',
-                  headers={
-                      'Content-Type': 'application/json',
-                      'CF-Access-Client-Id': cf_id,
-                      'CF-Access-Client-Secret': cf_secret,
-                      'X-N8N-API-KEY': n8n_key,
-                  },
-              )
-              try:
-                  with urllib.request.urlopen(req) as resp:
-                      print(f'✓ {filename} -> {workflow_id} (HTTP {resp.status})')
-              except urllib.error.HTTPError as e:
-                  print(f'✗ {filename} -> {workflow_id} FALHOU: HTTP {e.code} — {e.read().decode()[:300]}')
-                  failed.append(filename)
+            if [ "$HTTP_CODE" = "200" ]; then
+              echo "✓ $FILENAME -> $WORKFLOW_ID (HTTP $HTTP_CODE)"
+            else
+              echo "✗ $FILENAME -> $WORKFLOW_ID FALHOU: HTTP $HTTP_CODE — $(head -c 300 /tmp/resp.json)"
+              FAILED=1
+            fi
+          done
 
-          if failed:
-              print(f'\n{len(failed)} workflow(s) falharam: {failed}')
-              sys.exit(1)
-          print(f'\nTodos os {len(deploy_map)} workflows mapeados foram atualizados.')
-          PYEOF
+          if [ "$FAILED" = "1" ]; then
+            echo ""
+            echo "Um ou mais workflows falharam."
+            exit 1
+          fi
+          echo ""
+          echo "Todos os workflows mapeados foram atualizados."
