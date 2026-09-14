@@ -5,6 +5,12 @@ Formato: `[DATA] Módulo — Descrição (commit ou referência)`
 
 ---
 
+## 2026-09-14 (fim de tarde, continuação 2 — DNS do portal Acronis + plano de automação)
+
+- `[INFRA]` DNS configurado no Cloudflare: CNAME `resiliencia.jpxdigital.com.br` → `br02-cloud.acronis.com` (Somente DNS, sem proxy — necessário pro Acronis emitir o certificado Let's Encrypt e servir com o Host header correto)
+- `[COMERCIAL]` Botão "Comprar" (evento de cota excedida no Acronis) configurado pra apontar pro formulário da JPX (`jpxdigital.com.br/contato`) em vez de ir direto pro Acronis — mantém o cliente falando com a JPX, não com o fornecedor
+- `[COMERCIAL]` 🆕 Plano de automação registrado (P15): o formulário de contato ainda não lê parâmetro de URL pra distinguir esses leads de upsell (cota excedida) de um contato orgânico novo — precisa de um `?interesse=upsell-acronis` (ou similar) sendo lido pelo `ContactForm.tsx` pra pré-marcar o campo, e possivelmente uma tag/pipeline diferente no HubSpot pra esses leads
+
 ## 2026-09-14 (fim de tarde, continuação — branding do portal Acronis)
 
 - `[COMERCIAL]` **Decisão de marca pro portal white-label do Acronis:** domínio final **`resiliencia.jpxdigital.com.br`** — descartado `suporte.jpxdigital.com.br` (soa como central de chamados, não console de proteção de dados) e `protecao.jpxdigital.com.br` (escopo estreito demais). "Resiliência" já é pilar central da marca JPX no site (serviço "Resiliência Cibernética") — o nome do portal fica coerente com o posicionamento existente e não prende o produto só a backup. Visão de expansão futura dentro do mesmo portal: Backup/DR, Cyber Protection (EDR/antimalware/ransomware), Endpoint Management (RMM/patching/acesso remoto), Continuidade (RPO/RTO) — tudo dentro do Acronis Cyber Protect Cloud, que já integra essas frentes nativamente
