@@ -5,6 +5,12 @@ Formato: `[DATA] Módulo — Descrição (commit ou referência)`
 
 ---
 
+## 2026-09-14 (fim de tarde, continuação — branding do portal Acronis)
+
+- `[COMERCIAL]` **Decisão de marca pro portal white-label do Acronis:** domínio final **`resiliencia.jpxdigital.com.br`** — descartado `suporte.jpxdigital.com.br` (soa como central de chamados, não console de proteção de dados) e `protecao.jpxdigital.com.br` (escopo estreito demais). "Resiliência" já é pilar central da marca JPX no site (serviço "Resiliência Cibernética") — o nome do portal fica coerente com o posicionamento existente e não prende o produto só a backup. Visão de expansão futura dentro do mesmo portal: Backup/DR, Cyber Protection (EDR/antimalware/ransomware), Endpoint Management (RMM/patching/acesso remoto), Continuidade (RPO/RTO) — tudo dentro do Acronis Cyber Protect Cloud, que já integra essas frentes nativamente
+- `[COMERCIAL]` Identidade visual do portal definida: nome de serviço "JPX Digital — Data Resilience" no branding do Acronis, logo real da JPX (sem alteração) + tagline "Data Resilience" abaixo, fundo branco, seguindo o padrão visual de logo+tagline do próprio Acronis (nome bold em cima, subtítulo mais leve embaixo)
+- `[INFRA]` Logo JPX gerado nas dimensões exigidas pelo console do Acronis (224x64px) a partir do arquivo já existente `public/jpx-logo-email.png`, sem alterar o design original
+
 ## 2026-09-14 (fim de tarde — contrato Acronis fechado + achados de domínio)
 
 - `[COMERCIAL]` 🎉 **Contrato com a Acronis fechado.** Muda o status de "sendo contratado" (registrado em 24/07) para confirmado. Planeja-se um portal de acesso com marca JPX em `suporte.jpxdigital.com.br` (P14 em `STATUS.md`) — formato ainda a decidir (página com botão vs. redirect direto)
