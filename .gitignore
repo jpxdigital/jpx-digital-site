@@ -48,3 +48,6 @@ deploy/scripts/retry-a1flex.sh
 
 # Claude Code — worktrees e memória local
 .claude/
+
+# Skills de IA instaladas localmente (npx skills add) — ferramenta pessoal, não é do projeto
+.agents/
