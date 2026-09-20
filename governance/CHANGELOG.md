@@ -5,6 +5,17 @@ Formato: `[DATA] Módulo — Descrição (commit ou referência)`
 
 ---
 
+## 2026-09-20 (auditoria geral + ajustes)
+
+- `[GOVERNANÇA]` Auditoria completa da plataforma: confirmado ao vivo que não há P0 em aberto, site no ar (HTTP 200), `/api/health` batendo com o commit do `main`, SSL válido até 15/12/2026 (o `GO-LIVE.md` ainda cita a data antiga de 17/09 — documento nunca foi formalmente preenchido, a aprovação seguiu por `CHECKLIST-HOMOLOGACAO.md`/`STATUS.md`; fica registrado como pendência de governança, não corrigido nesta sessão)
+- `[GOVERNANÇA]` `STATUS.md` corrigido: P12 estava sem marcação de resolvido desde 13/09 (commit `b9d528c` já tinha corrigido o `/api/leads`, a tabela é que não foi atualizada) — marcado como Resolvido
+- `[COMERCIAL]` P14 (portal Acronis) confirmado resolvido: `resiliencia.jpxdigital.com.br` responde HTTP 302 com certificado Let's Encrypt válido (emitido 14/09, válido até 13/12/2026)
+- `[SITE]` P15 parcialmente implementado: `/contato?interesse=upsell-acronis` agora é lido em `src/app/contato/page.tsx` (searchParams) e repassado por `ContactForm.tsx` → `/api/leads`. Quando `source === 'upsell-acronis'`, o deal no HubSpot ganha prefixo `[Upsell Acronis]` no nome e a linha "Origem: Upsell Acronis (cota excedida no portal)" na descrição; o payload pro webhook n8n também recebe `source`. **Falta a parte do usuário:** atualizar o botão "Comprar" no painel do Acronis para apontar pra `jpxdigital.com.br/contato?interesse=upsell-acronis` (hoje aponta só pra `/contato`, sem o parâmetro)
+- `[INFRA]` Profile `jpx-ashburn` restaurado em `~/.oci/config` a partir de `docs/oci-jpx-ashburn.tar.gz` (tinha sumido da máquina)
+- `[INFRA]` IP `160.20.204.239/32` (notebook de trabalho) liberado na porta 9100 (node-exporter) nas Security Lists públicas das 4 VMs (São Paulo: `jpx-vm`, `jpx-n8n`; Ashburn: `vm-ashburn-1`, `vm-ashburn-2`) — acesso administrativo direto a métricas, sem depender só de `141.148.50.123`. Atenção: se o IP for dinâmico, a regra perde validade quando ele trocar
+- `[INFRA]` Limpeza de imagens Docker não usadas na `jpx-vm` (`docker image prune -af`) — 341 imagens acumuladas de deploys anteriores, só 5 ativas, ~7,6GB de imagens órfãs
+- `[GOVERNANÇA]` Working tree limpa: `.gitignore` passou a cobrir `skills-lock.json`, `next-env.d.ts` e `tsconfig.tsbuildinfo` (artefatos de build/ferramenta local, não deveriam ser versionados) — os dois últimos destrackeados do git. `public/teams-generator.html` e os 3 SVGs de fundo de Teams (ferramenta pessoal, não conteúdo do site) movidos para fora do repositório (`~/jpx-digital-site-local-assets/`) — estavam em `public/`, o que os deixaria publicamente acessíveis em `jpxdigital.com.br/teams-generator.html` se fossem commitados
+
 ## 2026-09-14 (fim de tarde, continuação 2 — DNS do portal Acronis + plano de automação)
 
 - `[INFRA]` DNS configurado no Cloudflare: CNAME `resiliencia.jpxdigital.com.br` → `br02-cloud.acronis.com` (Somente DNS, sem proxy — necessário pro Acronis emitir o certificado Let's Encrypt e servir com o Host header correto)
