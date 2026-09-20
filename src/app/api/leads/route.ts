@@ -55,11 +55,12 @@ async function handlePost(req: NextRequest) {
     return json({ error: 'JSON inválido' }, 400)
   }
 
-  const { name, email, phone, company, interest, serviceSlug, message, turnstileToken } = body as {
+  const { name, email, phone, company, interest, serviceSlug, message, source, turnstileToken } = body as {
     name?: string; email?: string; phone?: string
     company?: string; interest?: string; serviceSlug?: string; message?: string
-    turnstileToken?: string
+    source?: string; turnstileToken?: string
   }
+  const isUpsellAcronis = source === 'upsell-acronis'
 
   // Validar Turnstile quando a chave secreta estiver configurada
   if (TURNSTILE_SECRET_KEY) {
@@ -159,6 +160,7 @@ async function handlePost(req: NextRequest) {
   // 2. Criar deal
   const closedate = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
   const description = [
+    isUpsellAcronis ? 'Origem: Upsell Acronis (cota excedida no portal)' : '',
     interest ? `Interesse: ${interest}` : '',
     message?.trim() ? `Mensagem: ${message.trim()}` : '',
     company?.trim() ? `Empresa: ${company.trim()}` : '',
@@ -170,7 +172,7 @@ async function handlePost(req: NextRequest) {
     headers: authHeaders,
     body: JSON.stringify({
       properties: {
-        dealname: `${name.trim()} — ${interest || 'Site JPX Digital'}`,
+        dealname: `${isUpsellAcronis ? '[Upsell Acronis] ' : ''}${name.trim()} — ${interest || 'Site JPX Digital'}`,
         pipeline: 'default',
         dealstage: 'appointmentscheduled',
         closedate,
@@ -274,7 +276,7 @@ async function handlePost(req: NextRequest) {
     fetch(N8N_WEBHOOK_URL, {
       method: 'POST',
       headers,
-      body: JSON.stringify({ name, email, phone, company, interest, message }),
+      body: JSON.stringify({ name, email, phone, company, interest, message, source }),
     }).catch(() => {})
   }
 

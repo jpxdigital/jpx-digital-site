@@ -6,6 +6,7 @@ export interface LeadFormData {
   interest: string
   serviceSlug?: string
   message: string
+  source?: string
 }
 
 export interface LeadApiResponse {

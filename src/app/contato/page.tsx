@@ -20,7 +20,14 @@ const benefits = [
   'Proposta sob medida, sem pacotes genéricos',
 ]
 
-export default function ContatoPage() {
+export default async function ContatoPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ interesse?: string }>
+}) {
+  const { interesse } = await searchParams
+  const isUpsellAcronis = interesse === 'upsell-acronis'
+
   return (
     <MotionProvider>
       <Nav />
@@ -69,7 +76,7 @@ export default function ContatoPage() {
                   <h2 className="font-heading text-xl font-bold text-gray-900 mb-6">
                     Preencha e entraremos em contato
                   </h2>
-                  <ContactForm />
+                  <ContactForm source={isUpsellAcronis ? 'upsell-acronis' : undefined} />
                 </div>
               </FadeIn>
 

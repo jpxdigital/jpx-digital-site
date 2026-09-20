@@ -20,7 +20,7 @@ const empty: LeadFormData = {
   name: '', email: '', phone: '', company: '', interest: '', serviceSlug: '', message: '',
 }
 
-export function ContactForm() {
+export function ContactForm({ source }: { source?: string }) {
   const [form, setForm] = useState<LeadFormData>(empty)
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
   const [errorMsg, setErrorMsg] = useState('')
@@ -63,7 +63,7 @@ export function ContactForm() {
       const res = await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, turnstileToken }),
+        body: JSON.stringify({ ...form, source, turnstileToken }),
         signal: controller.signal,
       })
       clearTimeout(timeout)
