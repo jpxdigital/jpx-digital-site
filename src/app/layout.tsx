@@ -82,7 +82,10 @@ const organizationSchema = {
   },
   areaServed: 'BR',
   knowsLanguage: 'pt-BR',
-  sameAs: [],
+  sameAs: [
+    'https://maps.app.goo.gl/G9wkwGJz8yW97ut18',
+    'https://www.linkedin.com/company/jpxdigital/',
+  ],
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
