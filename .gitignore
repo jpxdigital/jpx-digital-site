@@ -51,3 +51,8 @@ deploy/scripts/retry-a1flex.sh
 
 # Skills de IA instaladas localmente (npx skills add) — ferramenta pessoal, não é do projeto
 .agents/
+skills-lock.json
+
+# Artefatos de build — gerados pelo Next.js/TypeScript, não devem ser versionados
+next-env.d.ts
+tsconfig.tsbuildinfo
