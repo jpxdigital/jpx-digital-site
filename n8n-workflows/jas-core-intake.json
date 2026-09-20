@@ -246,7 +246,7 @@
         "options": {
           "timeout": 30000
         },
-        "jsonBody": "={\n  \"filterGroups\": [{\n    \"filters\": [{\n      \"propertyName\": \"phone\",\n      \"operator\": \"EQ\",\n      \"value\": \"{{ $('Extrair e Normalizar').item.json.phone }}\"\n    }]\n  }],\n  \"properties\": [\"firstname\", \"lastname\", \"email\", \"phone\", \"company\", \"hs_object_id\"]\n}",
+        "jsonBody": "={\n  \"filterGroups\": [{\n    \"filters\": [{\n      \"propertyName\": \"jas_whatsapp_correlation_id\",\n      \"operator\": \"EQ\",\n      \"value\": \"{{ $('Extrair e Normalizar').item.json.phone }}\"\n    }]\n  }],\n  \"properties\": [\"firstname\", \"lastname\", \"email\", \"phone\", \"company\", \"hs_object_id\"]\n}",
         "sendBody": true,
         "sendHeaders": true,
         "specifyBody": "json",
@@ -345,7 +345,7 @@
         "options": {
           "timeout": 30000
         },
-        "jsonBody": "={\n  \"properties\": {\n    \"firstname\": \"{{ $('Extrair e Normalizar').item.json.push_name }}\",\n    \"phone\": \"{{ $('Extrair e Normalizar').item.json.hubspot_phone }}\",\n    \"hs_lead_status\": \"NEW\"\n  }\n}",
+        "jsonBody": "={\n  \"properties\": {\n    \"firstname\": \"{{ $('Extrair e Normalizar').item.json.push_name }}\",\n    \"phone\": \"{{ $('Extrair e Normalizar').item.json.hubspot_phone }}\",\n    \"jas_whatsapp_correlation_id\": \"{{ $('Extrair e Normalizar').item.json.phone }}\",\n    \"hs_lead_status\": \"NEW\"\n  }\n}",
         "sendBody": true,
         "sendHeaders": true,
         "specifyBody": "json",
@@ -783,7 +783,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\"filterGroups\":[{\"filters\":[{\"propertyName\":\"phone\",\"operator\":\"EQ\",\"value\":\"{{ $json.norm_phone }}\"}]}],\"properties\":[\"hs_object_id\"]}",
+        "jsonBody": "={\"filterGroups\":[{\"filters\":[{\"propertyName\":\"jas_whatsapp_correlation_id\",\"operator\":\"EQ\",\"value\":\"{{ $json.norm_phone }}\"}]}],\"properties\":[\"hs_object_id\"]}",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [

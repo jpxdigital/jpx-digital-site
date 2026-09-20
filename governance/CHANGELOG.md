@@ -5,6 +5,23 @@ Formato: `[DATA] Módulo — Descrição (commit ou referência)`
 
 ---
 
+## 2026-09-20 (noite — Gold Path encontra regressão P0 no WF-001, corrigida)
+
+- `[N8N]` 🔴 **Regressão P0 encontrada pelo Gold Path**: contatos `@lid` (privacidade de número no WhatsApp) nunca tinham nome/empresa atualizados no HubSpot, mesmo digitando corretamente no fluxo. Causa raiz: o fix do bug `@lid` de 13-14/09 (P11) passou a gravar `phone` vazio no HubSpot pra esses contatos (`hubspot_phone`, de propósito, pra não gravar o número-lixo) — mas os nós "Buscar Contato HubSpot" e "Buscar HS p/ Atualizar" continuaram buscando o contato filtrando por `phone` = número interno bruto (`phone`, sempre preenchido). Resultado: a busca nunca encontrava o contato pra `@lid`, o PATCH de nome/empresa falhava silenciosamente. Reproduzido ao vivo no Gold Path de hoje com o celular pessoal do usuário (também `@lid`)
+- `[N8N]` ✅ **Corrigido — WF-001 sobe pra v1.5.** Criada propriedade customizada no HubSpot `jas_whatsapp_correlation_id` (contato), usada exclusivamente para correlação interna do JAS — sempre recebe o telefone bruto (mesmo `@lid`), nunca exibido como telefone de contato. Três nós ajustados: "Criar Contato HubSpot" agora também grava essa propriedade; "Buscar Contato HubSpot" e "Buscar HS p/ Atualizar" passam a filtrar por ela em vez de `phone`. A propriedade `phone` visível continua vazia para `@lid`, preservando o fix original do P11
+- `[GOVERNANÇA]` Esse achado reforça o valor do Gold Path antes de iniciar prospecção real: a homologação de julho (H2.3) tinha aprovado esse fluxo, mas uma mudança posterior (o próprio fix do P11, bem-intencionado) introduziu uma regressão silenciosa que só apareceu rodando o teste de ponta a ponta de novo
+
+## 2026-09-20 (fim de tarde — reset de dados de teste, fim da Fase de Homologação)
+
+- `[GOVERNANÇA]` 🎯 **Decisão do usuário: encerrar o período de testes.** A partir de 21/09 a prospecção passa a ser real — todos os dados de leads/telefones/mensagens acumulados até aqui (homologação, Gold Path, QA, bug do @lid) foram apagados para começar a operação comercial com o CRM e o WhatsApp zerados
+- `[HUBSPOT]` **32 contatos e 43 deals apagados** via API (batch archive — recuperáveis por até 90 dias em "Recently Deleted" do HubSpot, não é apagamento permanente imediato). Antes de apagar, uma auditoria identificou 5 contatos que pareciam reais (não teste/bug): Demetrius Silveira e Thiago Souza (ligados à proposta real ACDIGITAL EDR ORC-2026-001 enviada em 29/07), Iordan Neris (Stock Distribuidora — Acronis), Luiz Stangarlin (e-mail/telefone com formato válido) e Tayan Hadich (Datadog Brasil). Usuário optou explicitamente por apagar também esses 5, ciente do que representavam
+- `[HUBSPOT]` ⚠️ Companies (Acdigital, Stock Distribuidora, Datadog Brasil, JPX Digital) **não foram apagadas** — o token HubSpot em uso não tem o escopo `crm.objects.companies.read/write`. Pendente limpeza manual ou ampliação de escopo do token, se desejado
+- `[JAS/N8N]` Tabelas `jas_sessions`, `jas_events` e `jas_message_dedup` (banco `evolution` em `jpx-n8n`) zeradas via `TRUNCATE` — removidos 17 sessões, 42 eventos e 4301 registros de dedup acumulados desde o início dos testes
+- `[INFRA]` 🟡 **Pendente (bloqueado pelo modo automático, comando entregue ao usuário):** apagar 11 PDFs de teste/homologação no bucket OCI `jpx-documentos` (`propostas/`, `checklists/`, `onboarding/`, `sow/` de 2026-06 e 2026-07, incluindo os documentos do caso ACDIGITAL)
+- `[GOVERNANÇA]` Telegram — não há como limpar o histórico de notificações via Bot API (sem acesso de admin ao chat); não é um dado estruturado que afete o CRM/JAS, ficou de fora do reset
+
+---
+
 ## 2026-09-20 (auditoria geral + ajustes)
 
 - `[GOVERNANÇA]` Auditoria completa da plataforma: confirmado ao vivo que não há P0 em aberto, site no ar (HTTP 200), `/api/health` batendo com o commit do `main`, SSL válido até 15/12/2026 (o `GO-LIVE.md` ainda cita a data antiga de 17/09 — documento nunca foi formalmente preenchido, a aprovação seguiu por `CHECKLIST-HOMOLOGACAO.md`/`STATUS.md`; fica registrado como pendência de governança, não corrigido nesta sessão)
