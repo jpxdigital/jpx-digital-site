@@ -5,6 +5,15 @@ Formato: `[DATA] Módulo — Descrição (commit ou referência)`
 
 ---
 
+## 2026-09-20 (madrugada — Gold Path parcial: ETAPA 1 e 2 aprovadas, achado novo registrado)
+
+- `[GOVERNANÇA]` Gold Path executado (parcial) pela primeira vez desde a correção do bug `@lid` (P11) e do fix do WF-001 v1.5 (ver entrada anterior). Usado o celular pessoal do usuário como número de teste (`@lid` real)
+- `[N8N]` ✅ **ETAPA 1 (WhatsApp/JAS) aprovada** — GP-01 a GP-07: boas-vindas com menu em poucos segundos, seleção de tema, coleta de nome/empresa, contato e deal criados/atualizados corretamente no HubSpot (`firstname: Teste`, `lastname: Gold Path`, `company: Empresa Teste Ltda`) — confirma que o fix do `jas_whatsapp_correlation_id` funcionou de ponta a ponta
+- `[SITE/BOOKINGS]` ✅ **ETAPA 2 (Agendamento) aprovada** — usuário clicou no link do Bookings recebido no WhatsApp, agendou horário de teste, recebeu e-mail de confirmação
+- `[N8N]` 🟡 **Achado novo, não corrigido**: o deal criado pelo WF-001 nunca grava o serviço selecionado (ex: "Assessment Executivo") em nenhuma propriedade — nome fica fixo em `"{nome do WhatsApp} — WhatsApp JAS"`, sem descrição. Diferente do critério original de homologação H2.3-066 ("Deal com serviço 'Assessment Executivo'"). Não parece ser regressão de hoje — o código (`Criar Deal HubSpot`) nunca gravou o serviço, só o nome do WhatsApp. Registrado como pendência (ver `STATUS.md` P16), não bloqueia a operação, mas reduz a informação disponível pro time comercial ao olhar o pipeline
+- `[GOVERNANÇA]` ETAPA 3 (Teams), 4 (Proposta), 5 (SOW) e 6 (Onboarding) do Gold Path **não testadas nesta sessão** — ficam para uma próxima rodada. Etapas 1 e 2 são as críticas mais relevantes pro início da prospecção real amanhã (21/09)
+- `[GOVERNANÇA]` Dados de teste do Gold Path (múltiplas iterações, incluindo tentativas com sessão travada) limpos integralmente no fim: contatos, deals e sessões/eventos/dedup do JAS zerados
+
 ## 2026-09-20 (noite — Gold Path encontra regressão P0 no WF-001, corrigida)
 
 - `[N8N]` 🔴 **Regressão P0 encontrada pelo Gold Path**: contatos `@lid` (privacidade de número no WhatsApp) nunca tinham nome/empresa atualizados no HubSpot, mesmo digitando corretamente no fluxo. Causa raiz: o fix do bug `@lid` de 13-14/09 (P11) passou a gravar `phone` vazio no HubSpot pra esses contatos (`hubspot_phone`, de propósito, pra não gravar o número-lixo) — mas os nós "Buscar Contato HubSpot" e "Buscar HS p/ Atualizar" continuaram buscando o contato filtrando por `phone` = número interno bruto (`phone`, sempre preenchido). Resultado: a busca nunca encontrava o contato pra `@lid`, o PATCH de nome/empresa falhava silenciosamente. Reproduzido ao vivo no Gold Path de hoje com o celular pessoal do usuário (também `@lid`)
