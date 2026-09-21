@@ -5,6 +5,13 @@ Formato: `[DATA] Módulo — Descrição (commit ou referência)`
 
 ---
 
+## 2026-09-21 (madrugada, continuação — Gold Path ETAPA 4, 5 e 6 aprovadas)
+
+- `[N8N/PDF]` ✅ **ETAPA 4 (Proposta) aprovada** — deal de teste criado direto via API no estágio "Proposta Solicitada" (service_slug `assessment-executivo`), webhook `/webhook/gerar-proposta` disparado manualmente. PDF gerado com nome, empresa, serviço e e-mail corretos (conferido extraindo o texto do PDF), salvo em `propostas/2026-09/`, deal movido automaticamente para "Proposta Enviada" (1385066797). GP-19 (e-mail) não verificável — usado e-mail de teste fictício sem caixa real
+- `[N8N/PDF]` ✅ **ETAPA 5 (SOW) aprovada** — deal movido manualmente para "Contrato Assinado" (closedwon), webhook `/webhook/gerar-sow` disparado, PDF gerado corretamente em `sow/2026-09/`
+- `[N8N/PDF]` 🟡 **ETAPA 6 (Onboarding) parcial** — webhook `/webhook/gerar-onboarding-kit` disparado, PDF gerado corretamente em `onboarding/2026-09/` (conteúdo conferido). Achado: GP-26 pede mover o deal pro estágio "Em Onboarding", mas **esse estágio não existe no pipeline HubSpot atual** (vai de "Contrato Assinado" direto pra "Perdido"/"Sem Fit") — divergência entre o `GOLD-PATH.md` e a configuração real do pipeline, não corrigida nesta sessão
+- `[GOVERNANÇA]` **Gold Path concluído nas 6 etapas** (ETAPA 3 — Teams — ainda pendente de teste manual pelo usuário, câmera/microfone). Dados de teste (contato, deal, 3 PDFs) limpos integralmente ao final
+
 ## 2026-09-20 (madrugada — Gold Path parcial: ETAPA 1 e 2 aprovadas, achado novo registrado)
 
 - `[GOVERNANÇA]` Gold Path executado (parcial) pela primeira vez desde a correção do bug `@lid` (P11) e do fix do WF-001 v1.5 (ver entrada anterior). Usado o celular pessoal do usuário como número de teste (`@lid` real)

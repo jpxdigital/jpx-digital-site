@@ -105,15 +105,24 @@ CLIENTE
 
 ## Resultado
 
+Execução: 2026-09-20/21 (celular pessoal como número de teste, real `@lid`)
+
 | Etapa | Steps | OK | Falha |
 |---|---|---|---|
-| 1 — WhatsApp / JAS | GP-01 a GP-07 | | |
-| 2 — Agendamento | GP-08 a GP-12 | | |
-| 3 — Reunião | GP-13 a GP-15 | | |
-| 4 — Proposta | GP-16 a GP-20 | | |
-| 5 — Contrato | GP-21 a GP-23 | | |
-| 6 — Onboarding | GP-24 a GP-26 | | |
-| **TOTAL** | **26** | | |
+| 1 — WhatsApp / JAS | GP-01 a GP-07 | 7 | 0 |
+| 2 — Agendamento | GP-08 a GP-12 | 5 | 0 |
+| 3 — Reunião | GP-13 a GP-15 | | Não testado (pendente — requer usuário) |
+| 4 — Proposta | GP-16 a GP-20 | 4 | GP-19 não verificável (e-mail de teste fictício) |
+| 5 — Contrato | GP-21 a GP-23 | 3 | 0 |
+| 6 — Onboarding | GP-24 a GP-26 | 2 | GP-26: estágio "Em Onboarding" não existe no pipeline (P17) |
+| **TOTAL** | **26** | **21** | **2 não verificáveis · 3 não testados (ETAPA 3)** |
+
+**Achados corrigidos durante esta execução:**
+- Regressão P0 no WF-001: contatos `@lid` nunca tinham nome/empresa atualizado no HubSpot — corrigido (WF-001 v1.5, propriedade `jas_whatsapp_correlation_id`)
+
+**Achados registrados, não corrigidos (ver `STATUS.md`):**
+- P16 — deal do WF-001 nunca grava o serviço selecionado
+- P17 — estágio "Em Onboarding" (GP-26) não existe no pipeline
 
 ---
 
