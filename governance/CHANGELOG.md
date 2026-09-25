@@ -5,6 +5,12 @@ Formato: `[DATA] Módulo — Descrição (commit ou referência)`
 
 ---
 
+## 2026-09-25
+
+- `[M365]` Assinaturas de e-mail por função criadas para as 10 Shared Mailboxes (contato, comercial, assessment, onboarding, contratos, financeiro, projetos, operacoes, relatorios, privacidade) em `governance/assinaturas/`, geradas por `governance/assinaturas/gerar.py` a partir do layout de `public/assinatura-joao.html`. Motivo: e-mails enviados por qualquer alias saíam com a assinatura pessoal do João. Sem telefones; botão "Agendar conversa" só em contato, comercial e assessment. ✅ Instaladas no Outlook pelo usuário em 2026-09-25, cada uma associada ao endereço de envio correspondente.
+
+---
+
 ## 2026-09-21 (madrugada, continuação — Gold Path ETAPA 4, 5 e 6 aprovadas)
 
 - `[N8N/PDF]` ✅ **ETAPA 4 (Proposta) aprovada** — deal de teste criado direto via API no estágio "Proposta Solicitada" (service_slug `assessment-executivo`), webhook `/webhook/gerar-proposta` disparado manualmente. PDF gerado com nome, empresa, serviço e e-mail corretos (conferido extraindo o texto do PDF), salvo em `propostas/2026-09/`, deal movido automaticamente para "Proposta Enviada" (1385066797). GP-19 (e-mail) não verificável — usado e-mail de teste fictício sem caixa real
