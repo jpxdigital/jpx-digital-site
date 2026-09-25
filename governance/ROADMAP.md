@@ -1,7 +1,7 @@
 # ROADMAP — JPX Digital Platform
 
 Planejamento de entregas. Sem detalhes técnicos — apenas o quê e quando.
-Última atualização: 2026-07-30
+Última atualização: 2026-09-25 (release atual: v1.6.0)
 
 ---
 
@@ -36,9 +36,10 @@ Critério de encerramento: 3 assessments agendados ou realizados.
 | 1 | Tag `v1.5.0` no git | Claude | ✅ |
 | 2 | LinkedIn empresa JPX Digital | João | ✅ 2026-07-25 |
 | 3 | LinkedIn perfil João Martins | João | ✅ 2026-07-26 |
-| 4 | Playbook Comercial | João + Claude | 🟡 v0.1 rascunho — pendente aprovação |
+| 4 | Playbook Comercial | João + Claude | ✅ v1.1 (2026-07-30) |
 | 5 | HubSpot views de prospecção | João | 🟡 1/3 criada ("Novos Leads") |
-| 6 | Templates de e-mail institucional | João + Claude | ⏳ |
+| 6 | Templates de e-mail institucional | João + Claude | ✅ 7 templates (2026-07-30) |
+| 6b | Assinaturas de e-mail por função (10 aliases) | João + Claude | ✅ 2026-09-25 |
 | 7 | Lista Econodata SP Oeste (25 Score A) | João | ⏳ |
 | 8 | Primeiros 3 contatos comerciais | João | ⏳ |
 | 9 | Meta: 3 assessments agendados | João | ⏳ |
@@ -54,6 +55,9 @@ Critério de encerramento: 3 assessments agendados ou realizados.
 - WF-011/013 routing via WF-009 (closedwon)
 - Deploy automático jas-bridge via GitHub Actions (hoje: SCP manual)
 - ZapSign — integração assinatura SOW (aguarda token API)
+- P16 — deal do JAS gravar o serviço selecionado
+- P17 — alinhar estágio "Em Onboarding" (GOLD-PATH × pipeline HubSpot)
+- P10 — upgrade Next.js 15 → 16
 
 ### Médio prazo (após primeiro Assessment vendido)
 

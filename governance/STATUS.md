@@ -1,7 +1,7 @@
 # STATUS — JPX Digital Platform
 
 **Fonte oficial de estado do projeto.**
-Última atualização: 2026-09-13
+Última atualização: 2026-09-25
 
 ---
 
@@ -17,6 +17,8 @@ A plataforma passou pela homologação completa (78/78 testes). Todos os sistema
 ---
 
 ## Homologação — Resultado Final
+
+> Gold Path de regressão (v1.6.0) executado em 2026-09-20/21: 23/26 OK, etapas críticas aprovadas — ver `HOMOLOGATION-REPORT.md` (Homologação #2).
 
 | Módulo | Status | Resultado |
 |---|---|---|
@@ -44,13 +46,12 @@ A plataforma passou pela homologação completa (78/78 testes). Todos os sistema
 | Indicador | Valor |
 |---|---|
 | VMs em produção | 4 |
-| Workflows n8n ativos | 13 |
+| Workflows n8n em produção | 11 (+2 rascunho, 1 legado — ver `WORKFLOW_REGISTRY.md`) |
 | Serviços publicados no site | 26 (ai-readiness e acronis desativados) |
 | Segmentos de mercado | 5 |
-| Workflows homologados | 13 |
 | Testes de homologação executados | 78 |
 | Falhas P0 em aberto | 0 |
-| Release atual | v1.5.0 |
+| Release atual | v1.6.0 (2026-09-25) |
 | Plataformas integradas | 9+ |
 | Documentos JMS aprovados | 24 |
 
@@ -65,13 +66,13 @@ A plataforma passou pela homologação completa (78/78 testes). Todos os sistema
 | Microsoft 365 / Exchange | Produção ✅ | MX, SPF, DKIM, DMARC, aliases, assinatura, foto de perfil |
 | Microsoft Bookings | Produção ✅ | Página publicada, calendário sincronizado, Teams integrado, fluxo homologado |
 | HubSpot CRM | Produção ✅ | Pipeline 10 estágios, propriedades customizadas, token ativo — views e dashboards a configurar |
-| n8n Automações | Produção ✅ | Plataforma operacional homologada. 13 workflows ativos. Estrutura preparada para expansão. |
+| n8n Automações | Produção ✅ | 11 workflows em produção, deploy automático via GitHub Actions (P13). WF-001 v1.5 validado no Gold Path de 20–21/09 |
 | PDF Service | Produção ✅ | 5 templates ativos em vm-ashburn-1 |
 | Monitoramento (Grafana) | Produção ✅ | Infraestrutura operacional — datasources Prometheus/Loki a configurar |
 | JAS Sprint 1 | Produção ✅ | WhatsApp → HubSpot → Telegram E2E validado em 2026-07-22 |
 | JAS Sprint 2 | Não iniciado | Qualificação conversacional — aguarda primeiro Assessment vendido |
 | JMS (documentação) | Aprovado ✅ | 24 documentos — base de conhecimento da operação |
-| Identidade Visual | Produção ✅ | Favicon, PWA, logo e-mail, assinatura HTML, foto M365, LinkedIn empresa e perfil pessoal |
+| Identidade Visual | Produção ✅ | Favicon, PWA, logo e-mail, assinatura HTML pessoal + 10 assinaturas por função, foto M365, LinkedIn empresa e perfil pessoal |
 
 ---
 
@@ -113,8 +114,9 @@ A plataforma passou pela homologação completa (78/78 testes). Todos os sistema
 
 ### N8N AUTOMAÇÕES
 - **Estado:** Produção ✅
-- **Plataforma operacional homologada. 13 workflows ativos. Estrutura preparada para expansão.**
-- **Workflows ativos:** WF-001 a WF-013 (ver `governance/WORKFLOW_REGISTRY.md`)
+- **11 workflows em produção** (WF-001, 002, 005, 006, 008–014); WF-003 e WF-018 em rascunho; WF-007 legado; WF-004 fundido no WF-005
+- **Deploy:** automático via `.github/workflows/deploy-n8n-workflows.yml` para os arquivos mapeados em `n8n-workflows/.deploy-map.json`
+- **Workflows:** detalhes (ver `governance/WORKFLOW_REGISTRY.md`)
 - **Pendente:** WF-011/013 routing via WF-009 (closedwon), ZapSign (aguarda token API)
 
 ### JAS — JPX AI System
@@ -134,7 +136,7 @@ A plataforma passou pela homologação completa (78/78 testes). Todos os sistema
 
 ### IDENTIDADE VISUAL
 - **Estado:** Produção ✅ — 100%
-- **Pronto:** Favicon, ícones PWA, logo e-mail, foto perfil M365, assinatura HTML, LinkedIn empresa (2026-07-25) e perfil João Martins (2026-07-26)
+- **Pronto:** Favicon, ícones PWA, logo e-mail, foto perfil M365, assinatura HTML pessoal, assinaturas por função para os 10 aliases (`governance/assinaturas/`, instaladas no Outlook em 2026-09-25), LinkedIn empresa (2026-07-25) e perfil João Martins (2026-07-26)
 
 ---
 
@@ -145,9 +147,9 @@ O foco mudou: a plataforma já existe. O desafio agora é **validar o modelo com
 | Objetivo | Entrega |
 |---|---|
 | Posicionamento institucional | LinkedIn empresa ✅ + perfil João Martins ✅ |
-| Material comercial premium | Playbook Comercial (`governance/PLAYBOOK-COMERCIAL.md`) — v0.1 rascunho |
+| Material comercial premium | Playbook Comercial (`governance/PLAYBOOK-COMERCIAL.md`) — ✅ v1.1 |
 | Processo de venda | Assessment Executivo como porta de entrada |
-| Comunicação | Templates de e-mail institucional — ⏳ pendente |
+| Comunicação | ✅ 7 templates (`TEMPLATES-EMAIL.md`) + assinaturas por função |
 | Pipeline inicial | Lista Econodata SP Oeste — meta: 25 Score A (marco: 10/25) |
 | Primeiros contatos | Reuniões comerciais — meta: 3 assessments em 60 dias |
 | Métricas reais | Dados para evolução do JAS Sprint 2 |
@@ -162,7 +164,7 @@ O foco mudou: a plataforma já existe. O desafio agora é **validar o modelo com
 | P2 | Grafana datasources (Prometheus + Loki) | Monitoramento | Média |
 | P3 | WF-011/013 routing via WF-009 | n8n | Média |
 | P4 | HubSpot views definitivas e dashboards | HubSpot | Fase 2 |
-| P5 | Templates de e-mail institucional | Comercial | Fase 2 |
+| P5 | ✅ Templates de e-mail institucional — RESOLVIDO em 30/07 (`TEMPLATES-EMAIL.md`) | Comercial | Resolvido |
 | P6 | Lista Econodata SP Oeste (25 Score A) | Comercial | Fase 2 |
 | P7 | ZapSign SOW | n8n | Aguarda token API |
 | P8 | Deploy automático jas-bridge | Infra | Baixa |

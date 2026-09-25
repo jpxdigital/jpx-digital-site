@@ -5,6 +5,23 @@ Cada release é um marco de estabilidade — não toda mudança vira release.
 
 ---
 
+## v1.6.0 — Operação Comercial Real (2026-09-25)
+
+**Módulos:** Site, n8n/JAS, HubSpot, M365, Infra, Segurança, Governança
+
+- **Segurança:** Next.js 15.3.4 → 15.5.25 (CVE-2025-66478, GHSA-2xp9-vwfh-vxw4, GHSA-p293-qw3h-jr36 — RCE); `nanoid`/`sharp` corrigidos; rate limit + comparação timing-safe no `/api/admin/analytics`; tokens hardcoded removidos do repo e do histórico
+- **JAS / WF-001 v1.1 → v1.5:** JIDs `@lid` não são mais gravados como telefone no HubSpot (P11); condições de corrida em `jas_sessions` e na criação de contato corrigidas (P11a/b — UNIQUE INDEX parcial + `INSERT ... ON CONFLICT`); correlação de contato via propriedade `jas_whatsapp_correlation_id` (regressão P0 achada no Gold Path de 20/09)
+- **n8n:** deploy automático de workflows via GitHub Actions + API (P13 — Cloudflare Access Service Auth); WF-004 fundido no WF-005; WF-018 (Envio Avulso) em rascunho; conta de owner da UI criada
+- **Site:** `/api/leads` atualiza contato existente em submissão repetida (P12); leads de upsell Acronis identificados via `?interesse=upsell-acronis` (P15, parte do site); `/api/health` retorna o SHA real do commit; schema.org com Google Perfil da Empresa e LinkedIn; posicionamento PME 20–500; serviço "Backup & RMM Gerenciado"; rota órfã `ai-readiness-assessment` removida; número pessoal removido das superfícies públicas; modo manutenção implementado e mantido desativado
+- **E-mail:** DKIM do Zoho corrigido (chave de outro domínio + seletor `zmail`); assinaturas por função para as 10 Shared Mailboxes, instaladas no Outlook
+- **Comercial:** contrato Acronis fechado; portal white-label `resiliencia.jpxdigital.com.br` no ar; Playbook Comercial v1.1; 7 templates de e-mail; LinkedIn empresa e perfil publicados
+- **Operação:** CRM e tabelas do JAS zerados em 20/09 — prospecção real a partir de 21/09
+- **Gold Path #2 (20–21/09):** 23/26 OK, etapas críticas 1, 2 e 4 aprovadas (ver `HOMOLOGATION-REPORT.md`)
+
+**Pendências conhecidas na release:** P1 (migração jpx-n8n → A1.Flex), P2, P3, P7, P8, P10, P16, P17 — ver `STATUS.md`.
+
+---
+
 ## v1.5.0 — GO-LIVE Técnico (2026-07-22)
 
 **Módulos:** Homologação, n8n, HubSpot, JAS, Site, Governança

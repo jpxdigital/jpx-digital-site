@@ -9,7 +9,7 @@ Abrir este documento no dia da liberação para prospecção.
 
 ### Infraestrutura
 
-- [ ] SSL válido (jpxdigital.com.br — vence 2026-09-17)
+- [ ] SSL válido (jpxdigital.com.br — renovado, vence 2026-12-15; conferido em 2026-09-25)
 - [ ] 4 VMs OCI operacionais (jpx-vm, jpx-n8n, vm-ashburn-1, vm-ashburn-2)
 - [ ] Cloudflare WAF ativo
 - [ ] Monitoramento Grafana recebendo métricas de todas as VMs

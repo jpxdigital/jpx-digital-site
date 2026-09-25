@@ -49,6 +49,37 @@ Não apagar registros anteriores — empilhar em ordem cronológica reversa (mai
 
 ## Execuções realizadas
 
+### Homologação #2 — v1.6.0 — 21/09/2026 (Gold Path de regressão)
+
+**Executor:** João Martins + Claude Code
+**Versão da plataforma:** v1.6.0 (baseline `c3b58d7`)
+**Data início:** 2026-09-20
+**Data fim:** 2026-09-21
+**Escopo:** Gold Path completo (26 steps) como teste de regressão antes da prospecção real. H1/H2 completas não foram reexecutadas — mudanças desde a v1.5.0 cobertas pelo Gold Path + testes pontuais registrados no `CHANGELOG.md` (13–14/09 e 20/09)
+
+#### Gold Path
+- Steps executados: 26 / 26
+- OK: 23 · Não verificáveis: 2 (GP-19 e-mail fictício; GP-26 estágio inexistente — P17) · Passo manual não testado: 1 (GP-15)
+- Falhas nas etapas críticas (1, 2, 4): 0 após correção
+- Resultado: ✅ APROVADO
+
+#### Bloqueadores encontrados
+| # | Teste | Descrição | Resolvido em |
+|---|---|---|---|
+| F07 | GP-05/06 | Regressão P0 no WF-001: contatos `@lid` nunca tinham nome/empresa atualizado no HubSpot (busca por `phone` vazio) — corrigido com `jas_whatsapp_correlation_id` (WF-001 v1.5) | 2026-09-20 |
+
+#### Achados não bloqueadores
+- P16 — deal do WF-001 não grava o serviço selecionado
+- P17 — estágio "Em Onboarding" (GP-26) não existe no Pipeline JPX
+
+#### Decisão final
+[x] ✅ LIBERADO PARA PROSPECÇÃO ATIVA (a partir de 21/09/2026)
+
+**Assinatura:** _________________________ (pendente — João) **Data:** ___________
+**Notas:** Gold Path usou o celular pessoal do usuário (`@lid` real). Dados de teste apagados ao final. ETAPA 3 (Teams A/V) confirmada manualmente pelo usuário.
+
+---
+
 ### Homologação #1 — v1.4.0 — 22/07/2026
 
 **Executor:** João Martins

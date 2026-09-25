@@ -23,9 +23,7 @@ Todos os 9 itens concluídos. Resultado: 78/78 testes aprovados, zero falhas P0.
 | 6 | Gold Path completo (26 steps) | ✅ 26/26 |
 | 7 | Homologation Report | ✅ Assinado |
 | 8 | GO-LIVE técnico aprovado | ✅ 2026-07-22 |
-| 9 | Baseline v1.5.0 | ⏳ Tag git pendente |
-
-> **Pendência:** criar tag `v1.5.0` no git para congelar a baseline formalmente.
+| 9 | Baseline v1.5.0 | ✅ Tag `v1.5.0` (23/07) |
 
 ---
 

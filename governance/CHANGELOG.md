@@ -7,6 +7,8 @@ Formato: `[DATA] Módulo — Descrição (commit ou referência)`
 
 ## 2026-09-25
 
+- `[GOVERNANÇA]` 🏷️ **Release v1.6.0 publicada** — consolida tudo desde a v1.5.0 (segurança Next.js, WF-001 v1.1→v1.5, deploy automático n8n, P11/P12/P13/P14/P15, DKIM Zoho, Acronis, reset para prospecção real). Entrada em `RELEASES.md`; Gold Path de 20–21/09 registrado como Homologação #2 em `HOMOLOGATION-REPORT.md` (assinatura do João pendente)
+- `[GOVERNANÇA]` Divergências corrigidas: `STATUS.md` (data, contagem de workflows 13 → 11 em produção, Playbook/Templates/P5 marcados como concluídos), `ROADMAP.md` (parado em 30/07), `SPRINT.md` (tag v1.5.0 ainda marcada como pendente), `GO-LIVE.md` (data antiga de vencimento do SSL)
 - `[M365]` Assinaturas de e-mail por função criadas para as 10 Shared Mailboxes (contato, comercial, assessment, onboarding, contratos, financeiro, projetos, operacoes, relatorios, privacidade) em `governance/assinaturas/`, geradas por `governance/assinaturas/gerar.py` a partir do layout de `public/assinatura-joao.html`. Motivo: e-mails enviados por qualquer alias saíam com a assinatura pessoal do João. Sem telefones; botão "Agendar conversa" só em contato, comercial e assessment. ✅ Instaladas no Outlook pelo usuário em 2026-09-25, cada uma associada ao endereço de envio correspondente.
 
 ---
